@@ -1,322 +1,196 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="Vision Hub – UK sight loss resource covering eye conditions, research, assistive technology, benefits and support." />
-<title>Vision Hub</title>
-
+<title>Vision Hub — UK Sight Loss Platform</title>
 <style>
 :root{
-  --bg:#0b0f17;
-  --panel:#121a27;
-  --card:#162033;
+  --bg:#0b0f14;
+  --card:#121923;
   --text:#eaf0ff;
-  --muted:#a9b4c7;
-  --accent:#ffd24a;
-  --border:rgba(255,255,255,0.08);
-  --shadow:0 10px 30px rgba(0,0,0,0.35);
+  --text2:#b7c3d9;
+  --accent:#4da3ff;
+  --yellow:#ffd34d;
+  --scale:1;
 }
-
 *{box-sizing:border-box}
 body{
   margin:0;
-  font-family:system-ui,-apple-system,Segoe UI,Arial;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
   background:var(--bg);
   color:var(--text);
-  line-height:1.6;
+  font-size:calc(16px * var(--scale));
 }
-
-a{color:var(--accent);text-decoration:none}
-a:hover{text-decoration:underline}
-
+a{color:var(--accent)}
 header{
-  padding:22px 16px;
-  text-align:center;
-  border-bottom:1px solid var(--border);
-  background:linear-gradient(180deg,#111a2b,#0b0f17);
-}
-header h1{margin:0;font-size:2rem}
-header p{color:var(--muted);margin-top:6px}
-
-.container{max-width:1100px;margin:auto;padding:18px}
-
-.topbar{
   display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  margin-bottom:14px;
+  justify-content:space-between;
+  padding:16px;
+  border-bottom:1px solid #1f2b3a;
 }
-
-.search{
-  flex:1;
-  padding:12px;
-  border-radius:10px;
-  border:1px solid var(--border);
-  background:var(--panel);
-  color:var(--text);
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-  gap:14px;
-}
-
-.card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:14px;
-  padding:14px;
-  cursor:pointer;
-  box-shadow:var(--shadow);
-  transition:.2s;
-}
-.card:hover{transform:translateY(-3px)}
-.card h3{margin:0 0 6px 0}
-.card p{color:var(--muted);font-size:.9rem}
-
-.panel{
-  position:fixed;
-  top:0;right:-100%;
-  width:100%;max-width:720px;
-  height:100%;
-  background:var(--panel);
-  overflow:auto;
-  padding:18px;
-  border-left:1px solid var(--border);
-  transition:.3s;
-}
-.panel.open{right:0}
-
-.close{
-  float:right;
-  background:none;
-  border:none;
-  color:var(--text);
-  font-size:1.2rem;
-  cursor:pointer;
-}
-
-.section{margin-top:18px}
-.section h2{color:var(--accent);font-size:1.05rem}
-
-.block{
-  background:var(--card);
-  padding:12px;
-  border-radius:10px;
-  border:1px solid var(--border);
-  margin-top:10px;
-}
-
-footer{
-  text-align:center;
-  padding:30px;
-  color:var(--muted);
-  border-top:1px solid var(--border);
-  margin-top:40px;
-}
+.site{font-weight:800}
+.container{max-width:1000px;margin:auto;padding:18px}
+.search{width:100%;padding:12px;border-radius:10px;border:1px solid #2a3b52;background:#0f1622;color:var(--text);margin-bottom:16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.card{background:var(--card);padding:14px;border-radius:12px;cursor:pointer;border:1px solid #1f2c3f}
+.card:hover{border-color:var(--accent)}
+.panel{display:none;margin-top:16px}
+.panel.vis{display:block}
+.block{background:var(--card);padding:14px;border-radius:12px;margin-bottom:10px}
+button{cursor:pointer}
+.close{background:#1d2a3d;border:none;color:white;padding:8px 12px;border-radius:8px}
+.small{color:var(--text2)}
 </style>
 </head>
-
 <body>
-
 <header>
-  <h1>Vision Hub</h1>
-  <p>UK sight loss resource for conditions, research, tech, and support</p>
-</header>
-
-<div class="container">
-
-<div class="topbar">
-  <input class="search" placeholder="Search conditions..." oninput="filter(this.value)" />
-</div>
-
-<div class="grid" id="grid"></div>
-
-</div>
-
-<div class="panel" id="panel">
-<button class="close" onclick="closePanel()">✕</button>
-<div id="content"></div>
-</div>
-
-<footer>
-© 2026 Vision Hub · Not medical advice · Always consult an ophthalmologist
-</footer>
-
-<script>
-
+<div class="site">◈ Vision Hub</div>
+</header><div class="container">
+<input class="search" id="search" placeholder="Search conditions..." oninput="filter(this.value)" /><div class="grid" id="grid"></div><div id="panel"></div></div><script>
 const DATA = {
 
 stargardts:{
 name:"Stargardt Disease",
-what:"Inherited macular dystrophy caused by ABCA4 gene mutation leading to central vision loss.",
-howAffects:"Central vision declines early, peripheral usually preserved.",
-diagnosis:"Fundus imaging, ERG, genetic testing.",
-whoAffects:"1 in 8,000–10,000 people, often ages 6–20.",
-research:[
-{title:"Gene Therapy",body:"ABCA4 replacement using viral vectors and dual gene systems.",link:"https://clinicaltrials.gov"},
-{title:"Stem Cell Therapy",body:"RPE cell replacement trials at Moorfields and others.",link:"https://clinicaltrials.gov"}
-],
-guides:[
-{title:"Specialist Referral",body:"Request inherited retinal disease clinic referral."},
-{title:"CVI Registration",body:"Unlocks support services and benefits."},
-{title:"Protect Vision",body:"Avoid smoking, consider UV protection."}
-],
-tech:[
-{title:"eSight 4",body:"Wearable vision enhancement headset."},
-{title:"OrCam MyEye",body:"Reads text and identifies objects."},
-{title:"Seeing AI",body:"Free Microsoft assistive app."}
-],
-support:[
-{title:"RNIB",body:"Helpline and support services."},
-{title:"Macular Society",body:"Specialist support and research funding."}
-],
-benefits:[
-{title:"PIP",body:"Financial support for daily living and mobility."},
-{title:"Access to Work",body:"Workplace adjustments funding."}
-]
+what:"Inherited macular dystrophy caused by ABCA4 gene mutations.",
+vision:"Central vision loss, reading difficulty, light sensitivity.",
+diagnosis:"OCT, genetic testing, retinal imaging.",
+who:"Usually onset 6–20 years, rare inherited condition.",
+guides:["Referral to retinal specialist","Vision protection advice"],
+tech:["Seeing AI","Magnifiers"],
+support:["RNIB","Macular Society"]
 },
 
 amd:{
 name:"Age-Related Macular Degeneration",
-what:"Leading cause of vision loss over 50 affecting the macula.",
-howAffects:"Central distortion, wavy lines, blurred vision.",
-diagnosis:"OCT scans and eye exams.",
-whoAffects:"Over 50s, higher risk in smokers.",
-research:[
-{title:"Anti-VEGF",body:"Injections slowing wet AMD progression."},
-{title:"Gene Therapy",body:"Continuous anti-VEGF production research."}
-],
-guides:[
-{title:"Amsler Grid",body:"Daily monitoring for vision changes."},
-{title:"Injections",body:"Wet AMD treatment via eye injections."}
-],
-tech:[
-{title:"Magnifiers",body:"Electronic vision magnification devices."}
-],
-support:[
-{title:"Macular Society",body:"Support and counselling."}
-],
-benefits:[
-{title:"Attendance Allowance",body:"Support for over pension age."}
-]
+what:"Degeneration of macula in older adults.",
+vision:"Blurred central vision, distortion.",
+diagnosis:"Eye scans (OCT)",
+who:"Over 50s, smoking increases risk",
+guides:["Amsler grid daily monitoring"],
+tech:["CCTV magnifier","Anti-VEGF injections"],
+support:["Macular Society","RNIB"]
 },
 
 glaucoma:{
 name:"Glaucoma",
-what:"Optic nerve damage usually due to raised eye pressure.",
-howAffects:"Peripheral vision loss over time.",
-diagnosis:"Pressure tests and visual field scans.",
-whoAffects:"Over 60, family history, African/Caribbean heritage.",
-research:[
-{title:"Drug Implants",body:"Long-term pressure control implants."}
-],
-guides:[
-{title:"Eye Drops",body:"Correct use is critical to slow progression."}
-],
-tech:[
-{title:"Drop Aids",body:"Devices for accurate medication use."}
-],
-support:[
-{title:"Glaucoma UK",body:"Specialist support and advice."}
-],
-benefits:[
-{title:"PIP",body:"Support for severe vision loss."}
-]
+what:"Optic nerve damage from raised eye pressure.",
+vision:"Peripheral vision loss.",
+diagnosis:"Pressure + visual field tests.",
+who:"Over 60 or family history",
+guides:["Eye drops adherence"],
+tech:["Drop aids"],
+support:["Glaucoma UK","RNIB"]
 },
 
 rp:{
 name:"Retinitis Pigmentosa",
-what:"Inherited retinal degeneration causing night and peripheral vision loss.",
-howAffects:"Night blindness then tunnel vision.",
-diagnosis:"ERG and genetic testing.",
-whoAffects:"1 in 4,000 people.",
-research:[
-{title:"Luxturna",body:"Gene therapy for RPE65 mutation."}
-],
-guides:[
-{title:"Genetic Testing",body:"Determines treatment eligibility."},
-{title:"Cane Training",body:"Mobility independence support."}
-],
-tech:[
-{title:"Seeing AI",body:"Assistive navigation and reading app."}
-],
-support:[
-{title:"Retina UK",body:"Research and support services."}
-],
-benefits:[
-{title:"Mobility PIP",body:"Supports independence funding."}
-]
+what:"Inherited retinal degeneration.",
+vision:"Night blindness, tunnel vision.",
+diagnosis:"ERG + genetics.",
+who:"1 in 4,000",
+guides:["Mobility cane training"],
+tech:["Seeing AI"],
+support:["Retina UK"]
 },
 
 diabetic:{
 name:"Diabetic Retinopathy",
-what:"Retinal damage caused by diabetes.",
-howAffects:"Often symptomless until advanced.",
-diagnosis:"Annual NHS screening.",
-whoAffects:"People with Type 1 or Type 2 diabetes.",
-research:[
-{title:"Vabysmo",body:"Dual pathway treatment injections."}
-],
-guides:[
-{title:"Screening",body:"Annual checks prevent blindness."},
-{title:"Blood Sugar",body:"Control reduces progression risk."}
-],
-tech:[
-{title:"CGM Devices",body:"Continuous glucose monitoring improves outcomes."}
-],
-support:[
-{title:"Diabetes UK",body:"Support and education."}
-],
-benefits:[
-{title:"PIP",body:"Support for vision complications."}
-]
+what:"Retina damage from diabetes.",
+vision:"Often no early symptoms.",
+diagnosis:"NHS screening",
+who:"People with diabetes",
+guides:["Annual screening essential"],
+tech:["CGM glucose monitoring"],
+support:["Diabetes UK"]
+},
+
+cataract:{
+name:"Cataract",
+what:"Clouding of the eye lens.",
+vision:"Blurry, foggy vision.",
+diagnosis:"Eye examination",
+who:"Common in older adults",
+guides:["Surgery is highly effective"],
+tech:["Magnifiers"],
+support:["RNIB"]
+},
+
+retinal_detachment:{
+name:"Retinal Detachment",
+what:"Retina pulls away from back of eye.",
+vision:"Flashes, curtain vision loss.",
+diagnosis:"Emergency eye exam",
+who:"Myopia increases risk",
+guides:["Emergency A&E immediately"],
+tech:["Surgical repair"],
+support:["RNIB"]
+},
+
+myopia_degeneration:{
+name:"Pathologic Myopia",
+what:"Severe short-sightedness causing retinal stretching.",
+vision:"Progressive vision distortion.",
+diagnosis:"Eye scans",
+who:"High myopia patients",
+guides:["Regular monitoring"],
+tech:["Corrective lenses"],
+support:["RNIB"]
+},
+
+uveitis:{
+name:"Uveitis",
+what:"Inflammation inside the eye.",
+vision:"Pain, redness, blurred vision.",
+diagnosis:"Eye exam + tests",
+who:"Autoimmune conditions linked",
+guides:["Urgent treatment required"],
+tech:["Steroid drops"],
+support:["RNIB"]
 }
 
 };
 
-function renderGrid(){
-const g=document.getElementById('grid');
-g.innerHTML='';
-Object.keys(DATA).forEach(k=>{
-const c=document.createElement('div');
-c.className='card';
-c.innerHTML=`<h3>${DATA[k].name}</h3><p>${DATA[k].what}</p>`;
-c.onclick=()=>open(k);
-g.appendChild(c);
-});
+function render(key){
+const d = DATA[key];
+if(!d) return "";
+return `
+<div class='block'>
+<h2>${d.name}</h2>
+<p><b>What:</b> ${d.what}</p>
+<p><b>Vision:</b> ${d.vision}</p>
+<p><b>Diagnosis:</b> ${d.diagnosis}</p>
+<p><b>Affected:</b> ${d.who}</p>
+<p><b>Guides:</b> ${d.guides.join(", ")}</p>
+<p><b>Tech:</b> ${d.tech.join(", ")}</p>
+<p><b>Support:</b> ${d.support.join(", ")}</p>
+<button class='close' onclick='closePanel()'>Close</button>
+</div>`;
 }
 
-function open(k){
-const d=DATA[k];
-document.getElementById('panel').classList.add('open');
-document.getElementById('content').innerHTML=`
-<h2>${d.name}</h2>
-<div class='section'><h2>Overview</h2><div class='block'>${d.what}</div></div>
-<div class='section'><h2>Impact</h2><div class='block'>${d.howAffects}</div></div>
-<div class='section'><h2>Diagnosis</h2><div class='block'>${d.diagnosis}</div></div>
-<div class='section'><h2>Research</h2>${d.research.map(r=>`<div class='block'><b>${r.title}</b><br>${r.body}</div>`).join('')}</div>
-<div class='section'><h2>Support</h2>${d.support.map(s=>`<div class='block'><b>${s.title}</b><br>${s.body}</div>`).join('')}</div>
-<div class='section'><h2>Benefits</h2>${d.benefits.map(b=>`<div class='block'><b>${b.title}</b><br>${b.body}</div>`).join('')}</div>
-`;
+let open=null;
+
+function openPanel(k){
+open=k;
+document.getElementById('panel').innerHTML = render(k);
 }
 
 function closePanel(){
-document.getElementById('panel').classList.remove('open');
+document.getElementById('panel').innerHTML="";
+open=null;
 }
 
-function filter(v){
-const cards=document.querySelectorAll('.card');
-cards.forEach(c=>{
-c.style.display=c.innerText.toLowerCase().includes(v.toLowerCase())?'block':'none';
+function filter(q){
+q=q.toLowerCase();
+let grid=document.getElementById('grid');
+grid.innerHTML="";
+Object.keys(DATA).forEach(k=>{
+if(k.includes(q)||DATA[k].name.toLowerCase().includes(q)){
+grid.innerHTML += `<div class='card' onclick=\"openPanel('${k}')\">${DATA[k].name}</div>`;
+}
 });
 }
 
-renderGrid();
-
-</script>
-
-</body>
+// init
+filter("");
+</script></body>
 </html>
