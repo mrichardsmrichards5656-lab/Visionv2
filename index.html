@@ -411,13 +411,17 @@ footer { background: var(--bg2); border-top: 3px solid var(--yellow); padding: 3
     <button class="ab ab-xl" id="sz-xl" onclick="setSize(1.5)"   aria-pressed="false" aria-label="Extra large text">A</button>
   </div>
   <div class="a11y-divider" aria-hidden="true"></div>
-  <div class="a11y-group" role="group" aria-label="Colour scheme">
-    <span class="a11y-label" aria-hidden="true">Colour</span>
-    <button class="ab on" id="col-def" onclick="setColour('')"     aria-pressed="true"  aria-label="Light default colours">☀️ Light</button>
-    <button class="ab"    id="col-dark" onclick="setColour('dark')" aria-pressed="false" aria-label="Dark mode">🌙 Dark</button>
-    <button class="ab"    id="col-ll"  onclick="setColour('ll')"   aria-pressed="false" aria-label="Low light, soft on sensitive eyes">👁️ Low</button>
-    <button class="ab"    id="col-hc"  onclick="setColour('hc')"   aria-pressed="false" aria-label="High contrast white on black">⬛ Hi</button>
-    <button class="ab ab-yb" id="col-yb" onclick="setColour('yb')" aria-pressed="false" aria-label="Yellow on black">🟡 Yell</button>
+  <div class="a11y-group" role="group" aria-label="Theme">
+    <span class="a11y-label" aria-hidden="true">Theme</span>
+    <select id="col-select" onchange="setColour(this.value)"
+      aria-label="Choose colour scheme"
+      style="min-height:44px;padding:0 12px;border-radius:50px;border:2px solid var(--border);background:var(--card2);color:var(--text);font-family:var(--font);font-size:0.9rem;font-weight:700;cursor:pointer;outline:none;">
+      <option value="">☀️ Light</option>
+      <option value="dark">🌙 Dark</option>
+      <option value="ll">👁️ Low Light</option>
+      <option value="hc">⬛ High Contrast</option>
+      <option value="yb">🟡 Yellow on Black</option>
+    </select>
   </div>
   <a href="tel:03031239999" class="helpline-pill" aria-label="RNIB helpline, phone 0303 123 9999">
     📞 RNIB Helpline: 0303 123 9999
@@ -1090,18 +1094,12 @@ function setSize(scale) {
 }
 
 /* ─────────────── COLOUR SCHEME ─────────────── */
-const COL_IDS = {'':'col-def', dark:'col-dark', ll:'col-ll', hc:'col-hc', yb:'col-yb'};
 function setColour(mode) {
   document.body.classList.remove('dark','ll','hc','yb');
   if (mode) document.body.classList.add(mode);
   try { localStorage.setItem('vh-colour', mode); } catch(e){}
-  Object.entries(COL_IDS).forEach(([m, id]) => {
-    const b = document.getElementById(id);
-    if (!b) return;
-    const active = m === mode;
-    b.classList.toggle('on', active);
-    b.setAttribute('aria-pressed', String(active));
-  });
+  const sel = document.getElementById('col-select');
+  if (sel) sel.value = mode;
 }
 
 /* ─────────────── SHARE / COPY / PRINT ─────────────── */
@@ -1141,6 +1139,8 @@ function submitFeedback(key, vote, btn) {
     const colour = localStorage.getItem('vh-colour') ?? '';
     if (size !== 1)    setSize(size);
     if (colour !== '') setColour(colour);
+    const sel = document.getElementById('col-select');
+    if (sel) sel.value = colour;
   } catch(e) {}
 })();
 
