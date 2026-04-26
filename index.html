@@ -1,234 +1,253 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Vision Hub</title>
-
-<style>
+<title>Vision Hub</title><style>
 :root{
   --bg:#0b0c10;
-  --bg2:#111218;
-  --card:#171923;
+  --bg2:#11131a;
+  --card:#171a24;
   --card2:#1e2230;
   --text:#ffffff;
-  --text2:#c7c7c7;
-  --border:#2a2f3a;
-  --yellow:#f5b800;
+  --text2:#b9bcc7;
+  --muted:#8b90a0;
+  --border:#2a3040;
+  --accent:#f5b800;
   --blue:#4aa3ff;
   --green:#2ecc71;
-  --font: system-ui, -apple-system, Arial;
+  --shadow: 0 10px 30px rgba(0,0,0,.35);
+  --radius:16px;
+  --font: system-ui, -apple-system, Segoe UI, Roboto, Arial;
   --scale:1;
 }
 
+*{box-sizing:border-box}
 body{
   margin:0;
   font-family:var(--font);
   background:var(--bg);
   color:var(--text);
   font-size:calc(17px * var(--scale));
+  line-height:1.6;
 }
 
+a{color:var(--accent);text-decoration:none}
+
+/* Skip link */
 .skip{
-  position:absolute;
-  left:-999px;
+  position:absolute;left:-999px;
   top:auto;
 }
 .skip:focus{
-  left:10px;
-  top:10px;
+  left:12px;top:12px;
   background:#000;
-  color:#fff;
-  padding:10px;
+  padding:10px 14px;
   z-index:9999;
+  border:2px solid var(--accent);
 }
 
-.page{display:none;}
-.page.active{display:block;}
-
-.site-header{
-  padding:18px;
-  display:flex;
-  flex-direction:column;
-  gap:4px;
+/* Header */
+header{
   background:var(--bg2);
+  padding:18px 20px;
   border-bottom:1px solid var(--border);
+  position:sticky;top:0;
+  z-index:50;
 }
-.site-name{font-weight:900; font-size:1.3rem; cursor:pointer;}
-.site-tagline{color:var(--text2); font-size:0.9rem;}
 
-.a11y-bar{
+.brand{
+  font-weight:900;
+  font-size:1.3rem;
+  cursor:pointer;
+}
+.tagline{color:var(--muted);font-size:.9rem}
+
+/* Accessibility bar */
+.a11y{
   display:flex;
-  gap:10px;
-  padding:10px;
   flex-wrap:wrap;
+  gap:8px;
+  padding:10px 12px;
   background:var(--card2);
+  border-bottom:1px solid var(--border);
 }
 
 button{
   min-height:44px;
+  border-radius:10px;
+  border:1px solid var(--border);
+  background:var(--card);
+  color:var(--text);
+  padding:8px 12px;
   cursor:pointer;
 }
+button:hover{border-color:var(--accent)}
 
-.hero{padding:20px;}
-.hero h1{font-size:2rem;}
-.hero-desc{color:var(--text2)}
+/* Layout */
+.container{
+  max-width:980px;
+  margin:0 auto;
+  padding:20px;
+}
 
-.cond-item{margin-bottom:10px;}
-.cond-btn{
+.hero{
+  padding:20px;
+  background:linear-gradient(180deg,var(--card),transparent);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+}
+
+.hero h1{font-size:2rem;margin:0 0 10px}
+.hero p{color:var(--text2)}
+
+input{
   width:100%;
-  text-align:left;
   padding:14px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background:var(--bg);
+  color:var(--text);
+  margin-top:12px;
+}
+
+/* Cards */
+.grid{margin-top:20px;display:flex;flex-direction:column;gap:12px}
+.card{
   background:var(--card);
   border:1px solid var(--border);
-  border-radius:10px;
-  color:var(--text);
+  border-radius:var(--radius);
+  padding:16px;
+  box-shadow:var(--shadow);
 }
-.cond-btn.on{border-color:var(--yellow);}
+.card h3{margin:0 0 6px;color:var(--accent)}
+.card p{color:var(--text2)}
 
-.detail-panel{display:none; padding:10px;}
-.detail-panel.vis{display:block;}
+/* Panels */
+.panel{display:none;margin-top:10px}
+.panel.active{display:block}
 
-.wb{
+.badge{
+  display:inline-block;
   background:rgba(245,184,0,.1);
-  border:1px solid var(--yellow);
-  padding:12px;
-  border-radius:10px;
-  margin:10px 0;
+  border:1px solid var(--accent);
+  color:var(--accent);
+  padding:4px 10px;
+  border-radius:999px;
+  font-size:.75rem;
 }
 
-footer{padding:20px; border-top:1px solid var(--border);}
+/* Footer */
+footer{
+  margin-top:40px;
+  padding:30px 20px;
+  border-top:1px solid var(--border);
+  color:var(--text2);
+  text-align:center;
+}
 
-.sr{position:absolute;left:-9999px;}
+/* Accessibility helpers */
+.sr{position:absolute;left:-9999px}
 
+/* Print */
 @media print{
-  body *{visibility:hidden;}
-  .detail-panel.vis, .detail-panel.vis *{visibility:visible;}
-  .detail-panel.vis{position:absolute;top:0;left:0;}
+  body *{visibility:hidden}
+  .panel.active,.panel.active *{visibility:visible}
+  .panel.active{position:absolute;top:0;left:0}
 }
-</style>
-</head>
+</style></head><body><a class="skip" href="#main">Skip</a>
 
-<body>
-
-<a class="skip" href="#main">Skip</a>
-
-<div id="aria-live" class="sr" aria-live="polite"></div>
-
-<header class="site-header">
-  <span class="site-name" onclick="showPage('home')">Vision Hub</span>
-  <span class="site-tagline">UK Sight Loss Resource</span>
-</header>
-
-<div id="page-home" class="page active">
-<main id="main">
-
-<div class="hero">
-<h1>Everything in one place</h1>
-<p class="hero-desc">Accessible sight loss information</p>
-
-<input id="search" placeholder="Search condition..." oninput="filter(this.value)" style="width:100%;padding:12px;margin-top:10px" />
-</div>
-
-<section>
-
-<div class="cond-item">
-<button class="cond-btn" onclick="toggle('stargardt',this)">Stargardt Disease</button>
-<div id="dp-stargardt" class="detail-panel"></div>
-</div>
-
-<div class="cond-item">
-<button class="cond-btn" onclick="toggle('amd',this)">AMD</button>
-<div id="dp-amd" class="detail-panel"></div>
-</div>
-
-</section>
-
-</main>
-</div>
-
-<script>
-const DATA={
-stargardt:{
-name:"Stargardt",
-what:"Inherited macular disease",
-guides:[{n:1,title:"Referral",body:"See retina specialist"}],
-tech:[{cat:"App",title:"Seeing AI",body:"Free Microsoft app",price:"Free"}],
-support:[{title:"RNIB",body:"Support",link:"https://rnib.org.uk"}],
-benefits:[{n:1,title:"CVI",body:"Register vision loss"}]
-},
-amd:{
-name:"AMD",
-what:"Age-related macular degeneration",
-guides:[{n:1,title:"Amsler grid",body:"Check daily"}],
-tech:[],
-support:[],
-benefits:[]
+<div id="live" class="sr" aria-live="polite"></div><header>
+  <div class="brand" onclick="goHome()">Vision Hub</div>
+  <div class="tagline">UK Sight Loss Resource</div>
+</header><div class="a11y">
+  <button onclick="setSize(0.9)">A-</button>
+  <button onclick="setSize(1)">A</button>
+  <button onclick="setSize(1.25)">A+</button>
+  <button onclick="setContrast()">Contrast</button>
+</div><main class="container" id="main"><div class="hero">
+  <h1>Everything in one place</h1>
+  <p>Clear, accessible information for sight loss conditions</p>
+  <input placeholder="Search condition..." oninput="search(this.value)" />
+</div><div class="grid" id="list"></div></main><footer>
+  Vision Hub • Free UK Resource • Not medical advice
+</footer><script>
+const DATA = [
+{
+key:"stargardt",
+name:"Stargardt Disease",
+text:"Inherited macular dystrophy affecting central vision.",
+full:"Stargardt disease is an inherited retinal condition affecting the macula...",
 }
-};
+,
+{
+key:"amd",
+name:"Age-related Macular Degeneration",
+text:"Leading cause of vision loss in over 50s.",
+full:"AMD damages the macula causing central vision loss...",
+}
+,
+{
+key:"glaucoma",
+name:"Glaucoma",
+text:"Optic nerve damage, often due to pressure.",
+full:"Glaucoma gradually damages the optic nerve and peripheral vision...",
+}
+];
 
-let open=null;
-let btn=null;
+let current=null;
 
-function announce(t){
-  const el=document.getElementById('aria-live');
-  el.textContent='';
-  setTimeout(()=>el.textContent=t,50);
+function render(list){
+  const el=document.getElementById('list');
+  el.innerHTML=list.map(i=>`
+  <div class="card">
+    <h3>${i.name}</h3>
+    <span class="badge">Condition</span>
+    <p>${i.text}</p>
+    <button onclick="toggle('${i.key}',this)">Open</button>
+    <div id="p-${i.key}" class="panel"></div>
+  </div>
+  `).join('');
 }
 
-function toggle(k,b){
-  if(open===k){close(k);return;}
-  if(open) close(open,false);
-  open=k; btn=b;
+function toggle(k){
+  const p=document.getElementById('p-'+k);
+  const item=DATA.find(x=>x.key===k);
 
-  b.classList.add('on');
+  if(p.classList.contains('active')){
+    p.classList.remove('active');
+    p.innerHTML='';
+    return;
+  }
 
-  const p=document.getElementById('dp-'+k);
-  p.innerHTML=render(k);
-  p.classList.add('vis');
+  document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));
 
-  trap(p);
-  announce(k+' opened');
+  p.innerHTML=`<div class='card'><p>${item.full}</p></div>`;
+  p.classList.add('active');
 
   history.replaceState(null,'','#'+k);
+  announce(item.name+' opened');
 }
 
-function close(k,focus=true){
-  const p=document.getElementById('dp-'+k);
-  if(p) p.classList.remove('vis');
-  if(btn){btn.classList.remove('on');}
-  open=null;
-  announce('closed');
+function search(q){
+  q=q.toLowerCase();
+  render(DATA.filter(d=>d.name.toLowerCase().includes(q)));
 }
 
-function render(k){
-  const d=DATA[k];
-  return `<div><p>${d.what}</p></div>`;
+function setSize(s){document.documentElement.style.setProperty('--scale',s)}
+
+function setContrast(){document.body.classList.toggle('high')}
+
+function announce(t){
+  document.getElementById('live').textContent=t;
 }
 
-function trap(p){
-  const f=p.querySelectorAll('button,a');
-  if(!f.length)return;
-  const first=f[0],last=f[f.length-1];
+function goHome(){render(DATA)}
 
-  p.onkeydown=e=>{
-    if(e.key!=='Tab')return;
-    if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}
-    else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}
-  };
-}
-
-function filter(q){
-  document.querySelectorAll('.cond-item').forEach(i=>{
-    i.style.display=i.textContent.toLowerCase().includes(q.toLowerCase())?'':'none';
-  });
-}
-
-(function hash(){
-  const k=location.hash.replace('#','');
-  if(k){const b=document.querySelector('[onclick*="'+k+'"]');if(b)toggle(k,b);}
+(function init(){
+  render(DATA);
+  const h=location.hash.replace('#','');
+  if(h){setTimeout(()=>toggle(h),300)}
 })();
-</script>
-
-</body>
+</script></body>
 </html>
