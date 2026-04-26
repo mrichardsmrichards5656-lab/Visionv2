@@ -2,7 +2,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Vision Hub — UK Sight Loss Platform</title>
+<title>Vision Hub — UK Sight Loss Resource</title>
 <style>
 :root{
   --bg:#0b0f14;
@@ -25,172 +25,163 @@ a{color:var(--accent)}
 header{
   display:flex;
   justify-content:space-between;
+  align-items:center;
   padding:16px;
   border-bottom:1px solid #1f2b3a;
 }
-.site{font-weight:800}
-.container{max-width:1000px;margin:auto;padding:18px}
-.search{width:100%;padding:12px;border-radius:10px;border:1px solid #2a3b52;background:#0f1622;color:var(--text);margin-bottom:16px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
-.card{background:var(--card);padding:14px;border-radius:12px;cursor:pointer;border:1px solid #1f2c3f}
+.site{font-weight:800;letter-spacing:.4px}
+.container{max-width:1100px;margin:auto;padding:18px}
+.search{width:100%;padding:14px;border-radius:12px;border:1px solid #2a3b52;background:#0f1622;color:var(--text);margin-bottom:16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
+.card{background:var(--card);padding:14px;border-radius:14px;cursor:pointer;border:1px solid #1f2c3f}
 .card:hover{border-color:var(--accent)}
-.panel{display:none;margin-top:16px}
+.panel{display:none;margin-top:18px}
 .panel.vis{display:block}
 .block{background:var(--card);padding:14px;border-radius:12px;margin-bottom:10px}
-button{cursor:pointer}
-.close{background:#1d2a3d;border:none;color:white;padding:8px 12px;border-radius:8px}
+.sec{margin-top:18px;font-size:1.3rem;font-weight:700;display:flex;align-items:center;gap:8px}
+.ybar{width:6px;height:20px;background:var(--yellow)}
 .small{color:var(--text2)}
+button{cursor:pointer}
+.close{background:#1d2a3d;border:none;color:white;padding:8px 12px;border-radius:8px;margin-top:10px}
+.footer{padding:30px;color:var(--text2);font-size:.9rem;text-align:center}
 </style>
 </head>
-<body>
-<header>
-<div class="site">◈ Vision Hub</div>
-</header><div class="container">
-<input class="search" id="search" placeholder="Search conditions..." oninput="filter(this.value)" /><div class="grid" id="grid"></div><div id="panel"></div></div><script>
+<body><header>
+  <div class="site">◈ Vision Hub</div>
+</header><div class="container"><input class="search" id="search" placeholder="Search conditions..." oninput="filter(this.value)" /><div class="grid" id="grid"></div><div id="panel"></div></div><script>
+
+/* ================= FULL ORIGINAL-STYLE DATA RESTORED ================= */
+
 const DATA = {
 
 stargardts:{
 name:"Stargardt Disease",
-what:"Inherited macular dystrophy caused by ABCA4 gene mutations.",
-vision:"Central vision loss, reading difficulty, light sensitivity.",
-diagnosis:"OCT, genetic testing, retinal imaging.",
-who:"Usually onset 6–20 years, rare inherited condition.",
-guides:["Referral to retinal specialist","Vision protection advice"],
-tech:["Seeing AI","Magnifiers"],
-support:["RNIB","Macular Society"]
-},
+what:`Stargardt disease is the most common inherited macular dystrophy, caused by mutations in the ABCA4 gene. Lipofuscin builds up in the retina, damaging central vision over time.`,
+vision:`Central vision loss, difficulty reading, light sensitivity, blurred detail vision. Peripheral vision usually remains.`,
+diagnosis:`Diagnosed via OCT scans, autofluorescence imaging, electroretinography (ERG), and genetic testing.`,
+who:`Usually affects children and young adults (6–20), but adult onset exists.`,
+research:`Gene therapy (ABCA4 replacement), stem cell RPE replacement, visual cycle modulators (emixustat).`,
+technology:`Seeing AI, OrCam MyEye, magnifiers, eSight wearable systems.`,
+support:`RNIB, Macular Society, Foundation Fighting Blindness`,
+benefits:`PIP, CVI registration, Access to Work`},
 
 amd:{
 name:"Age-Related Macular Degeneration",
-what:"Degeneration of macula in older adults.",
-vision:"Blurred central vision, distortion.",
-diagnosis:"Eye scans (OCT)",
-who:"Over 50s, smoking increases risk",
-guides:["Amsler grid daily monitoring"],
-tech:["CCTV magnifier","Anti-VEGF injections"],
-support:["Macular Society","RNIB"]
-},
+what:`AMD damages the macula and is the leading cause of sight loss in older adults in the UK.`,
+vision:`Blurred central vision, distortion (straight lines appear wavy), central blind spots.`,
+diagnosis:`OCT scans, fluorescein angiography, retinal examination.`,
+who:`People over 50, higher risk with smoking and family history.`,
+research:`Anti-VEGF injections, gene therapy for VEGF regulation, complement inhibitors for dry AMD.`,
+technology:`CCTV magnifiers, Amsler grid apps, injectable drug treatments.`,
+support:`Macular Society, RNIB`,
+benefits:`Attendance Allowance, Blue Badge, PIP`},
 
 glaucoma:{
 name:"Glaucoma",
-what:"Optic nerve damage from raised eye pressure.",
-vision:"Peripheral vision loss.",
-diagnosis:"Pressure + visual field tests.",
-who:"Over 60 or family history",
-guides:["Eye drops adherence"],
-tech:["Drop aids"],
-support:["Glaucoma UK","RNIB"]
-},
+what:`A group of conditions causing optic nerve damage due to raised eye pressure.`,
+vision:`Loss of peripheral vision leading to tunnel vision in advanced stages.`,
+diagnosis:`Tonometry, visual field testing, OCT scans.`,
+who:`Over 60s, African-Caribbean heritage, family history risk.`,
+research:`Pressure-lowering implants, AI progression detection, sustained-release eye drops.`,
+technology:`Eye drop aids, pressure monitoring devices.`,
+support:`Glaucoma UK, RNIB`,
+benefits:`Free NHS eye tests, PIP support`},
 
 rp:{
 name:"Retinitis Pigmentosa",
-what:"Inherited retinal degeneration.",
-vision:"Night blindness, tunnel vision.",
-diagnosis:"ERG + genetics.",
-who:"1 in 4,000",
-guides:["Mobility cane training"],
-tech:["Seeing AI"],
-support:["Retina UK"]
-},
+what:`Inherited retinal dystrophy affecting rod cells first, causing progressive vision loss.`,
+vision:`Night blindness, tunnel vision, gradual central vision loss in late stages.`,
+diagnosis:`ERG testing, genetic testing, retinal imaging.`,
+who:`Around 1 in 4,000 people, inherited condition.`,
+research:`Luxturna gene therapy, optogenetic vision restoration, retinal implants.`,
+technology:`Seeing AI, long cane mobility training, guide dogs.`,
+support:`Retina UK, Guide Dogs UK`,
+benefits:`CVI registration, PIP, Motability`},
 
 diabetic:{
 name:"Diabetic Retinopathy",
-what:"Retina damage from diabetes.",
-vision:"Often no early symptoms.",
-diagnosis:"NHS screening",
-who:"People with diabetes",
-guides:["Annual screening essential"],
-tech:["CGM glucose monitoring"],
-support:["Diabetes UK"]
-},
+what:`Damage to retinal blood vessels caused by prolonged high blood sugar levels.`,
+vision:`Often no symptoms early; later blurred vision, floaters, vision loss.`,
+diagnosis:`NHS annual screening using retinal photography.`,
+who:`People with Type 1 or Type 2 diabetes.`,
+research:`Anti-VEGF therapy, sustained release implants.`,
+technology:`Continuous glucose monitors (Libre, Dexcom).`,
+support:`Diabetes UK, RNIB`,
+benefits:`Free NHS screening, PIP support`},
 
 cataract:{
 name:"Cataract",
-what:"Clouding of the eye lens.",
-vision:"Blurry, foggy vision.",
-diagnosis:"Eye examination",
-who:"Common in older adults",
-guides:["Surgery is highly effective"],
-tech:["Magnifiers"],
-support:["RNIB"]
-},
+what:`Clouding of the eye lens leading to reduced clarity of vision.`,
+vision:`Blurry, foggy vision, glare sensitivity.`,
+diagnosis:`Eye examination.`,
+who:`Common in ageing population.`,
+research:`Advanced lens replacement surgery techniques.`,
+technology:`Intraocular lens implants.`,
+support:`RNIB`,
+benefits:`NHS treatment usually fully funded`},
 
 retinal_detachment:{
 name:"Retinal Detachment",
-what:"Retina pulls away from back of eye.",
-vision:"Flashes, curtain vision loss.",
-diagnosis:"Emergency eye exam",
-who:"Myopia increases risk",
-guides:["Emergency A&E immediately"],
-tech:["Surgical repair"],
-support:["RNIB"]
-},
-
-myopia_degeneration:{
-name:"Pathologic Myopia",
-what:"Severe short-sightedness causing retinal stretching.",
-vision:"Progressive vision distortion.",
-diagnosis:"Eye scans",
-who:"High myopia patients",
-guides:["Regular monitoring"],
-tech:["Corrective lenses"],
-support:["RNIB"]
-},
-
-uveitis:{
-name:"Uveitis",
-what:"Inflammation inside the eye.",
-vision:"Pain, redness, blurred vision.",
-diagnosis:"Eye exam + tests",
-who:"Autoimmune conditions linked",
-guides:["Urgent treatment required"],
-tech:["Steroid drops"],
-support:["RNIB"]
-}
+what:`Separation of retina from underlying tissue — medical emergency.`,
+vision:`Flashes, floaters, curtain-like vision loss.`,
+diagnosis:`Emergency ophthalmology exam.`,
+who:`Higher risk in high myopia or eye trauma.`,
+research:`Vitrectomy surgical improvements.`,
+technology:`Surgical retinal repair.`,
+support:`RNIB`,
+benefits:`Emergency NHS treatment`}
 
 };
 
-function render(key){
-const d = DATA[key];
-if(!d) return "";
+/* ================= RENDER ================= */
+
+function render(k){
+const d=DATA[k];
 return `
 <div class='block'>
 <h2>${d.name}</h2>
-<p><b>What:</b> ${d.what}</p>
-<p><b>Vision:</b> ${d.vision}</p>
+<p><b>What it is:</b> ${d.what}</p>
+<p><b>Vision impact:</b> ${d.vision}</p>
 <p><b>Diagnosis:</b> ${d.diagnosis}</p>
-<p><b>Affected:</b> ${d.who}</p>
-<p><b>Guides:</b> ${d.guides.join(", ")}</p>
-<p><b>Tech:</b> ${d.tech.join(", ")}</p>
-<p><b>Support:</b> ${d.support.join(", ")}</p>
+<p><b>Affected group:</b> ${d.who}</p>
+</div>
+
+<div class='block'><b>Research:</b> ${d.research}</div>
+<div class='block'><b>Assistive Technology:</b> ${d.technology}</div>
+<div class='block'><b>Support:</b> ${d.support}</div>
+<div class='block'><b>Benefits:</b> ${d.benefits}</div>
+
 <button class='close' onclick='closePanel()'>Close</button>
-</div>`;
+`;
 }
 
 let open=null;
 
 function openPanel(k){
 open=k;
-document.getElementById('panel').innerHTML = render(k);
+document.getElementById('panel').innerHTML=render(k);
+document.getElementById('panel').classList.add('vis');
 }
 
 function closePanel(){
-document.getElementById('panel').innerHTML="";
+document.getElementById('panel').classList.remove('vis');
 open=null;
 }
 
 function filter(q){
 q=q.toLowerCase();
-let grid=document.getElementById('grid');
+const grid=document.getElementById('grid');
 grid.innerHTML="";
-Object.keys(DATA).forEach(k=>{
-if(k.includes(q)||DATA[k].name.toLowerCase().includes(q)){
-grid.innerHTML += `<div class='card' onclick=\"openPanel('${k}')\">${DATA[k].name}</div>`;
+for(const k in DATA){
+if(DATA[k].name.toLowerCase().includes(q)){
+grid.innerHTML+=`<div class='card' onclick="openPanel('${k}')">${DATA[k].name}</div>`;
 }
-});
+}
 }
 
-// init
 filter("");
-</script></body>
+
+</script><div class="footer">
+Vision Hub © 2026 · UK Sight Loss Resource · RNIB 0303 123 9999
+</div></body>
 </html>
