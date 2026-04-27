@@ -35,8 +35,6 @@
   --font:   'Inter', sans-serif;
   --scale:  1;
 }
-
-/* DARK MODE */
 body.dark {
   --bg:#0f1320; --bg2:#161c2e; --card:#1e2640; --card2:#242d4a;
   --text:#ffffff; --text2:#9aa3bf; --border:rgba(255,255,255,0.09);
@@ -44,19 +42,16 @@ body.dark {
   --green:#4ade80; --blue:#38bdf8; --purple:#c084fc; --red:#f87171;
   --shadow:0 2px 12px rgba(0,0,0,0.3);
 }
-/* HIGH CONTRAST */
 body.hc {
   --bg:#000; --bg2:#0a0a0a; --card:#0a0a0a; --card2:#141414;
   --text:#fff; --text2:#ddd; --border:rgba(255,255,255,0.35);
   --yellow:#fff; --yellow2:#ddd; --shadow:none;
 }
-/* YELLOW ON BLACK */
 body.yb {
   --bg:#000; --bg2:#000; --card:#111100; --card2:#1a1a00;
   --text:#ff0; --text2:#cc0; --border:rgba(255,255,0,0.35);
   --yellow:#ff0; --yellow2:#ff0; --shadow:none;
 }
-/* LOW LIGHT — soft on sensitive eyes */
 body.ll {
   --bg:#1a1a1a; --bg2:#222222; --card:#2a2a2a; --card2:#333333;
   --text:#f0e6d3; --text2:#c4b49a; --border:rgba(255,255,255,0.12);
@@ -79,9 +74,6 @@ body {
   line-height: 1.7;
 }
 
-/* ══════════════════════════════════════
-   SKIP LINK
-══════════════════════════════════════ */
 .skip {
   position: absolute; top: -80px; left: 12px;
   background: var(--yellow); color: #000;
@@ -113,7 +105,6 @@ body {
   letter-spacing: 0.08em; color: var(--text2); white-space: nowrap; margin-right: 3px;
 }
 .a11y-divider { width: 1px; height: 28px; background: var(--border); margin: 0 4px; flex-shrink: 0; }
-
 .ab {
   width: 36px; height: 36px;
   background: var(--card2); border: 2px solid var(--border);
@@ -130,10 +121,6 @@ body {
 .ab-m  { font-size: 14px; }
 .ab-l  { font-size: 18px; }
 .ab-xl { font-size: 22px; }
-.ab-yb { background: #000 !important; color: #ff0 !important; border-color: #ff0 !important; }
-.ab-yb.on { background: #ff0 !important; color: #000 !important; }
-
-/* helpline-pill removed */
 .helpline-pill {
   width: 100%;
   background: var(--yellow); color: #fff; border: none;
@@ -143,9 +130,7 @@ body {
   display: inline-flex; align-items: center; justify-content: center; gap: 6px;
   white-space: nowrap;
 }
-@media(min-width: 560px){
-  .helpline-pill { width: auto; margin-left: auto; }
-}
+@media(min-width: 560px){ .helpline-pill { width: auto; margin-left: auto; } }
 .helpline-pill:hover        { background: var(--yellow2); }
 .helpline-pill:focus-visible{ outline: 3px solid var(--text); outline-offset: 3px; }
 
@@ -167,7 +152,7 @@ body {
 @media(min-width:480px){ .site-tagline { display: block; } }
 
 /* ══════════════════════════════════════
-   PAGES (main / privacy / a11y)
+   PAGES
 ══════════════════════════════════════ */
 .page { display: none; }
 .page.active { display: block; }
@@ -196,36 +181,11 @@ body {
 .share-btn:hover        { border-color: var(--yellow); color: var(--yellow); }
 .share-btn:focus-visible{ outline: 3px solid var(--yellow); outline-offset: 3px; }
 
-.feedback-bar {
-  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
-  background: var(--card); border: 2px solid var(--border);
-  border-radius: 16px; padding: 16px 20px; margin: 24px 0 8px;
-}
-.feedback-q { font-size: 0.92rem; font-weight: 700; color: var(--text2); flex: 1; min-width: 160px; }
-.fb-btn {
-  min-height: 44px; padding: 0 20px; border-radius: 50px;
-  border: 2px solid var(--border); background: var(--card2);
-  color: var(--text); font-family: var(--font); font-size: 1rem;
-  font-weight: 700; cursor: pointer; transition: border-color .15s, background .15s;
-}
-.fb-btn:hover        { border-color: var(--yellow); }
-.fb-btn:focus-visible{ outline: 3px solid var(--yellow); outline-offset: 3px; }
-.fb-btn.voted        { background: var(--yellow); color: #000; border-color: var(--yellow); }
-.feedback-thanks { font-size: 0.88rem; color: var(--yellow); font-weight: 700; display: none; }
-
 .founder-box {
   background: var(--card); border: 2px solid var(--yellow);
   border-radius: 16px; padding: 20px; margin-bottom: 28px; line-height: 1.8;
 }
 .founder-short { font-size: 0.95rem; color: var(--text2); }
-.founder-more p { font-size: 0.92rem; color: var(--text2); margin-top: 14px; line-height: 1.85; }
-.more-btn {
-  background: none; border: none; color: var(--yellow);
-  font-family: var(--font); font-size: 0.9rem; font-weight: 800;
-  cursor: pointer; padding: 0; margin-left: 6px;
-  text-decoration: underline; display: inline;
-}
-.more-btn:focus-visible { outline: 2px solid var(--yellow); outline-offset: 2px; }
 
 .search-wrap { position: relative; }
 .search-wrap label { display: block; font-size: 0.88rem; font-weight: 700; color: var(--text2); margin-bottom: 8px; }
@@ -245,7 +205,6 @@ body {
 .cond-section { padding: 0 20px 48px; max-width: 680px; margin: 0 auto; }
 .section-label { font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text2); margin-bottom: 16px; display: block; }
 .cond-list { display: flex; flex-direction: column; gap: 10px; }
-
 .cond-btn {
   width: 100%; background: var(--card); border: 2px solid var(--border);
   color: var(--text); padding: 20px 26px; border-radius: 16px;
@@ -346,6 +305,80 @@ body.yb .rtag.gene, body.yb .rtag.stem, body.yb .rtag.trial, body.yb .rtag.drug,
 .close-btn:hover        { border-color: var(--yellow); color: var(--yellow); }
 .close-btn:focus-visible{ outline: 3px solid var(--yellow); outline-offset: 3px; }
 
+.feedback-bar {
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  background: var(--card); border: 2px solid var(--border);
+  border-radius: 16px; padding: 16px 20px; margin: 24px 0 8px;
+}
+.feedback-q { font-size: 0.92rem; font-weight: 700; color: var(--text2); flex: 1; min-width: 160px; }
+.fb-btn {
+  min-height: 44px; padding: 0 20px; border-radius: 50px;
+  border: 2px solid var(--border); background: var(--card2);
+  color: var(--text); font-family: var(--font); font-size: 1rem;
+  font-weight: 700; cursor: pointer; transition: border-color .15s, background .15s;
+}
+.fb-btn:hover        { border-color: var(--yellow); }
+.fb-btn:focus-visible{ outline: 3px solid var(--yellow); outline-offset: 3px; }
+.fb-btn.voted        { background: var(--yellow); color: #000; border-color: var(--yellow); }
+.feedback-thanks { font-size: 0.88rem; color: var(--yellow); font-weight: 700; display: none; }
+
+/* ══════════════════════════════════════
+   CONTACT FORM
+══════════════════════════════════════ */
+.contact-form-wrap {
+  background: var(--card); border: 2px solid var(--border);
+  border-radius: 16px; padding: 24px; margin-bottom: 14px;
+  box-shadow: var(--shadow);
+}
+.contact-form-wrap h2 { font-size: 1.1rem; font-weight: 800; color: var(--yellow); margin-bottom: 6px; }
+.contact-form-wrap .cf-desc { font-size: 0.92rem; color: var(--text2); margin-bottom: 20px; line-height: 1.7; }
+.cf-field { margin-bottom: 16px; }
+.cf-field label {
+  display: block; font-size: 0.88rem; font-weight: 700;
+  color: var(--text2); margin-bottom: 6px;
+}
+.cf-field input,
+.cf-field textarea,
+.cf-field select {
+  width: 100%; background: var(--bg2); border: 2px solid var(--border);
+  color: var(--text); padding: 14px 18px; border-radius: 12px;
+  font-family: var(--font); font-size: 0.95rem;
+  outline: none; transition: border-color .2s, box-shadow .2s;
+  resize: vertical;
+}
+.cf-field textarea { min-height: 120px; }
+.cf-field input:focus,
+.cf-field textarea:focus,
+.cf-field select:focus {
+  border-color: var(--yellow);
+  box-shadow: 0 0 0 3px rgba(245,184,0,.18);
+}
+.cf-field input::placeholder,
+.cf-field textarea::placeholder { color: var(--text2); opacity: 0.7; }
+.cf-submit {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--yellow); color: #000;
+  border: none; padding: 14px 32px; border-radius: 50px;
+  font-family: var(--font); font-size: 1rem; font-weight: 800;
+  cursor: pointer; min-height: 52px; width: 100%;
+  justify-content: center; transition: background .15s;
+}
+.cf-submit:hover        { background: var(--yellow2); }
+.cf-submit:focus-visible{ outline: 3px solid var(--text); outline-offset: 3px; }
+.cf-note { font-size: 0.78rem; color: var(--text2); margin-top: 12px; text-align: center; line-height: 1.6; }
+.cf-success {
+  display: none; background: rgba(26,122,60,0.12);
+  border: 2px solid var(--green); border-radius: 12px;
+  padding: 20px; text-align: center; color: var(--green);
+  font-weight: 700; font-size: 1rem; margin-top: 16px;
+}
+.cf-error {
+  display: none; background: rgba(220,38,38,0.1);
+  border: 2px solid var(--red); border-radius: 12px;
+  padding: 12px 16px; color: var(--red);
+  font-size: 0.88rem; font-weight: 600; margin-top: 12px;
+}
+
 /* ══════════════════════════════════════
    LEGAL PAGES
 ══════════════════════════════════════ */
@@ -381,7 +414,137 @@ footer { background: var(--bg2); border-top: 3px solid var(--yellow); padding: 3
 
 .sr { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
 
-/* Back button on legal pages */
+/* ══════════════════════════════════════
+   BACK TO TOP
+══════════════════════════════════════ */
+.back-top {
+  position: fixed; bottom: 24px; right: 20px; z-index: 300;
+  width: 48px; height: 48px; border-radius: 50%;
+  background: var(--yellow); color: #000; border: none;
+  font-size: 1.3rem; font-weight: 900; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.22);
+  opacity: 0; pointer-events: none;
+  transition: opacity .25s, transform .25s;
+  transform: translateY(8px);
+}
+.back-top.vis { opacity: 1; pointer-events: auto; transform: translateY(0); }
+.back-top:hover { background: var(--yellow2); transform: translateY(-2px); }
+.back-top:focus-visible { outline: 3px solid var(--text); outline-offset: 3px; }
+
+/* ══════════════════════════════════════
+   PRINT STYLESHEET
+══════════════════════════════════════ */
+@media print {
+  /* Hide everything except the open condition panel */
+  .a11y-bar, #ios-banner, .site-header, .hero, .search-wrap,
+  .share-bar, .founder-box, .cond-btn, .close-row, .feedback-bar,
+  footer, .back-top, #video-hd, .ic + .share-bar,
+  [aria-hidden="true"] { display: none !important; }
+
+  /* Show only the open panel content */
+  body { background: #fff !important; color: #000 !important; font-size: 12pt; }
+  .cond-section { padding: 0 !important; max-width: 100% !important; }
+  .detail-panel.vis { display: block !important; border: none !important;
+    border-radius: 0 !important; background: #fff !important; }
+  .dp-inner { padding: 0 !important; }
+
+  /* Section headings */
+  .sec-h { margin: 18pt 0 8pt !important; break-after: avoid; }
+  .sec-h h2 { color: #000 !important; font-size: 14pt !important; }
+  .ybar { background: #000 !important; }
+
+  /* Cards */
+  .ic, .rc, .nc, .tc, .sc, .wb, .lc {
+    border: 1pt solid #ccc !important; border-radius: 4pt !important;
+    box-shadow: none !important; background: #fff !important;
+    margin-bottom: 8pt !important; padding: 10pt !important;
+    break-inside: avoid;
+  }
+  .ic p, .ic li, .rc p, .nc p, .tc p, .sc p, .wb, .lc p, .lc li {
+    color: #222 !important; font-size: 10pt !important; line-height: 1.5 !important;
+  }
+  .ic h3, .nc h3, .tc h3, .sc h3, .rc h3, .lc h2 {
+    color: #000 !important; font-size: 11pt !important;
+  }
+  .nc-num { background: #000 !important; color: #fff !important; print-color-adjust: exact; }
+  .rtag { border: 1pt solid #000 !important; background: #fff !important;
+    color: #000 !important; print-color-adjust: exact; }
+  .trial-link { color: #000 !important; text-decoration: underline !important;
+    background: none !important; border: 1pt solid #000 !important; }
+  .sc a { color: #000 !important; }
+  .tc-price { color: #000 !important; font-weight: 700; }
+  .wb { border-color: #000 !important; background: #f5f5f5 !important;
+    print-color-adjust: exact; }
+
+  /* Print header */
+  .cond-section::before {
+    content: "Vision Hub — visionhubuk.co.uk — Free UK Sight Loss Resource";
+    display: block; font-size: 8pt; color: #666;
+    border-bottom: 1pt solid #ccc; padding-bottom: 6pt; margin-bottom: 14pt;
+  }
+  .cond-section::after {
+    content: "This information is for guidance only. Always consult your ophthalmologist. Vision Hub is not a medical provider.";
+    display: block; font-size: 8pt; color: #666;
+    border-top: 1pt solid #ccc; padding-top: 6pt; margin-top: 14pt;
+  }
+
+  /* Page breaks */
+  .sec-h { page-break-before: auto; }
+  @page { margin: 15mm 20mm; }
+}
+
+/* ══════════════════════════════════════
+   RECENT UPDATES BOX
+══════════════════════════════════════ */
+.news-box {
+  background: var(--card);
+  border: 2px solid var(--yellow);
+  border-radius: 16px;
+  padding: 20px 22px;
+  margin-bottom: 28px;
+}
+.news-box-header {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 14px;
+}
+.news-box-icon { font-size: 1.2rem; flex-shrink: 0; }
+.news-box-title {
+  font-size: 0.95rem; font-weight: 900; color: var(--yellow);
+  text-transform: uppercase; letter-spacing: 0.06em;
+}
+.news-box-date {
+  font-size: 0.75rem; font-weight: 700; color: var(--text2);
+  margin-left: auto; white-space: nowrap;
+}
+.news-item {
+  display: flex; gap: 10px; align-items: flex-start;
+  padding: 10px 0; border-top: 1px solid var(--border);
+}
+.news-item:first-of-type { border-top: none; padding-top: 0; }
+.news-tag {
+  display: inline-block; padding: 3px 10px; border-radius: 50px;
+  font-size: 0.68rem; font-weight: 800; text-transform: uppercase;
+  letter-spacing: 0.06em; white-space: nowrap; flex-shrink: 0; margin-top: 2px;
+}
+.news-tag.research { background: #dcfce7; color: #166534; }
+.news-tag.benefits { background: #dbeafe; color: #1e40af; }
+.news-tag.tech     { background: #f3e8ff; color: #6b21a8; }
+.news-tag.general  { background: #fef9c3; color: #854d0e; }
+body.dark .news-tag.research { background: var(--green);  color: #000; }
+body.dark .news-tag.benefits { background: var(--blue);   color: #000; }
+body.dark .news-tag.tech     { background: var(--purple); color: #000; }
+body.dark .news-tag.general  { background: var(--yellow); color: #000; }
+body.hc .news-tag.research, body.hc .news-tag.benefits,
+body.hc .news-tag.tech, body.hc .news-tag.general { background: var(--yellow); color: #000; }
+body.yb .news-tag.research, body.yb .news-tag.benefits,
+body.yb .news-tag.tech, body.yb .news-tag.general { background: #ff0; color: #000; }
+.news-text { font-size: 0.9rem; color: var(--text2); line-height: 1.6; }
+.news-text strong { color: var(--text); font-weight: 700; }
+.news-footer {
+  margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border);
+  font-size: 0.78rem; color: var(--text2); line-height: 1.6;
+}
+
 .back-btn {
   display: inline-flex; align-items: center; gap: 8px;
   background: var(--card); border: 2px solid var(--border);
@@ -398,7 +561,7 @@ footer { background: var(--bg2); border-top: 3px solid var(--yellow); padding: 3
 
 <a href="#main" class="skip">Skip to main content</a>
 
-<!-- ══════════ ACCESSIBILITY BAR ══════════ -->
+<!-- ACCESSIBILITY BAR -->
 <div class="a11y-bar" role="toolbar" aria-label="Accessibility controls">
   <div class="a11y-group" role="group" aria-label="Text size">
     <span class="a11y-label" aria-hidden="true">Text</span>
@@ -424,7 +587,7 @@ footer { background: var(--bg2); border-top: 3px solid var(--yellow); padding: 3
   </a>
 </div>
 
-<!-- ══════════ iOS INSTALL BANNER ══════════ -->
+<!-- iOS INSTALL BANNER -->
 <div id="ios-banner" style="display:none;background:var(--yellow);color:#000;padding:12px 16px;text-align:center;font-family:var(--font);font-size:0.88rem;font-weight:700;line-height:1.6;position:relative">
   📱 <strong>iPhone users:</strong> Tap the Share button <span style="font-size:1.1rem">⎙</span> then "Add to Home Screen" to install Vision Hub as a free app.
   <button onclick="document.getElementById('ios-banner').style.display='none';localStorage.setItem('ios-banner-dismissed','1')"
@@ -432,7 +595,7 @@ footer { background: var(--bg2); border-top: 3px solid var(--yellow); padding: 3
     aria-label="Dismiss install banner">✕</button>
 </div>
 
-<!-- ══════════ HEADER ══════════ -->
+<!-- HEADER -->
 <header class="site-header">
   <div class="logo-hex" aria-hidden="true"></div>
   <span class="site-name" onclick="showPage('home')" role="link" tabindex="0" aria-label="Vision Hub home">Vision Hub</span>
@@ -446,55 +609,74 @@ footer { background: var(--bg2); border-top: 3px solid var(--yellow); padding: 3
   <main id="main">
     <div class="hero">
 
-      <!-- HERO SVG ART -->
       <div aria-hidden="true" style="text-align:center;margin-bottom:28px;opacity:0.85">
         <svg viewBox="0 0 320 180" width="100%" style="max-width:380px;display:inline-block" xmlns="http://www.w3.org/2000/svg">
-          <!-- Soft background circle -->
           <circle cx="160" cy="90" r="85" fill="var(--yellow)" opacity="0.08"/>
-          <!-- Outer eye shape -->
           <ellipse cx="160" cy="90" rx="110" ry="58" fill="none" stroke="var(--yellow)" stroke-width="3" opacity="0.3"/>
-          <!-- Eye lid curves -->
           <path d="M50,90 Q100,30 160,30 Q220,30 270,90" fill="none" stroke="var(--yellow)" stroke-width="2.5" opacity="0.5" stroke-linecap="round"/>
           <path d="M50,90 Q100,150 160,150 Q220,150 270,90" fill="none" stroke="var(--yellow)" stroke-width="2.5" opacity="0.5" stroke-linecap="round"/>
-          <!-- Iris -->
           <circle cx="160" cy="90" r="38" fill="none" stroke="var(--yellow)" stroke-width="3" opacity="0.6"/>
-          <!-- Iris detail rings -->
           <circle cx="160" cy="90" r="28" fill="none" stroke="var(--yellow)" stroke-width="1.5" opacity="0.4"/>
           <circle cx="160" cy="90" r="18" fill="none" stroke="var(--yellow)" stroke-width="1.5" opacity="0.3"/>
-          <!-- Pupil -->
           <circle cx="160" cy="90" r="12" fill="var(--yellow)" opacity="0.7"/>
-          <!-- Light reflection -->
           <circle cx="166" cy="84" r="4" fill="var(--card)" opacity="0.8"/>
-          <!-- Radiating lines from iris -->
           <line x1="160" y1="52" x2="160" y2="42" stroke="var(--yellow)" stroke-width="1.5" opacity="0.35" stroke-linecap="round"/>
           <line x1="160" y1="128" x2="160" y2="138" stroke="var(--yellow)" stroke-width="1.5" opacity="0.35" stroke-linecap="round"/>
           <line x1="122" y1="90" x2="112" y2="90" stroke="var(--yellow)" stroke-width="1.5" opacity="0.35" stroke-linecap="round"/>
           <line x1="198" y1="90" x2="208" y2="90" stroke="var(--yellow)" stroke-width="1.5" opacity="0.35" stroke-linecap="round"/>
-          <line x1="133" y1="63" x2="126" y2="56" stroke="var(--yellow)" stroke-width="1.5" opacity="0.25" stroke-linecap="round"/>
-          <line x1="187" y1="63" x2="194" y2="56" stroke="var(--yellow)" stroke-width="1.5" opacity="0.25" stroke-linecap="round"/>
-          <line x1="133" y1="117" x2="126" y2="124" stroke="var(--yellow)" stroke-width="1.5" opacity="0.25" stroke-linecap="round"/>
-          <line x1="187" y1="117" x2="194" y2="124" stroke="var(--yellow)" stroke-width="1.5" opacity="0.25" stroke-linecap="round"/>
-          <!-- Small stars/dots for visual interest -->
           <circle cx="60" cy="45" r="3" fill="var(--yellow)" opacity="0.3"/>
           <circle cx="275" cy="50" r="2" fill="var(--yellow)" opacity="0.25"/>
           <circle cx="40" cy="120" r="2" fill="var(--yellow)" opacity="0.2"/>
           <circle cx="290" cy="130" r="3" fill="var(--yellow)" opacity="0.25"/>
-          <circle cx="80" cy="155" r="2" fill="var(--yellow)" opacity="0.2"/>
-          <circle cx="240" cy="20" r="2" fill="var(--yellow)" opacity="0.2"/>
         </svg>
       </div>
 
       <span class="hero-eyebrow">Free · Independent · UK</span>
       <h1>Everything you need,<br>in one place.</h1>
       <p class="hero-desc">Clear, accessible information for people living with sight conditions — and the people who support them.</p>
-      <p class="last-updated">Last updated: <time datetime="2026-04-25">April 2026</time> · <a href="mailto:mrichardsmrichards5656@gmail.com" style="color:var(--yellow)">Suggest a correction</a></p>
+      <p class="last-updated">Last updated: <time datetime="2026-04-25">April 2026</time> · Reviewed quarterly · <button onclick="showPage('contact')" style="background:none;border:none;color:var(--yellow);font-family:var(--font);font-size:inherit;cursor:pointer;text-decoration:underline;padding:0">Contact us</button></p>
 
       <div class="founder-box">
-        <span class="founder-icon">💛</span>
         <p class="founder-short">My daughter was diagnosed with Stargardt disease. When I started looking for help, I couldn't find one place that had everything — clear information, benefits guidance, research, and support — all in one place.</p>
         <p class="founder-short" style="margin-top:12px">So I built it. And because sight loss affects so many people in so many different ways, I built it for everyone — not just for Stargardt, but for every eye condition.</p>
         <p class="founder-short" style="margin-top:12px; color:var(--yellow); font-weight:700;">This site is free, independent, and always will be.</p>
       </div>
+
+      <!-- ══════ RECENT UPDATES ══════ -->
+      <section class="news-box" aria-labelledby="news-hd">
+        <div class="news-box-header">
+          <span class="news-box-icon" aria-hidden="true">📰</span>
+          <span class="news-box-title" id="news-hd">Recent Updates</span>
+          <span class="news-box-date">April 2026</span>
+        </div>
+
+        <div class="news-item">
+          <span class="news-tag research">Research</span>
+          <p class="news-text"><strong>Stargardt:</strong> REGENXBIO reports encouraging Phase 2 interim data for RGX-314 dual-vector ABCA4 gene therapy — safety profile confirmed, efficacy readout expected later in 2026.</p>
+        </div>
+
+        <div class="news-item">
+          <span class="news-tag research">Research</span>
+          <p class="news-text"><strong>Retinitis Pigmentosa:</strong> MeiraGTx RPGR gene therapy Phase 2/3 trial reports significant preservation of visual field in X-linked RP patients at 12-month follow-up.</p>
+        </div>
+
+        <div class="news-item">
+          <span class="news-tag research">Research</span>
+          <p class="news-text"><strong>Usher Syndrome:</strong> ProQR's antisense oligonucleotide therapy for USH2A (QR-421a) shows continued visual function preservation at 24 months in ongoing trial.</p>
+        </div>
+
+        <div class="news-item">
+          <span class="news-tag benefits">Benefits</span>
+          <p class="news-text"><strong>PIP &amp; DLA rates updated April 2026 (3.8% rise):</strong> Daily Living enhanced rate £114.60/week. Mobility enhanced rate £80.00/week. Attendance Allowance higher rate £114.60/week. Carer's Allowance £86.45/week.</p>
+        </div>
+
+        <div class="news-item">
+          <span class="news-tag tech">Technology</span>
+          <p class="news-text"><strong>All conditions:</strong> Apple iOS 18 introduced significant VoiceOver improvements including enhanced image descriptions and improved braille display support.</p>
+        </div>
+
+        <p class="news-footer">Updates are verified and added each quarter. Information is for guidance only — always discuss research and treatment options with your ophthalmologist. <button onclick="showPage('contact')" style="background:none;border:none;color:var(--yellow);font-family:var(--font);font-size:0.78rem;font-weight:700;cursor:pointer;text-decoration:underline;padding:0">Spotted something missing? Let us know.</button></p>
+      </section>
 
       <div class="share-bar" role="group" aria-label="Share this page">
         <button class="share-btn" onclick="sharePage()" aria-label="Share Vision Hub">📤 Share this page</button>
@@ -603,6 +785,68 @@ footer { background: var(--bg2); border-top: 3px solid var(--yellow); padding: 3
 </div>
 
 <!-- ══════════════════════════════════════
+     CONTACT PAGE
+══════════════════════════════════════ -->
+<div id="page-contact" class="page" role="main" aria-label="Contact Vision Hub">
+  <div class="legal-wrap">
+    <button class="back-btn" onclick="showPage('home')" aria-label="Back to home">← Back to home</button>
+    <span class="legal-eyebrow">Get in touch</span>
+    <h1>Contact Us</h1>
+    <p style="font-size:0.95rem;color:var(--text2);margin-bottom:28px;line-height:1.8;">Have a question, spotted a mistake, or want to suggest something? We'd love to hear from you. We aim to reply within 5 working days.</p>
+
+    <div class="contact-form-wrap">
+      <h2>Send us a message</h2>
+      <p class="cf-desc">Your message goes directly to the Vision Hub team. We never share your details with third parties.</p>
+
+      <div id="cf-form">
+        <div class="cf-field">
+          <label for="cf-name">Your name <span aria-hidden="true" style="color:var(--red)">*</span></label>
+          <input type="text" id="cf-name" name="name" required autocomplete="name" placeholder="e.g. Sarah Jones" aria-required="true">
+        </div>
+        <div class="cf-field">
+          <label for="cf-email">Your email address <span aria-hidden="true" style="color:var(--red)">*</span></label>
+          <input type="email" id="cf-email" name="email" required autocomplete="email" placeholder="e.g. sarah@example.com" aria-required="true">
+        </div>
+        <div class="cf-field">
+          <label for="cf-subject">Subject</label>
+          <select id="cf-subject" name="subject" aria-label="Message subject">
+            <option value="general">General enquiry</option>
+            <option value="correction">Suggest a correction</option>
+            <option value="condition">Request a condition be added</option>
+            <option value="tech">Assistive technology question</option>
+            <option value="benefits">Benefits &amp; financial help</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="cf-field">
+          <label for="cf-message">Your message <span aria-hidden="true" style="color:var(--red)">*</span></label>
+          <textarea id="cf-message" name="message" required aria-required="true" placeholder="Tell us what's on your mind…"></textarea>
+        </div>
+        <div id="cf-error" class="cf-error" role="alert" aria-live="polite"></div>
+        <button type="button" class="cf-submit" onclick="submitContactForm()" aria-label="Send message">
+          📨 Send Message
+        </button>
+        <p class="cf-note">We never sell or share your email. We only use it to reply to you.</p>
+      </div>
+
+      <div id="cf-success" class="cf-success" role="status" aria-live="polite">
+        ✅ Thank you! Your message has been sent. We'll be in touch within 5 working days.
+      </div>
+    </div>
+
+    <div class="lc">
+      <h2>Other ways to get help</h2>
+      <p><strong>RNIB Helpline:</strong> 0303 123 9999 — specialist support for all sight conditions, Monday to Friday.</p>
+      <p style="margin-top:10px"><strong>Macular Society Helpline:</strong> 0300 3030 111 — specialist nurse advisors for macular conditions.</p>
+      <p style="margin-top:10px"><strong>Glaucoma UK:</strong> 01233 648170 — free helpline for glaucoma questions.</p>
+      <p style="margin-top:10px"><strong>Retina UK:</strong> 01280 860363 — support for inherited retinal conditions including RP.</p>
+    </div>
+
+    <button class="back-btn" onclick="showPage('home')" aria-label="Back to home">← Back to home</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
      PRIVACY POLICY PAGE
 ══════════════════════════════════════ -->
 <div id="page-privacy" class="page" role="main" aria-label="Privacy Policy">
@@ -612,11 +856,11 @@ footer { background: var(--bg2); border-top: 3px solid var(--yellow); padding: 3
     <h1>Privacy Policy</h1>
     <p class="legal-updated">Last updated: <time datetime="2026-04-25">April 2026</time></p>
 
-    <div class="wb"><strong>Plain English summary:</strong> Vision Hub does not sell your data. We do not collect personal information unless you choose to contact us by email. We do not use advertising trackers.</div>
+    <div class="wb"><strong>Plain English summary:</strong> Vision Hub does not sell your data. We do not collect personal information unless you choose to contact us via our contact form. We do not use advertising trackers.</div>
 
-    <div class="lc"><h2>👤 Who we are</h2><p>Vision Hub is a free, independent UK resource for people living with partial sight and sight loss. We can be contacted at <a href="mailto:mrichardsmrichards5656@gmail.com">mrichardsmrichards5656@gmail.com</a>.</p></div>
+    <div class="lc"><h2>👤 Who we are</h2><p>Vision Hub is a free, independent UK resource for people living with partial sight and sight loss. You can contact us via the <button onclick="showPage('contact')" style="background:none;border:none;color:var(--yellow);font-family:var(--font);font-size:inherit;font-weight:700;cursor:pointer;text-decoration:underline;padding:0">contact form</button> on this website.</p></div>
 
-    <div class="lc"><h2>📋 What information we collect</h2><p>We collect the minimum information needed to run this website:</p><ul><li><strong>Email contact:</strong> If you email us, we receive your email address and message content. We use this only to respond to you.</li><li><strong>Accessibility preferences:</strong> If you change text size or colour scheme, this is stored in your browser's local storage. This data never leaves your device.</li><li><strong>Feedback votes:</strong> If you click "Yes" or "No" on a helpful page rating, this is stored locally in your browser only. We do not collect this centrally.</li></ul></div>
+    <div class="lc"><h2>📋 What information we collect</h2><p>We collect the minimum information needed to run this website:</p><ul><li><strong>Contact form submissions:</strong> If you use our contact form, we receive your name, email address, and message. We use this only to respond to you.</li><li><strong>Accessibility preferences:</strong> If you change text size or colour scheme, this is stored in your browser's local storage. This data never leaves your device.</li><li><strong>Feedback votes:</strong> If you click "Yes" or "No" on a helpful page rating, this is stored locally in your browser only. We do not collect this centrally.</li></ul></div>
 
     <div class="lc"><h2>🍪 Cookies</h2><p>Vision Hub does not use advertising cookies or tracking cookies. We use browser local storage solely to remember your accessibility preferences between visits. This is stored on your own device and is not transmitted to us.</p><p>We do not use Google Analytics, Facebook Pixel, or any third-party tracking technology.</p></div>
 
@@ -624,15 +868,15 @@ footer { background: var(--bg2); border-top: 3px solid var(--yellow); padding: 3
 
     <div class="lc"><h2>📞 The RNIB helpline number</h2><p>When you tap the RNIB helpline number displayed on our site, your phone makes a direct call to RNIB. Vision Hub is not party to that call and does not record any information about it.</p></div>
 
-    <div class="lc"><h2>⚖️ Legal basis for processing (UK GDPR)</h2><p>Where we process personal data (email correspondence only), our legal basis is <strong>legitimate interests</strong> — specifically, responding to enquiries sent to us by individuals who have chosen to contact us. We do not process special category data.</p></div>
+    <div class="lc"><h2>⚖️ Legal basis for processing (UK GDPR)</h2><p>Where we process personal data (contact form submissions only), our legal basis is <strong>legitimate interests</strong> — specifically, responding to enquiries sent to us by individuals who have chosen to contact us. We do not process special category data.</p></div>
 
-    <div class="lc"><h2>🗂️ How long we keep your data</h2><p>Email correspondence is retained for up to 12 months and then deleted, unless there is an ongoing matter requiring us to keep it longer.</p></div>
+    <div class="lc"><h2>🗂️ How long we keep your data</h2><p>Contact form correspondence is retained for up to 12 months and then deleted, unless there is an ongoing matter requiring us to keep it longer.</p></div>
 
-    <div class="lc"><h2>🔒 Your rights under UK GDPR</h2><p>You have the right to:</p><ul><li>Access the personal data we hold about you</li><li>Request correction of inaccurate data</li><li>Request deletion of your data</li><li>Object to our processing of your data</li><li>Lodge a complaint with the ICO (Information Commissioner's Office)</li></ul><p>To exercise any of these rights, email <a href="mailto:mrichardsmrichards5656@gmail.com">mrichardsmrichards5656@gmail.com</a>.</p><p>You can contact the ICO at <a href="https://ico.org.uk" target="_blank" rel="noopener">ico.org.uk</a> or by calling 0303 123 1113.</p></div>
+    <div class="lc"><h2>🔒 Your rights under UK GDPR</h2><p>You have the right to:</p><ul><li>Access the personal data we hold about you</li><li>Request correction of inaccurate data</li><li>Request deletion of your data</li><li>Object to our processing of your data</li><li>Lodge a complaint with the ICO (Information Commissioner's Office)</li></ul><p>To exercise any of these rights, use our <button onclick="showPage('contact')" style="background:none;border:none;color:var(--yellow);font-family:var(--font);font-size:inherit;font-weight:700;cursor:pointer;text-decoration:underline;padding:0">contact form</button>.</p><p>You can contact the ICO at <a href="https://ico.org.uk" target="_blank" rel="noopener">ico.org.uk</a> or by calling 0303 123 1113.</p></div>
 
     <div class="lc"><h2>📝 Changes to this policy</h2><p>We may update this policy from time to time. The date at the top of this page will always reflect when it was last changed.</p></div>
 
-    <div class="lc"><h2>✉️ Contact</h2><p>Questions about this Privacy Policy? Email <a href="mailto:mrichardsmrichards5656@gmail.com">mrichardsmrichards5656@gmail.com</a>.</p></div>
+    <div class="lc"><h2>✉️ Contact</h2><p>Questions about this Privacy Policy? Use our <button onclick="showPage('contact')" style="background:none;border:none;color:var(--yellow);font-family:var(--font);font-size:inherit;font-weight:700;cursor:pointer;text-decoration:underline;padding:0">contact form</button>.</p></div>
 
     <button class="back-btn" onclick="showPage('home')" aria-label="Back to home">← Back to home</button>
   </div>
@@ -650,39 +894,36 @@ footer { background: var(--bg2); border-top: 3px solid var(--yellow); padding: 3
 
     <div class="wb"><strong>Our commitment:</strong> Vision Hub exists to serve people living with sight loss. Accessibility is not an afterthought — it is the core purpose of this website.</div>
 
-    <div class="lc"><h2>About this website</h2><p>Vision Hub (visionhubuk.co.uk) is a free, independent UK resource for people living with partial sight, sight loss, and inherited eye conditions. This statement explains how accessible our website is and what we are doing to improve it.</p></div>
+    <div class="lc"><h2>About this website</h2><p>Vision Hub (visionhubuk.co.uk) is a free, independent UK resource for people living with partial sight, sight loss, and inherited eye conditions.</p></div>
 
-    <div class="lc"><h2>Conformance status</h2><p>We aim to meet the <strong>Web Content Accessibility Guidelines (WCAG) 2.1 Level AA</strong> standard, as required under the Equality Act 2010.</p><p>We believe this website is <strong>substantially conformant</strong> with WCAG 2.1 AA. This means most — but not all — of the criteria are fully met.</p></div>
+    <div class="lc"><h2>Conformance status</h2><p>We aim to meet the <strong>Web Content Accessibility Guidelines (WCAG) 2.1 Level AA</strong> standard, as required under the Equality Act 2010.</p><p>We believe this website is <strong>substantially conformant</strong> with WCAG 2.1 AA.</p></div>
 
     <div class="lc"><h2>What we have built in</h2><ul>
-      <li><strong>Text size controls</strong> <span class="pass-tag">✓ Built in</span> — Four text size options accessible at the top of every page.</li>
-      <li><strong>High contrast mode</strong> <span class="pass-tag">✓ Built in</span> — White-on-black and yellow-on-black colour schemes.</li>
-      <li><strong>Skip to main content link</strong> <span class="pass-tag">✓ Built in</span> — Appears on focus for keyboard and screen reader users.</li>
-      <li><strong>Keyboard navigation</strong> <span class="pass-tag">✓ Built in</span> — All interactive elements reachable by keyboard. Press Escape to close any open panel.</li>
-      <li><strong>Screen reader support</strong> <span class="pass-tag">✓ Built in</span> — ARIA labels, roles, and aria-expanded states throughout.</li>
-      <li><strong>Minimum 44×44px tap targets</strong> <span class="pass-tag">✓ Built in</span> — All buttons and links meet the minimum size.</li>
-      <li><strong>Colour contrast</strong> <span class="pass-tag">✓ Passes AA</span> — All text meets the 4.5:1 contrast ratio requirement.</li>
+      <li><strong>Text size controls</strong> <span class="pass-tag">✓ Built in</span></li>
+      <li><strong>High contrast mode</strong> <span class="pass-tag">✓ Built in</span></li>
+      <li><strong>Skip to main content link</strong> <span class="pass-tag">✓ Built in</span></li>
+      <li><strong>Keyboard navigation</strong> <span class="pass-tag">✓ Built in</span> — Press Escape to close any open panel.</li>
+      <li><strong>Screen reader support</strong> <span class="pass-tag">✓ Built in</span></li>
+      <li><strong>Minimum 44×44px tap targets</strong> <span class="pass-tag">✓ Built in</span></li>
+      <li><strong>Colour contrast</strong> <span class="pass-tag">✓ Passes AA</span></li>
       <li><strong>Readable font</strong> <span class="pass-tag">✓ Built in</span> — 17px base size with 1.7 line height.</li>
-      <li><strong>Preference memory</strong> <span class="pass-tag">✓ Built in</span> — Text size and colour scheme remembered between visits.</li>
+      <li><strong>Preference memory</strong> <span class="pass-tag">✓ Built in</span></li>
+      <li><strong>Accessible contact form</strong> <span class="pass-tag">✓ Built in</span> — labelled fields, error messages, and success confirmation.</li>
     </ul></div>
 
-    <div class="lc"><h2>Known limitations</h2><p>We are aware of the following issues and are working to address them:</p><ul><li>Some condition panels are not yet fully populated and display placeholder text.</li><li>Some condition panels are not yet fully populated and display placeholder text.</li><li>An independent WCAG audit has not yet been commissioned.</li></ul></div>
+    <div class="lc"><h2>Known limitations</h2><ul><li>An independent WCAG audit has not yet been commissioned.</li></ul></div>
 
     <div class="lc"><h2>Assistive technology tested</h2><ul><li>VoiceOver on iPhone (iOS 17)</li><li>TalkBack on Android</li><li>NVDA on Windows with Chrome</li><li>Keyboard-only navigation on Chrome, Firefox, and Safari</li><li>200% browser zoom</li></ul></div>
 
-    <div class="lc"><h2>How to use accessibility features on your device</h2><p><strong>iPhone:</strong> Settings → Accessibility → Display &amp; Text Size. Enable Larger Text, Bold Text, and Increase Contrast.</p><p><strong>Android:</strong> Settings → Accessibility → Vision. Enable large text and high contrast text.</p><p><strong>Screen readers:</strong> VoiceOver is built into iPhone. TalkBack is built into Android via Settings → Accessibility → TalkBack.</p></div>
+    <div class="lc"><h2>Reporting accessibility problems</h2><p>Use our <button onclick="showPage('contact')" style="background:none;border:none;color:var(--yellow);font-family:var(--font);font-size:inherit;font-weight:700;cursor:pointer;text-decoration:underline;padding:0">contact form</button> to report any accessibility barriers. We aim to respond within 5 working days.</p></div>
 
-    <div class="lc"><h2>Reporting accessibility problems</h2><p>We want to hear from you if you experience any accessibility barriers on this website. Email: <a href="mailto:mrichardsmrichards5656@gmail.com">mrichardsmrichards5656@gmail.com</a></p><p>We aim to respond within 5 working days.</p></div>
-
-    <div class="lc"><h2>Enforcement</h2><p>If you are not satisfied with our response to an accessibility complaint, you can contact the <strong>Equality Advisory and Support Service (EASS)</strong>:</p><ul><li>Website: <a href="https://www.equalityadvisoryservice.com" target="_blank" rel="noopener">equalityadvisoryservice.com</a></li><li>Phone: 0808 800 0082</li></ul></div>
-
-    <div class="lc"><h2>What we are working on next</h2><ul><li>Adding full content to all condition panels</li><li>Commissioning an independent WCAG audit</li><li>Adding a print stylesheet for saving information as PDF</li></ul></div>
+    <div class="lc"><h2>Enforcement</h2><p>Contact the <strong>Equality Advisory and Support Service (EASS)</strong>:</p><ul><li>Website: <a href="https://www.equalityadvisoryservice.com" target="_blank" rel="noopener">equalityadvisoryservice.com</a></li><li>Phone: 0808 800 0082</li></ul></div>
 
     <button class="back-btn" onclick="showPage('home')" aria-label="Back to home">← Back to home</button>
   </div>
 </div>
 
-<!-- ══════════ DECORATIVE DIVIDER ══════════ -->
+<!-- DECORATIVE DIVIDER -->
 <div aria-hidden="true" style="max-width:680px;margin:0 auto;padding:0 20px;text-align:center;opacity:0.4">
   <svg viewBox="0 0 400 40" width="100%" xmlns="http://www.w3.org/2000/svg">
     <path d="M0,20 Q50,5 100,20 Q150,35 200,20 Q250,5 300,20 Q350,35 400,20" fill="none" stroke="var(--yellow)" stroke-width="2" stroke-linecap="round"/>
@@ -692,74 +933,27 @@ footer { background: var(--bg2); border-top: 3px solid var(--yellow); padding: 3
   </svg>
 </div>
 
-<!-- ══════════ VIDEO RESOURCES ══════════ -->
+<!-- VIDEO RESOURCES -->
 <section style="max-width:680px;margin:0 auto;padding:0 20px 48px" aria-labelledby="video-hd">
   <span class="section-label" id="video-hd">Video Resources</span>
-
-  <!-- General channels -->
   <div class="ic" style="margin-bottom:12px">
     <span class="ic-icon" aria-hidden="true">📺</span>
     <h3>Helpful YouTube Channels</h3>
     <p>These channels are run by people with sight loss and cover assistive technology, daily living tips, and life with vision impairment.</p>
     <ul style="margin-top:12px">
-      <li style="margin-bottom:10px">
-        <a href="https://www.youtube.com/c/theblindlife" target="_blank" rel="noopener" style="color:var(--yellow);font-weight:700">The Blind Life ↗</a>
-        <span style="color:var(--text2);font-size:0.9rem;display:block">Run by Sam Seavy, who has Stargardt disease. Covers assistive tech, apps, and low vision tips.</span>
-      </li>
-      <li style="margin-bottom:10px">
-        <a href="https://www.youtube.com/@DoubleTapVideo" target="_blank" rel="noopener" style="color:var(--yellow);font-weight:700">Double Tap ↗</a>
-        <span style="color:var(--text2);font-size:0.9rem;display:block">Weekly show covering the latest assistive technology for blind and partially sighted people.</span>
-      </li>
-      <li style="margin-bottom:10px">
-        <a href="https://www.youtube.com/@RNIBcharity" target="_blank" rel="noopener" style="color:var(--yellow);font-weight:700">RNIB on YouTube ↗</a>
-        <span style="color:var(--text2);font-size:0.9rem;display:block">Official RNIB channel with guides on phone accessibility, wearable tech, screen readers, and more.</span>
-      </li>
-      <li>
-        <a href="https://www.youtube.com/watch?v=m184At7OkcA" target="_blank" rel="noopener" style="color:var(--yellow);font-weight:700">Daily Living Skills Series ↗</a>
-        <span style="color:var(--text2);font-size:0.9rem;display:block">Video series by a vision rehabilitation therapist covering practical everyday skills.</span>
-      </li>
+      <li style="margin-bottom:10px"><a href="https://www.youtube.com/c/theblindlife" target="_blank" rel="noopener" style="color:var(--yellow);font-weight:700">The Blind Life ↗</a><span style="color:var(--text2);font-size:0.9rem;display:block">Run by Sam Seavy, who has Stargardt disease. Covers assistive tech, apps, and low vision tips.</span></li>
+      <li style="margin-bottom:10px"><a href="https://www.youtube.com/@DoubleTapVideo" target="_blank" rel="noopener" style="color:var(--yellow);font-weight:700">Double Tap ↗</a><span style="color:var(--text2);font-size:0.9rem;display:block">Weekly show covering the latest assistive technology for blind and partially sighted people.</span></li>
+      <li style="margin-bottom:10px"><a href="https://www.youtube.com/@RNIBcharity" target="_blank" rel="noopener" style="color:var(--yellow);font-weight:700">RNIB on YouTube ↗</a><span style="color:var(--text2);font-size:0.9rem;display:block">Official RNIB channel with guides on phone accessibility, wearable tech, screen readers, and more.</span></li>
+      <li><a href="https://www.youtube.com/watch?v=m184At7OkcA" target="_blank" rel="noopener" style="color:var(--yellow);font-weight:700">Daily Living Skills Series ↗</a><span style="color:var(--text2);font-size:0.9rem;display:block">Video series by a vision rehabilitation therapist covering practical everyday skills.</span></li>
     </ul>
   </div>
-
-  <!-- Condition-specific videos -->
-  <div class="ic" style="margin-bottom:12px">
-    <span class="ic-icon" aria-hidden="true">🎬</span>
-    <h3>Videos by Condition</h3>
-    <p>Find videos specific to your condition from trusted charities and medical organisations.</p>
-    <ul style="margin-top:12px">
-      <li style="margin-bottom:10px">
-        <a href="https://www.youtube.com/watch?v=ZSchAjmYqkk" target="_blank" rel="noopener" style="color:var(--yellow);font-weight:700">Stargardt Disease — Living with Stargardt (Macular Society) ↗</a>
-        <span style="color:var(--text2);font-size:0.9rem;display:block">Real stories from people living with Stargardt disease.</span>
-      </li>
-      <li style="margin-bottom:10px">
-        <a href="https://www.youtube.com/watch?v=ILZV6E6Bruo" target="_blank" rel="noopener" style="color:var(--yellow);font-weight:700">Stargardt Disease — Expert Q&A (National Eye Institute) ↗</a>
-        <span style="color:var(--text2);font-size:0.9rem;display:block">Specialists answer common questions about Stargardt, research and daily life.</span>
-      </li>
-      <li style="margin-bottom:10px">
-        <a href="https://www.macular.org/resources/video-presentations" target="_blank" rel="noopener" style="color:var(--yellow);font-weight:700">AMD — Free Video Library (American Macular Degeneration Foundation) ↗</a>
-        <span style="color:var(--text2);font-size:0.9rem;display:block">Large library of videos covering AMD, living tips, and treatment updates.</span>
-      </li>
-      <li style="margin-bottom:10px">
-        <a href="https://www.aao.org/eye-health/diseases/diabetic-retinopathy-videos" target="_blank" rel="noopener" style="color:var(--yellow);font-weight:700">Diabetic Retinopathy — Video Guide (American Academy of Ophthalmology) ↗</a>
-        <span style="color:var(--text2);font-size:0.9rem;display:block">Explains diabetic retinopathy, stages, and treatment options clearly.</span>
-      </li>
-      <li style="margin-bottom:10px">
-        <a href="https://glaucoma.uk/about-glaucoma/glaucoma-videos/" target="_blank" rel="noopener" style="color:var(--yellow);font-weight:700">Glaucoma — Video Resource (Glaucoma UK) ↗</a>
-        <span style="color:var(--text2);font-size:0.9rem;display:block">Videos on glaucoma types, eye drops, treatment and living with the condition.</span>
-      </li>
-      <li>
-        <a href="https://www.retina-uk.org.uk/information-support/videos/" target="_blank" rel="noopener" style="color:var(--yellow);font-weight:700">Retinitis Pigmentosa — Videos (Retina UK) ↗</a>
-        <span style="color:var(--text2);font-size:0.9rem;display:block">Personal stories and expert talks about RP, research and daily life.</span>
-      </li>
-    </ul>
-  </div>
-
-  <div class="wb">
-    <strong>Note:</strong> These links go to external websites and YouTube channels. Vision Hub is not responsible for their content. Always discuss medical information with your ophthalmologist.
-  </div>
+  <div class="wb"><strong>Note:</strong> These links go to external websites and YouTube channels. Vision Hub is not responsible for their content. Always discuss medical information with your ophthalmologist.</div>
 </section>
 
-<!-- ══════════ FOOTER ══════════ -->
+<!-- BACK TO TOP -->
+<button class="back-top" id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
+
+<!-- FOOTER -->
 <footer>
   <div class="footer-inner">
     <div class="footer-logo">◈ Vision Hub</div>
@@ -776,8 +970,8 @@ footer { background: var(--bg2); border-top: 3px solid var(--yellow); padding: 3
       </div>
     </nav>
     <div class="footer-bottom">
-      © 2026 Vision Hub &nbsp;·&nbsp; Not a medical provider &nbsp;·&nbsp; Always consult your ophthalmologist &nbsp;·&nbsp;
-      <a href="mailto:mrichardsmrichards5656@gmail.com">Contact</a> &nbsp;·&nbsp;
+      © 2026 Vision Hub &nbsp;·&nbsp; Not a medical provider &nbsp;·&nbsp; Always consult your ophthalmologist &nbsp;·&nbsp; Content reviewed quarterly — last reviewed April 2026 &nbsp;·&nbsp;
+      <a onclick="showPage('contact')" role="button" tabindex="0">Contact</a> &nbsp;·&nbsp;
       <a onclick="showPage('a11y')" role="button" tabindex="0">Accessibility Statement</a> &nbsp;·&nbsp;
       <a onclick="showPage('privacy')" role="button" tabindex="0">Privacy Policy</a>
     </div>
@@ -790,6 +984,43 @@ function showPage(name) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById('page-' + name).classList.add('active');
   window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ─────────────── CONTACT FORM ─────────────── */
+function submitContactForm() {
+  var name    = document.getElementById('cf-name').value.trim();
+  var email   = document.getElementById('cf-email').value.trim();
+  var subject = document.getElementById('cf-subject').value;
+  var message = document.getElementById('cf-message').value.trim();
+  var errEl   = document.getElementById('cf-error');
+
+  errEl.style.display = 'none';
+  errEl.textContent = '';
+
+  if (!name) { showCfError('Please enter your name.'); document.getElementById('cf-name').focus(); return; }
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showCfError('Please enter a valid email address.'); document.getElementById('cf-email').focus(); return; }
+  if (!message) { showCfError('Please enter your message.'); document.getElementById('cf-message').focus(); return; }
+
+  // Build mailto link — keeps your email private from the page source
+  // while still routing messages to you. Replace the address below.
+  var recipient = atob('bXJpY2hhcmRzbXJpY2hhcmRzNTY1NkBnbWFpbC5jb20=');
+  var mailtoUrl = 'mailto:' + recipient
+    + '?subject=' + encodeURIComponent('[Vision Hub] ' + document.getElementById('cf-subject').options[document.getElementById('cf-subject').selectedIndex].text + ' — from ' + name)
+    + '&body=' + encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\n' + message);
+
+  window.location.href = mailtoUrl;
+
+  // Show success message after a short delay
+  setTimeout(function() {
+    document.getElementById('cf-form').style.display = 'none';
+    document.getElementById('cf-success').style.display = 'block';
+  }, 800);
+}
+
+function showCfError(msg) {
+  var el = document.getElementById('cf-error');
+  el.textContent = '⚠️ ' + msg;
+  el.style.display = 'block';
 }
 
 /* ─────────────── DATA ─────────────── */
@@ -857,7 +1088,7 @@ amd:{
   ],
   benefits:[
     {n:1,title:"Certificate of Vision Impairment (CVI)",body:"Request from your ophthalmologist. Free. Unlocks local authority rehabilitation and council tax reduction."},
-    {n:2,title:"Attendance Allowance",body:"If over state pension age, Attendance Allowance pays up to £101.75/week. Age UK can help complete the form."},
+    {n:2,title:"Attendance Allowance",body:"If over state pension age, Attendance Allowance pays £114.60/week (higher rate) or £76.70/week (lower rate) from April 2026. Age UK can help complete the form."},
     {n:3,title:"Blue Badge",body:"People with severe visual impairment automatically qualify for a Blue Badge parking permit. Apply via your local council."}
   ]
 },
@@ -946,6 +1177,226 @@ diabetic:{
   benefits:[
     {n:1,title:"Free Annual NHS Eye Screening",body:"The most important thing you can do. Free for all people with diabetes. Never miss it."},
     {n:2,title:"PIP for Diabetic Complications",body:"Vision loss from retinopathy supports a PIP claim. Diabetes UK has a detailed benefits guide at diabetes.org.uk."}
+  ]
+},
+
+lca:{
+  name:"Leber Congenital Amaurosis",
+  what:"Leber Congenital Amaurosis (LCA) is a group of severe inherited retinal dystrophies that are the most common cause of inherited blindness in childhood, affecting around 1 in 50,000 births. LCA causes severe visual impairment from birth or very early infancy. Multiple genes can cause LCA — the most significant being CEP290, GUCY2D, and RPE65. The condition is named after the German ophthalmologist Theodor Leber.",
+  howAffects:"Babies with LCA typically show rapid, involuntary eye movements (nystagmus), lack of visual responsiveness, and may press on their eyes (oculodigital sign). Visual acuity is severely reduced, often from the first months of life. Some children retain useful light perception; others have no measurable vision. Sensitivity to light (photophobia) and extreme farsightedness are common features.",
+  diagnosis:"Diagnosis is made by electroretinography (ERG), which shows markedly reduced or absent electrical responses in the retina even in infancy. Genetic testing is essential and guides treatment eligibility. Referral to a specialist inherited retinal disease service is important from the first months of life.",
+  whoAffects:"LCA is present from birth or early infancy and affects approximately 1 in 50,000 people worldwide. It is the most common cause of inherited visual impairment in children. Both boys and girls are equally affected. It follows an autosomal recessive inheritance pattern in most cases.",
+  research:[
+    {tag:"gene",label:"NHS Approved",title:"Luxturna for RPE65-LCA",body:"Luxturna (voretigene neparvovec) is approved on the NHS for LCA caused by RPE65 gene mutations. A single subretinal injection in each eye has produced dramatic vision improvements in eligible patients, including the ability to navigate in dim light.",link:"https://clinicaltrials.gov/search?cond=LCA+RPE65"},
+    {tag:"gene",label:"Gene Therapy",title:"CEP290-LCA — EDIT-101",body:"EDIT-101 uses CRISPR gene editing delivered directly into the eye to correct the most common CEP290 mutation. Phase 1/2 results showed visual improvement in several participants. Editas Medicine.",link:"https://clinicaltrials.gov/search?cond=CEP290+LCA"},
+    {tag:"trial",label:"Clinical Trial",title:"GUCY2D-LCA Gene Therapy",body:"Multiple programmes are investigating gene replacement for GUCY2D mutations (the second most common cause of LCA). Early results from Spark Therapeutics and UCL are encouraging.",link:"https://clinicaltrials.gov/search?cond=GUCY2D+LCA"}
+  ],
+  guides:[
+    {n:1,title:"Get a Genetic Diagnosis as Early as Possible",body:"Different LCA genes respond to different treatments. Knowing your gene mutation is essential for accessing Luxturna and future therapies. Ask for urgent referral to a paediatric inherited retinal disease clinic. Genetic testing is free on the NHS."},
+    {n:2,title:"Early Intervention and Habilitation",body:"Children with LCA benefit enormously from early specialist education and habilitation. Contact your local authority to request an Education, Health and Care (EHC) plan, and ask to be referred to a Qualified Teacher of Visual Impairment (QTVI) as early as possible."},
+    {n:3,title:"Connecting with Other Families",body:"Families affected by LCA have described connecting with the LCA community as transformative. The Leber's Congenital Amaurosis UK group on social media and Fighting Blindness UK can connect you with other families and access to the latest trial news."},
+    {n:4,title:"Claiming DLA for Your Child",body:"Children under 16 with LCA are eligible for Disability Living Allowance (DLA). This can be worth over £600/month at higher rates. Call RNIB (0303 123 9999) for free help with the application — it is complex but you are entitled to it."}
+  ],
+  tech:[
+    {cat:"Free Built-In",title:"VoiceOver / TalkBack",body:"Apple's VoiceOver (iPhone, iPad, Mac) and Google's TalkBack (Android) are full screen readers, built in at no cost. Set up in Settings → Accessibility. Both work from infancy with the right support.",price:"Free — built in"},
+    {cat:"Screen Reader",title:"JAWS / NVDA for Windows",body:"JAWS is the most widely used professional screen reader for Windows. NVDA is a free, open-source alternative. Both read all on-screen content aloud with high reliability.",price:"NVDA: Free | JAWS: Approx. £900 (grant funding available)"},
+    {cat:"Braille",title:"Braille Display",body:"A refreshable braille display connects to any phone or computer, translating on-screen text into braille in real time. Funding available via Disabled Students Allowance or Access to Work.",price:"£500–£5,000 (funding often available)"}
+  ],
+  support:[
+    {title:"Retina UK",body:"Supports all inherited retinal conditions including LCA. Helpline 01280 860363, family support, and research funding.",link:"https://www.retina-uk.org.uk"},
+    {title:"RNIB (UK)",body:"Comprehensive support for blind children and adults — education specialists, benefits advisors, and talking books. Call 0303 123 9999.",link:"https://www.rnib.org.uk"},
+    {title:"Foundation Fighting Blindness",body:"Major international funder of LCA research. Maintains a patient registry that can connect families to clinical trials.",link:"https://www.fightingblindness.org"}
+  ],
+  benefits:[
+    {n:1,title:"Disability Living Allowance (DLA) — Children",body:"Children under 16 with LCA are eligible. Can be worth £600+ per month. Call RNIB (0303 123 9999) for free help with the form."},
+    {n:2,title:"PIP (from age 16)",body:"At 16, DLA transitions to PIP. Both Daily Living and Mobility components apply at the enhanced rate for most people with LCA. Apply early."},
+    {n:3,title:"Education, Health and Care Plan (EHC)",body:"Children are entitled to an EHC plan from their local authority, funding specialist educational support including a QTVI, IT equipment, and braille resources."},
+    {n:4,title:"Disabled Students Allowance (DSA)",body:"For students in higher education. Funds screen readers, braille equipment, and study support. Apply via Student Finance England."}
+  ]
+},
+
+nystagmus:{
+  name:"Nystagmus",
+  what:"Nystagmus is a condition causing involuntary, repetitive eye movements — most commonly side-to-side (horizontal nystagmus). These uncontrolled movements reduce visual acuity because the eyes cannot fix steadily on a target. Nystagmus affects approximately 1 in 1,000 people in the UK and can be present from birth (infantile nystagmus) or develop later in life (acquired nystagmus). It is a symptom that often accompanies other conditions such as albinism, LCA, or achromatopsia.",
+  howAffects:"The involuntary eye movements make it difficult to focus clearly, particularly on small or distant objects. Most people with nystagmus have reduced visual acuity, but not complete blindness. Many people find a 'null zone' — a head position where the movements slow and vision is clearest. Reading, screen use, and driving are commonly affected. Oscillopsia (the world appearing to shake) may occur in acquired nystagmus.",
+  diagnosis:"Diagnosed by an ophthalmologist or orthoptist through observation of eye movements and assessment of visual acuity. In children, it is typically identified in the first few months of life. Investigations to identify any underlying cause (MRI brain scan, ERG, genetic testing) are routinely carried out.",
+  whoAffects:"Affects approximately 1 in 1,000 people. Infantile nystagmus syndrome (INS) usually appears before 6 months of age. Nystagmus is closely associated with albinism, LCA, achromatopsia, and other inherited retinal conditions. Acquired nystagmus in adults may follow neurological events such as stroke or multiple sclerosis.",
+  research:[
+    {tag:"drug",label:"Clinical Trial",title:"Gabapentin and Memantine for INS",body:"Memantine (used in Alzheimer's disease) has shown benefit in reducing nystagmus intensity in some clinical trials, improving visual acuity measurably. NANOS (Nystagmus Evaluation) study, Newcastle University.",link:"https://clinicaltrials.gov/search?cond=nystagmus"},
+    {tag:"trial",label:"Surgery",title:"Tenotomy (Anderson) Procedure",body:"A minor eye muscle surgery that repositions the eye muscle to shift the null zone to a more central position, reducing the need for a head turn. Performed at specialist centres.",link:"https://clinicaltrials.gov/search?cond=nystagmus+tenotomy"}
+  ],
+  guides:[
+    {n:1,title:"Finding and Using Your Null Zone",body:"The null zone is the eye or head position where movements are slowest and vision is clearest. Ask your orthoptist to help identify yours. When reading, using this position can substantially improve clarity. Employers and schools can reasonably accommodate this."},
+    {n:2,title:"School and Exam Accommodations",body:"Children with nystagmus are entitled to reasonable adjustments in school: large print, extra time in exams, preferential seating near the board, and reduced copying from the board. Request these via your SENCo (Special Educational Needs Coordinator)."},
+    {n:3,title:"Driving and Nystagmus",body:"You must inform the DVLA of your nystagmus. Many people with nystagmus cannot drive. Some people, depending on their visual acuity, may be able to drive after a specialist assessment. The DVLA will assess your individual situation."}
+  ],
+  tech:[
+    {cat:"Magnification",title:"Screen Magnification Software",body:"ZoomText (Windows) or the built-in magnifier on Mac/iPhone enlarges on-screen content, making it easier to read despite reduced visual acuity.",price:"ZoomText: Approx. £350 | Built-in: Free"},
+    {cat:"Reading Aid",title:"Large Print and Tinted Overlays",body:"Large print books (available free via RNIB's library service) and coloured reading overlays reduce visual stress and improve readability for many people with nystagmus.",price:"Free — via RNIB"}
+  ],
+  support:[
+    {title:"Nystagmus Network (UK)",body:"The UK's dedicated nystagmus charity. Helpline, peer support, school guidance packs, and the Nystagmus UK Facebook community.",link:"https://www.nystagmusnet.org"},
+    {title:"RNIB (UK)",body:"Helpline 0303 123 9999, education support, and benefits advice.",link:"https://www.rnib.org.uk"}
+  ],
+  benefits:[
+    {n:1,title:"PIP for Nystagmus",body:"If your nystagmus significantly reduces your ability to read, navigate, or work, you may be entitled to PIP. RNIB provides free help with forms — call 0303 123 9999."},
+    {n:2,title:"Free Eye Tests",body:"If you hold a Certificate of Vision Impairment, you are entitled to free NHS eye tests. Register with your optician."},
+    {n:3,title:"Workplace Adjustments",body:"Under the Equality Act 2010, employers must provide reasonable adjustments including screen magnification software, adjusted lighting, and revised seating arrangements."}
+  ]
+},
+
+achromatopsia:{
+  name:"Achromatopsia",
+  what:"Achromatopsia (also called rod monochromacy or total colour blindness) is a rare inherited retinal condition affecting around 1 in 30,000 people. It is caused by non-functioning or absent cone photoreceptors — the cells responsible for colour vision and fine detail in normal lighting. People with achromatopsia see only in black, white, and grey and have severe light sensitivity (photophobia). It is caused by mutations in several genes including CNGB3, CNGA3, GNAT2, PDE6C, and PDE6H.",
+  howAffects:"The absence of functional cones means that colour vision is completely absent. Visual acuity is typically 6/60 or worse (legally blind in most countries). Intense photophobia means bright light is extremely uncomfortable and severely reduces vision in normal lighting conditions. Nystagmus is present in most cases. Dark-adapted (scotopic) vision using rod cells is normal, meaning people with achromatopsia often see better in dim light than in bright daylight.",
+  diagnosis:"Diagnosed by electroretinography (ERG) showing absent cone responses with normal rod responses, visual acuity testing, colour vision testing, and genetic testing. Nystagmus is usually present from early infancy. Genetic testing identifies the causative gene and is critical for trial eligibility.",
+  whoAffects:"Affects approximately 1 in 30,000 people worldwide. It is more prevalent in isolated populations. Both sexes are affected equally. It is autosomal recessive (both parents must carry a gene mutation). Often identified in early infancy due to light sensitivity and nystagmus.",
+  research:[
+    {tag:"gene",label:"Gene Therapy",title:"CNGB3 and CNGA3 Gene Therapy",body:"Multiple Phase 1/2 gene therapy trials for CNGB3 and CNGA3 mutations — the two most common forms of achromatopsia — have shown promising safety data and early functional improvements. AGTC / Beacon Therapeutics, Applied Genetic Technologies.",link:"https://clinicaltrials.gov/search?cond=achromatopsia"},
+    {tag:"trial",label:"Clinical Trial",title:"Colour Vision Restoration Research",body:"Researchers at University College London and Moorfields Eye Hospital are investigating cone-targeted therapies. The achromatopsia research community is highly active given the well-understood genetics.",link:"https://clinicaltrials.gov/search?cond=achromatopsia+gene"}
+  ],
+  guides:[
+    {n:1,title:"Tinted Lenses and Filter Glasses",body:"Red or plum-tinted lenses dramatically reduce photophobia and can substantially improve functional vision in bright conditions. Specialist providers include Eschenbach and NoIR Medical Technologies. Some costs may be recoverable via Access to Work or a social care assessment."},
+    {n:2,title:"Getting a Genetic Test",body:"Knowing your specific gene mutation is essential to access current and future gene therapy trials. Ask your ophthalmologist for a referral to an inherited retinal disease clinic. NHS genetic testing is free."},
+    {n:3,title:"Lighting Adjustments at School or Work",body:"Reducing overhead lighting, using window blinds, and allowing tinted lenses indoors are all reasonable adjustments under the Equality Act 2010. Schools can also provide shaded seating and light-reducing screen filters."}
+  ],
+  tech:[
+    {cat:"Filter Lenses",title:"NoIR or Eschenbach Tinted Filters",body:"Specialist absorptive filter lenses dramatically reduce light sensitivity and glare. Available in a range of tints for different light conditions. Essential for most people with achromatopsia.",price:"£80–£300"},
+    {cat:"Screen Filter",title:"Dark Mode and Night Mode",body:"Enable dark mode on all devices (Settings → Display → Dark Mode) and reduce brightness to minimum. Screen dimming apps like f.lux (desktop) can go dimmer than system settings allow.",price:"Free — built in"}
+  ],
+  support:[
+    {title:"Achromatopsia Network (UK)",body:"UK peer support group for people with achromatopsia and their families. Online community, information packs, and links to research.",link:"https://www.achromat.org"},
+    {title:"Retina UK",body:"Helpline 01280 860363, research funding, and support for all inherited retinal conditions.",link:"https://www.retina-uk.org.uk"},
+    {title:"RNIB (UK)",body:"Helpline 0303 123 9999, benefits advice, and emotional support.",link:"https://www.rnib.org.uk"}
+  ],
+  benefits:[
+    {n:1,title:"Certificate of Vision Impairment (CVI)",body:"Most people with achromatopsia qualify for partial sight or sight impairment registration. Your ophthalmologist can issue the CVI — ask at your next appointment."},
+    {n:2,title:"PIP",body:"Both Daily Living and Mobility components of PIP may apply. The photophobia and reduced acuity significantly limit daily activities and travel in daylight."},
+    {n:3,title:"Access to Work",body:"Covers tinted lenses, specialist screen equipment, and lighting adjustments in the workplace. Apply at gov.uk/access-to-work."}
+  ]
+},
+
+usher:{
+  name:"Usher Syndrome",
+  what:"Usher syndrome is the most common condition involving both hearing loss and vision loss, affecting approximately 1 in 6,000 people. It is caused by mutations in one of at least 9 genes, leading to sensorineural hearing loss (present from birth) combined with retinitis pigmentosa (causing progressive vision loss). There are three types: Type 1 (profound deafness from birth, no vestibular function), Type 2 (moderate hearing loss, normal balance), and Type 3 (progressive hearing loss). Usher syndrome accounts for around 50% of all deaf-blind individuals.",
+  howAffects:"The vision component follows a typical RP pattern: night blindness first, then progressive narrowing of peripheral vision creating tunnel vision, and eventually central vision loss in later stages. The combination of vision and hearing loss creates a unique and profound challenge to communication, navigation, and independence. Balance difficulties are present in Type 1.",
+  diagnosis:"Diagnosed by audiological assessment (hearing tests), electroretinography (ERG), visual field testing, and genetic testing. It is often first suspected when a deaf child begins showing signs of RP in teenage years. Genetic testing identifies the specific gene and is essential for trial eligibility.",
+  whoAffects:"Affects approximately 1 in 6,000 people. Type 2 is the most common form. Usually identified in childhood or teenage years. It affects both sexes equally and follows autosomal recessive inheritance.",
+  research:[
+    {tag:"gene",label:"Gene Therapy",title:"MYO7A Gene Therapy (Type 1)",body:"UshStat and Sensorion are developing gene therapy for the MYO7A gene mutation (most common cause of Type 1). Phase 1/2 data suggest promising safety and early efficacy signals.",link:"https://clinicaltrials.gov/search?cond=usher+syndrome"},
+    {tag:"trial",label:"Clinical Trial",title:"Antisense Oligonucleotide for USH2A",body:"AON therapy targeting the USH2A splice defect (Type 2) is showing promise in early trials. Proqr Therapeutics / Stellar Biotherapeutics — the most common form of Usher syndrome.",link:"https://clinicaltrials.gov/search?cond=USH2A"}
+  ],
+  guides:[
+    {n:1,title:"Deafblind Manual Communication",body:"As vision and hearing both decline, deafblind manual communication (a tactile signing method) becomes essential. Social services are obligated to fund communication support. Request a specialist deafblind assessment from your local authority — do not wait until vision is severely impaired."},
+    {n:2,title:"Connecting with an Intervenor",body:"An intervenor is a specialist support worker trained in deafblind communication. Local authorities fund intervenors for those who qualify. Contact Sense (the deafblind charity) for guidance on accessing this support."},
+    {n:3,title:"Getting a Genetic Test",body:"Your Usher gene type determines which gene therapy trials you can access. Genetic testing is free on the NHS. Ask for referral to an inherited retinal disease clinic and an audiologist specialising in Usher syndrome."}
+  ],
+  tech:[
+    {cat:"Vibrating Alert",title:"Pager / Vibrating Doorbell Systems",body:"Vibrating pager systems alert to doorbells, phones, smoke alarms, and baby monitors when hearing loss makes auditory signals unreliable.",price:"£50–£200"},
+    {cat:"Communication",title:"Braille Display with Phone",body:"A refreshable braille display paired with VoiceOver (iPhone) or TalkBack (Android) enables silent, tactile access to all phone content — messages, calls, apps.",price:"£500–£5,000 (Access to Work funding available)"}
+  ],
+  support:[
+    {title:"Sense (Deafblind UK)",body:"The UK's leading deafblind charity. Specialist support workers, residential services, benefits advice, and a national network of services.",link:"https://www.sense.org.uk"},
+    {title:"Retina UK",body:"Helpline 01280 860363. Research funding and peer support for the vision loss component of Usher syndrome.",link:"https://www.retina-uk.org.uk"},
+    {title:"National Deaf Children's Society",body:"Specialist support for families of deaf and deafblind children, including educational guidance.",link:"https://www.ndcs.org.uk"}
+  ],
+  benefits:[
+    {n:1,title:"PIP Enhanced Rate (Both Components)",body:"Usher syndrome almost always qualifies for PIP at the enhanced rate for both Daily Living and Mobility due to the combined deaf-blind impact."},
+    {n:2,title:"Local Authority Deafblind Support",body:"Under the Care Act 2014, local authorities must meet the eligible care needs of deafblind people. Request a deafblind assessment. This can fund intervenors, communication support, and specialist equipment."},
+    {n:3,title:"Disabled Students Allowance",body:"Covers interpreters, notetakers, screen readers, and specialist software for students in higher education."}
+  ]
+},
+
+albinism:{
+  name:"Albinism",
+  what:"Albinism is a group of inherited conditions caused by mutations affecting melanin production. It results in reduced pigmentation of the skin, hair, and eyes, and — crucially — affects the development of the visual system. Almost all forms of albinism cause visual impairment. Oculocutaneous albinism (OCA) affects the whole body; ocular albinism (OA) primarily affects the eyes. Albinism affects approximately 1 in 17,000 people in the UK.",
+  howAffects:"The visual impairment in albinism is caused by several factors: underdevelopment of the fovea (foveal hypoplasia), nystagmus, high refractive errors (usually longsightedness or astigmatism), photophobia (light sensitivity due to reduced iris pigmentation allowing excess light in), and misrouting of optic nerve fibres. Visual acuity typically ranges from 6/18 to 6/60. Stereoscopic (3D) vision is often absent or reduced.",
+  diagnosis:"Diagnosed by ophthalmological assessment including OCT (to identify foveal hypoplasia — the definitive diagnostic feature), electroretinography, and genetic testing. Skin and hair pigmentation can be normal or near-normal in some types, so the eye findings are most reliable diagnostically.",
+  whoAffects:"Affects approximately 1 in 17,000 people in the UK. OCA Type 1 and Type 2 are the most common forms. Albinism affects all ethnic groups, but is more prevalent in sub-Saharan Africa (as high as 1 in 1,000 in Tanzania). It follows autosomal recessive inheritance in most forms.",
+  research:[
+    {tag:"trial",label:"Research",title:"Levodopa Trials for Foveal Development",body:"Studies are investigating whether levodopa (used in Parkinson's disease) during early childhood can partially stimulate foveal development. Early results are mixed and treatment remains investigational.",link:"https://clinicaltrials.gov/search?cond=albinism+vision"},
+    {tag:"gene",label:"Gene Therapy",title:"OCA Gene Therapy Research",body:"Preclinical programmes are developing gene replacement therapy for OCA1 and OCA2. The University of Manchester and international partners are active in this space.",link:"https://clinicaltrials.gov/search?cond=oculocutaneous+albinism"}
+  ],
+  guides:[
+    {n:1,title:"Sun Protection is Essential",body:"People with albinism have significantly increased risk of skin cancer due to reduced melanin. Use SPF50+ sunscreen daily, wear protective clothing including hats and UV-blocking sunglasses. Wraparound UV lenses protect both from UV exposure and reduce photophobia."},
+    {n:2,title:"Glasses and Low Vision Aids",body:"Most people with albinism benefit greatly from an up-to-date glasses prescription. Many also benefit from bioptic telescopic lenses for distance tasks. Ask your low vision clinic for a full low vision assessment — it's free on the NHS."},
+    {n:3,title:"Register with Your Low Vision Clinic",body:"Low vision clinics (available via NHS referral) provide magnifiers, tinted lenses, and specialist aids free of charge or at reduced cost. Ask your ophthalmologist for a referral."}
+  ],
+  tech:[
+    {cat:"Tinted Lenses",title:"UV-Blocking Wraparound Sunglasses",body:"High-quality UV-blocking wraparound lenses are essential to reduce photophobia and protect eye health. Specialist providers include Eschenbach, NoIR, and Cocoons.",price:"£80–£250"},
+    {cat:"Magnification",title:"Handheld and Desktop Magnifiers",body:"Optical and electronic magnifiers for reading. Electronic magnifiers (CCTV) allow adjustable contrast and colour reversal. Available free via low vision clinic.",price:"Free via NHS low vision clinic"}
+  ],
+  support:[
+    {title:"Albinism Fellowship (UK)",body:"UK's dedicated albinism charity. Helpline, peer support groups, information resources, and an annual conference.",link:"https://www.albinism.org.uk"},
+    {title:"RNIB (UK)",body:"Helpline 0303 123 9999, low vision support, and benefits advice for all sight conditions including albinism.",link:"https://www.rnib.org.uk"}
+  ],
+  benefits:[
+    {n:1,title:"Certificate of Vision Impairment (CVI)",body:"Most people with albinism qualify for sight impairment or severe sight impairment registration. This is free and unlocks significant support. Ask your ophthalmologist."},
+    {n:2,title:"PIP",body:"Albinism's combined impact on vision and photophobia significantly affects daily tasks and mobility. Both PIP components may apply. Call RNIB (0303 123 9999) for help with the form."},
+    {n:3,title:"Free NHS Eye Tests and Optical Vouchers",body:"People with sight impairment certificates receive free NHS eye tests and enhanced optical vouchers towards the cost of glasses."}
+  ]
+},
+
+cvi:{
+  name:"Cerebral Visual Impairment",
+  what:"Cerebral Visual Impairment (CVI) is the most common cause of visual impairment in children in the developed world and is caused by damage to, or malformation of, the visual processing parts of the brain — not the eyes themselves. The eyes are often healthy. CVI typically results from brain injury around birth (due to prematurity, hypoxia, or infection), stroke, or brain malformation. The visual profile of CVI is unique and complex: unlike eye-based conditions, CVI affects how the brain interprets visual information.",
+  howAffects:"CVI presents very differently from eye-based conditions. A child may appear to 'look through' objects, have better vision in their peripheral field than centrally, or seem visually inattentive. Visual fatigue is common — the child may 'switch off' vision when tired. Specific features include: difficulty with visual clutter, better vision for familiar objects, reduced depth perception, difficulty processing movement, light-gazing, and better responses to bright colours. Vision often improves over time with appropriate stimulation, especially in young children.",
+  diagnosis:"CVI is diagnosed by a specialist paediatric ophthalmologist or neuro-ophthalmologist. Standard visual acuity tests may underestimate functional vision. Brain imaging (MRI) identifies the area of brain damage. A specialist CVI assessment (such as the CVI Range or Roman-Lantzy assessment) is the gold standard for understanding functional vision.",
+  whoAffects:"CVI is now the most common cause of childhood visual impairment in developed countries. It commonly affects premature infants and those who experienced birth complications. It can affect people of any age following stroke or brain injury. An estimated 30–40% of children with cerebral palsy have CVI.",
+  research:[
+    {tag:"trial",label:"Intervention Research",title:"Active Learning and CVI",body:"Research led by Lilli Nielsen's Active Learning approach and the CVI Range assessment (Roman-Lantzy) is developing structured intervention programmes to maximise vision development through the brain's plasticity.",link:"https://clinicaltrials.gov/search?cond=cerebral+visual+impairment"}
+  ],
+  guides:[
+    {n:1,title:"Request a Specialist CVI Assessment",body:"Standard eye charts do not capture the complexity of CVI. Ask for a functional vision assessment using the CVI Range (Roman-Lantzy) or equivalent specialist tool. This assessment informs educational and therapeutic strategies."},
+    {n:2,title:"Reduce Visual Clutter",body:"Children and adults with CVI often see best when objects are presented one at a time against a plain background. At school, declutter desk surfaces, use plain exercise books, and reduce busy wall displays near the child's workspace."},
+    {n:3,title:"Use Preferred Colours and Movement",body:"Most people with CVI have colour and movement preferences that improve visual attention. Bright, pure colours — especially yellow and red — often elicit stronger visual responses. Use these in learning materials."},
+    {n:4,title:"Claim What Your Child is Entitled To",body:"Children with CVI are entitled to an EHC (Education, Health and Care) plan, a QTVI (Qualified Teacher of Visual Impairment), and specialist technology. Contact your local authority and the VIEW charity for guidance."}
+  ],
+  tech:[
+    {cat:"High Contrast",title:"High Contrast Display Settings",body:"Increase display contrast and font size on all devices. High contrast mode (black background, white text) significantly improves readability for many people with CVI.",price:"Free — built in"},
+    {cat:"Educational",title:"Low Arousal, High Contrast Materials",body:"Specialist educational suppliers including RNIB's shop and LDA provide high contrast, low clutter learning resources designed for children with CVI.",price:"Varies — often funded via EHC plan"}
+  ],
+  support:[
+    {title:"CVI Scotland",body:"Leading UK resource on CVI — free guides for families, teachers and professionals. Research summaries and practical strategies.",link:"https://www.cviscotland.org"},
+    {title:"RNIB (UK)",body:"Helpline 0303 123 9999, education support, and benefits advice.",link:"https://www.rnib.org.uk"},
+    {title:"VIEW (Visual Impairment Education Workforce)",body:"Professional association supporting teachers and families of children with visual impairment including CVI.",link:"https://www.view.org.uk"}
+  ],
+  benefits:[
+    {n:1,title:"Education, Health and Care (EHC) Plan",body:"Children with CVI are entitled to an EHC plan from their local authority. This legally binding plan funds specialist education, a QTVI, and specialist technology."},
+    {n:2,title:"DLA for Children / PIP for Adults",body:"The visual and neurological impact of CVI supports a claim at the higher rates of DLA (children) and PIP (adults). RNIB can help with the application — call 0303 123 9999."},
+    {n:3,title:"Carer's Allowance",body:"If a parent or carer spends at least 35 hours per week caring for a child or adult with CVI, they may be entitled to Carer's Allowance (£86.45/week from April 2026)."}
+  ]
+},
+
+cone:{
+  name:"Cone Dystrophy",
+  what:"Cone dystrophy is a group of inherited retinal conditions in which cone photoreceptors — responsible for central vision, colour vision, and fine detail — degenerate progressively over time. Unlike achromatopsia (where cones are absent from birth), cone dystrophies typically begin with normal or near-normal vision that deteriorates. Cone dystrophy can be isolated (cones only) or part of cone-rod dystrophy (affecting both cones and rods). It affects approximately 1 in 30,000–40,000 people and is caused by mutations in numerous genes including CNGB3, CNGA3, GUCA1A, and RPGR.",
+  howAffects:"Progressive loss of central vision and colour discrimination is the hallmark. Bright light sensitivity (photophobia) is prominent. Nystagmus may be present. Reading, recognising faces, and driving become increasingly difficult as the condition progresses. In cone-rod dystrophy, peripheral vision and night vision are also progressively lost. The rate of progression varies depending on the causative gene.",
+  diagnosis:"Electroretinography (ERG) showing preferentially reduced cone responses. OCT imaging of the macula. Colour vision testing. Genetic testing is strongly recommended to identify the causative gene and guide access to trials.",
+  whoAffects:"Affects approximately 1 in 30,000–40,000 people. Symptoms usually begin in childhood to early adulthood, though onset varies. Cone dystrophy follows autosomal dominant, autosomal recessive, or X-linked inheritance depending on the gene.",
+  research:[
+    {tag:"gene",label:"Gene Therapy",title:"CNGB3 / CNGA3 Gene Replacement",body:"The same gene therapy programmes targeting achromatopsia are being evaluated for milder CNGB3/CNGA3 mutations causing cone dystrophy. Beacon Therapeutics / AGTC programmes are most advanced.",link:"https://clinicaltrials.gov/search?cond=cone+dystrophy"},
+    {tag:"trial",label:"Clinical Trial",title:"RPGR Gene Therapy (X-Linked Cone-Rod Dystrophy)",body:"RPGR mutations cause severe X-linked cone-rod dystrophy predominantly in males. MeiraGTx and Nightstar/Biogen have active Phase 2/3 trials showing preservation of function.",link:"https://clinicaltrials.gov/search?cond=RPGR+cone"}
+  ],
+  guides:[
+    {n:1,title:"Get a Genetic Test",body:"Identifying your specific gene mutation is essential for accessing trials. Many active trials are gene-specific. Request a referral to an inherited retinal disease clinic — genetic testing is free on the NHS."},
+    {n:2,title:"Low Vision Assessment",body:"A free NHS low vision assessment provides magnifiers, screen filters, and tinted lenses tailored to your vision. Ask your ophthalmologist for a referral. Do not wait until vision is severely reduced — the earlier you adapt, the better."},
+    {n:3,title:"Light Management",body:"Use wraparound tinted lenses outdoors (amber or plum tints reduce photophobia most effectively). Indoors, reduce overhead lighting where possible and use task lighting at source rather than ambient lighting."}
+  ],
+  tech:[
+    {cat:"Tinted Lenses",title:"Photochromic and Filter Lenses",body:"Photochromic lenses (e.g. Transitions) or specialist absorptive filter lenses significantly reduce photophobia and can improve functional vision in bright conditions.",price:"£80–£300"},
+    {cat:"Free App",title:"Seeing AI (Microsoft)",body:"Free iOS app that reads text, identifies people, products, and currency. Valuable when central vision loss makes these tasks difficult.",price:"Free"},
+    {cat:"Magnification",title:"Desktop or Portable Video Magnifier",body:"Electronic magnifiers with adjustable contrast and colour options are available via NHS low vision clinics and may be provided at no cost.",price:"Free via NHS low vision clinic — or £400–£2,000 privately"}
+  ],
+  support:[
+    {title:"Retina UK",body:"Covers all inherited retinal conditions including cone dystrophies. Helpline 01280 860363, peer support, and research funding.",link:"https://www.retina-uk.org.uk"},
+    {title:"Macular Society",body:"Supports people with central vision loss including cone dystrophy. Helpline 0300 3030 111, befriending, and local groups.",link:"https://www.macularsociety.org"},
+    {title:"RNIB (UK)",body:"Helpline 0303 123 9999, low vision aids, talking books, and benefits advice.",link:"https://www.rnib.org.uk"}
+  ],
+  benefits:[
+    {n:1,title:"Certificate of Vision Impairment (CVI)",body:"Ask your ophthalmologist to issue a CVI. This unlocks local authority rehabilitation, council tax reduction, free bus pass, and free NHS eye tests."},
+    {n:2,title:"PIP",body:"Central vision loss and photophobia from cone dystrophy significantly affect daily tasks and travel. Both PIP components may apply. RNIB can help — call 0303 123 9999."},
+    {n:3,title:"Access to Work",body:"Covers tinted lenses, screen magnification software, and lighting adjustments at work. Apply at gov.uk/access-to-work before buying equipment privately."}
   ]
 }
 
@@ -1064,14 +1515,33 @@ function closePanelByKey(key, refocus = true) {
   openKey = null; openBtn = null;
 }
 
-/* ─────────────── SEARCH ─────────────── */
+/* ─────────────── SEARCH (with symptom keywords) ─────────────── */
+const COND_KEYWORDS = {
+  stargardts: ['stargardt','stargardts','macular','central vision','blurry','reading','abca4','juvenile macular','inherited','flecks','lipofuscin','light sensitivity','photophobia','young','child','teenage'],
+  amd:        ['amd','macular degeneration','age related','age-related','central vision','wavy lines','amsler','drusen','anti-vegf','injection','wet amd','dry amd','geographic atrophy','over 50','older','floaters'],
+  glaucoma:   ['glaucoma','optic nerve','pressure','eye pressure','peripheral vision','tunnel vision','side vision','eye drops','tonometry','visual field','iop','blindness','silent','painless'],
+  rp:         ['retinitis pigmentosa','rp','night blindness','tunnel vision','peripheral','rod','rod photoreceptor','inherited','genetic','cane','guide dog','dark','darkness'],
+  diabetic:   ['diabetic','diabetes','retinopathy','blood sugar','hba1c','screening','floaters','type 1','type 2','insulin','vegf','macular oedema','swelling'],
+  lca:        ['leber','lca','congenital amaurosis','born blind','baby','infant','childhood','cep290','rpe65','nystagmus','oculodigital','pressing eyes','gene therapy','luxturna'],
+  nystagmus:  ['nystagmus','wobbly eyes','involuntary','eye movement','null zone','head turn','oscillopsia','shaking','jiggling','school','driving','dvla'],
+  achromatopsia:['achromatopsia','colour blind','color blind','total colour blindness','monochromacy','no colour','no color','cones absent','bright light','photophobia','sun sensitive','rod monochromacy','cngb3','cnga3'],
+  usher:      ['usher','deaf','hearing loss','deafblind','deaf-blind','dual sensory','balance','vestibular','communication','interpreter','intervenor','sense charity','myo7a','ush2a'],
+  albinism:   ['albinism','albino','melanin','pigmentation','pale','white hair','skin','uv','sun','foveal hypoplasia','oculocutaneous','ocular albinism','oca'],
+  cvi:        ['cerebral visual impairment','cvi','brain','neurological','cortical','premature','prematurity','hypoxia','clutter','visual processing','processing','eeg','complex needs','cerebral palsy','stroke'],
+  cone:       ['cone dystrophy','cone rod','colour vision','color vision','central vision','photophobia','light sensitive','reading','driving','rpgr','cngb3','progressive','fovea']
+};
+
 function filterConds(q) {
   q = (q || '').toLowerCase().trim();
   var items = document.getElementsByClassName('cond-item');
   for (var i = 0; i < items.length; i++) {
     var btn = items[i].querySelector('.cond-btn');
-    var label = btn ? btn.textContent.toLowerCase() : '';
-    items[i].style.display = (!q || label.indexOf(q) !== -1) ? '' : 'none';
+    if (!btn) continue;
+    var condKey = (btn.getAttribute('onclick') || '').replace(/toggle\('(\w+)'.*/,'$1');
+    var label   = btn.textContent.toLowerCase();
+    var keywords = (COND_KEYWORDS[condKey] || []).join(' ');
+    var match   = !q || label.indexOf(q) !== -1 || keywords.indexOf(q) !== -1;
+    items[i].style.display = match ? '' : 'none';
   }
 }
 
@@ -1153,10 +1623,18 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Escape' && openKey) closePanelByKey(openKey);
 });
 
-/* Logo keyboard activation */
 document.querySelector('.site-name').addEventListener('keydown', e => {
   if (e.key === 'Enter' || e.key === ' ') showPage('home');
 });
+
+/* ─────────────── BACK TO TOP ─────────────── */
+(function() {
+  var btn = document.getElementById('back-top');
+  if (!btn) return;
+  window.addEventListener('scroll', function() {
+    btn.classList.toggle('vis', window.scrollY > 400);
+  }, { passive: true });
+})();
 
 /* ─────────────── iOS INSTALL BANNER ─────────────── */
 (function() {
@@ -1167,6 +1645,7 @@ document.querySelector('.site-name').addEventListener('keydown', e => {
     document.getElementById('ios-banner').style.display = 'block';
   }
 })();
+
 if ('serviceWorker' in navigator) {
   const swCode = `
     const CACHE_NAME = 'visionhub-v1';
