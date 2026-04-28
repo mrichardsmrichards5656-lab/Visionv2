@@ -177,9 +177,14 @@ p, h1, h2, h3, h4, li, span, a, button { overflow-wrap: break-word; word-wrap: b
 
 .founder-box {
   background: var(--card); border: 2px solid var(--yellow);
-  border-radius: 16px; padding: 20px; margin-bottom: 28px; line-height: 1.8;
+  border-radius: 16px; padding: 24px 24px 20px; margin-bottom: 28px;
+  line-height: 1.85; width: 100%;
 }
-.founder-short { font-size: 0.95rem; color: var(--text2); word-wrap: break-word; }
+.founder-short {
+  font-size: 0.95rem; color: var(--text2);
+  word-wrap: break-word; overflow-wrap: break-word;
+  display: block; width: 100%;
+}
 
 .search-wrap { position: relative; }
 .search-wrap label { display: block; font-size: 0.88rem; font-weight: 700; color: var(--text2); margin-bottom: 8px; }
@@ -622,9 +627,10 @@ footer { background: var(--bg2); border-top: 3px solid var(--yellow); padding: 3
       <p class="last-updated">Last updated: <time datetime="2026-04-25">April 2026</time> · Reviewed quarterly · <button onclick="showPage('contact')" style="background:none;border:none;color:var(--yellow);font-family:var(--font);font-size:inherit;cursor:pointer;text-decoration:underline;padding:0">Contact us</button></p>
 
       <div class="founder-box">
-        <p class="founder-short">My daughter was diagnosed with Stargardt disease. When I started looking for help, I couldn't find one place that had everything — clear information, benefits guidance, research, and support — all in one place.</p>
-        <p class="founder-short" style="margin-top:12px">So I built it. And because sight loss affects so many people in so many different ways, I built it for everyone — not just for Stargardt, but for every eye condition.</p>
-        <p class="founder-short" style="margin-top:12px; color:var(--yellow); font-weight:700;">This site is free, independent, and always will be.</p>
+        <p class="founder-short">When my daughter was diagnosed with Stargardts, I had so many questions. I couldn't find anywhere that had everything in one place — clear guidance, the latest research, benefits advice, and real support, all together.</p>
+        <p class="founder-short" style="margin-top:14px">So I built it. This site is here to help anyone living with sight loss, and those closest to them.</p>
+        <p class="founder-short" style="margin-top:14px">If your condition isn't listed, <button onclick="showPage('contact')" style="background:none;border:none;color:var(--yellow);font-family:var(--font);font-size:inherit;font-weight:700;cursor:pointer;text-decoration:underline;padding:0">get in touch</button> and I'll look into adding it.</p>
+        <p class="founder-short" style="margin-top:16px;padding-top:14px;border-top:1px solid var(--border);color:var(--yellow);font-weight:700;font-size:0.9rem;letter-spacing:0.01em">Free, independent, and built for people with sight loss.</p>
       </div>
 
       <div class="section-divider" aria-hidden="true">
@@ -633,6 +639,175 @@ footer { background: var(--bg2); border-top: 3px solid var(--yellow); padding: 3
         <div class="section-divider-dot"></div>
       </div>
 
+      </div>
+
+    <section class="cond-section" aria-labelledby="cond-hd">
+
+      <!-- JUST DIAGNOSED -->
+      <div id="jd-box" style="background:var(--card);border:2px solid var(--border);border-radius:16px;padding:22px;margin-bottom:24px;box-shadow:var(--shadow)">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:4px">
+          <div>
+            <span style="font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:0.12em;color:var(--yellow)">Just diagnosed?</span>
+            <h2 style="font-size:1.1rem;font-weight:900;color:var(--text);margin-top:4px;line-height:1.3">Start here.</h2>
+          </div>
+          <button id="jd-toggle" onclick="toggleJD()" aria-expanded="false" aria-controls="jd-steps"
+            style="background:none;border:2px solid var(--border);color:var(--text2);border-radius:50px;padding:6px 14px;font-family:var(--font);font-size:0.78rem;font-weight:700;cursor:pointer;white-space:nowrap;flex-shrink:0;min-height:36px;transition:border-color .15s,color .15s"
+            onmouseover="this.style.borderColor='var(--yellow)';this.style.color='var(--yellow)'"
+            onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text2)'">
+            Show &#8595;
+          </button>
+        </div>
+        <p style="font-size:0.88rem;color:var(--text2);margin-bottom:16px;line-height:1.7">You don't need to figure everything out today. Here are five things that actually matter in the first weeks.</p>
+
+        <div id="jd-steps" style="display:none">
+          <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px">
+
+            <div style="display:flex;gap:14px;align-items:flex-start">
+              <div style="width:32px;height:32px;min-width:32px;background:var(--yellow);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.85rem;font-weight:900;color:#fff;flex-shrink:0">1</div>
+              <div style="padding-top:4px">
+                <span style="font-size:0.95rem;font-weight:800;color:var(--text)">Get a follow-up appointment</span>
+                <p style="font-size:0.88rem;color:var(--text2);margin-top:3px;line-height:1.7">Ask your ophthalmologist what your diagnosis means for your vision long term. Write your questions down beforehand — you will forget them in the room.</p>
+              </div>
+            </div>
+
+            <div style="display:flex;gap:14px;align-items:flex-start">
+              <div style="width:32px;height:32px;min-width:32px;background:var(--yellow);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.85rem;font-weight:900;color:#fff;flex-shrink:0">2</div>
+              <div style="padding-top:4px">
+                <span style="font-size:0.95rem;font-weight:800;color:var(--text)">Ask for a CVI</span>
+                <p style="font-size:0.88rem;color:var(--text2);margin-top:3px;line-height:1.7">Your Certificate of Visual Impairment is free and issued by your ophthalmologist. It unlocks benefits, rehabilitation, council tax reductions, and a free bus pass.</p>
+              </div>
+            </div>
+
+            <div style="display:flex;gap:14px;align-items:flex-start">
+              <div style="width:32px;height:32px;min-width:32px;background:var(--yellow);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.85rem;font-weight:900;color:#fff;flex-shrink:0">3</div>
+              <div style="padding-top:4px">
+                <span style="font-size:0.95rem;font-weight:800;color:var(--text)">Call RNIB</span>
+                <p style="font-size:0.88rem;color:var(--text2);margin-top:3px;line-height:1.7">Call <a href="tel:03031239999" style="color:var(--yellow);font-weight:700">0303 123 9999</a> and tell them your condition. They will tell you exactly what you are entitled to. Most people are surprised by how much support is available.</p>
+              </div>
+            </div>
+
+            <div style="display:flex;gap:14px;align-items:flex-start">
+              <div style="width:32px;height:32px;min-width:32px;background:var(--yellow);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.85rem;font-weight:900;color:#fff;flex-shrink:0">4</div>
+              <div style="padding-top:4px">
+                <span style="font-size:0.95rem;font-weight:800;color:var(--text)">Don't apply for benefits alone</span>
+                <p style="font-size:0.88rem;color:var(--text2);margin-top:3px;line-height:1.7">RNIB or Citizens Advice will help you fill in PIP or DLA forms for free. Applications made with support succeed far more often than those completed alone.</p>
+              </div>
+            </div>
+
+            <div style="display:flex;gap:14px;align-items:flex-start">
+              <div style="width:32px;height:32px;min-width:32px;background:var(--yellow);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.85rem;font-weight:900;color:#fff;flex-shrink:0">5</div>
+              <div style="padding-top:4px">
+                <span style="font-size:0.95rem;font-weight:800;color:var(--text)">Find your condition below</span>
+                <p style="font-size:0.88rem;color:var(--text2);margin-top:3px;line-height:1.7">Everything specific to your diagnosis is in the list below — research, assistive technology, step-by-step guides, and support organisations.</p>
+              </div>
+            </div>
+
+          </div>
+          <p style="font-size:0.82rem;color:var(--text2);font-style:italic;border-top:1px solid var(--border);padding-top:12px;line-height:1.7">Take it one step at a time. You do not have to work through this alone.</p>
+        </div>
+      </div>
+
+      <div class="search-wrap" style="margin-bottom:16px">
+        <label for="csearch">Search for your condition</label>
+        <input type="search" id="csearch" placeholder="e.g. Stargardt, glaucoma…" autocomplete="off" aria-controls="cond-list">
+        <span class="search-icon" aria-hidden="true">🔍</span>
+      </div>
+      <span class="section-label" id="cond-hd">Select your condition</span>
+      <div class="cond-list" id="cond-list" role="list">
+        <div role="listitem" class="cond-item">
+          <button class="cond-btn" onclick="showCondition('stargardts')" aria-label="Open Stargardt Disease information">
+            ✦ Stargardt Disease <span class="cond-arrow" aria-hidden="true">→</span>
+          </button>
+        </div>
+        <div role="listitem" class="cond-item">
+          <button class="cond-btn" onclick="showCondition('amd')" aria-label="Open Age-related Macular Degeneration information">
+            ◉ Age-related Macular Degeneration <span class="cond-arrow" aria-hidden="true">→</span>
+          </button>
+        </div>
+        <div role="listitem" class="cond-item">
+          <button class="cond-btn" onclick="showCondition('glaucoma')" aria-label="Open Glaucoma information">
+            ◎ Glaucoma <span class="cond-arrow" aria-hidden="true">→</span>
+          </button>
+        </div>
+        <div role="listitem" class="cond-item">
+          <button class="cond-btn" onclick="showCondition('diabetic')" aria-label="Open Diabetic Retinopathy information">
+            ◇ Diabetic Retinopathy <span class="cond-arrow" aria-hidden="true">→</span>
+          </button>
+        </div>
+        <div role="listitem" class="cond-item">
+          <button class="cond-btn" onclick="showCondition('rp')" aria-label="Open Retinitis Pigmentosa information">
+            ◈ Retinitis Pigmentosa <span class="cond-arrow" aria-hidden="true">→</span>
+          </button>
+        </div>
+        <div role="listitem" class="cond-item">
+          <button class="cond-btn" onclick="showCondition('cvi')" aria-label="Open Cerebral Visual Impairment information">
+            ◭ Cerebral Visual Impairment <span class="cond-arrow" aria-hidden="true">→</span>
+          </button>
+        </div>
+        <div role="listitem" class="cond-item">
+          <button class="cond-btn" onclick="showCondition('nystagmus')" aria-label="Open Nystagmus information">
+            ↔ Nystagmus <span class="cond-arrow" aria-hidden="true">→</span>
+          </button>
+        </div>
+        <div role="listitem" class="cond-item">
+          <button class="cond-btn" onclick="showCondition('albinism')" aria-label="Open Albinism information">
+            ☀ Albinism <span class="cond-arrow" aria-hidden="true">→</span>
+          </button>
+        </div>
+        <div role="listitem" class="cond-item">
+          <button class="cond-btn" onclick="showCondition('usher')" aria-label="Open Usher Syndrome information">
+            ◑ Usher Syndrome <span class="cond-arrow" aria-hidden="true">→</span>
+          </button>
+        </div>
+        <div role="listitem" class="cond-item">
+          <button class="cond-btn" onclick="showCondition('lca')" aria-label="Open Leber Congenital Amaurosis information">
+            ⬡ Leber Congenital Amaurosis <span class="cond-arrow" aria-hidden="true">→</span>
+          </button>
+        </div>
+        <div role="listitem" class="cond-item">
+          <button class="cond-btn" onclick="showCondition('cone')" aria-label="Open Cone Dystrophy information">
+            🎯 Cone Dystrophy <span class="cond-arrow" aria-hidden="true">→</span>
+          </button>
+        </div>
+        <div role="listitem" class="cond-item">
+          <button class="cond-btn" onclick="showCondition('achromatopsia')" aria-label="Open Achromatopsia information">
+            ⬤ Achromatopsia <span class="cond-arrow" aria-hidden="true">→</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Everyday Guide prompt -->
+      <div style="margin-top:28px;padding-top:24px;border-top:2px solid var(--border)">
+        <span class="section-label">Daily life</span>
+        <button class="cond-btn" onclick="showPage('livingwell')" aria-label="Open Everyday Guide" style="height:auto;flex-direction:column;align-items:flex-start;gap:8px;padding:20px 26px">
+          <span style="display:flex;align-items:center;justify-content:space-between;width:100%;gap:12px">
+            <span style="font-size:1.05rem;font-weight:800">🌟 Everyday Guide</span>
+            <span class="cond-arrow" aria-hidden="true" style="flex-shrink:0">→</span>
+          </span>
+          <span style="font-size:0.85rem;font-weight:600;color:var(--text2);line-height:1.5">Practical tips to make daily life easier</span>
+          <span style="font-size:0.78rem;font-weight:700;color:var(--yellow);line-height:1.7">Cooking &nbsp;·&nbsp; Parenting &nbsp;·&nbsp; Sport &amp; Fitness &nbsp;·&nbsp; Makeup &amp; Grooming &nbsp;·&nbsp; Listening &amp; Audiobooks &nbsp;·&nbsp; Travel &nbsp;·&nbsp; Work &nbsp;·&nbsp; Mental Health</span>
+        </button>
+      </div>
+
+
+
+      <div class="share-bar" role="group" aria-label="Share and contact" style="margin-top:28px;padding-top:24px;border-top:2px solid var(--border)">
+        <button class="share-btn" onclick="sharePage()" aria-label="Share Vision Hub">📤 Share</button>
+        <button class="share-btn" onclick="copyLink()" id="copy-link-btn" aria-label="Copy link to clipboard">🔗 Copy link</button>
+        <a class="share-btn" href="https://wa.me/?text=Vision%20Hub%20-%20Free%20UK%20sight%20loss%20resource%3A%20" target="_blank" rel="noopener" aria-label="Share on WhatsApp">💬 WhatsApp</a>
+      </div>
+
+    </section>
+
+    <!-- RECENT UPDATES — below conditions -->
+    <div style="max-width:min(680px,100%);margin:0 auto;padding:0 20px 48px">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px;opacity:0.5" aria-hidden="true">
+        <div style="flex:1;height:1px;background:var(--yellow)"></div>
+        <div style="width:6px;height:6px;border-radius:50%;background:var(--yellow);flex-shrink:0"></div>
+        <div style="width:6px;height:6px;border-radius:50%;background:var(--yellow);flex-shrink:0"></div>
+        <div style="width:6px;height:6px;border-radius:50%;background:var(--yellow);flex-shrink:0"></div>
+        <div style="flex:1;height:1px;background:var(--yellow)"></div>
+      </div>
       <!-- RECENT UPDATES -->
       <section class="news-box" aria-labelledby="news-hd">
         <div class="news-box-header">
@@ -662,99 +837,8 @@ footer { background: var(--bg2); border-top: 3px solid var(--yellow); padding: 3
         </div>
         <p class="news-footer">Updates are verified and added each quarter. Information is for guidance only — always discuss research and treatment options with your ophthalmologist. <button onclick="showPage('contact')" style="background:none;border:none;color:var(--yellow);font-family:var(--font);font-size:0.78rem;font-weight:700;cursor:pointer;text-decoration:underline;padding:0">Spotted something missing? Let us know.</button></p>
       </section>
-
-      <div class="share-bar" role="group" aria-label="Share and contact">
-        <a href="tel:03031239999" class="share-btn" aria-label="RNIB helpline 0303 123 9999">📞 RNIB: 0303 123 9999</a>
-        <button class="share-btn" onclick="sharePage()" aria-label="Share Vision Hub">📤 Share</button>
-        <button class="share-btn" onclick="copyLink()" id="copy-link-btn" aria-label="Copy link to clipboard">🔗 Copy link</button>
-        <a class="share-btn" href="https://wa.me/?text=Vision%20Hub%20-%20Free%20UK%20sight%20loss%20resource%3A%20" target="_blank" rel="noopener" aria-label="Share on WhatsApp">💬 WhatsApp</a>
-      </div>
-
-      <div class="search-wrap">
-        <label for="csearch">Search for your condition</label>
-        <input type="search" id="csearch" placeholder="e.g. Stargardt, glaucoma…" autocomplete="off" aria-controls="cond-list">
-        <span class="search-icon" aria-hidden="true">🔍</span>
-      </div>
     </div>
 
-    <section class="cond-section" aria-labelledby="cond-hd">
-      <span class="section-label" id="cond-hd">Select your condition</span>
-      <div class="cond-list" id="cond-list" role="list">
-        <div role="listitem" class="cond-item">
-          <button class="cond-btn" onclick="showCondition('stargardts')" aria-label="Open Stargardt Disease information">
-            ✦ Stargardt Disease <span class="cond-arrow" aria-hidden="true">→</span>
-          </button>
-        </div>
-        <div role="listitem" class="cond-item">
-          <button class="cond-btn" onclick="showCondition('amd')" aria-label="Open Age-related Macular Degeneration information">
-            ◉ Age-related Macular Degeneration <span class="cond-arrow" aria-hidden="true">→</span>
-          </button>
-        </div>
-        <div role="listitem" class="cond-item">
-          <button class="cond-btn" onclick="showCondition('glaucoma')" aria-label="Open Glaucoma information">
-            ◎ Glaucoma <span class="cond-arrow" aria-hidden="true">→</span>
-          </button>
-        </div>
-        <div role="listitem" class="cond-item">
-          <button class="cond-btn" onclick="showCondition('rp')" aria-label="Open Retinitis Pigmentosa information">
-            ◈ Retinitis Pigmentosa <span class="cond-arrow" aria-hidden="true">→</span>
-          </button>
-        </div>
-        <div role="listitem" class="cond-item">
-          <button class="cond-btn" onclick="showCondition('diabetic')" aria-label="Open Diabetic Retinopathy information">
-            ◇ Diabetic Retinopathy <span class="cond-arrow" aria-hidden="true">→</span>
-          </button>
-        </div>
-        <div role="listitem" class="cond-item">
-          <button class="cond-btn" onclick="showCondition('lca')" aria-label="Open Leber Congenital Amaurosis information">
-            ⬡ Leber Congenital Amaurosis <span class="cond-arrow" aria-hidden="true">→</span>
-          </button>
-        </div>
-        <div role="listitem" class="cond-item">
-          <button class="cond-btn" onclick="showCondition('nystagmus')" aria-label="Open Nystagmus information">
-            ↔ Nystagmus <span class="cond-arrow" aria-hidden="true">→</span>
-          </button>
-        </div>
-        <div role="listitem" class="cond-item">
-          <button class="cond-btn" onclick="showCondition('achromatopsia')" aria-label="Open Achromatopsia information">
-            ⬤ Achromatopsia <span class="cond-arrow" aria-hidden="true">→</span>
-          </button>
-        </div>
-        <div role="listitem" class="cond-item">
-          <button class="cond-btn" onclick="showCondition('usher')" aria-label="Open Usher Syndrome information">
-            ◑ Usher Syndrome <span class="cond-arrow" aria-hidden="true">→</span>
-          </button>
-        </div>
-        <div role="listitem" class="cond-item">
-          <button class="cond-btn" onclick="showCondition('albinism')" aria-label="Open Albinism information">
-            ☀ Albinism <span class="cond-arrow" aria-hidden="true">→</span>
-          </button>
-        </div>
-        <div role="listitem" class="cond-item">
-          <button class="cond-btn" onclick="showCondition('cvi')" aria-label="Open Cerebral Visual Impairment information">
-            ◭ Cerebral Visual Impairment <span class="cond-arrow" aria-hidden="true">→</span>
-          </button>
-        </div>
-        <div role="listitem" class="cond-item">
-          <button class="cond-btn" onclick="showCondition('cone')" aria-label="Open Cone Dystrophy information">
-            🎯 Cone Dystrophy <span class="cond-arrow" aria-hidden="true">→</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- Everyday Guide prompt -->
-      <div style="margin-top:28px;padding-top:24px;border-top:2px solid var(--border)">
-        <span class="section-label">Daily life</span>
-        <button class="cond-btn" onclick="showPage('livingwell')" aria-label="Open Everyday Guide" style="height:auto;flex-direction:column;align-items:flex-start;gap:8px;padding:20px 26px">
-          <span style="display:flex;align-items:center;justify-content:space-between;width:100%;gap:12px">
-            <span style="font-size:1.05rem;font-weight:800">🌟 Everyday Guide</span>
-            <span class="cond-arrow" aria-hidden="true" style="flex-shrink:0">→</span>
-          </span>
-          <span style="font-size:0.85rem;font-weight:600;color:var(--text2);line-height:1.5">Practical tips to make daily life easier</span>
-          <span style="font-size:0.78rem;font-weight:700;color:var(--yellow);line-height:1.7">Cooking &nbsp;·&nbsp; Parenting &nbsp;·&nbsp; Sport &amp; Fitness &nbsp;·&nbsp; Makeup &amp; Grooming &nbsp;·&nbsp; Listening &amp; Audiobooks &nbsp;·&nbsp; Travel &nbsp;·&nbsp; Work &nbsp;·&nbsp; Mental Health</span>
-        </button>
-      </div>
-    </section>
   </main>
 </div>
 
@@ -1737,9 +1821,13 @@ function renderCondition(key) {
       <p><strong>RNIB:</strong> 0303 123 9999 &nbsp;·&nbsp; <strong>Citizens Advice:</strong> citizensadvice.org.uk &nbsp;·&nbsp; <strong>Calculator:</strong> turn2us.org.uk</p>
     </div>
 
-    <div class="share-bar" style="margin-top:24px">
+    <button class="back-btn" onclick="showPage('home')" style="margin-top:8px" aria-label="Back to conditions list">← All Conditions</button>
+
+    <div class="share-bar" style="margin-top:8px">
       <button class="share-btn" onclick="window.print()" aria-label="Print or save as PDF">🖨️ Print / Save PDF</button>
       <button class="share-btn" onclick="shareCondition('${d.name}')" aria-label="Share this page">📤 Share</button>
+      <button class="share-btn" onclick="copyLink()" aria-label="Copy link to clipboard">🔗 Copy link</button>
+      <a class="share-btn" href="https://wa.me/?text=Vision%20Hub%20-%20${encodeURIComponent(d.name)}%20information%3A%20" target="_blank" rel="noopener" aria-label="Share on WhatsApp">💬 WhatsApp</a>
     </div>
 
     <div class="feedback-bar" id="fb-${key}">
@@ -1749,8 +1837,18 @@ function renderCondition(key) {
       <span class="feedback-thanks" id="fb-thanks-${key}">Thank you!</span>
     </div>
 
-    <button class="back-btn" onclick="showPage('home')" style="margin-top:24px" aria-label="Back to conditions list">← All Conditions</button>
+    <button class="back-btn" onclick="showPage('home')" style="margin-top:16px" aria-label="Back to conditions list">← All Conditions</button>
   </div>`;
+}
+
+/* ─────────────── JUST DIAGNOSED TOGGLE ─────────────── */
+function toggleJD() {
+  var steps   = document.getElementById('jd-steps');
+  var toggle  = document.getElementById('jd-toggle');
+  var isOpen  = steps.style.display !== 'none';
+  steps.style.display  = isOpen ? 'none' : 'block';
+  toggle.textContent   = isOpen ? 'Show ↓' : 'Hide ↑';
+  toggle.setAttribute('aria-expanded', String(!isOpen));
 }
 
 /* ─────────────── PAGE SWITCHER ─────────────── */
