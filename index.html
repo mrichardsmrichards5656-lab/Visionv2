@@ -667,6 +667,7 @@ footer { background: var(--bg2); border-top: 3px solid var(--yellow); padding: 3
               <div style="padding-top:4px">
                 <span style="font-size:0.95rem;font-weight:800;color:var(--text)">Get a follow-up appointment</span>
                 <p style="font-size:0.88rem;color:var(--text2);margin-top:3px;line-height:1.7">Ask your ophthalmologist what your diagnosis means for your vision long term. Write your questions down beforehand — you will forget them in the room.</p>
+                <button onclick="showPage('questions')" style="display:inline-flex;align-items:center;gap:6px;margin-top:10px;background:var(--yellow);color:#000;border:none;padding:9px 18px;border-radius:50px;font-family:var(--font);font-size:0.82rem;font-weight:800;cursor:pointer;min-height:40px">❓ Questions to ask your doctor →</button>
               </div>
             </div>
 
@@ -705,6 +706,12 @@ footer { background: var(--bg2); border-top: 3px solid var(--yellow); padding: 3
           </div>
           <p style="font-size:0.82rem;color:var(--text2);font-style:italic;border-top:1px solid var(--border);padding-top:12px;line-height:1.7">Take it one step at a time. You do not have to work through this alone.</p>
         </div>
+      </div>
+
+      <!-- USEFUL RESOURCES ROW -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px" role="group" aria-label="Useful resources">
+        <button onclick="showPage('glossary')" class="share-btn" style="font-size:0.82rem;padding:0 8px;min-height:42px;justify-content:center;border-radius:12px" aria-label="Open Glossary">📖 Glossary</button>
+        <button onclick="showPage('localsupport')" class="share-btn" style="font-size:0.82rem;padding:0 8px;min-height:42px;justify-content:center;border-radius:12px" aria-label="Open Local Support finder">📍 Local Support</button>
       </div>
 
       <div class="search-wrap" style="margin-bottom:16px">
@@ -1322,6 +1329,269 @@ footer { background: var(--bg2); border-top: 3px solid var(--yellow); padding: 3
   </div>
 </div>
 
+<!-- ══════════════════════════════════════
+     GLOSSARY PAGE
+══════════════════════════════════════ -->
+<div id="page-glossary" class="page" role="main" aria-label="Glossary of Medical Terms">
+  <div class="legal-wrap">
+    <button class="back-btn" onclick="showPage('home')" aria-label="Back to home">← Back to home</button>
+    <span class="legal-eyebrow">Reference</span>
+    <h1>Glossary</h1>
+    <p style="font-size:0.95rem;color:var(--text2);margin-bottom:28px;line-height:1.8">Medical terms explained in plain English. These are the words you will hear most often at eye clinics and in research articles.</p>
+
+    <div class="wb"><strong>Tip:</strong> Use your browser's find function (Ctrl+F on desktop) to search for a specific term.</div>
+
+    <div class="lc"><h2>A</h2>
+      <p><strong>Acuity (Visual Acuity)</strong> — A measure of how clearly you can see detail. Expressed as a fraction, e.g. 6/6 is normal vision, 6/60 means you see at 6 metres what a normally sighted person sees at 60 metres.</p>
+      <p style="margin-top:10px"><strong>AMD (Age-related Macular Degeneration)</strong> — See Macular Degeneration.</p>
+      <p style="margin-top:10px"><strong>Ang-2 (Angiopoietin-2)</strong> — A protein involved in blood vessel growth. Targeted by newer treatments for wet AMD and diabetic macular oedema alongside VEGF.</p>
+      <p style="margin-top:10px"><strong>AON (Antisense Oligonucleotide)</strong> — A type of therapy that uses short strands of genetic material to correct faulty gene instructions. Being investigated for conditions including Usher syndrome.</p>
+      <p style="margin-top:10px"><strong>AREDS2</strong> — A large clinical trial that identified a specific combination of vitamins and minerals (lutein, zeaxanthin, vitamins C and E, and zinc) that slows progression of intermediate AMD.</p>
+      <p style="margin-top:10px"><strong>Autosomal Recessive</strong> — An inheritance pattern where a child must inherit a faulty gene from both parents to develop the condition. Neither parent may be affected themselves.</p>
+      <p style="margin-top:10px"><strong>Autosomal Dominant</strong> — An inheritance pattern where inheriting just one copy of a faulty gene is enough to cause the condition.</p>
+    </div>
+
+    <div class="lc"><h2>B</h2>
+      <p><strong>Biallelic</strong> — Having mutations in both copies of a gene (one inherited from each parent). Required for eligibility for some gene therapies including Luxturna.</p>
+      <p style="margin-top:10px"><strong>Braille</strong> — A tactile reading and writing system using raised dots. Refreshable braille displays connect to phones and computers to translate on-screen text into braille in real time.</p>
+    </div>
+
+    <div class="lc"><h2>C</h2>
+      <p><strong>Cones</strong> — Photoreceptor cells in the retina responsible for colour vision and fine detail in normal lighting. Concentrated in the macula. Absent or non-functional in achromatopsia.</p>
+      <p style="margin-top:10px"><strong>CRISPR</strong> — A gene editing technology that can precisely cut and modify DNA. Being investigated for conditions including LCA caused by CEP290 mutations.</p>
+      <p style="margin-top:10px"><strong>CVI (Cerebral Visual Impairment)</strong> — Visual impairment caused by damage to the visual processing areas of the brain rather than the eyes themselves.</p>
+      <p style="margin-top:10px"><strong>CVI (Certificate of Visual Impairment)</strong> — A certificate issued by your ophthalmologist confirming your level of visual impairment. Enables registration with your local authority and unlocks benefits and support.</p>
+      <p style="margin-top:10px"><strong>CGM (Continuous Glucose Monitor)</strong> — A wearable device that tracks blood sugar levels continuously. Relevant to diabetic retinopathy as good blood sugar control slows disease progression.</p>
+    </div>
+
+    <div class="lc"><h2>D</h2>
+      <p><strong>DAISY</strong> — Digital Accessible Information System. An audio format designed for people with print disabilities. RNIB Talking Books uses DAISY format.</p>
+      <p style="margin-top:10px"><strong>Drusen</strong> — Small yellow deposits of protein and fat that accumulate under the retina. A hallmark of dry AMD. Large drusen indicate higher risk of progression.</p>
+    </div>
+
+    <div class="lc"><h2>E</h2>
+      <p><strong>EHC Plan (Education, Health and Care Plan)</strong> — A legally binding document issued by a local authority setting out the educational, health, and social care support a child with special needs is entitled to.</p>
+      <p style="margin-top:10px"><strong>ERG (Electroretinography)</strong> — A test that measures the electrical activity of the retina in response to light. Used to diagnose and monitor conditions including RP, LCA, achromatopsia, and cone dystrophy.</p>
+    </div>
+
+    <div class="lc"><h2>F</h2>
+      <p><strong>Fluorescein Angiography</strong> — A test where dye is injected into the arm and photographs are taken as it passes through the blood vessels of the retina. Used to detect leaking or abnormal vessels in wet AMD and diabetic retinopathy.</p>
+      <p style="margin-top:10px"><strong>Fovea</strong> — The tiny central area of the macula responsible for the sharpest, most detailed vision. Damaged in macular conditions. Underdeveloped (hypoplastic) in albinism.</p>
+      <p style="margin-top:10px"><strong>Foveal Hypoplasia</strong> — Underdevelopment of the fovea. A defining feature of albinism and a key diagnostic marker visible on OCT scanning.</p>
+    </div>
+
+    <div class="lc"><h2>G</h2>
+      <p><strong>Gene Therapy</strong> — A treatment that delivers a corrected or replacement gene directly into cells, typically using a viral vector. Luxturna is the first approved gene therapy for an inherited retinal condition.</p>
+      <p style="margin-top:10px"><strong>Geographic Atrophy</strong> — Advanced dry AMD where areas of retinal pigment epithelium have died, creating expanding blind spots. The first treatment (pegcetacoplan) was approved in 2024.</p>
+      <p style="margin-top:10px"><strong>Glaucoma</strong> — A group of conditions causing progressive optic nerve damage, usually associated with raised eye pressure. The second most common cause of blindness in the UK.</p>
+    </div>
+
+    <div class="lc"><h2>H</h2>
+      <p><strong>HbA1c</strong> — A blood test measuring average blood sugar levels over approximately three months. A key indicator of diabetes control. Every 1% reduction in HbA1c reduces diabetic retinopathy progression risk by 37%.</p>
+      <p style="margin-top:10px"><strong>hESC-RPE</strong> — Human embryonic stem cell-derived retinal pigment epithelium. Cells grown in a laboratory from stem cells and transplanted to replace damaged RPE in conditions like Stargardt disease and AMD.</p>
+    </div>
+
+    <div class="lc"><h2>I</h2>
+      <p><strong>IOP (Intraocular Pressure)</strong> — The pressure inside the eye. Elevated IOP is the main risk factor for glaucoma, though glaucoma can occur with normal IOP too.</p>
+      <p style="margin-top:10px"><strong>Inherited Retinal Disease (IRD)</strong> — A group of genetic conditions causing progressive retinal degeneration, including RP, Stargardt disease, LCA, cone dystrophy, and others.</p>
+    </div>
+
+    <div class="lc"><h2>L</h2>
+      <p><strong>Lipofuscin</strong> — A toxic waste product that accumulates in the retinal pigment epithelium in Stargardt disease, gradually poisoning the cells. The target of visual cycle modulators such as emixustat.</p>
+      <p style="margin-top:10px"><strong>Low Vision</strong> — Visual impairment that cannot be fully corrected by glasses, contact lenses, or surgery. Most people with low vision have some usable sight.</p>
+      <p style="margin-top:10px"><strong>Luxturna</strong> — The brand name for voretigene neparvovec, the first gene therapy approved for an inherited retinal condition. Available on the NHS for patients with biallelic RPE65 mutations causing LCA or RP.</p>
+    </div>
+
+    <div class="lc"><h2>M</h2>
+      <p><strong>Macula</strong> — The central area of the retina responsible for sharp, detailed, and colour vision. Damaged in AMD, Stargardt disease, cone dystrophy, and diabetic macular oedema.</p>
+      <p style="margin-top:10px"><strong>Macular Oedema</strong> — Swelling of the macula caused by leaking blood vessels. A complication of diabetic retinopathy and wet AMD. Treated with anti-VEGF injections.</p>
+      <p style="margin-top:10px"><strong>Melanin</strong> — The pigment that gives colour to skin, hair, and eyes and helps protect against UV damage. Absent or reduced in albinism.</p>
+    </div>
+
+    <div class="lc"><h2>N</h2>
+      <p><strong>NICE</strong> — National Institute for Health and Care Excellence. The body that approves treatments for NHS use in England. A NICE approval means a treatment must be made available on the NHS.</p>
+      <p style="margin-top:10px"><strong>Nystagmus</strong> — Involuntary, repetitive eye movements that reduce visual acuity. Associated with albinism, achromatopsia, LCA, and other conditions.</p>
+    </div>
+
+    <div class="lc"><h2>O</h2>
+      <p><strong>OCT (Optical Coherence Tomography)</strong> — A non-invasive scan that produces detailed cross-sectional images of the retina. The most important diagnostic and monitoring tool in modern eye care.</p>
+      <p style="margin-top:10px"><strong>Ophthalmologist</strong> — A medical doctor specialising in eye conditions and surgery. Distinct from an optometrist (who performs eye tests) and an optician (who dispenses glasses).</p>
+      <p style="margin-top:10px"><strong>Optogenetics</strong> — A technique that uses light-sensitive proteins to restore some light sensitivity to surviving retinal cells that have lost their natural photoreceptors.</p>
+    </div>
+
+    <div class="lc"><h2>P</h2>
+      <p><strong>Photophobia</strong> — Abnormal sensitivity to light. A prominent feature of achromatopsia, albinism, and cone dystrophy.</p>
+      <p style="margin-top:10px"><strong>Photoreceptors</strong> — Light-sensitive cells in the retina. Rods detect light and dark and peripheral vision. Cones detect colour and fine detail.</p>
+      <p style="margin-top:10px"><strong>PIP (Personal Independence Payment)</strong> — A UK disability benefit with two components — Daily Living and Mobility. Available to people aged 16–66 with a long-term health condition or disability.</p>
+    </div>
+
+    <div class="lc"><h2>Q</h2>
+      <p><strong>QTVI (Qualified Teacher of Visual Impairment)</strong> — A specialist teacher trained to support children with visual impairment in educational settings. Local authorities are required to provide QTVI support for children with a visual impairment.</p>
+    </div>
+
+    <div class="lc"><h2>R</h2>
+      <p><strong>Retina</strong> — The light-sensitive layer at the back of the eye that converts light into electrical signals sent to the brain via the optic nerve.</p>
+      <p style="margin-top:10px"><strong>RPE (Retinal Pigment Epithelium)</strong> — A layer of cells behind the photoreceptors that supports and nourishes them. Damaged in Stargardt disease, AMD, and other macular conditions.</p>
+      <p style="margin-top:10px"><strong>Rods</strong> — Photoreceptor cells responsible for vision in low light and peripheral vision. The first cells affected in retinitis pigmentosa.</p>
+    </div>
+
+    <div class="lc"><h2>S</h2>
+      <p><strong>Scotopic Vision</strong> — Vision in dim or dark conditions, primarily using rod photoreceptors. Normal in achromatopsia (which affects cones only). Impaired early in retinitis pigmentosa.</p>
+      <p style="margin-top:10px"><strong>Stem Cells</strong> — Cells that can develop into many different cell types. Stem cell therapies aim to replace lost retinal cells in conditions like Stargardt disease and AMD.</p>
+      <p style="margin-top:10px"><strong>Subretinal Injection</strong> — An injection delivered beneath the retina, used to administer gene therapies such as Luxturna directly to the photoreceptor cells.</p>
+    </div>
+
+    <div class="lc"><h2>T</h2>
+      <p><strong>Tonometry</strong> — Measurement of the pressure inside the eye (IOP). A standard part of glaucoma assessment. The familiar "puff of air" test at an optician is a form of tonometry.</p>
+      <p style="margin-top:10px"><strong>TalkBack</strong> — Google's built-in screen reader for Android devices. Reads all on-screen content aloud.</p>
+    </div>
+
+    <div class="lc"><h2>V</h2>
+      <p><strong>VEGF (Vascular Endothelial Growth Factor)</strong> — A protein that stimulates abnormal blood vessel growth in wet AMD and diabetic retinopathy. Anti-VEGF injections (Eylea, Lucentis, Vabysmo) block this protein.</p>
+      <p style="margin-top:10px"><strong>Visual Field</strong> — The full area you can see without moving your eyes, including peripheral vision. Progressively lost in glaucoma and retinitis pigmentosa.</p>
+      <p style="margin-top:10px"><strong>VoiceOver</strong> — Apple's built-in screen reader for iPhone, iPad, and Mac. Reads all on-screen content aloud and supports braille displays.</p>
+      <p style="margin-top:10px"><strong>VRS (Vision Rehabilitation Specialist)</strong> — A specialist who provides practical training and support to help people with sight loss live independently. Free via local authority referral.</p>
+    </div>
+
+    <div class="lc"><h2>X</h2>
+      <p><strong>X-Linked</strong> — An inheritance pattern where the gene mutation is carried on the X chromosome. X-linked conditions typically affect males more severely than females.</p>
+    </div>
+
+    <button class="back-btn" onclick="showPage('home')" style="margin-top:8px" aria-label="Back to home">← Back to home</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     QUESTIONS TO ASK YOUR DOCTOR PAGE
+══════════════════════════════════════ -->
+<div id="page-questions" class="page" role="main" aria-label="Questions to Ask Your Doctor">
+  <div class="legal-wrap">
+    <button class="back-btn" onclick="showPage('home')" aria-label="Back to home">← Back to home</button>
+    <span class="legal-eyebrow">Be Prepared</span>
+    <h1>Questions to Ask<br>Your Doctor</h1>
+    <p style="font-size:0.95rem;color:var(--text2);margin-bottom:28px;line-height:1.8">Eye clinic appointments can feel overwhelming. Having questions written down beforehand means you leave with the information you actually need. These are the questions worth asking.</p>
+
+    <div class="wb"><strong>Tip:</strong> Take someone with you if you can — a second pair of ears remembers things you might miss. Ask if you can record the consultation on your phone.</div>
+
+    <div class="lc">
+      <h2>At your first appointment</h2>
+      <ul>
+        <li>What is my exact diagnosis?</li>
+        <li>What does this mean for my vision in the short term and long term?</li>
+        <li>Is this condition hereditary? Should my family members be tested?</li>
+        <li>Should I have genetic testing? How do I access it on the NHS?</li>
+        <li>Are there any clinical trials I might be eligible for?</li>
+        <li>What is the name of the specialist clinic I should be referred to?</li>
+        <li>How often should I have follow-up appointments?</li>
+        <li>Is there anything I should avoid doing that could affect my vision?</li>
+        <li>Can you issue me a Certificate of Visual Impairment (CVI)?</li>
+        <li>Can you refer me to a low vision clinic?</li>
+      </ul>
+    </div>
+
+    <div class="lc">
+      <h2>About your treatment</h2>
+      <ul>
+        <li>What treatments are currently available for my condition?</li>
+        <li>Are there any new treatments being developed that I should know about?</li>
+        <li>What does the treatment involve and how often will I need it?</li>
+        <li>What are the side effects or risks?</li>
+        <li>What happens if I choose not to have treatment?</li>
+        <li>Are there any supplements I should or shouldn't be taking?</li>
+        <li>Is there anything I can do to slow progression?</li>
+      </ul>
+    </div>
+
+    <div class="lc">
+      <h2>About your daily life</h2>
+      <ul>
+        <li>Am I still safe to drive? Do I need to inform the DVLA?</li>
+        <li>Can you refer me to a Vision Rehabilitation Specialist?</li>
+        <li>What assistive technology would help me?</li>
+        <li>What benefits and support am I entitled to?</li>
+        <li>Are there any support groups or charities you recommend?</li>
+        <li>Can I get a written summary of today's appointment?</li>
+      </ul>
+    </div>
+
+    <div class="lc">
+      <h2>For parents of children with a sight condition</h2>
+      <ul>
+        <li>What should the school know and how do we tell them?</li>
+        <li>Should my child see a specialist paediatric ophthalmologist?</li>
+        <li>How do we apply for an Education, Health and Care (EHC) plan?</li>
+        <li>How will my child's vision change as they grow?</li>
+        <li>What activities should my child avoid, if any?</li>
+        <li>Are there any other children or families we could connect with?</li>
+        <li>What DLA or other financial support is my child entitled to?</li>
+      </ul>
+    </div>
+
+    <div class="lc">
+      <h2>About clinical trials</h2>
+      <ul>
+        <li>Is there a trial currently recruiting for my condition?</li>
+        <li>Am I genetically eligible for any current trials?</li>
+        <li>What would participation involve?</li>
+        <li>Would travel costs be covered?</li>
+        <li>Where can I find out about new trials as they open?</li>
+      </ul>
+    </div>
+
+    <div class="wb"><strong>Remember:</strong> You are entitled to ask any of these questions. A good ophthalmologist will welcome them. If you feel rushed, ask for a longer appointment or a follow-up call with a specialist nurse.</div>
+
+    <button class="back-btn" onclick="showPage('home')" style="margin-top:8px" aria-label="Back to home">← Back to home</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     LOCAL SUPPORT PAGE
+══════════════════════════════════════ -->
+<div id="page-localsupport" class="page" role="main" aria-label="Find Local Support">
+  <div class="legal-wrap">
+    <button class="back-btn" onclick="showPage('home')" aria-label="Back to home">← Back to home</button>
+    <span class="legal-eyebrow">In Your Area</span>
+    <h1>Find Local Support</h1>
+    <p style="font-size:0.95rem;color:var(--text2);margin-bottom:28px;line-height:1.8">Local support groups, rehabilitation services, and sight loss organisations near you. Finding people who understand what you're going through makes an enormous difference.</p>
+
+    <div class="lc">
+      <h2>🔍 RNIB Local Support Finder</h2>
+      <p>RNIB's support finder lets you search by postcode for local sight loss groups, rehabilitation services, and specialist support in your area.</p>
+      <p style="margin-top:12px"><a href="https://www.rnib.org.uk/living-with-sight-loss/support-for-you/find-support-near-you/" target="_blank" rel="noopener" style="color:var(--yellow);font-weight:700;font-size:1rem">Find support near you at rnib.org.uk ↗</a></p>
+      <p style="margin-top:12px;font-size:0.85rem;color:var(--text2)">This link goes to RNIB's website. If the link has moved, go to rnib.org.uk and search "find support near you".</p>
+    </div>
+
+    <div class="lc">
+      <h2>📞 National Helplines</h2>
+      <p><strong>RNIB:</strong> <a href="tel:03031239999" style="color:var(--yellow);font-weight:700">0303 123 9999</a> — Monday to Friday, specialist advisors for all sight conditions.</p>
+      <p style="margin-top:10px"><strong>Macular Society:</strong> <a href="tel:03003030111" style="color:var(--yellow);font-weight:700">0300 3030 111</a> — specialist nurse advisors for macular conditions.</p>
+      <p style="margin-top:10px"><strong>Glaucoma UK:</strong> <a href="tel:01233648170" style="color:var(--yellow);font-weight:700">01233 648170</a> — free helpline for glaucoma questions.</p>
+      <p style="margin-top:10px"><strong>Retina UK:</strong> <a href="tel:01280860363" style="color:var(--yellow);font-weight:700">01280 860363</a> — support for inherited retinal conditions.</p>
+      <p style="margin-top:10px"><strong>Sense (Deafblind):</strong> <a href="tel:03003309256" style="color:var(--yellow);font-weight:700">0300 330 9256</a> — support for people with combined sight and hearing loss.</p>
+    </div>
+
+    <div class="lc">
+      <h2>🏥 NHS Rehabilitation Services</h2>
+      <p>Every local authority in England is required to provide sight loss rehabilitation services. These are free and include:</p>
+      <ul style="margin-top:8px">
+        <li>Vision Rehabilitation Specialists (home visits)</li>
+        <li>Long cane and mobility training</li>
+        <li>Kitchen and daily living skills training</li>
+        <li>Low vision assessments</li>
+        <li>Technology and assistive equipment advice</li>
+      </ul>
+      <p style="margin-top:12px">Ask your ophthalmologist for a referral, or contact your local council's sensory impairment team directly.</p>
+    </div>
+
+    <div class="lc">
+      <h2>👁️ Low Vision Clinics</h2>
+      <p>Free NHS low vision clinics provide magnifiers, tinted lenses, and specialist equipment tailored to your vision. Available via referral from your ophthalmologist or GP. Ask specifically for a "low vision assessment" — many people don't know they are entitled to one.</p>
+    </div>
+
+    <button class="back-btn" onclick="showPage('home')" style="margin-top:8px" aria-label="Back to home">← Back to home</button>
+  </div>
+</div>
+
 <!-- DECORATIVE DIVIDER -->
 <div aria-hidden="true" style="max-width:680px;margin:0 auto;padding:0 20px;text-align:center;opacity:0.4">
   <svg viewBox="0 0 400 40" width="100%" xmlns="http://www.w3.org/2000/svg">
@@ -1364,11 +1634,17 @@ footer { background: var(--bg2); border-top: 3px solid var(--yellow); padding: 3
         <a href="https://www.gov.uk/pip"            target="_blank" rel="noopener">PIP Benefits</a>
         <a href="https://www.guidedogs.org.uk"      target="_blank" rel="noopener">Guide Dogs</a>
         <a onclick="showPage('livingwell')" role="button" tabindex="0" style="cursor:pointer">Everyday Guide</a>
+        <a onclick="showPage('glossary')" role="button" tabindex="0" style="cursor:pointer">Glossary</a>
+        <a onclick="showPage('questions')" role="button" tabindex="0" style="cursor:pointer">Questions to Ask</a>
+        <a onclick="showPage('localsupport')" role="button" tabindex="0" style="cursor:pointer">Local Support</a>
       </div>
     </nav>
     <div class="footer-bottom">
       © 2026 Vision Hub &nbsp;·&nbsp; Not a medical provider &nbsp;·&nbsp; Always consult your ophthalmologist &nbsp;·&nbsp; Reviewed April 2026 &nbsp;·&nbsp;
       <a onclick="showPage('livingwell')" role="button" tabindex="0">Everyday Guide</a> &nbsp;·&nbsp;
+      <a onclick="showPage('glossary')" role="button" tabindex="0">Glossary</a> &nbsp;·&nbsp;
+      <a onclick="showPage('questions')" role="button" tabindex="0">Questions to Ask</a> &nbsp;·&nbsp;
+      <a onclick="showPage('localsupport')" role="button" tabindex="0">Local Support</a> &nbsp;·&nbsp;
       <a onclick="showPage('contact')" role="button" tabindex="0">Contact</a> &nbsp;·&nbsp;
       <a onclick="showPage('a11y')" role="button" tabindex="0">Accessibility</a> &nbsp;·&nbsp;
       <a onclick="showPage('privacy')" role="button" tabindex="0">Privacy Policy</a>
