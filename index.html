@@ -131,11 +131,12 @@ p, h1, h2, h3, h4, li, span, a, button { overflow-wrap: break-word; word-wrap: b
 .ab-l  { font-size: 16px; }
 .ab-xl { font-size: 19px; }
 .theme-select {
-  height: 32px; padding: 0 8px; border-radius: 50px;
-  border: 2px solid var(--border); background: var(--card2);
+  height: 36px; padding: 0 12px; border-radius: 50px;
+  border: 2px solid var(--yellow); background: var(--card2);
   color: var(--text); font-family: var(--font);
-  font-size: 12px; font-weight: 700; cursor: pointer;
-  outline: none; flex-shrink: 0; max-width: 110px;
+  font-size: 12px; font-weight: 800; cursor: pointer;
+  outline: none; flex-shrink: 0; max-width: 130px;
+  box-shadow: 0 0 0 1px rgba(245,184,0,0.2);
 }
 .theme-select:focus-visible { outline: 3px solid var(--yellow); outline-offset: 2px; }
 
@@ -279,9 +280,9 @@ body.yb .rtag.gene, body.yb .rtag.stem, body.yb .rtag.trial, body.yb .rtag.drug,
 .trial-link:hover        { background: var(--yellow2); }
 .trial-link:focus-visible{ outline: 3px solid var(--text); outline-offset: 3px; }
 
-.nc { background: var(--card); border: 2px solid var(--border); border-radius: 16px; padding: 16px; margin-bottom: 12px; display: flex; gap: 12px; align-items: flex-start; box-shadow: var(--shadow); }
-.nc-num { width: 36px; height: 36px; min-width: 36px; background: var(--yellow); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.95rem; font-weight: 900; color: #fff; flex-shrink: 0; margin-top: 2px; }
-.nc > div { min-width: 0; flex: 1; overflow: hidden; }
+.nc { background: var(--card); border: 2px solid var(--border); border-radius: 16px; padding: 18px; margin-bottom: 12px; display: flex; flex-direction: column; gap: 10px; box-shadow: var(--shadow); }
+.nc-num { width: 32px; height: 32px; min-width: 32px; background: var(--yellow); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.88rem; font-weight: 900; color: #fff; flex-shrink: 0; }
+.nc > div { min-width: 0; width: 100%; }
 .nc h3 { font-size: 0.95rem; font-weight: 800; color: var(--text); margin-bottom: 6px; overflow-wrap: break-word; word-wrap: break-word; }
 .nc p  { font-size: 0.88rem; color: var(--text2); line-height: 1.8; overflow-wrap: break-word; word-wrap: break-word; }
 
@@ -359,16 +360,22 @@ body.yb .rtag.gene, body.yb .rtag.stem, body.yb .rtag.trial, body.yb .rtag.drug,
 }
 .lw-card {
   background: var(--card); border: 2px solid var(--border);
-  border-radius: 16px; padding: 22px; box-shadow: var(--shadow);
+  border-radius: 16px; padding: 20px 20px 16px; box-shadow: var(--shadow);
   cursor: pointer; transition: border-color .18s, background .18s;
   text-align: left; width: 100%;
   font-family: var(--font);
 }
 .lw-card:hover        { border-color: var(--yellow); background: var(--card2); }
+.lw-card[aria-expanded="true"] { border-color: var(--yellow); background: var(--card2); }
 .lw-card:focus-visible{ outline: 3px solid var(--yellow); outline-offset: 3px; }
-.lw-card-icon  { font-size: 2rem; margin-bottom: 10px; display: block; }
-.lw-card-title { font-size: 1.05rem; font-weight: 800; color: var(--text); margin-bottom: 6px; display: block; }
-.lw-card-desc  { font-size: 0.88rem; color: var(--text2); line-height: 1.7; display: block; }
+.lw-card-top   { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; margin-bottom: 6px; }
+.lw-card-icon  { font-size: 1.6rem; flex-shrink: 0; }
+.lw-card-arrow { font-size: 1rem; color: var(--yellow); flex-shrink: 0; transition: transform .25s; margin-top: 2px; }
+.lw-card[aria-expanded="true"] .lw-card-arrow { transform: rotate(180deg); }
+.lw-card-title { font-size: 1.05rem; font-weight: 800; color: var(--text); margin-bottom: 4px; display: block; flex: 1; }
+.lw-card-desc  { font-size: 0.85rem; color: var(--text2); line-height: 1.7; display: block; margin-bottom: 8px; }
+.lw-card-hint  { font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--yellow); display: block; }
+.lw-card[aria-expanded="true"] .lw-card-hint { display: none; }
 
 /* Expanded LW section */
 .lw-section {
@@ -541,27 +548,80 @@ footer { background: var(--bg2); border-top: 3px solid var(--yellow); padding: 3
 /* ══════════════════════════════════════
    CONDITION PAGE TABS
 ══════════════════════════════════════ */
-.tab-bar {
-  display: flex; gap: 0; overflow-x: auto; overflow-y: hidden;
-  scrollbar-width: none; -webkit-overflow-scrolling: touch;
-  border-bottom: 3px solid var(--yellow);
-  margin-bottom: 24px; position: sticky; top: 50px; z-index: 100;
-  background: var(--bg); padding: 0 20px;
-  margin-left: -20px; margin-right: -20px;
+/* On this page — condition page contents list */
+.otp-box {
+  background: var(--card); border: 2px solid var(--border);
+  border-radius: 16px; padding: 20px 22px; margin-bottom: 28px;
+  box-shadow: var(--shadow);
 }
-.tab-bar::-webkit-scrollbar { display: none; }
-.tab-btn {
-  flex-shrink: 0; padding: 12px 16px; min-height: 48px;
-  background: none; border: none; border-bottom: 3px solid transparent;
-  margin-bottom: -3px; font-family: var(--font); font-size: 0.78rem;
-  font-weight: 800; color: var(--text2); cursor: pointer;
-  white-space: nowrap; transition: color .15s, border-color .15s;
-  text-transform: uppercase; letter-spacing: 0.06em;
+.otp-title {
+  font-size: 0.95rem; font-weight: 900; color: var(--text);
+  margin-bottom: 14px; display: block;
 }
-.tab-btn:hover { color: var(--yellow); }
-.tab-btn.active { color: var(--yellow); border-bottom-color: var(--yellow); }
-.tab-btn:focus-visible { outline: 3px solid var(--yellow); outline-offset: -3px; }
-.tab-section { scroll-margin-top: 110px; }
+.otp-list {
+  list-style: none; padding: 0; margin: 0;
+  display: flex; flex-direction: column; gap: 2px;
+}
+.otp-list li a {
+  display: flex; align-items: center; gap: 10px;
+  padding: 9px 0; border-bottom: 1px solid var(--border);
+  color: var(--blue); font-size: 0.92rem; font-weight: 600;
+  text-decoration: none; line-height: 1.4;
+  transition: color .15s;
+}
+.otp-list li:last-child a { border-bottom: none; }
+.otp-list li a:hover { color: var(--yellow); }
+.otp-list li a:focus-visible { outline: 3px solid var(--yellow); outline-offset: 2px; border-radius: 4px; }
+.otp-chevron { color: var(--yellow); font-size: 0.85rem; flex-shrink: 0; }
+
+/* Clean section headings on condition pages */
+.cond-sec-heading {
+  display: flex; align-items: center; gap: 12px;
+  margin: 36px 0 18px; padding-bottom: 12px;
+  border-bottom: 2px solid var(--border);
+}
+.cond-sec-heading h2 {
+  font-size: clamp(1.2rem, 4vw, 1.6rem); font-weight: 900;
+  color: var(--text); line-height: 1.2;
+}
+.cond-sec-num {
+  width: 28px; height: 28px; min-width: 28px;
+  background: var(--yellow); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.75rem; font-weight: 900; color: #000; flex-shrink: 0;
+}
+
+/* ══════════════════════════════════════
+   CONDITION PAGE ACCORDION
+══════════════════════════════════════ */
+.acc-item {
+  background: var(--card); border: 2px solid var(--border);
+  border-radius: 16px; margin-bottom: 10px; overflow: hidden;
+  box-shadow: var(--shadow); transition: border-color .2s;
+}
+.acc-item.open { border-color: var(--yellow); }
+.acc-btn {
+  width: 100%; display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; padding: 18px 20px; background: none; border: none;
+  font-family: var(--font); cursor: pointer; text-align: left;
+  min-height: 64px; transition: background .15s;
+}
+.acc-btn:hover { background: var(--card2); }
+.acc-btn:focus-visible { outline: 3px solid var(--yellow); outline-offset: -3px; }
+.acc-item.open .acc-btn { background: var(--card2); }
+.acc-left { display: flex; align-items: center; gap: 12px; }
+.acc-num {
+  width: 30px; height: 30px; min-width: 30px;
+  background: var(--yellow); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.78rem; font-weight: 900; color: #000; flex-shrink: 0;
+}
+.acc-item.open .acc-num { background: var(--yellow); }
+.acc-label { font-size: 1rem; font-weight: 800; color: var(--text); }
+.acc-arrow { font-size: 1rem; color: var(--yellow); flex-shrink: 0; transition: transform .25s; }
+.acc-item.open .acc-arrow { transform: rotate(180deg); }
+.acc-body { display: none; padding: 0 20px 20px; }
+.acc-item.open .acc-body { display: block; animation: fadeSlide .2s ease; }
 
 /* ══════════════════════════════════════
    PRINT
@@ -893,9 +953,13 @@ footer { background: var(--bg2); border-top: 3px solid var(--yellow); padding: 3
       <!-- COOKING -->
       <div>
         <button class="lw-card" onclick="toggleLW('cooking',this)" aria-expanded="false" aria-controls="lw-cooking">
-          <span class="lw-card-icon" aria-hidden="true">🍳</span>
+          <div class="lw-card-top">
+            <span class="lw-card-icon" aria-hidden="true">🍳</span>
+            <span class="lw-card-arrow" aria-hidden="true">▾</span>
+          </div>
           <span class="lw-card-title">Cooking &amp; Kitchen</span>
           <span class="lw-card-desc">Safe, independent cooking with low or no vision — tools, techniques, and organisation tips.</span>
+          <span class="lw-card-hint">Tap to expand</span>
         </button>
         <div id="lw-cooking" class="lw-section" role="region" aria-label="Cooking and Kitchen tips">
           <div class="lw-tip">
@@ -942,9 +1006,13 @@ footer { background: var(--bg2); border-top: 3px solid var(--yellow); padding: 3
       <!-- PARENTING -->
       <div>
         <button class="lw-card" onclick="toggleLW('parenting',this)" aria-expanded="false" aria-controls="lw-parenting">
-          <span class="lw-card-icon" aria-hidden="true">👨‍👩‍👧</span>
+          <div class="lw-card-top">
+            <span class="lw-card-icon" aria-hidden="true">👨‍👩‍👧</span>
+            <span class="lw-card-arrow" aria-hidden="true">▾</span>
+          </div>
           <span class="lw-card-title">Parenting with Sight Loss</span>
           <span class="lw-card-desc">Being a brilliant parent with low or no vision — practical strategies, equipment, and emotional support.</span>
+          <span class="lw-card-hint">Tap to expand</span>
         </button>
         <div id="lw-parenting" class="lw-section" role="region" aria-label="Parenting with sight loss tips">
           <div class="lw-tip">
@@ -985,9 +1053,13 @@ footer { background: var(--bg2); border-top: 3px solid var(--yellow); padding: 3
       <!-- SPORT & FITNESS -->
       <div>
         <button class="lw-card" onclick="toggleLW('sport',this)" aria-expanded="false" aria-controls="lw-sport">
-          <span class="lw-card-icon" aria-hidden="true">🏃</span>
+          <div class="lw-card-top">
+            <span class="lw-card-icon" aria-hidden="true">🏃</span>
+            <span class="lw-card-arrow" aria-hidden="true">▾</span>
+          </div>
           <span class="lw-card-title">Sport &amp; Fitness</span>
           <span class="lw-card-desc">Staying active with sight loss — from gym to goalball, running to yoga.</span>
+          <span class="lw-card-hint">Tap to expand</span>
         </button>
         <div id="lw-sport" class="lw-section" role="region" aria-label="Sport and fitness tips">
           <div class="lw-tip">
@@ -1028,9 +1100,13 @@ footer { background: var(--bg2); border-top: 3px solid var(--yellow); padding: 3
       <!-- MAKEUP & GROOMING -->
       <div>
         <button class="lw-card" onclick="toggleLW('makeup',this)" aria-expanded="false" aria-controls="lw-makeup">
-          <span class="lw-card-icon" aria-hidden="true">💄</span>
+          <div class="lw-card-top">
+            <span class="lw-card-icon" aria-hidden="true">💄</span>
+            <span class="lw-card-arrow" aria-hidden="true">▾</span>
+          </div>
           <span class="lw-card-title">Makeup &amp; Grooming</span>
           <span class="lw-card-desc">Looking and feeling great with low or no vision — practical techniques and trusted tools.</span>
+          <span class="lw-card-hint">Tap to expand</span>
         </button>
         <div id="lw-makeup" class="lw-section" role="region" aria-label="Makeup and grooming tips">
           <div class="lw-tip">
@@ -1076,9 +1152,13 @@ footer { background: var(--bg2); border-top: 3px solid var(--yellow); padding: 3
       <!-- LISTENING & AUDIOBOOKS -->
       <div>
         <button class="lw-card" onclick="toggleLW('listening',this)" aria-expanded="false" aria-controls="lw-listening">
-          <span class="lw-card-icon" aria-hidden="true">🎧</span>
+          <div class="lw-card-top">
+            <span class="lw-card-icon" aria-hidden="true">🎧</span>
+            <span class="lw-card-arrow" aria-hidden="true">▾</span>
+          </div>
           <span class="lw-card-title">Listening &amp; Audiobooks</span>
           <span class="lw-card-desc">Books, radio, podcasts and audio — the best free and paid services for people with sight loss.</span>
+          <span class="lw-card-hint">Tap to expand</span>
         </button>
         <div id="lw-listening" class="lw-section" role="region" aria-label="Listening and audiobooks tips">
           <div class="lw-tip">
@@ -1122,9 +1202,13 @@ footer { background: var(--bg2); border-top: 3px solid var(--yellow); padding: 3
       <!-- TRAVEL & GETTING AROUND -->
       <div>
         <button class="lw-card" onclick="toggleLW('travel',this)" aria-expanded="false" aria-controls="lw-travel">
-          <span class="lw-card-icon" aria-hidden="true">🚆</span>
+          <div class="lw-card-top">
+            <span class="lw-card-icon" aria-hidden="true">🚆</span>
+            <span class="lw-card-arrow" aria-hidden="true">▾</span>
+          </div>
           <span class="lw-card-title">Travel &amp; Getting Around</span>
           <span class="lw-card-desc">Trains, buses, taxis, and travelling independently with sight loss.</span>
+          <span class="lw-card-hint">Tap to expand</span>
         </button>
         <div id="lw-travel" class="lw-section" role="region" aria-label="Travel and getting around tips">
           <div class="lw-tip">
@@ -1164,9 +1248,13 @@ footer { background: var(--bg2); border-top: 3px solid var(--yellow); padding: 3
       <!-- WORK & EMPLOYMENT -->
       <div>
         <button class="lw-card" onclick="toggleLW('work',this)" aria-expanded="false" aria-controls="lw-work">
-          <span class="lw-card-icon" aria-hidden="true">💼</span>
+          <div class="lw-card-top">
+            <span class="lw-card-icon" aria-hidden="true">💼</span>
+            <span class="lw-card-arrow" aria-hidden="true">▾</span>
+          </div>
           <span class="lw-card-title">Work &amp; Employment</span>
           <span class="lw-card-desc">Your rights, available support, and how to thrive professionally with sight loss.</span>
+          <span class="lw-card-hint">Tap to expand</span>
         </button>
         <div id="lw-work" class="lw-section" role="region" aria-label="Work and employment tips">
           <div class="lw-tip">
@@ -1207,9 +1295,13 @@ footer { background: var(--bg2); border-top: 3px solid var(--yellow); padding: 3
       <!-- MENTAL HEALTH -->
       <div>
         <button class="lw-card" onclick="toggleLW('mentalhealth',this)" aria-expanded="false" aria-controls="lw-mentalhealth">
-          <span class="lw-card-icon" aria-hidden="true">💛</span>
+          <div class="lw-card-top">
+            <span class="lw-card-icon" aria-hidden="true">💛</span>
+            <span class="lw-card-arrow" aria-hidden="true">▾</span>
+          </div>
           <span class="lw-card-title">Mental Health &amp; Wellbeing</span>
           <span class="lw-card-desc">Emotional support, coping with diagnosis, and finding your community.</span>
+          <span class="lw-card-hint">Tap to expand</span>
         </button>
         <div id="lw-mentalhealth" class="lw-section" role="region" aria-label="Mental health and wellbeing tips">
           <div class="lw-tip">
@@ -1632,7 +1724,8 @@ footer { background: var(--bg2); border-top: 3px solid var(--yellow); padding: 3
   </svg>
 </div>
 
-<!-- VIDEO RESOURCES -->
+<!-- VIDEO RESOURCES — home page only -->
+<div id="video-resources-wrap">
 <section style="max-width:680px;margin:0 auto;padding:0 20px 48px" aria-labelledby="video-hd">
   <span class="section-label" id="video-hd">Video Resources</span>
   <div class="ic" style="margin-bottom:12px">
@@ -1647,6 +1740,7 @@ footer { background: var(--bg2); border-top: 3px solid var(--yellow); padding: 3
   </div>
   <div class="wb"><strong>Note:</strong> External links. Vision Hub is not responsible for their content. Always discuss medical information with your ophthalmologist.</div>
 </section>
+</div>
 
 <button class="back-top" id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
 
@@ -2075,78 +2169,99 @@ function renderCondition(key) {
     <button class="back-btn" onclick="showPage('home')" aria-label="Back to conditions list">← All Conditions</button>
     <span class="cond-hero-eyebrow">Eye Condition Guide</span>
     <h1>${d.name}</h1>
+    <p style="font-size:0.75rem;color:var(--text2);margin-bottom:16px">Last reviewed: <time datetime="2026-04">April 2026</time></p>
   </div>
   <div class="cond-page-inner">
 
-    <!-- TAB BAR -->
-    <nav class="tab-bar" aria-label="Jump to section">
-      <button class="tab-btn active" onclick="scrollToSection('sec-about-${key}',this)" aria-label="About">About</button>
-      <button class="tab-btn" onclick="scrollToSection('sec-research-${key}',this)" aria-label="Research">Research</button>
-      <button class="tab-btn" onclick="scrollToSection('sec-guides-${key}',this)" aria-label="Guides">Guides</button>
-      <button class="tab-btn" onclick="scrollToSection('sec-tech-${key}',this)" aria-label="Technology">Technology</button>
-      <button class="tab-btn" onclick="scrollToSection('sec-support-${key}',this)" aria-label="Support">Support</button>
-      <button class="tab-btn" onclick="scrollToSection('sec-benefits-${key}',this)" aria-label="Benefits">Benefits</button>
-    </nav>
-
-    <div id="sec-about-${key}" class="tab-section">
-      <div class="sec-h"><div class="ybar" aria-hidden="true"></div><h2>What is ${d.name}?</h2></div>
-      <div class="ic"><p>${d.what}</p></div>
-      <div class="ic"><span class="ic-icon" aria-hidden="true">👁️</span><h3>How It Affects Vision</h3><p>${d.howAffects}</p></div>
-      <div class="ic"><h3>Diagnosis</h3><p>${d.diagnosis}</p></div>
-      <div class="ic"><h3>Who It Affects</h3><p>${d.whoAffects}</p></div>
+    <div class="acc-item" id="acc-about-${key}">
+      <button class="acc-btn" onclick="toggleAcc('about','${key}')" aria-expanded="false">
+        <span class="acc-left"><span class="acc-num">1</span><span class="acc-label">What is ${d.name}?</span></span>
+        <span class="acc-arrow" aria-hidden="true">▾</span>
+      </button>
+      <div class="acc-body">
+        <div class="ic"><p>${d.what}</p></div>
+        <div class="ic"><span class="ic-icon" aria-hidden="true">👁️</span><h3>How It Affects Vision</h3><p>${d.howAffects}</p></div>
+        <div class="ic"><h3>Diagnosis</h3><p>${d.diagnosis}</p></div>
+        <div class="ic"><h3>Who It Affects</h3><p>${d.whoAffects}</p></div>
+      </div>
     </div>
 
-    <div id="sec-research-${key}" class="tab-section">
-      <div class="sec-h"><div class="ybar" aria-hidden="true"></div><h2>Latest Research</h2></div>
-      ${d.research.map(r=>`
-      <div class="rc">
-        <span class="rtag ${tc[r.tag]||'trial'}">${r.label}</span>
-        <h3>${r.title}</h3><p>${r.body}</p>
-        <a href="${r.link}" target="_blank" rel="noopener" class="trial-link">View on ClinicalTrials.gov →</a>
-      </div>`).join('')}
-      <div class="wb"><strong>About trials:</strong> Trials give early access to new treatments. Many cover travel costs. Always discuss with your specialist first.</div>
+    <div class="acc-item" id="acc-research-${key}">
+      <button class="acc-btn" onclick="toggleAcc('research','${key}')" aria-expanded="false">
+        <span class="acc-left"><span class="acc-num">2</span><span class="acc-label">Latest Research &amp; Clinical Trials</span></span>
+        <span class="acc-arrow" aria-hidden="true">▾</span>
+      </button>
+      <div class="acc-body">
+        ${d.research.map(r=>`
+        <div class="rc">
+          <span class="rtag ${tc[r.tag]||'trial'}">${r.label}</span>
+          <h3>${r.title}</h3><p>${r.body}</p>
+          <a href="${r.link}" target="_blank" rel="noopener" class="trial-link">View on ClinicalTrials.gov →</a>
+        </div>`).join('')}
+        <div class="wb"><strong>About trials:</strong> Trials give early access to new treatments. Many cover travel costs. Always discuss with your specialist first.</div>
+      </div>
     </div>
 
-    <div id="sec-guides-${key}" class="tab-section">
-      <div class="sec-h"><div class="ybar" aria-hidden="true"></div><h2>How-To Guides</h2></div>
-      ${d.guides.map(g=>`
-      <div class="nc">
-        <div class="nc-num" aria-hidden="true">${g.n}</div>
-        <div><h3>${g.title}</h3><p>${g.body}</p></div>
-      </div>`).join('')}
+    <div class="acc-item" id="acc-guides-${key}">
+      <button class="acc-btn" onclick="toggleAcc('guides','${key}')" aria-expanded="false">
+        <span class="acc-left"><span class="acc-num">3</span><span class="acc-label">Practical How-To Guides</span></span>
+        <span class="acc-arrow" aria-hidden="true">▾</span>
+      </button>
+      <div class="acc-body">
+        ${d.guides.map(g=>`
+        <div class="nc">
+          <div class="nc-num" aria-hidden="true">${g.n}</div>
+          <div><h3>${g.title}</h3><p>${g.body}</p></div>
+        </div>`).join('')}
+      </div>
     </div>
 
-    <div id="sec-tech-${key}" class="tab-section">
-      <div class="sec-h"><div class="ybar" aria-hidden="true"></div><h2>Assistive Technology</h2></div>
-      ${d.tech.map(t=>`
-      <div class="tc">
-        <div class="tc-cat">${t.cat}</div>
-        <h3>${t.title}</h3><p>${t.body}</p>
-        <div class="tc-price">${t.price}</div>
-      </div>`).join('')}
-      <div class="wb"><strong>Funding help:</strong> Many devices are part or fully funded. Ask your local authority sensory team, Access to Work, or Disabled Students Allowance before buying privately.</div>
+    <div class="acc-item" id="acc-tech-${key}">
+      <button class="acc-btn" onclick="toggleAcc('tech','${key}')" aria-expanded="false">
+        <span class="acc-left"><span class="acc-num">4</span><span class="acc-label">Assistive Technology</span></span>
+        <span class="acc-arrow" aria-hidden="true">▾</span>
+      </button>
+      <div class="acc-body">
+        ${d.tech.map(t=>`
+        <div class="tc">
+          <div class="tc-cat">${t.cat}</div>
+          <h3>${t.title}</h3><p>${t.body}</p>
+          <div class="tc-price">${t.price}</div>
+        </div>`).join('')}
+        <div class="wb"><strong>Funding help:</strong> Many devices are part or fully funded. Ask your local authority sensory team, Access to Work, or Disabled Students Allowance before buying privately.</div>
+      </div>
     </div>
 
-    <div id="sec-support-${key}" class="tab-section">
-      <div class="sec-h"><div class="ybar" aria-hidden="true"></div><h2>Support &amp; Community</h2></div>
-      ${d.support.map(s=>`
-      <div class="sc">
-        <h3>${s.title}</h3><p>${s.body}</p>
-        <a href="${s.link}" target="_blank" rel="noopener">${s.link.replace('https://','').replace('www.','')} ↗</a>
-      </div>`).join('')}
-      <div class="wb"><strong>Mental health:</strong> Sight loss significantly increases risk of depression. RNIB Sight Loss Counselling offers free sessions — 0303 123 9999. Samaritans: 116 123, 24/7.</div>
+    <div class="acc-item" id="acc-support-${key}">
+      <button class="acc-btn" onclick="toggleAcc('support','${key}')" aria-expanded="false">
+        <span class="acc-left"><span class="acc-num">5</span><span class="acc-label">Support &amp; Community</span></span>
+        <span class="acc-arrow" aria-hidden="true">▾</span>
+      </button>
+      <div class="acc-body">
+        ${d.support.map(s=>`
+        <div class="sc">
+          <h3>${s.title}</h3><p>${s.body}</p>
+          <a href="${s.link}" target="_blank" rel="noopener">${s.link.replace('https://','').replace('www.','')} ↗</a>
+        </div>`).join('')}
+        <div class="wb"><strong>Mental health:</strong> Sight loss significantly increases risk of depression. RNIB Sight Loss Counselling offers free sessions — 0303 123 9999. Samaritans: 116 123, 24/7.</div>
+      </div>
     </div>
 
-    <div id="sec-benefits-${key}" class="tab-section">
-      <div class="sec-h"><div class="ybar" aria-hidden="true"></div><h2>Benefits &amp; Financial Help</h2></div>
-      <div class="wb"><strong>You are entitled to these benefits.</strong> An estimated £3.5 billion in disability benefits goes unclaimed every year. Call RNIB (0303 123 9999) for free help with forms.</div>
-      ${d.benefits.map(b=>`
-      <div class="nc">
-        <div class="nc-num" aria-hidden="true">${b.n}</div>
-        <div><h3>${b.title}</h3><p>${b.body}</p></div>
-      </div>`).join('')}
-      <div class="ic"><h3>Free Benefits Advice</h3>
-        <p><strong>RNIB:</strong> 0303 123 9999 &nbsp;·&nbsp; <strong>Citizens Advice:</strong> citizensadvice.org.uk &nbsp;·&nbsp; <strong>Calculator:</strong> turn2us.org.uk</p>
+    <div class="acc-item" id="acc-benefits-${key}">
+      <button class="acc-btn" onclick="toggleAcc('benefits','${key}')" aria-expanded="false">
+        <span class="acc-left"><span class="acc-num">6</span><span class="acc-label">Benefits &amp; Financial Help</span></span>
+        <span class="acc-arrow" aria-hidden="true">▾</span>
+      </button>
+      <div class="acc-body">
+        <div class="wb"><strong>You are entitled to these benefits.</strong> An estimated £3.5 billion in disability benefits goes unclaimed every year. Call RNIB (0303 123 9999) for free help with forms.</div>
+        ${d.benefits.map(b=>`
+        <div class="nc">
+          <div class="nc-num" aria-hidden="true">${b.n}</div>
+          <div><h3>${b.title}</h3><p>${b.body}</p></div>
+        </div>`).join('')}
+        <div class="ic"><h3>Free Benefits Advice</h3>
+          <p><strong>RNIB:</strong> 0303 123 9999 &nbsp;·&nbsp; <strong>Citizens Advice:</strong> citizensadvice.org.uk &nbsp;·&nbsp; <strong>Calculator:</strong> turn2us.org.uk</p>
+        </div>
       </div>
     </div>
 
@@ -2163,23 +2278,62 @@ function renderCondition(key) {
       <span class="feedback-q">Was this page helpful?</span>
       <button class="fb-btn" onclick="submitFeedback('${key}','yes',this)" aria-label="Yes helpful">👍 Yes</button>
       <button class="fb-btn" onclick="submitFeedback('${key}','no',this)" aria-label="No not helpful">👎 No</button>
+      <button class="fb-btn" onclick="showPage('contact')" aria-label="Something is missing" style="font-size:0.82rem">✉️ Something's missing</button>
       <span class="feedback-thanks" id="fb-thanks-${key}">Thank you!</span>
     </div>
 
-    <button class="back-btn" onclick="showPage('home')" style="margin-top:16px" aria-label="Back to conditions list">← All Conditions</button>
   </div>`;
 }
 
-/* ─────────────── TAB NAVIGATION ─────────────── */
+/* ─────────────── TAB NAVIGATION + SCROLL SPY ─────────────── */
 function scrollToSection(id, btn) {
   var section = document.getElementById(id);
   if (!section) return;
   // Update active tab
-  var allTabs = btn.closest('.tab-bar').querySelectorAll('.tab-btn');
-  allTabs.forEach(function(t) { t.classList.remove('active'); });
-  btn.classList.add('active');
-  // Smooth scroll to section
+  var tabBar = document.querySelector('#page-condition .tab-bar');
+  if (tabBar && btn) {
+    tabBar.querySelectorAll('.tab-btn').forEach(function(t) { t.classList.remove('active'); });
+    if (btn.classList) btn.classList.add('active');
+  }
   section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+/* Scroll spy — highlights tab as section scrolls into view */
+var _spyObserver = null;
+function initScrollSpy(key) {
+  if (_spyObserver) _spyObserver.disconnect();
+  var sections = ['about','research','guides','tech','support','benefits'];
+  var tabBar = document.querySelector('#page-condition .tab-bar');
+  if (!tabBar) return;
+  var tabs = tabBar.querySelectorAll('.tab-btn');
+
+  _spyObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var id = entry.target.id;
+        var idx = sections.findIndex(function(s) { return id === 'sec-' + s + '-' + key; });
+        if (idx !== -1) {
+          tabs.forEach(function(t) { t.classList.remove('active'); });
+          if (tabs[idx]) tabs[idx].classList.add('active');
+        }
+      }
+    });
+  }, { rootMargin: '-120px 0px -60% 0px', threshold: 0 });
+
+  sections.forEach(function(s) {
+    var el = document.getElementById('sec-' + s + '-' + key);
+    if (el) _spyObserver.observe(el);
+  });
+}
+
+/* ─────────────── CONDITION PAGE ACCORDION ─────────────── */
+function toggleAcc(section, key) {
+  var item = document.getElementById('acc-' + section + '-' + key);
+  if (!item) return;
+  var btn  = item.querySelector('.acc-btn');
+  var isOpen = item.classList.contains('open');
+  item.classList.toggle('open', !isOpen);
+  btn.setAttribute('aria-expanded', String(!isOpen));
 }
 
 /* ─────────────── JUST DIAGNOSED TOGGLE ─────────────── */
@@ -2204,6 +2358,11 @@ function showPage(name) {
   var target = document.getElementById('page-' + name);
   if (target) target.classList.add('active');
 
+  // Show video resources and decorative divider only on home page
+  var videoWrap = document.getElementById('video-resources-wrap');
+  var decoDivider = document.querySelector('[aria-hidden="true"] svg');
+  if (videoWrap) videoWrap.style.display = name === 'home' ? '' : 'none';
+
   // Restore or reset scroll
   var savedPos = _scrollPos['page-' + name] || 0;
   window.scrollTo({ top: savedPos, behavior: 'instant' });
@@ -2213,13 +2372,21 @@ function showCondition(key) {
   // Save home scroll position
   _scrollPos['page-home'] = window.scrollY;
 
-  var content = document.getElementById('condition-content');
-  if (content) content.innerHTML = renderCondition(key);
+  var condContent = document.getElementById('condition-content');
+  if (condContent) condContent.innerHTML = renderCondition(key);
 
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   var target = document.getElementById('page-condition');
   if (target) target.classList.add('active');
+
+  // Hide video resources and decorative divider — home page only
+  var videoWrap = document.getElementById('video-resources-wrap');
+  if (videoWrap) videoWrap.style.display = 'none';
+
   window.scrollTo({ top: 0, behavior: 'instant' });
+
+  // Init scroll spy for tab highlighting
+  setTimeout(function() { initScrollSpy(key); }, 100);
 
   // Update hash for shareability
   try { history.pushState({key:key}, '', '#' + key); } catch(e){}
