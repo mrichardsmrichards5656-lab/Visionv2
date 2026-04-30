@@ -632,6 +632,15 @@ footer { background: var(--bg2); border-top: 3px solid var(--yellow); padding: 3
   footer, .back-top, .feedback-bar { display: none !important; }
   body { background: #fff !important; color: #000 !important; font-size: 12pt; }
   .cond-page-inner { padding: 0 !important; max-width: 100% !important; }
+
+  /* Force all accordion panels open when printing */
+  .acc-body { display: block !important; padding: 0 0 12pt !important; }
+  .acc-btn { display: flex !important; border-bottom: 1pt solid #ccc !important; margin-bottom: 6pt; }
+  .acc-arrow { display: none !important; }
+  .acc-item { border: none !important; box-shadow: none !important; margin-bottom: 0 !important; break-inside: avoid; }
+  .acc-num { background: #000 !important; color: #fff !important; print-color-adjust: exact; }
+  .acc-label { color: #000 !important; font-size: 12pt !important; }
+
   .ic, .rc, .nc, .tc, .sc, .wb, .lc {
     border: 1pt solid #ccc !important; border-radius: 4pt !important;
     box-shadow: none !important; background: #fff !important;
@@ -640,8 +649,20 @@ footer { background: var(--bg2); border-top: 3px solid var(--yellow); padding: 3
   .nc-num { background: #000 !important; color: #fff !important; print-color-adjust: exact; }
   .rtag { border: 1pt solid #000 !important; background: #fff !important; color: #000 !important; }
   .trial-link { color: #000 !important; text-decoration: underline !important; background: none !important; border: 1pt solid #000 !important; }
-  .sec-h h2 { color: #000 !important; font-size: 14pt !important; }
-  .ybar { background: #000 !important; }
+  .cond-sec-heading h2 { color: #000 !important; font-size: 14pt !important; }
+  .otp-box { display: none !important; }
+
+  /* Print header */
+  .cond-page-inner::before {
+    content: "Vision Hub — visionhubuk.co.uk — Free UK Sight Loss Resource";
+    display: block; font-size: 8pt; color: #666;
+    border-bottom: 1pt solid #ccc; padding-bottom: 6pt; margin-bottom: 14pt;
+  }
+  .cond-page-inner::after {
+    content: "This information is for guidance only. Always consult your ophthalmologist.";
+    display: block; font-size: 8pt; color: #666;
+    border-top: 1pt solid #ccc; padding-top: 6pt; margin-top: 14pt;
+  }
   @page { margin: 15mm 20mm; }
 }
 </style>
@@ -794,9 +815,13 @@ footer { background: var(--bg2); border-top: 3px solid var(--yellow); padding: 3
       </div>
 
       <!-- USEFUL RESOURCES ROW -->
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px" role="group" aria-label="Useful resources">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px" role="group" aria-label="Useful resources">
         <button onclick="showPage('glossary')" class="share-btn" style="font-size:0.82rem;padding:0 8px;min-height:42px;justify-content:center;border-radius:12px" aria-label="Open Glossary">📖 Glossary</button>
-        <button onclick="showPage('localsupport')" class="share-btn" style="font-size:0.82rem;padding:0 8px;min-height:42px;justify-content:center;border-radius:12px" aria-label="Open Local Support finder">📍 Local Support</button>
+        <button onclick="showPage('localsupport')" class="share-btn" style="font-size:0.82rem;padding:0 8px;min-height:42px;justify-content:center;border-radius:12px" aria-label="Open Local Support">📍 Local Support</button>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px" role="group" aria-label="More resources">
+        <button onclick="showPage('eyehealth')" class="share-btn" style="font-size:0.82rem;padding:0 8px;min-height:42px;justify-content:center;border-radius:12px" aria-label="Open Eye Health Basics">👁️ Eye Health Basics</button>
+        <button onclick="showPage('employment')" class="share-btn" style="font-size:0.82rem;padding:0 8px;min-height:42px;justify-content:center;border-radius:12px" aria-label="Open Employment guide">💼 Employment</button>
       </div>
 
       <div class="search-wrap" style="margin-bottom:16px">
@@ -858,6 +883,31 @@ footer { background: var(--bg2); border-top: 3px solid var(--yellow); padding: 3
         <div role="listitem" class="cond-item">
           <button class="cond-btn" onclick="showCondition('cone')" aria-label="Open Cone Dystrophy information">
             🎯 Cone Dystrophy <span class="cond-arrow" aria-hidden="true">→</span>
+          </button>
+        </div>
+        <div role="listitem" class="cond-item">
+          <button class="cond-btn" onclick="showCondition('dmo')" aria-label="Open Diabetic Macular Oedema information">
+            💧 Diabetic Macular Oedema <span class="cond-arrow" aria-hidden="true">→</span>
+          </button>
+        </div>
+        <div role="listitem" class="cond-item">
+          <button class="cond-btn" onclick="showCondition('myopic')" aria-label="Open Myopic Macular Degeneration information">
+            👓 Myopic Macular Degeneration <span class="cond-arrow" aria-hidden="true">→</span>
+          </button>
+        </div>
+        <div role="listitem" class="cond-item">
+          <button class="cond-btn" onclick="showCondition('charlesbonnet')" aria-label="Open Charles Bonnet Syndrome information">
+            🧠 Charles Bonnet Syndrome <span class="cond-arrow" aria-hidden="true">→</span>
+          </button>
+        </div>
+        <div role="listitem" class="cond-item">
+          <button class="cond-btn" onclick="showCondition('opticneuritis')" aria-label="Open Optic Neuritis information">
+            ⚡ Optic Neuritis <span class="cond-arrow" aria-hidden="true">→</span>
+          </button>
+        </div>
+        <div role="listitem" class="cond-item">
+          <button class="cond-btn" onclick="showCondition('blepharitis')" aria-label="Open Blepharitis information">
+            👁 Blepharitis <span class="cond-arrow" aria-hidden="true">→</span>
           </button>
         </div>
         <div role="listitem" class="cond-item">
@@ -1451,7 +1501,7 @@ footer { background: var(--bg2); border-top: 3px solid var(--yellow); padding: 3
     <h1>Glossary</h1>
     <p style="font-size:0.95rem;color:var(--text2);margin-bottom:28px;line-height:1.8">Medical terms explained in plain English. These are the words you will hear most often at eye clinics and in research articles.</p>
 
-    <div class="wb"><strong>Tip:</strong> Use your browser's find function (Ctrl+F on desktop) to search for a specific term.</div>
+    <div class="wb"><strong>Tip:</strong> Use your browser's find function (Ctrl+F on desktop) to search for a specific term. New to eye conditions? See our <button onclick="showPage('eyehealth')" style="background:none;border:none;color:var(--yellow);font-family:var(--font);font-size:inherit;font-weight:700;cursor:pointer;text-decoration:underline;padding:0">Eye Health Basics guide →</button></div>
 
     <div class="lc"><h2>A</h2>
       <p><strong>Acuity (Visual Acuity)</strong> — A measure of how clearly you can see detail. Expressed as a fraction, e.g. 6/6 is normal vision, 6/60 means you see at 6 metres what a normally sighted person sees at 60 metres.</p>
@@ -1714,6 +1764,161 @@ footer { background: var(--bg2); border-top: 3px solid var(--yellow); padding: 3
   </div>
 </div>
 
+<!-- ══════════════════════════════════════
+     EYE HEALTH BASICS PAGE
+══════════════════════════════════════ -->
+<div id="page-eyehealth" class="page" role="main" aria-label="Eye Health Basics">
+  <div class="legal-wrap">
+    <button class="back-btn" onclick="showPage('home')" aria-label="Back to home">← Back to home</button>
+    <span class="legal-eyebrow">Understanding Your Eyes</span>
+    <h1>Eye Health Basics</h1>
+    <p style="font-size:0.95rem;color:var(--text2);margin-bottom:28px;line-height:1.8">Before the medical terms make sense, it helps to understand how the eye works. This page explains the basics — clearly and without jargon.</p>
+
+    <div class="lc">
+      <h2>👁️ How the Eye Works</h2>
+      <p>The eye works like a camera. Light enters through the <strong>cornea</strong> (the clear front surface), passes through the <strong>lens</strong>, and is focused onto the <strong>retina</strong> at the back of the eye. The retina converts light into electrical signals that travel along the <strong>optic nerve</strong> to the brain, where they are interpreted as images.</p>
+      <p style="margin-top:10px">The quality of what you see depends on every part of this system working correctly. Most eye conditions affect either the retina, the optic nerve, or the lens.</p>
+    </div>
+
+    <div class="lc">
+      <h2>🔴 The Retina</h2>
+      <p>The retina is a thin layer of light-sensitive tissue at the back of the eye. It contains two types of photoreceptor cells:</p>
+      <ul style="margin-top:8px">
+        <li><strong>Rods</strong> — responsible for vision in low light and peripheral (side) vision. There are about 120 million rods in each eye. Rods are the first cells affected in retinitis pigmentosa.</li>
+        <li><strong>Cones</strong> — responsible for colour vision and fine detail in good lighting. Concentrated in the macula. Absent or non-functional in achromatopsia. Progressively lost in cone dystrophy and Stargardt disease.</li>
+      </ul>
+    </div>
+
+    <div class="lc">
+      <h2>🎯 The Macula</h2>
+      <p>The macula is the small central area of the retina — about 5mm across — responsible for your sharpest, most detailed vision. It is what you use for reading, recognising faces, watching television, and seeing colour. The very centre of the macula is called the <strong>fovea</strong>.</p>
+      <p style="margin-top:10px">Conditions that damage the macula — AMD, Stargardt disease, cone dystrophy, diabetic macular oedema — affect central vision while usually preserving peripheral vision. This is why people with macular conditions often say they can see around something but not directly at it.</p>
+    </div>
+
+    <div class="lc">
+      <h2>🧠 The Optic Nerve</h2>
+      <p>The optic nerve carries electrical signals from the retina to the brain. It contains approximately 1.2 million nerve fibres. Glaucoma damages the optic nerve — usually through elevated eye pressure — causing gradual, irreversible loss of peripheral vision. Optic neuritis is inflammation of the optic nerve, often associated with multiple sclerosis.</p>
+    </div>
+
+    <div class="lc">
+      <h2>💧 The Vitreous and Aqueous</h2>
+      <p>The eye contains two fluids. The <strong>aqueous humour</strong> fills the front of the eye and is constantly produced and drained — imbalance in this system causes raised eye pressure (IOP) in glaucoma. The <strong>vitreous humour</strong> is the clear gel that fills the main body of the eye. As we age, the vitreous can shrink and pull away from the retina, causing floaters and flashing lights.</p>
+    </div>
+
+    <div class="lc">
+      <h2>📊 Understanding Your Vision Test Results</h2>
+      <p><strong>Visual Acuity</strong> — measured as a fraction. 6/6 is normal. 6/60 means you see at 6 metres what someone with normal vision sees at 60 metres. The legal driving standard is 6/12. Partial sight registration is typically 6/60 or worse in the better eye.</p>
+      <p style="margin-top:10px"><strong>Visual Field</strong> — the full area you can see without moving your eyes, including peripheral vision. Measured on a perimeter machine. Results shown as a map — darker areas indicate reduced sensitivity or blind spots.</p>
+      <p style="margin-top:10px"><strong>IOP (Intraocular Pressure)</strong> — normal range is approximately 10–21 mmHg. Raised IOP increases glaucoma risk. Measured by a puff of air or a small probe touching the anaesthetised eye.</p>
+      <p style="margin-top:10px"><strong>OCT (Optical Coherence Tomography)</strong> — a detailed cross-sectional scan of the retina showing its layers and thickness. The most important diagnostic tool in modern eye care. Non-invasive and takes about 5 minutes.</p>
+    </div>
+
+    <div class="lc">
+      <h2>🏥 Types of Eye Specialist</h2>
+      <p><strong>Optometrist</strong> — performs eye tests, prescribes glasses and contact lenses, and screens for eye conditions. Available at high street opticians. NHS eye tests are free for many groups.</p>
+      <p style="margin-top:10px"><strong>Ophthalmologist</strong> — a medical doctor specialising in eye conditions and surgery. Works in hospitals and specialist clinics. Diagnoses and treats eye disease.</p>
+      <p style="margin-top:10px"><strong>Orthoptist</strong> — specialises in eye movement disorders, nystagmus, and children's vision.</p>
+      <p style="margin-top:10px"><strong>Low Vision Specialist</strong> — provides magnifiers, tinted lenses, and practical strategies to maximise remaining vision. Available via NHS referral.</p>
+      <p style="margin-top:10px"><strong>Vision Rehabilitation Specialist (VRS)</strong> — visits your home and provides practical training for daily living with sight loss. Free via your local authority.</p>
+    </div>
+
+    <div class="wb"><strong>Want to understand a specific term?</strong> Visit our <button onclick="showPage('glossary')" style="background:none;border:none;color:var(--yellow);font-family:var(--font);font-size:inherit;font-weight:700;cursor:pointer;text-decoration:underline;padding:0">Glossary →</button></div>
+
+    <button class="back-btn" onclick="showPage('home')" style="margin-top:8px" aria-label="Back to home">← Back to home</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     EMPLOYMENT PAGE
+══════════════════════════════════════ -->
+<div id="page-employment" class="page" role="main" aria-label="Employment and Sight Loss">
+  <div class="legal-wrap">
+    <button class="back-btn" onclick="showPage('home')" aria-label="Back to home">← Back to home</button>
+    <span class="legal-eyebrow">Work</span>
+    <h1>Employment &amp;<br>Sight Loss</h1>
+    <p style="font-size:0.95rem;color:var(--text2);margin-bottom:28px;line-height:1.8">Your rights, the support available, and how to thrive professionally with a sight condition. This page is also for employers who want to support a colleague or employee.</p>
+
+    <div class="wb"><strong>Key number:</strong> RNIB Employment Line — <a href="tel:03031239999" style="color:var(--yellow);font-weight:700">0303 123 9999</a> — free, confidential advice on all employment matters.</div>
+
+    <div class="lc">
+      <h2>⚖️ Your Legal Rights</h2>
+      <p>The <strong>Equality Act 2010</strong> protects you from discrimination at work because of your sight condition. Your employer must make <strong>reasonable adjustments</strong> to remove disadvantages you face because of your condition. Refusing to make reasonable adjustments is unlawful disability discrimination.</p>
+      <p style="margin-top:10px">Reasonable adjustments can include: screen magnification software, adjusted lighting, modified duties, remote working, flexible hours, a dedicated support worker, or changes to your workstation.</p>
+      <p style="margin-top:10px">The duty applies from the point of application — you do not have to be employed before requesting adjustments.</p>
+    </div>
+
+    <div class="lc">
+      <h2>💷 Access to Work — Up to £69,260/year</h2>
+      <p>Access to Work is a government grant that pays for equipment and support you need at work that your employer cannot reasonably fund. It is one of the most valuable and underused benefits available to people with sight loss.</p>
+      <p style="margin-top:10px">Access to Work can fund:</p>
+      <ul style="margin-top:8px">
+        <li>Screen readers (JAWS, NVDA) and magnification software (ZoomText)</li>
+        <li>Braille displays and specialist keyboards</li>
+        <li>A support worker or job coach</li>
+        <li>Taxi fares to work if you cannot use public transport</li>
+        <li>Adaptations to equipment</li>
+        <li>Mental health support at work</li>
+      </ul>
+      <p style="margin-top:12px"><strong>Apply before buying anything privately.</strong> Access to Work cannot reimburse purchases made before the application. Apply at <a href="https://www.gov.uk/access-to-work" target="_blank" rel="noopener" style="color:var(--yellow);font-weight:700">gov.uk/access-to-work ↗</a></p>
+      <p style="margin-top:10px">Access to Work also covers self-employed people.</p>
+    </div>
+
+    <div class="lc">
+      <h2>💻 Essential Workplace Technology</h2>
+      <p><strong>JAWS</strong> — the most widely used professional screen reader for Windows. Reads all on-screen content aloud. Around £900 but usually funded via Access to Work.</p>
+      <p style="margin-top:10px"><strong>NVDA</strong> — a free, open-source screen reader for Windows. Excellent alternative to JAWS for many users.</p>
+      <p style="margin-top:10px"><strong>ZoomText</strong> — screen magnification with text-to-speech. Particularly useful for partially sighted people who are not yet using a full screen reader.</p>
+      <p style="margin-top:10px"><strong>Dragon NaturallySpeaking</strong> — voice dictation software replacing or reducing the need for typing.</p>
+      <p style="margin-top:10px"><strong>Large print keyboard</strong> — high contrast keys significantly help partially sighted users.</p>
+      <p style="margin-top:10px"><strong>OrCam MyEye</strong> — clips to glasses and reads documents, screens, and faces aloud. Useful in meetings and for reading printed materials.</p>
+    </div>
+
+    <div class="lc">
+      <h2>🗣️ Telling Your Employer</h2>
+      <p>You are not legally required to disclose a sight condition to your employer, but doing so enables you to request reasonable adjustments. Consider disclosing when:</p>
+      <ul style="margin-top:8px">
+        <li>Your condition is affecting your ability to do your job</li>
+        <li>You need adjustments to your workstation or equipment</li>
+        <li>You are applying for a role and need adjustments at interview</li>
+        <li>Your condition is likely to become apparent to colleagues</li>
+      </ul>
+      <p style="margin-top:10px">RNIB's Employment Line (0303 123 9999) provides free confidential advice on how to approach disclosure conversations and what to request.</p>
+    </div>
+
+    <div class="lc">
+      <h2>📋 Redundancy and Dismissal</h2>
+      <p>If you are made redundant or dismissed and believe your sight condition was a factor, this may be disability discrimination. Contact:</p>
+      <ul style="margin-top:8px">
+        <li><strong>ACAS:</strong> <a href="tel:03001231100" style="color:var(--yellow);font-weight:700">0300 123 1100</a> — free employment advice</li>
+        <li><strong>RNIB Employment Line:</strong> 0303 123 9999</li>
+        <li><strong>Citizens Advice:</strong> citizensadvice.org.uk</li>
+        <li><strong>Equality Advisory Support Service:</strong> 0808 800 0082</li>
+      </ul>
+      <p style="margin-top:10px">Employment tribunal claims must be brought within 3 months of the act complained of — act quickly.</p>
+    </div>
+
+    <div class="lc">
+      <h2>🏢 Guidance for Employers</h2>
+      <p>If you employ or manage someone with a sight condition, here is what you need to know:</p>
+      <ul style="margin-top:8px">
+        <li>You have a legal duty to make reasonable adjustments — this is not optional</li>
+        <li>Access to Work pays for most specialist equipment — the cost to you is usually minimal</li>
+        <li>Ask the person what they need — do not assume</li>
+        <li>A workplace needs assessment (available free via Access to Work) identifies specific requirements</li>
+        <li>RNIB offers free employer guidance at rnib.org.uk</li>
+        <li>Sight loss does not affect intelligence, commitment, or capability</li>
+      </ul>
+    </div>
+
+    <div class="lc">
+      <h2>💼 Self-Employment</h2>
+      <p>Many people with sight conditions find self-employment offers flexibility and control that employment cannot always provide. Access to Work covers self-employed people. The <strong>Prince's Trust</strong> and <strong>Enterprise Nation</strong> both support disabled entrepreneurs. HMRC's Access to Work scheme can also fund a personal assistant for business tasks.</p>
+    </div>
+
+    <button class="back-btn" onclick="showPage('home')" style="margin-top:8px" aria-label="Back to home">← Back to home</button>
+  </div>
+</div>
+
 <!-- DECORATIVE DIVIDER -->
 <div aria-hidden="true" style="max-width:680px;margin:0 auto;padding:0 20px;text-align:center;opacity:0.4">
   <svg viewBox="0 0 400 40" width="100%" xmlns="http://www.w3.org/2000/svg">
@@ -1761,6 +1966,8 @@ footer { background: var(--bg2); border-top: 3px solid var(--yellow); padding: 3
         <a onclick="showPage('glossary')" role="button" tabindex="0" style="cursor:pointer">Glossary</a>
         <a onclick="showPage('questions')" role="button" tabindex="0" style="cursor:pointer">Questions to Ask</a>
         <a onclick="showPage('localsupport')" role="button" tabindex="0" style="cursor:pointer">Local Support</a>
+        <a onclick="showPage('eyehealth')" role="button" tabindex="0" style="cursor:pointer">Eye Health Basics</a>
+        <a onclick="showPage('employment')" role="button" tabindex="0" style="cursor:pointer">Employment</a>
       </div>
     </nav>
     <div class="footer-bottom">
@@ -1769,6 +1976,8 @@ footer { background: var(--bg2); border-top: 3px solid var(--yellow); padding: 3
       <a onclick="showPage('glossary')" role="button" tabindex="0">Glossary</a> &nbsp;·&nbsp;
       <a onclick="showPage('questions')" role="button" tabindex="0">Questions to Ask</a> &nbsp;·&nbsp;
       <a onclick="showPage('localsupport')" role="button" tabindex="0">Local Support</a> &nbsp;·&nbsp;
+      <a onclick="showPage('eyehealth')" role="button" tabindex="0">Eye Health Basics</a> &nbsp;·&nbsp;
+      <a onclick="showPage('employment')" role="button" tabindex="0">Employment</a> &nbsp;·&nbsp;
       <a onclick="showPage('contact')" role="button" tabindex="0">Contact</a> &nbsp;·&nbsp;
       <a onclick="showPage('a11y')" role="button" tabindex="0">Accessibility</a> &nbsp;·&nbsp;
       <a onclick="showPage('privacy')" role="button" tabindex="0">Privacy Policy</a>
@@ -1811,6 +2020,13 @@ stargardts:{
     {n:1,title:"Certificate of Vision Impairment (CVI)",body:"Ask your ophthalmologist — it's free. Unlocks local authority rehabilitation, council tax reduction, free bus pass, and more."},
     {n:2,title:"Personal Independence Payment (PIP)",body:"Apply at gov.uk/pip or call 0800 917 2222. Both Daily Living and Mobility components may apply. RNIB can help with the form."},
     {n:3,title:"Access to Work",body:"Government grant funding workplace adjustments and specialist equipment. Apply at gov.uk/access-to-work."}
+  ],
+  livingWith:[
+    {title:"Reading and Screen Use",body:"Use dark mode on all devices and increase font size significantly. Microsoft's Seeing AI reads any printed or digital text aloud via your phone camera — transforming reading with central vision loss. An eccentric viewing technique — looking slightly to the side of what you want to see — uses your preserved peripheral vision and can be trained with a vision rehabilitation specialist."},
+    {title:"Lighting at Home",body:"Bright, even task lighting reduces the effort of using peripheral vision. Avoid glare — position lights to the side rather than overhead. Dimmer switches allow adjustment as conditions change throughout the day."},
+    {title:"Driving",body:"Many people with Stargardt's cannot meet the legal visual standard for driving and must inform the DVLA. This is one of the most emotionally significant losses — RNIB's emotional support line (0303 123 9999) and peer groups understand this specifically. Mobility alternatives including Motability and taxi schemes are worth exploring immediately."},
+    {title:"At Work",body:"Request a workplace needs assessment. Screen magnification software (ZoomText), adjusted monitor positioning, and good task lighting are all reasonable adjustments under the Equality Act. Access to Work funds specialist equipment — apply before buying anything privately."},
+    {title:"Sun Sensitivity",body:"Wraparound UV-blocking sunglasses are essential outdoors. Some people with Stargardt's find light sensitivity significantly affects daily life — tinted lenses (amber or plum) reduce glare and improve comfort in bright conditions."}
   ]
 },
 amd:{
@@ -1842,6 +2058,13 @@ amd:{
     {n:1,title:"Certificate of Vision Impairment (CVI)",body:"Request from your ophthalmologist. Free. Unlocks local authority rehabilitation and council tax reduction."},
     {n:2,title:"Attendance Allowance",body:"If over state pension age, Attendance Allowance pays £114.60/week (higher rate) from April 2026. Age UK can help complete the form."},
     {n:3,title:"Blue Badge",body:"People with severe visual impairment automatically qualify for a Blue Badge. Apply via your local council."}
+  ],
+  livingWith:[
+    {title:"Daily Amsler Grid Monitoring",body:"Test each eye separately every morning before getting up. Keep the grid at reading distance, cover one eye, and look at the central dot. Any new distortion, waviness, or missing areas requires same-day contact with your eye clinic — wet AMD can progress within hours."},
+    {title:"Magnification at Home",body:"A desktop video magnifier (CCTV) transforms reading, writing, and looking at photographs for people with AMD. Available free via NHS low vision clinic — ask your ophthalmologist for a referral. Handheld electronic magnifiers are also available."},
+    {title:"Managing Central Vision Loss",body:"Eccentric viewing — looking slightly to one side of what you want to see — uses the peripheral vision that AMD preserves. A vision rehabilitation specialist can train this technique, which significantly improves functional vision for many people."},
+    {title:"Emotional Impact",body:"AMD involves the loss of the vision used for faces, reading, and television — the things that make daily life rich. This is a real grief. RNIB Sight Loss Counselling (0303 123 9999) and the Macular Society's befriending service both provide free emotional support from people who understand."},
+    {title:"Staying Connected",body:"Large-print books are available free from RNIB. Audiobooks via RNIB Talking Books, Calibre Audio, and Audible keep reading accessible. Smart speakers (Amazon Echo, Google Home) provide hands-free access to news, music, timers, and calls."}
   ]
 },
 glaucoma:{
@@ -1871,6 +2094,13 @@ glaucoma:{
     {n:1,title:"Free NHS Eye Tests",body:"You and your first-degree relatives are entitled to free NHS eye tests if you have glaucoma. Register this with your optician immediately."},
     {n:2,title:"PIP for Glaucoma",body:"Visual field loss supports a PIP claim. Both Daily Living and Mobility components may apply depending on severity."},
     {n:3,title:"Workplace Adjustments",body:"Under the Equality Act 2010, employers must make reasonable adjustments. RNIB's Employment Line (0303 123 9999) provides free confidential advice."}
+  ],
+  livingWith:[
+    {title:"Eye Drop Routine",body:"Take drops at the same time every day — link them to an existing routine like brushing teeth. If you miss a dose, take it as soon as you remember but never double up. An Autodrop device ensures accurate delivery every time and is available from RNIB Shop for around £15."},
+    {title:"Driving with Glaucoma",body:"Visual field loss from glaucoma may affect your legal ability to drive. You must inform the DVLA. The DVLA will arrange a visual field assessment — some people with glaucoma can continue driving, others cannot. Get clarity from your ophthalmologist."},
+    {title:"Peripheral Vision Strategies",body:"Peripheral vision loss makes navigating busy environments and detecting movement at the sides difficult. Scan actively by turning your head rather than relying on peripheral awareness. Good lighting significantly helps — install night lights on stairs and in hallways."},
+    {title:"Family Screening",body:"Tell your first-degree relatives — they are entitled to free NHS eye tests and have a 10x higher risk of glaucoma. This is one of the most important things you can do. Many people with glaucoma feel a real sense of responsibility to protect their family's sight."},
+    {title:"Stress and Eye Pressure",body:"Sustained stress and certain positions (like playing certain wind instruments or inverted yoga poses) can temporarily raise eye pressure. Discuss any concerns with your ophthalmologist. Regular, moderate exercise generally helps maintain healthy eye pressure."}
   ]
 },
 rp:{
@@ -1900,6 +2130,13 @@ rp:{
     {n:1,title:"CVI Registration",body:"Peripheral field loss from RP meets criteria for partial sight or blind registration. Register early — it unlocks significant support."},
     {n:2,title:"PIP — Daily Living and Mobility",body:"RP significantly affects both daily living and mobility, especially at night. Both components of PIP often apply."},
     {n:3,title:"Motability Scheme",body:"PIP enhanced mobility recipients can lease a car, powered wheelchair, or scooter via Motability."}
+  ],
+  livingWith:[
+    {title:"Night Vision and Lighting",body:"Install motion-sensor night lights throughout your home — hallways, stairs, bathroom. Carry a small torch or use your phone torch when out at night. Allow extra time for your eyes to adjust when moving from bright to dark environments — this takes significantly longer with RP."},
+    {title:"Long Cane and Guide Dogs",body:"A long cane is the single most effective mobility aid for RP and training is free via your local authority. A guide dog transforms independent travel — guidedogs.org.uk. Neither is a sign of giving up — both are tools that restore independence and confidence."},
+    {title:"Tunnel Vision Strategies",body:"Scan widely and deliberately — turn your head and body to compensate for narrowing peripheral vision. Sit with your back to a wall in restaurants and public spaces to reduce the need to monitor your sides. Inform people you're with about your visual field so they can position themselves appropriately."},
+    {title:"Employment",body:"RP progresses — plan ahead with your employer rather than waiting for a crisis. A workplace needs assessment, screen magnification, adjusted lighting, and flexible working are all reasonable adjustments. Access to Work funds specialist equipment and support workers."},
+    {title:"Sport and Activity",body:"British Blind Sport has clubs for guide running, tandem cycling, goalball, and more. Staying physically active is important for wellbeing — and many people with RP describe sport as transformative for their confidence and mental health. britishblindsport.org.uk"}
   ]
 },
 diabetic:{
@@ -1926,6 +2163,13 @@ diabetic:{
   benefits:[
     {n:1,title:"Free Annual NHS Eye Screening",body:"The most important thing you can do. Free for all people with diabetes. Never miss it."},
     {n:2,title:"PIP for Diabetic Complications",body:"Vision loss from retinopathy supports a PIP claim. Diabetes UK has a detailed benefits guide at diabetes.org.uk."}
+  ],
+  livingWith:[
+    {title:"Never Miss Your Annual Screening",body:"Annual NHS diabetic eye screening is the single most important thing you can do. It takes 30 minutes and detects changes before you notice symptoms. Missing even one year can allow significant damage to develop silently."},
+    {title:"Blood Sugar Monitoring",body:"A continuous glucose monitor (CGM) — Libre 3 or Dexcom G7 — makes maintaining good blood sugar control significantly easier and reduces diabetic retinopathy risk. Ask your diabetes team whether you are eligible for NHS funding."},
+    {title:"Recognising an Emergency",body:"Sudden vision loss, a curtain across your vision, or a sudden shower of floaters requires immediate A&E attendance — not a routine appointment. Never wait and see with sudden vision changes if you have diabetes."},
+    {title:"Talking to Your Diabetes Team",body:"Your diabetes nurse or consultant should know about any eye changes. Good coordination between your ophthalmologist and diabetes team is important — ask for a copy of your eye screening results to share at your diabetes appointments."},
+    {title:"Emotional Impact",body:"Managing diabetes is relentless, and the fear of sight loss adds real psychological burden. Diabetes UK has a dedicated emotional support service. RNIB (0303 123 9999) can help if vision has already been affected."}
   ]
 },
 lca:{
@@ -1960,6 +2204,13 @@ lca:{
     {n:2,title:"PIP (from age 16)",body:"At 16, DLA transitions to PIP. Both enhanced rate components apply for most people with LCA."},
     {n:3,title:"Education, Health and Care Plan (EHC)",body:"Children are entitled to an EHC plan funding specialist educational support, IT equipment, and braille resources."},
     {n:4,title:"Disabled Students Allowance (DSA)",body:"For students in higher education. Funds screen readers, braille equipment, and study support."}
+  ],
+  livingWith:[
+    {title:"Early Intervention is Everything",body:"The earlier a child with LCA receives specialist education, habilitation, and technology training, the better their long-term outcomes. Push hard for a QTVI (Qualified Teacher of Visual Impairment) from the first year of life — local authorities must provide this under law."},
+    {title:"Braille and Technology",body:"Both braille and screen reader technology open the world for people with LCA. They are not alternatives — many people use both. A refreshable braille display connected to a phone or computer provides silent, tactile access to everything. VoiceOver (iPhone) and TalkBack (Android) are free and powerful."},
+    {title:"Education and the EHC Plan",body:"An Education, Health and Care plan is a legal document that must reflect your child's actual needs. Review it every year and challenge any reductions in support. The RNIB and VIEW charity can advise on what to request and how to challenge decisions."},
+    {title:"Independence and Travel",body:"Orientation and mobility training — learning to navigate safely with a cane or guide dog — is transformative for independence. This is free via your local authority. Guide dog applications can be made from age 16 — guidedogs.org.uk."},
+    {title:"Connecting with Others",body:"The LCA community is small but active and connected. Foundation Fighting Blindness and Retina UK both have family networks. Meeting other families living well with LCA is one of the most powerful things newly diagnosed families describe."}
   ]
 },
 nystagmus:{
@@ -1989,6 +2240,13 @@ nystagmus:{
     {n:1,title:"PIP for Nystagmus",body:"If nystagmus significantly reduces your ability to read, navigate, or work, you may be entitled to PIP. RNIB provides free help — 0303 123 9999."},
     {n:2,title:"Free Eye Tests",body:"CVI holders are entitled to free NHS eye tests. Register with your optician."},
     {n:3,title:"Workplace Adjustments",body:"Under the Equality Act 2010, employers must provide reasonable adjustments including screen magnification and adjusted seating."}
+  ],
+  livingWith:[
+    {title:"Finding and Using Your Null Zone",body:"Your null zone — the head or eye position where movements slow and vision is clearest — is your most important tool. An orthoptist can help identify yours precisely. At a desk, adjust monitor height and position so your null zone aligns with your screen naturally. Employers and schools must accommodate this as a reasonable adjustment."},
+    {title:"School and University",body:"Extra time in exams, large print, reduced copying from the board, and preferential seating are all standard adjustments. Request them proactively via your SENCo at school or disability services at university. The Nystagmus Network (nystagmusnet.org) has specific guidance for students."},
+    {title:"Driving",body:"Many people with nystagmus cannot meet the visual standard for driving. Inform the DVLA honestly. If you cannot drive, explore Motability alternatives — wheelchair taxis, community transport, and local authority travel schemes — as early as possible."},
+    {title:"Screen and Reading Strategies",body:"Increase font size significantly and use high contrast mode on all devices. Screen magnification software (ZoomText) helps for computer work. Reading stands and book holders allow you to position text in your null zone without holding it."},
+    {title:"Explaining to Others",body:"Nystagmus is often invisible to others — people may not understand why vision is affected. A brief, clear explanation helps in social and work situations. The Nystagmus Network has printable information cards worth carrying."}
   ]
 },
 achromatopsia:{
@@ -2019,6 +2277,13 @@ achromatopsia:{
     {n:1,title:"Certificate of Vision Impairment (CVI)",body:"Most people with achromatopsia qualify for partial sight or sight impairment registration. Ask at your next appointment."},
     {n:2,title:"PIP",body:"Both Daily Living and Mobility components may apply. Photophobia and reduced acuity significantly limit daily activities."},
     {n:3,title:"Access to Work",body:"Covers tinted lenses, specialist screen equipment, and lighting adjustments. Apply at gov.uk/access-to-work."}
+  ],
+  livingWith:[
+    {title:"Managing Light Sensitivity",body:"Red or plum tinted lenses are essential outdoors and in bright indoor environments. Dark mode on all devices, window blinds, and reduced overhead lighting at work or school are all critical adjustments. A gradual transition between light levels helps — pause when entering bright environments to allow adjustment."},
+    {title:"Screens and Technology",body:"Set all devices to dark mode, minimum brightness, and large text. f.lux or Night Shift can dim screens below system minimum. Coloured overlays on printed material can sometimes improve readability. Screen glare filters on monitors significantly reduce discomfort."},
+    {title:"School and Work Adjustments",body:"Shaded seating away from windows, permission to wear tinted lenses indoors, and reduced overhead lighting are all reasonable adjustments. The earlier these are established — ideally from the start of school — the better the experience for the child."},
+    {title:"The Social Side",body:"Achromatopsia is rare and often misunderstood. People may not understand why you struggle in bright light or why you cannot see colour. Online communities — particularly the Achromatopsia Network — provide peer support from people who understand the specific daily experience."},
+    {title:"Research and Trials",body:"Gene therapy trials for CNGB3 and CNGA3 are the most active research area for achromatopsia. Getting a genetic diagnosis is essential for trial eligibility. Register with Foundation Fighting Blindness patient registry to be notified of relevant trials."}
   ]
 },
 usher:{
@@ -2049,6 +2314,13 @@ usher:{
     {n:1,title:"PIP Enhanced Rate (Both Components)",body:"Usher syndrome almost always qualifies for the enhanced rate for both Daily Living and Mobility."},
     {n:2,title:"Local Authority Deafblind Support",body:"Under the Care Act 2014, local authorities must meet eligible care needs. Request a deafblind assessment — this can fund intervenors and specialist equipment."},
     {n:3,title:"Disabled Students Allowance",body:"Covers interpreters, notetakers, screen readers, and specialist software for students in higher education."}
+  ],
+  livingWith:[
+    {title:"Communication as Vision Declines",body:"Plan communication strategies before you need them — not during a crisis. Deafblind manual (tactile signing), hands-on signing, and braille are all options depending on your preferred communication. Sense (sense.org.uk) provides specialist communication support and can connect you with an intervenor."},
+    {title:"Lighting and Contrast",body:"Good lighting dramatically helps people with Usher syndrome — particularly in the evening and in unfamiliar environments. Install motion-sensor lights throughout the home. High contrast tape on step edges and door frames improves navigation significantly."},
+    {title:"Technology for Dual Sensory Loss",body:"A refreshable braille display paired with VoiceOver or TalkBack provides silent, tactile access to all phone content — messages, calls, apps — when both sight and hearing are significantly affected. Vibrating alert systems replace auditory signals for doorbells, alarms, and phones."},
+    {title:"Emotional and Social Impact",body:"The combination of hearing and vision loss creates a profound sense of isolation that others often find hard to understand. Sense runs social groups and residential events specifically for deafblind people — connecting with others who share your experience is invaluable."},
+    {title:"Planning Ahead",body:"Usher syndrome is progressive — planning for future needs while function is good is much easier than planning in a crisis. Review your communication strategies, home adaptations, and support arrangements at each major change in vision or hearing."}
   ]
 },
 albinism:{
@@ -2078,6 +2350,13 @@ albinism:{
     {n:1,title:"Certificate of Vision Impairment (CVI)",body:"Most people with albinism qualify for sight impairment registration. Free — ask your ophthalmologist."},
     {n:2,title:"PIP",body:"Albinism's combined impact on vision and photophobia significantly affects daily tasks and mobility."},
     {n:3,title:"Free NHS Eye Tests and Optical Vouchers",body:"Sight impairment certificate holders receive free NHS eye tests and enhanced optical vouchers."}
+  ],
+  livingWith:[
+    {title:"Sun Safety Every Day",body:"SPF50+ sunscreen on all exposed skin, every day — not just sunny days. UV damages the skin of people with albinism far more rapidly than average. Wraparound UV-blocking sunglasses protect both your eyes and the skin around them. A wide-brimmed hat adds significant protection outdoors."},
+    {title:"Low Vision at School",body:"Most children with albinism benefit significantly from preferential seating near the board, large print, a tablet or laptop for close-up work, and good (non-glare) lighting. A QTVI should be involved from the start of school. The Albinism Fellowship (albinism.org.uk) has specific school guidance."},
+    {title:"Glasses and Low Vision Aids",body:"An up-to-date glasses prescription is the foundation. Many people with albinism also benefit from bioptic telescopic lenses for distance tasks like reading the board or watching a presentation. A free NHS low vision assessment provides tailored aids — ask your ophthalmologist for a referral."},
+    {title:"The Social Experience of Albinism",body:"Albinism affects appearance as well as vision, and many people describe unwanted attention or questions as a significant part of their experience. The Albinism Fellowship community — including their annual conference — provides connection with others who understand both aspects of living with albinism."},
+    {title:"Photography and Glare",body:"Camera flash causes significant discomfort — let friends and family know. Outdoor photography in bright conditions is challenging. Tinted lenses, shade, and polarised filters on cameras can help. Many people with albinism find overcast days significantly more comfortable than bright sunshine."}
   ]
 },
 cvi:{
@@ -2108,6 +2387,13 @@ cvi:{
     {n:1,title:"Education, Health and Care (EHC) Plan",body:"Children with CVI are entitled to an EHC plan funding specialist education, a QTVI, and specialist technology."},
     {n:2,title:"DLA for Children / PIP for Adults",body:"The visual and neurological impact of CVI supports a claim at higher rates. RNIB can help — 0303 123 9999."},
     {n:3,title:"Carer's Allowance",body:"If you provide 35+ hours of care per week, you may be entitled to Carer's Allowance (£86.45/week from April 2026)."}
+  ],
+  livingWith:[
+    {title:"Reducing Visual Clutter",body:"Children and adults with CVI see best when their environment is simplified. At home: plain tablecloths, one object at a time on surfaces, reduced wall decoration near work areas. At school: a clear desk, plain exercise books, and a distraction-reduced workspace make a significant difference."},
+    {title:"Using Colour and Movement",body:"Most people with CVI respond better to bright, pure colours — particularly yellow and red. Use these in learning materials, on personal belongings, and in home environments. Gentle movement (such as a slowly rotating object) can attract visual attention when static objects are not noticed."},
+    {title:"Managing Visual Fatigue",body:"Visual processing is effortful for people with CVI — far more so than for those with eye-based conditions. Build in rest breaks from visually demanding tasks. Recognise when vision 'switches off' — this is not laziness, it is neurological fatigue requiring rest."},
+    {title:"Technology and Screens",body:"High contrast display settings, large text, and simplified screen layouts help significantly. iPads with high contrast mode are commonly used by children with CVI. Apps should be simple, uncluttered, and use high contrast — many standard apps are too visually complex."},
+    {title:"Working with Schools",body:"CVI is still widely misunderstood in mainstream education. Many teachers have never heard of it. CVI Scotland (cviscotland.org) provides free training resources for teachers. The EHC plan should specify CVI explicitly and list concrete environmental modifications as legal requirements."}
   ]
 },
 cone:{
@@ -2139,6 +2425,174 @@ cone:{
     {n:1,title:"Certificate of Vision Impairment (CVI)",body:"Ask your ophthalmologist to issue a CVI. Unlocks rehabilitation, council tax reduction, free bus pass, and free NHS eye tests."},
     {n:2,title:"PIP",body:"Central vision loss and photophobia significantly affect daily tasks and travel. RNIB can help — 0303 123 9999."},
     {n:3,title:"Access to Work",body:"Covers tinted lenses, screen magnification software, and lighting adjustments. Apply at gov.uk/access-to-work before buying privately."}
+  ],
+  livingWith:[
+    {title:"Light Management",body:"Photophobia is often the most disabling aspect of cone dystrophy for daily life. Amber or plum wraparound tinted lenses are most effective outdoors. Indoors, reduce overhead lighting and use task lighting at source. All devices should be in dark mode at minimum brightness."},
+    {title:"Reading and Close Work",body:"Central vision loss makes reading, writing, and recognising faces increasingly difficult. A desktop video magnifier with adjustable contrast transforms reading. Eccentric viewing — looking slightly to the side — uses peripheral vision and can be trained with a vision rehabilitation specialist."},
+    {title:"Driving",body:"Progressive central vision loss from cone dystrophy will eventually affect the ability to meet the legal driving standard. Plan ahead — explore Motability, Access to Work travel support, and local transport schemes before a crisis rather than after."},
+    {title:"Work Adjustments",body:"Screen magnification software (ZoomText), adjusted monitor positioning, and good non-glare task lighting are all reasonable workplace adjustments. Access to Work funds specialist equipment. Apply before buying anything privately."},
+    {title:"Genetic Testing and Trials",body:"Your specific gene mutation determines which clinical trials you may be eligible for. Getting a genetic diagnosis is essential. RPGR trials and CNGB3 programmes are the most active — Retina UK (01280 860363) can advise on current recruitment."}
+  ]
+},
+
+dmo:{
+  name:"Diabetic Macular Oedema",
+  what:"Diabetic Macular Oedema (DMO) is a complication of diabetic retinopathy in which fluid leaks from damaged blood vessels into the macula — the central part of the retina responsible for sharp, detailed vision. It is the most common cause of vision loss in people with diabetes and affects approximately 1 in 10 people with diabetic retinopathy. DMO can occur at any stage of diabetic retinopathy.",
+  howAffects:"Central vision becomes blurred or distorted. Reading, recognising faces, and seeing fine detail become increasingly difficult. Vision may fluctuate — better on some days than others — due to changes in fluid levels. Unlike diabetic retinopathy itself, DMO directly and rapidly affects the vision used for everyday tasks.",
+  diagnosis:"Detected by OCT (optical coherence tomography) scanning, which shows fluid within the layers of the macula. Fluorescein angiography identifies leaking blood vessels. Annual NHS diabetic eye screening detects early changes before symptoms appear.",
+  whoAffects:"Anyone with Type 1 or Type 2 diabetes. Risk increases with longer duration of diabetes, poor blood sugar control, high blood pressure, high cholesterol, and kidney disease. Pregnancy can also accelerate DMO in women with diabetes.",
+  research:[
+    {tag:"drug",label:"NICE Approved",title:"Faricimab (Vabysmo)",body:"Dual-pathway anti-VEGF and anti-Ang-2 injection. NICE approved for DMO — fewer injections needed with equivalent or better outcomes than older treatments.",link:"https://clinicaltrials.gov/search?cond=diabetic+macular+edema"},
+    {tag:"drug",label:"NICE Approved",title:"Aflibercept (Eylea HD)",body:"High-dose aflibercept requiring fewer injections than standard dose. NICE approved for DMO in 2024, reducing treatment burden significantly.",link:"https://clinicaltrials.gov/search?cond=diabetic+macular+edema+aflibercept"},
+    {tag:"trial",label:"Clinical Trial",title:"Sustained-Release Implants",body:"Investigational implants delivering anti-VEGF medication continuously for months, removing the need for frequent injections. Several Phase 2/3 trials ongoing.",link:"https://clinicaltrials.gov/search?cond=diabetic+macular+edema+implant"}
+  ],
+  guides:[
+    {n:1,title:"Never Miss Your Diabetes Eye Screening",body:"Annual NHS diabetic eye screening is free and detects DMO before symptoms appear. Missing even one screening can allow DMO to progress to the point where treatment is less effective."},
+    {n:2,title:"Understanding Your Injections",body:"Anti-VEGF injections are given at your eye clinic under local anaesthetic. They are highly effective — most people see improvement or stabilisation within weeks. A loading phase of monthly injections is usually followed by less frequent maintenance doses."},
+    {n:3,title:"Blood Sugar and Blood Pressure Control",body:"Every 1% reduction in HbA1c reduces DMO progression risk significantly. Blood pressure below 130/80 also reduces risk. Work with your diabetes team on a CGM (continuous glucose monitor) if eligible — Libre 3 and Dexcom G7 are often NHS-funded."},
+    {n:4,title:"Applying for Benefits",body:"Vision loss from DMO supports a PIP claim. Diabetes UK has a dedicated benefits guide. RNIB (0303 123 9999) provides free help with forms."}
+  ],
+  tech:[
+    {cat:"Blood Sugar",title:"Continuous Glucose Monitor",body:"Libre 3 or Dexcom G7 — helps maintain the blood sugar control that directly prevents DMO progression. Often NHS-funded for eligible patients.",price:"NHS funded if eligible"},
+    {cat:"Magnification",title:"Desktop Video Magnifier",body:"Magnifies text and images on a large screen with adjustable contrast. Available free via NHS low vision clinic.",price:"Free via NHS — or £400–£2,000 privately"},
+    {cat:"Free App",title:"Seeing AI (Microsoft)",body:"Free iOS app reading text, identifying faces, products, and currency. Valuable when central vision is affected.",price:"Free"}
+  ],
+  support:[
+    {title:"Diabetes UK",body:"Specialist helpline, online community, and comprehensive guides covering all complications including DMO.",link:"https://www.diabetes.org.uk"},
+    {title:"Macular Society",body:"Specialist nurse helpline (0300 3030 111) for macular conditions including DMO.",link:"https://www.macularsociety.org"},
+    {title:"RNIB",body:"Helpline 0303 123 9999, benefits advice, and emotional support.",link:"https://www.rnib.org.uk"}
+  ],
+  benefits:[
+    {n:1,title:"Free Annual NHS Eye Screening",body:"Free for all people with diabetes. The single most important thing you can do to protect your vision."},
+    {n:2,title:"PIP",body:"Vision loss from DMO supports a PIP claim for both Daily Living and Mobility components. RNIB can help — 0303 123 9999."},
+    {n:3,title:"Diabetes UK Benefits Guide",body:"Free comprehensive guide at diabetes.org.uk covering all benefits available to people with diabetes and its complications."}
+  ]
+},
+
+myopic:{
+  name:"Myopic Macular Degeneration",
+  what:"Myopic Macular Degeneration (MMD) is a serious complication of high myopia (severe short-sightedness, typically -6 dioptres or more) in which the elongated eyeball causes progressive damage to the macula. It is the leading cause of vision impairment in young and middle-aged adults in East Asia and is increasingly common in the UK. Unlike age-related AMD, MMD affects younger people and is directly caused by the physical stretching of the eye.",
+  howAffects:"Central vision progressively deteriorates. Straight lines may appear distorted or wavy. A blind spot may develop in the centre of vision. In some cases, abnormal blood vessels grow under the macula (myopic CNV — choroidal neovascularisation), causing rapid vision loss requiring urgent treatment. Peripheral vision is usually preserved.",
+  diagnosis:"OCT scanning identifies macular changes and choroidal thinning. Fluorescein angiography detects abnormal blood vessel growth. Regular monitoring by a retinal specialist is essential for people with high myopia. An Amsler grid used daily at home can detect early changes.",
+  whoAffects:"People with high myopia (usually -6 dioptres or more). Prevalence is rising globally due to increasing rates of myopia. More common in people of East Asian heritage. Can affect people from their 30s onwards, much earlier than age-related AMD.",
+  research:[
+    {tag:"drug",label:"NICE Approved",title:"Anti-VEGF for Myopic CNV",body:"Ranibizumab (Lucentis) and aflibercept (Eylea) are approved treatments for myopic CNV. Fewer injections are typically needed than for wet AMD — many patients require only 1–3 injections.",link:"https://clinicaltrials.gov/search?cond=myopic+macular+degeneration"},
+    {tag:"trial",label:"Research",title:"Scleral Reinforcement Surgery",body:"Posterior scleral reinforcement — a procedure to physically support the back of the eye and slow elongation — is being investigated as a way to prevent MMD progression in high myopes.",link:"https://clinicaltrials.gov/search?cond=myopic+macular+degeneration+scleral"}
+  ],
+  guides:[
+    {n:1,title:"Monitor Daily with an Amsler Grid",body:"If you have high myopia, test each eye separately every day with an Amsler grid. If any lines appear wavy, distorted, or missing, contact your eye clinic the same day — myopic CNV can progress within hours and early treatment is critical."},
+    {n:2,title:"Get Regular Specialist Review",body:"Ask your optometrist for referral to a medical retina specialist if you have high myopia. Annual OCT scans can detect macular changes before symptoms appear."},
+    {n:3,title:"Protect Your Eyes from Impact",body:"High myopes have a higher risk of retinal detachment. Avoid contact sports without eye protection. Sudden flashing lights or a curtain across your vision requires immediate A&E attendance."},
+    {n:4,title:"Register and Claim",body:"MMD causing significant vision loss supports a CVI application and PIP claim. Ask your ophthalmologist and call RNIB (0303 123 9999) for guidance."}
+  ],
+  tech:[
+    {cat:"Monitoring",title:"Amsler Grid App",body:"Free daily self-monitoring app — critical for detecting early myopic CNV before it causes irreversible damage.",price:"Free"},
+    {cat:"Magnification",title:"Low Vision Assessment",body:"Free NHS low vision assessment provides magnifiers and tinted lenses tailored to your vision. Ask your ophthalmologist for a referral.",price:"Free via NHS"}
+  ],
+  support:[
+    {title:"Macular Society",body:"Specialist nurse helpline (0300 3030 111). Supports all macular conditions including MMD.",link:"https://www.macularsociety.org"},
+    {title:"RNIB",body:"Helpline 0303 123 9999, benefits advice, and emotional support.",link:"https://www.rnib.org.uk"}
+  ],
+  benefits:[
+    {n:1,title:"Certificate of Vision Impairment (CVI)",body:"If MMD has significantly affected your vision, ask your ophthalmologist for a CVI. Free and unlocks rehabilitation and financial support."},
+    {n:2,title:"PIP",body:"Central vision loss from MMD supports a PIP claim. RNIB can help with the form — 0303 123 9999."},
+    {n:3,title:"Free NHS Eye Tests",body:"People with sight impairment certificates receive free NHS eye tests. Register with your optician."}
+  ]
+},
+
+charlesbonnet:{
+  name:"Charles Bonnet Syndrome",
+  what:"Charles Bonnet Syndrome (CBS) is a condition in which people with significant sight loss experience vivid visual hallucinations — seeing things that are not there. It affects an estimated 1 in 2 people with significant vision loss, including those with AMD, glaucoma, diabetic retinopathy, and other conditions. Despite the alarming nature of the hallucinations, CBS is not a mental health condition and does not indicate dementia or psychosis. It is caused by the brain generating its own images when deprived of normal visual input.",
+  howAffects:"Hallucinations vary widely — from simple patterns, grids, and flashing lights to detailed images of people, animals, buildings, and landscapes. They are always silent and usually recognised as not real by the person experiencing them. They can last seconds or hours and may occur daily or occasionally. They are often triggered by low light, tiredness, or stress. CBS can cause significant distress and anxiety, particularly if the person does not know what is happening to them.",
+  diagnosis:"CBS is diagnosed by a doctor or ophthalmologist based on the person's description of their experiences and a confirmed history of sight loss. There are no specific tests. Many people are embarrassed to mention their hallucinations — it is important to know they are very common and are a recognised medical condition.",
+  whoAffects:"Affects an estimated 1 in 2 people with significant sight loss. More common with severe or sudden vision loss. Can affect people of any age. Significantly underreported because people fear being thought to have a mental health condition.",
+  research:[
+    {tag:"trial",label:"Research",title:"Understanding CBS Mechanisms",body:"Research at University College London and other centres is investigating the neurological mechanisms of CBS and potential treatments including non-invasive brain stimulation.",link:"https://clinicaltrials.gov/search?cond=charles+bonnet+syndrome"},
+    {tag:"drug",label:"Emerging",title:"Ketamine and CBS",body:"Early research suggests low-dose ketamine may reduce CBS hallucinations in some patients. Investigational — not yet a standard treatment.",link:"https://clinicaltrials.gov/search?cond=charles+bonnet"}
+  ],
+  guides:[
+    {n:1,title:"Tell Your Doctor",body:"Many people suffer in silence for years because they are afraid of being thought mentally unwell. CBS is a recognised medical condition — tell your ophthalmologist or GP. Simply knowing what is happening dramatically reduces distress for most people."},
+    {n:2,title:"Strategies to Reduce Hallucinations",body:"Move your eyes rapidly from side to side — this interrupts the hallucination in many people. Increase light levels. Move to a different room. Some people find standing up or changing activity helps. Keep a diary of when hallucinations occur to identify your triggers."},
+    {n:3,title:"Talk to Others",body:"The Macular Society and RNIB both have specialist advisors who understand CBS. Talking to others with the condition — via support groups — is consistently reported as one of the most helpful things people do."},
+    {n:4,title:"Family and Carers",body:"Explain CBS to family members and carers. Understanding that the hallucinations are a neurological response to vision loss — not a mental health crisis — helps everyone respond calmly and supportively."}
+  ],
+  tech:[
+    {cat:"Lighting",title:"Bright, Even Lighting",body:"Increasing light levels at home reduces CBS episodes for many people. Smart lighting (Philips Hue etc.) allows easy adjustment without moving around.",price:"£30–£200"},
+    {cat:"Support",title:"CBS Support Line",body:"The Macular Society runs a dedicated CBS helpline staffed by people who understand the condition.",price:"Free — 0300 3030 111"}
+  ],
+  support:[
+    {title:"Macular Society CBS Support",body:"Dedicated CBS information, helpline, and peer support. One of the best specialist resources for CBS in the UK.",link:"https://www.macularsociety.org/charles-bonnet-syndrome"},
+    {title:"RNIB",body:"Helpline 0303 123 9999. CBS information and emotional support.",link:"https://www.rnib.org.uk"},
+    {title:"Esme's Umbrella",body:"The leading UK CBS charity — dedicated awareness, research funding, and peer support specifically for CBS.",link:"https://www.charlesbonnetsyndrome.uk"}
+  ],
+  benefits:[
+    {n:1,title:"PIP for Underlying Condition",body:"CBS itself does not qualify for PIP but the underlying sight condition causing it does. Claim PIP based on your primary eye condition."},
+    {n:2,title:"Mental Health Support",body:"If CBS is causing significant anxiety or distress, you are entitled to mental health support via your GP. RNIB Sight Loss Counselling (0303 123 9999) also provides free sessions."},
+    {n:3,title:"Carer Support",body:"If CBS requires significant support from a family member or carer, they may be entitled to Carer's Allowance (£86.45/week from April 2026)."}
+  ]
+},
+
+opticneuritis:{
+  name:"Optic Neuritis",
+  what:"Optic Neuritis is inflammation of the optic nerve — the nerve that carries visual information from the eye to the brain. It causes sudden vision loss, usually in one eye, often accompanied by pain on eye movement. It is strongly associated with multiple sclerosis (MS) — approximately 50% of people with optic neuritis will go on to develop MS. It can also occur in isolation or in association with other conditions including neuromyelitis optica spectrum disorder (NMOSD).",
+  howAffects:"Sudden blurring or loss of vision in one eye, typically developing over hours to days. Pain behind the eye, worsened by eye movement. Reduced colour vision — red colours appear washed out or faded. In most cases, vision recovers significantly within weeks to months, though some permanent reduction may remain. The Uhthoff phenomenon — temporary worsening of vision with heat or exercise — is common.",
+  diagnosis:"Diagnosed by an ophthalmologist or neurologist based on symptoms, visual field testing, colour vision testing, and OCT scanning of the optic nerve. MRI brain and spinal cord scanning is routinely performed to assess MS risk. VEP (visual evoked potential) testing measures the speed of signals along the optic nerve.",
+  whoAffects:"Most commonly affects women aged 20–45. Associated with MS in approximately 50% of cases. Can also be associated with neuromyelitis optica (NMO), a more severe condition requiring different treatment. Optic neuritis can recur.",
+  research:[
+    {tag:"drug",label:"Treatment",title:"Intravenous Methylprednisolone",body:"High-dose IV steroids speed up recovery from an acute optic neuritis episode but do not improve the final level of vision recovery. Standard treatment in most UK hospitals.",link:"https://clinicaltrials.gov/search?cond=optic+neuritis"},
+    {tag:"trial",label:"Neuroprotection",title:"RENEW and REVERSE Trials",body:"Trials investigating whether drugs can protect optic nerve fibres during an acute attack, preventing permanent damage. Lenadogene noluparvovec (GS010) and other agents being studied.",link:"https://clinicaltrials.gov/search?cond=optic+neuritis+neuroprotection"}
+  ],
+  guides:[
+    {n:1,title:"Seek Urgent Assessment",body:"Sudden vision loss in one eye is always a medical emergency. Go to A&E or an urgent eye clinic immediately. Do not wait for a GP appointment. Early assessment determines whether MS-related treatment is needed."},
+    {n:2,title:"Understanding the MS Link",body:"Being told you have optic neuritis and an MS risk can be frightening. Ask your neurologist for a clear explanation of your MRI results and what they mean for your specific risk. MS Society (ms-society.org.uk) has excellent information."},
+    {n:3,title:"Managing Uhthoff Phenomenon",body:"Avoid overheating — hot baths, saunas, and intense exercise can temporarily worsen vision. Use cooling vests, fans, and lukewarm rather than hot water. Vision returns to baseline once temperature normalises."},
+    {n:4,title:"Driving and Optic Neuritis",body:"You must inform the DVLA if you have had optic neuritis. Driving is not permitted during an acute episode. Your ophthalmologist or neurologist will advise when it is safe to return to driving."}
+  ],
+  tech:[
+    {cat:"Monitoring",title:"Colour Vision Test Apps",body:"Apps such as Colour Blind Pal can help monitor colour vision changes — useful for tracking recovery or detecting recurrence.",price:"Free"},
+    {cat:"Support",title:"MS Society Resources",body:"If MS is associated, the MS Society provides comprehensive information and support.",price:"Free — mssociety.org.uk"}
+  ],
+  support:[
+    {title:"MS Society",body:"Comprehensive support for MS and associated conditions including optic neuritis. Helpline, local groups, and research updates.",link:"https://www.mssociety.org.uk"},
+    {title:"RNIB",body:"Helpline 0303 123 9999. Vision loss support and benefits advice.",link:"https://www.rnib.org.uk"},
+    {title:"Neuro-ophthalmology UK",body:"Specialist information for neurological eye conditions including optic neuritis and NMO.",link:"https://www.rcophth.ac.uk"}
+  ],
+  benefits:[
+    {n:1,title:"PIP",body:"Vision loss and associated fatigue or disability from optic neuritis or MS supports a PIP claim. Both Daily Living and Mobility components may apply."},
+    {n:2,title:"MS Society Benefits Advice",body:"If MS is associated, the MS Society has a dedicated benefits advice service — mssociety.org.uk."},
+    {n:3,title:"Access to Work",body:"If optic neuritis or associated MS affects your ability to work, Access to Work covers equipment and support. Apply at gov.uk/access-to-work."}
+  ]
+},
+
+blepharitis:{
+  name:"Blepharitis",
+  what:"Blepharitis is a common chronic inflammation of the eyelids, affecting the eyelid margins where the eyelashes grow. It is one of the most common eye conditions in the UK, affecting people of all ages. There are two main types: anterior blepharitis (affecting the outer eyelid margin, often associated with bacteria or skin conditions such as seborrhoeic dermatitis or rosacea) and posterior blepharitis (affecting the inner eyelid margin, caused by dysfunction of the meibomian glands which produce the oily layer of the tear film). Many people have both types.",
+  howAffects:"Sore, red, itchy, and swollen eyelids. Crusty or sticky eyelashes, particularly in the morning. Burning or gritty sensation in the eyes. Dry eyes caused by disruption of the tear film. Sensitivity to light. Blurred vision that improves with blinking. In most cases blepharitis does not permanently damage vision, but it can cause significant discomfort and affect quality of life. In severe cases it can lead to corneal damage.",
+  diagnosis:"Diagnosed by an optometrist or ophthalmologist through examination of the eyelid margins under a slit lamp. Meibomian gland expression and photography can assess gland function. No specific tests are needed for a diagnosis.",
+  whoAffects:"Extremely common — affects millions of people in the UK. More common with age. Associated with skin conditions including rosacea, seborrhoeic dermatitis, and acne. Contact lens wearers are at higher risk. Blepharitis is chronic — it rarely disappears completely but can be very well controlled with daily lid hygiene.",
+  research:[
+    {tag:"drug",label:"Treatment",title:"Intense Pulsed Light (IPL) Therapy",body:"IPL treatment is showing excellent results for posterior blepharitis caused by meibomian gland dysfunction. Now available at specialist eye clinics in the UK.",link:"https://clinicaltrials.gov/search?cond=blepharitis+meibomian"},
+    {tag:"trial",label:"Clinical Trial",title:"Lotilaner Ophthalmic Solution",body:"A novel treatment targeting Demodex mite infestation — an increasingly recognised cause of blepharitis. Phase 3 trial data is promising.",link:"https://clinicaltrials.gov/search?cond=blepharitis+lotilaner"}
+  ],
+  guides:[
+    {n:1,title:"Daily Lid Hygiene — The Most Important Thing",body:"Warm compress for 2 minutes (a heated eye mask works well — Bruder mask recommended), then gently clean the eyelid margins with a lint-free pad and diluted baby shampoo or dedicated lid wipes (Blephasol, Sterilid). Do this every day — consistency is everything with blepharitis."},
+    {n:2,title:"Warm Compresses Done Properly",body:"The compress needs to be warm enough (around 40°C) and held for long enough (at least 2 minutes) to melt the thickened oil in the meibomian glands. A microwaveable heated eye mask (Bruder, TheraEye) maintains temperature much better than a flannel."},
+    {n:3,title:"Omega-3 Supplements",body:"Omega-3 fatty acids (fish oil or flaxseed oil, 2–3g daily) improve meibomian gland function and reduce symptoms in most people with posterior blepharitis. Allow 3 months for full effect. Ask your ophthalmologist before starting."},
+    {n:4,title:"Dry Eye Management",body:"Preservative-free artificial tears (Hylo-Tear, Systane Ultra) used regularly throughout the day manage dry eye symptoms. Preservative-free drops are important for long-term use — preservatives in standard drops can worsen blepharitis over time."}
+  ],
+  tech:[
+    {cat:"Treatment",title:"Heated Eye Mask (Bruder/TheraEye)",body:"Reusable microwaveable masks maintain the correct temperature for meibomian gland treatment far more effectively than flannels.",price:"£20–£35"},
+    {cat:"Drops",title:"Preservative-Free Artificial Tears",body:"Hylo-Tear, Systane Ultra PF, or Evolve — used regularly throughout the day to manage dry eye caused by blepharitis.",price:"£8–£15"}
+  ],
+  support:[
+    {title:"Dry Eye and Blepharitis Support UK",body:"Online community and information for people with chronic blepharitis and dry eye conditions.",link:"https://www.rnib.org.uk"},
+    {title:"RNIB",body:"Helpline 0303 123 9999 for any associated vision problems.",link:"https://www.rnib.org.uk"},
+    {title:"College of Optometrists",body:"Patient information on blepharitis management from the professional body for optometrists.",link:"https://www.college-optometrists.org"}
+  ],
+  benefits:[
+    {n:1,title:"Free NHS Eye Tests",body:"If blepharitis has affected your vision or you have a related condition, check whether you qualify for free NHS eye tests via your optician."},
+    {n:2,title:"Prescription Prepayment Certificate",body:"If you are prescribed treatments for blepharitis regularly, a Prescription Prepayment Certificate (PPC) caps your costs at around £32 for 3 months of unlimited prescriptions."},
+    {n:3,title:"PIP if Severely Affected",body:"Severe blepharitis causing significant vision problems or limiting daily activities may support a PIP claim. Contact RNIB (0303 123 9999) for advice."}
   ]
 }
 };
@@ -2265,6 +2719,22 @@ function renderCondition(key) {
       </div>
     </div>
 
+    ${d.livingWith ? `
+    <div class="acc-item" id="acc-living-${key}">
+      <button class="acc-btn" onclick="toggleAcc('living','${key}')" aria-expanded="false">
+        <span class="acc-left"><span class="acc-num">7</span><span class="acc-label">Living with ${d.name}</span></span>
+        <span class="acc-arrow" aria-hidden="true">▾</span>
+      </button>
+      <div class="acc-body">
+        ${d.livingWith.map(l=>`
+        <div class="nc">
+          <div class="nc-num" aria-hidden="true" style="background:var(--blue)">💡</div>
+          <div><h3>${l.title}</h3><p>${l.body}</p></div>
+        </div>`).join('')}
+        <div class="wb"><strong>More daily life tips:</strong> Visit our <button onclick="showPage('livingwell')" style="background:none;border:none;color:var(--yellow);font-family:var(--font);font-size:inherit;font-weight:700;cursor:pointer;text-decoration:underline;padding:0">Everyday Guide →</button></div>
+      </div>
+    </div>` : ''}
+
     <button class="back-btn" onclick="showPage('home')" style="margin-top:8px" aria-label="Back to conditions list">← All Conditions</button>
 
     <div class="share-bar" style="margin-top:8px">
@@ -2330,10 +2800,22 @@ function initScrollSpy(key) {
 function toggleAcc(section, key) {
   var item = document.getElementById('acc-' + section + '-' + key);
   if (!item) return;
-  var btn  = item.querySelector('.acc-btn');
+  var btn    = item.querySelector('.acc-btn');
+  var body   = item.querySelector('.acc-body');
   var isOpen = item.classList.contains('open');
+
   item.classList.toggle('open', !isOpen);
   btn.setAttribute('aria-expanded', String(!isOpen));
+
+  // Move focus into the opened panel so screen readers land in the content
+  if (!isOpen && body) {
+    // Make body temporarily focusable, focus it, then remove tabindex
+    body.setAttribute('tabindex', '-1');
+    setTimeout(function() {
+      body.focus({ preventScroll: false });
+      body.removeAttribute('tabindex');
+    }, 50);
+  }
 }
 
 /* ─────────────── JUST DIAGNOSED TOGGLE ─────────────── */
@@ -2523,7 +3005,12 @@ const COND_KEYWORDS = {
   usher:      ['usher','deaf','hearing loss','deafblind','deaf-blind','dual sensory','balance','vestibular','communication','interpreter','intervenor','sense charity','myo7a','ush2a'],
   albinism:   ['albinism','albino','melanin','pigmentation','pale','white hair','skin','uv','sun','foveal hypoplasia','oculocutaneous','ocular albinism','oca'],
   cvi:        ['cerebral visual impairment','cvi','brain','neurological','cortical','premature','prematurity','hypoxia','clutter','visual processing','processing','eeg','complex needs','cerebral palsy','stroke'],
-  cone:       ['cone dystrophy','cone rod','colour vision','color vision','central vision','photophobia','light sensitive','reading','driving','rpgr','cngb3','progressive','fovea']
+  cone:       ['cone dystrophy','cone rod','colour vision','color vision','central vision','photophobia','light sensitive','reading','driving','rpgr','cngb3','progressive','fovea'],
+  dmo:        ['diabetic macular oedema','dmo','diabetic macular edema','diabetes','anti-vegf','injection','central vision','blurred','fluid','macula','retinopathy','swelling','oedema'],
+  myopic:     ['myopic macular degeneration','mmd','high myopia','short sighted','shortsighted','myopia','choroidal','cnv','wavy lines','amsler','retinal detachment'],
+  charlesbonnet: ['charles bonnet','cbs','hallucinations','seeing things','visions','not real','patterns','faces','sight loss hallucinations','visual hallucinations'],
+  opticneuritis: ['optic neuritis','optic nerve','inflammation','ms','multiple sclerosis','sudden vision loss','pain','colour vision','uhthoff','nmo','neuromyelitis'],
+  blepharitis: ['blepharitis','eyelid','eyelids','crusty','itchy eyes','dry eyes','meibomian','lid hygiene','warm compress','redness','eyelashes','gritty']
 };
 
 /* Levenshtein distance — counts single-character edits between two strings */
