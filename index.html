@@ -1061,7 +1061,7 @@ footer { background: var(--bg2); border-top: 3px solid var(--yellow); padding: 3
         </div>
         <div class="news-item">
           <span class="news-tag research">Research</span>
-          <p class="news-text"><strong>Stargardt:</strong> REGENXBIO reports encouraging Phase 2 interim data for RGX-314 dual-vector ABCA4 gene therapy — safety profile confirmed, efficacy readout expected later in 2026.</p>
+          <p class="news-text"><strong>Stargardt:</strong> SpliceBio's dual-vector ABCA4 gene therapy (SB-007) has treated its first patient in the ASTRA Phase 1/2 trial at Oxford. AAVantgarde Bio's CELESTE trial is also recruiting adults with ABCA4 mutations.</p>
         </div>
         <div class="news-item">
           <span class="news-tag research">Research</span>
@@ -1092,7 +1092,49 @@ footer { background: var(--bg2); border-top: 3px solid var(--yellow); padding: 3
      CONDITION PAGE (dynamic)
 ══════════════════════════════════════ -->
 <div id="page-condition" class="page" role="main" aria-label="Condition information">
-  <div id="condition-content"></div>
+  <div class="desktop-wrap">
+
+    <!-- DESKTOP SIDEBAR (condition pages) -->
+    <aside class="desktop-sidebar" aria-label="Site navigation">
+      <span class="sidebar-logo">◈ Vision Hub</span>
+      <span class="sidebar-tagline">Free UK sight loss resource</span>
+      <span class="sidebar-section">Conditions</span>
+      <button class="sidebar-link" onclick="showCondition('stargardts')">✦ Stargardt Disease</button>
+      <button class="sidebar-link" onclick="showCondition('amd')">◉ Age-related MD</button>
+      <button class="sidebar-link" onclick="showCondition('glaucoma')">◎ Glaucoma</button>
+      <button class="sidebar-link" onclick="showCondition('diabetic')">◇ Diabetic Retinopathy</button>
+      <button class="sidebar-link" onclick="showCondition('rp')">◈ Retinitis Pigmentosa</button>
+      <button class="sidebar-link" onclick="showCondition('cvi')">◭ Cerebral Visual Impairment</button>
+      <button class="sidebar-link" onclick="showCondition('nystagmus')">↔ Nystagmus</button>
+      <button class="sidebar-link" onclick="showCondition('albinism')">☀ Albinism</button>
+      <button class="sidebar-link" onclick="showCondition('usher')">◑ Usher Syndrome</button>
+      <button class="sidebar-link" onclick="showCondition('lca')">⬡ Leber Congenital Amaurosis</button>
+      <button class="sidebar-link" onclick="showCondition('cone')">🎯 Cone Dystrophy</button>
+      <button class="sidebar-link" onclick="showCondition('achromatopsia')">⬤ Achromatopsia</button>
+      <button class="sidebar-link" onclick="showCondition('dmo')">💧 Diabetic Macular Oedema</button>
+      <button class="sidebar-link" onclick="showCondition('myopic')">👓 Myopic MD</button>
+      <button class="sidebar-link" onclick="showCondition('charlesbonnet')">🧠 Charles Bonnet Syndrome</button>
+      <button class="sidebar-link" onclick="showCondition('opticneuritis')">⚡ Optic Neuritis</button>
+      <button class="sidebar-link" onclick="showCondition('blepharitis')">👁 Blepharitis</button>
+      <div class="sidebar-divider"></div>
+      <span class="sidebar-section">Guides &amp; Resources</span>
+      <button class="sidebar-link" onclick="showPage('livingwell')">🌟 Everyday Guide</button>
+      <button class="sidebar-link" onclick="showPage('eyehealth')">👁️ Eye Health Basics</button>
+      <button class="sidebar-link" onclick="showPage('employment')">💼 Employment</button>
+      <button class="sidebar-link" onclick="showPage('glossary')">📖 Glossary</button>
+      <button class="sidebar-link" onclick="showPage('questions')">❓ Questions to Ask</button>
+      <button class="sidebar-link" onclick="showPage('localsupport')">📍 Local Support</button>
+      <button class="sidebar-link" onclick="showPage('children')">👶 For Parents</button>
+      <div class="sidebar-divider"></div>
+      <button class="sidebar-link" onclick="showPage('home')">🏠 Home</button>
+      <button class="sidebar-link" onclick="showPage('contact')">✉️ Contact</button>
+    </aside>
+
+    <div class="desktop-main">
+      <div id="condition-content"></div>
+    </div>
+
+  </div>
 </div>
 
 <!-- ══════════════════════════════════════
@@ -2280,9 +2322,9 @@ stargardts:{
   diagnosis:"Typically diagnosed via fundus photography (showing yellow-white flecks), fluorescein angiography, electroretinography (ERG), and genetic testing. A retinal specialist or inherited eye disease clinic can confirm diagnosis.",
   whoAffects:"Affects approximately 1 in 8,000–10,000 people. Usually appears between ages 6–20, though adult-onset forms exist. Equal prevalence across sexes.",
   research:[
-    {tag:"gene",label:"Gene Therapy",title:"ABCA4 Gene Replacement Therapy",body:"Viral vector-based approaches to deliver a corrected copy of the ABCA4 gene directly to photoreceptors. REGENXBIO and MeiraGTx are leading efforts.",link:"https://www.retina-uk.org.uk/research/current-research/gene-therapy/"},
-    {tag:"stem",label:"Stem Cell",title:"RPE Cell Replacement",body:"Human embryonic stem cell-derived RPE transplantation is being investigated to replace lost RPE cells. Moorfields Eye Hospital.",link:"https://www.macularsociety.org/research/research-projects/"},
-    {tag:"trial",label:"Clinical Trial",title:"Visual Cycle Modulators",body:"Emixustat hydrochloride and other modulators have been studied to slow lipofuscin accumulation. Acucela / Kubota Pharmaceutical — Phase 2/3.",link:"https://clinicaltrials.gov/search?cond=Stargardt+emixustat"}
+    {tag:"gene",label:"Gene Therapy",title:"ABCA4 Dual-Vector Gene Therapy",body:"SpliceBio's SB-007 treated its first patient in the ASTRA trial at Oxford in 2026. AAVantgarde Bio's CELESTE trial is also recruiting adults with ABCA4 mutations. Both use dual viral vectors to deliver the large ABCA4 gene.",link:"https://retinauk.org.uk/news/clinical-trial-opportunity-for-adults-with-stargardt-disease/"},
+    {tag:"stem",label:"Stem Cell",title:"RPE Cell Replacement",body:"Human embryonic stem cell-derived RPE transplantation is being investigated to replace lost RPE cells. Moorfields Eye Hospital.",link:"https://www.macularsociety.org/research/"},
+    {tag:"trial",label:"Clinical Trial",title:"Visual Cycle Modulators",body:"Emixustat hydrochloride and other modulators have been studied to slow lipofuscin accumulation. Acucela / Kubota Pharmaceutical — Phase 2/3.",link:"https://www.retina-uk.org.uk/research/"}
   ],
   guides:[
     {n:1,title:"Getting a Referral to a Retinal Specialist",body:"Ask your GP or optometrist for an urgent referral to an ophthalmologist specialising in inherited retinal diseases. In the UK, ask for a Medical Retina or Inherited Eye Disease clinic at your nearest teaching hospital."},
@@ -2333,7 +2375,7 @@ amd:{
   whoAffects:"Primarily affects people over 50. Risk doubles if you smoke. Family history increases risk significantly. Most common cause of severe vision loss in the developed world.",
   research:[
     {tag:"drug",label:"NICE Approved",title:"Pegcetacoplan (SYFOVRE) for Geographic Atrophy",body:"First approved treatment for advanced dry AMD. Reduces the rate of lesion growth. Approved for NHS use 2024.",link:"https://www.nice.org.uk/guidance/ta897"},
-    {tag:"gene",label:"Gene Therapy",title:"Anti-VEGF Gene Therapy",body:"A single intra-vitreal injection delivers continuous anti-VEGF production, potentially replacing years of repeated injections.",link:"https://www.macularsociety.org/research/research-projects/"}
+    {tag:"gene",label:"Gene Therapy",title:"Anti-VEGF Gene Therapy",body:"A single intra-vitreal injection delivers continuous anti-VEGF production, potentially replacing years of repeated injections.",link:"https://www.macularsociety.org/research/"}
   ],
   guides:[
     {n:1,title:"Using Your Amsler Grid",body:"Test each eye separately every day. If lines appear wavy, missing, or distorted — contact your eye clinic the same day. Wet AMD can progress within hours."},
@@ -2370,8 +2412,8 @@ glaucoma:{
   diagnosis:"Detected via eye pressure measurement, optic nerve examination, visual field tests, and OCT scanning. All adults should have an eye test every two years.",
   whoAffects:"Risk is significantly higher over 60, in people of Black African or Caribbean heritage, those with a first-degree relative with glaucoma, high myopia, and diabetes.",
   research:[
-    {tag:"drug",label:"Phase 3 Trial",title:"iDose TR Travoprost Implant",body:"A tiny drug-eluting implant placed inside the eye delivers continuous IOP-lowering medication for years, eliminating the need for daily eye drops.",link:"https://www.glaucoma.uk/about-glaucoma/treatment/"},
-    {tag:"tech",label:"AI Technology",title:"AI Glaucoma Progression Detection",body:"DeepMind and Moorfields NHS Trust's AI analyses OCT scans to detect glaucoma progression years earlier than current clinical methods.",link:"https://www.moorfields.nhs.uk/research"}
+    {tag:"drug",label:"Phase 3 Trial",title:"iDose TR Travoprost Implant",body:"A tiny drug-eluting implant placed inside the eye delivers continuous IOP-lowering medication for years, eliminating the need for daily eye drops.",link:"https://glaucoma.uk/about-glaucoma/treatment/"},
+    {tag:"tech",label:"AI Technology",title:"AI Glaucoma Progression Detection",body:"DeepMind and Moorfields NHS Trust's AI analyses OCT scans to detect glaucoma progression years earlier than current clinical methods.",link:"https://www.moorfields.nhs.uk/research-innovation"}
   ],
   guides:[
     {n:1,title:"Using Your Eye Drops Correctly",body:"Tilt your head back, pull down your lower lid, look up. Squeeze one drop in. Close your eye for two minutes and press the inner corner. Adherence is the single most important thing to protect your vision."},
@@ -2407,7 +2449,7 @@ rp:{
   whoAffects:"Affects approximately 1 in 4,000 people. Symptoms typically begin in the teenage years. Over 100 different genes can cause RP. X-linked forms tend to be more severe.",
   research:[
     {tag:"gene",label:"NHS Approved",title:"Luxturna (voretigene neparvovec)",body:"The first approved gene therapy for an inherited retinal condition. Available on NHS for patients with biallelic RPE65 mutations.",link:"https://www.nice.org.uk/guidance/hst11"},
-    {tag:"trial",label:"Optogenetics",title:"Optogenetic Vision Restoration",body:"Delivers light-sensitive proteins to surviving retinal cells. One patient demonstrated partial vision restoration — a landmark result. GenSight Biologics.",link:"https://www.retina-uk.org.uk/research/current-research/"}
+    {tag:"trial",label:"Optogenetics",title:"Optogenetic Vision Restoration",body:"Delivers light-sensitive proteins to surviving retinal cells. One patient demonstrated partial vision restoration — a landmark result. GenSight Biologics.",link:"https://www.retina-uk.org.uk/research/"}
   ],
   guides:[
     {n:1,title:"Getting a Genetic Test",body:"Ask your ophthalmologist for a referral to an Inherited Retinal Disease clinic. Genetic testing is free on the NHS. Your result determines eligibility for treatments including Luxturna."},
@@ -2476,8 +2518,8 @@ lca:{
   whoAffects:"Present from birth or early infancy. Affects approximately 1 in 50,000 worldwide. The most common cause of inherited visual impairment in children. Autosomal recessive in most cases.",
   research:[
     {tag:"gene",label:"NHS Approved",title:"Luxturna for RPE65-LCA",body:"Luxturna is approved on the NHS for LCA caused by RPE65 mutations. A single subretinal injection in each eye has produced dramatic vision improvements in eligible patients.",link:"https://www.nice.org.uk/guidance/hst11"},
-    {tag:"gene",label:"Gene Therapy",title:"CEP290-LCA — EDIT-101",body:"EDIT-101 uses CRISPR gene editing to correct the most common CEP290 mutation. Phase 1/2 results showed visual improvement in several participants.",link:"https://www.retina-uk.org.uk/research/current-research/"},
-    {tag:"trial",label:"Clinical Trial",title:"GUCY2D-LCA Gene Therapy",body:"Multiple programmes investigating gene replacement for GUCY2D mutations. Early results from Spark Therapeutics and UCL are encouraging.",link:"https://www.retina-uk.org.uk/research/current-research/"}
+    {tag:"gene",label:"Gene Therapy",title:"CEP290-LCA — EDIT-101",body:"EDIT-101 uses CRISPR gene editing to correct the most common CEP290 mutation. Phase 1/2 results showed visual improvement in several participants.",link:"https://www.retina-uk.org.uk/research/"},
+    {tag:"trial",label:"Clinical Trial",title:"GUCY2D-LCA Gene Therapy",body:"Multiple programmes investigating gene replacement for GUCY2D mutations. Early results from Spark Therapeutics and UCL are encouraging.",link:"https://www.retina-uk.org.uk/research/"}
   ],
   guides:[
     {n:1,title:"Get a Genetic Diagnosis as Early as Possible",body:"Different LCA genes respond to different treatments. Ask for urgent referral to a paediatric inherited retinal disease clinic. Genetic testing is free on the NHS."},
@@ -2527,8 +2569,8 @@ nystagmus:{
   diagnosis:"Diagnosed by an ophthalmologist or orthoptist. In children, typically identified in the first few months of life. Investigations to identify underlying causes (MRI, ERG, genetic testing) are routinely carried out.",
   whoAffects:"Affects approximately 1 in 1,000 people. Often associated with albinism, LCA, achromatopsia, and other inherited retinal conditions. Acquired nystagmus in adults may follow neurological events such as stroke or MS.",
   research:[
-    {tag:"drug",label:"Clinical Trial",title:"Memantine for INS",body:"Memantine has shown benefit in reducing nystagmus intensity in some trials, improving visual acuity measurably. Newcastle University NANOS study.",link:"https://www.nystagmusnet.org/research/"},
-    {tag:"trial",label:"Surgery",title:"Tenotomy (Anderson) Procedure",body:"A minor eye muscle surgery shifting the null zone to a more central position, reducing the need for a head turn.",link:"https://www.nystagmusnet.org/research/"}
+    {tag:"drug",label:"Clinical Trial",title:"Memantine for INS",body:"Memantine has shown benefit in reducing nystagmus intensity in some trials, improving visual acuity measurably. Newcastle University NANOS study.",link:"https://www.nystagmusnet.org"},
+    {tag:"trial",label:"Surgery",title:"Tenotomy (Anderson) Procedure",body:"A minor eye muscle surgery shifting the null zone to a more central position, reducing the need for a head turn.",link:"https://www.nystagmusnet.org"}
   ],
   guides:[
     {n:1,title:"Finding and Using Your Null Zone",body:"The null zone is where movements are slowest and vision clearest. Ask your orthoptist to help identify yours. Employers and schools can reasonably accommodate this."},
@@ -2574,8 +2616,8 @@ achromatopsia:{
   diagnosis:"Diagnosed by electroretinography (ERG) showing absent cone responses with normal rod responses, visual acuity testing, and genetic testing.",
   whoAffects:"Affects approximately 1 in 30,000 people. Both sexes affected equally. Autosomal recessive. Often identified in early infancy due to light sensitivity and nystagmus.",
   research:[
-    {tag:"gene",label:"Gene Therapy",title:"CNGB3 and CNGA3 Gene Therapy",body:"Multiple Phase 1/2 trials for CNGB3 and CNGA3 mutations have shown promising safety data and early functional improvements.",link:"https://www.retina-uk.org.uk/research/current-research/"},
-    {tag:"trial",label:"Clinical Trial",title:"Colour Vision Restoration Research",body:"UCL and Moorfields Eye Hospital are investigating cone-targeted therapies. The achromatopsia research community is highly active.",link:"https://www.retina-uk.org.uk/research/current-research/"}
+    {tag:"gene",label:"Gene Therapy",title:"CNGB3 and CNGA3 Gene Therapy",body:"Multiple Phase 1/2 trials for CNGB3 and CNGA3 mutations have shown promising safety data and early functional improvements.",link:"https://www.retina-uk.org.uk/research/"},
+    {tag:"trial",label:"Clinical Trial",title:"Colour Vision Restoration Research",body:"UCL and Moorfields Eye Hospital are investigating cone-targeted therapies. The achromatopsia research community is highly active.",link:"https://www.retina-uk.org.uk/research/"}
   ],
   guides:[
     {n:1,title:"Tinted Lenses and Filter Glasses",body:"Red or plum-tinted lenses dramatically reduce photophobia and improve functional vision in bright conditions. Specialist providers include Eschenbach and NoIR Medical Technologies."},
@@ -2623,7 +2665,7 @@ usher:{
   whoAffects:"Affects approximately 1 in 6,000 people. Type 2 is the most common form. Usually identified in childhood or teenage years. Affects both sexes equally.",
   research:[
     {tag:"gene",label:"Gene Therapy",title:"MYO7A Gene Therapy (Type 1)",body:"UshStat and Sensorion are developing gene therapy for MYO7A (most common Type 1 cause). Phase 1/2 data suggest promising safety and early efficacy.",link:"https://www.sense.org.uk/information-and-advice/conditions/usher-syndrome/"},
-    {tag:"trial",label:"Clinical Trial",title:"Antisense Oligonucleotide for USH2A",body:"AON therapy for USH2A (Type 2 — the most common form). ProQR / Stellar Biotherapeutics showing promise.",link:"https://www.retina-uk.org.uk/research/current-research/"}
+    {tag:"trial",label:"Clinical Trial",title:"Antisense Oligonucleotide for USH2A",body:"AON therapy for USH2A (Type 2 — the most common form). ProQR / Stellar Biotherapeutics showing promise.",link:"https://www.retina-uk.org.uk/research/"}
   ],
   guides:[
     {n:1,title:"Deafblind Manual Communication",body:"As vision and hearing both decline, deafblind manual communication becomes essential. Social services must fund communication support — request a specialist deafblind assessment from your local authority."},
@@ -2670,8 +2712,8 @@ albinism:{
   diagnosis:"Diagnosed by OCT (to identify foveal hypoplasia — the definitive diagnostic feature), electroretinography, and genetic testing.",
   whoAffects:"Affects approximately 1 in 17,000 people in the UK. More prevalent in sub-Saharan Africa. Autosomal recessive in most forms.",
   research:[
-    {tag:"trial",label:"Research",title:"Levodopa Trials for Foveal Development",body:"Studies investigating whether levodopa during early childhood can partially stimulate foveal development. Early results mixed.",link:"https://www.albinism.org.uk/research/"},
-    {tag:"gene",label:"Gene Therapy",title:"OCA Gene Therapy Research",body:"Preclinical programmes developing gene replacement for OCA1 and OCA2. University of Manchester and international partners.",link:"https://www.albinism.org.uk/research/"}
+    {tag:"trial",label:"Research",title:"Levodopa Trials for Foveal Development",body:"Studies investigating whether levodopa during early childhood can partially stimulate foveal development. Early results mixed.",link:"https://www.albinism.org.uk"},
+    {tag:"gene",label:"Gene Therapy",title:"OCA Gene Therapy Research",body:"Preclinical programmes developing gene replacement for OCA1 and OCA2. University of Manchester and international partners.",link:"https://www.albinism.org.uk"}
   ],
   guides:[
     {n:1,title:"Sun Protection is Essential",body:"Significantly increased risk of skin cancer due to reduced melanin. Use SPF50+ sunscreen daily, wear protective clothing and UV-blocking sunglasses. Wraparound lenses protect from UV and reduce photophobia."},
@@ -2706,7 +2748,7 @@ cvi:{
   diagnosis:"Diagnosed by a specialist paediatric ophthalmologist or neuro-ophthalmologist. Standard visual acuity tests may underestimate functional vision. Brain MRI identifies the area of brain damage. A specialist CVI assessment is the gold standard.",
   whoAffects:"The most common cause of childhood visual impairment in developed countries. An estimated 30–40% of children with cerebral palsy have CVI. Can affect people of any age following stroke or brain injury.",
   research:[
-    {tag:"trial",label:"Intervention Research",title:"Active Learning and CVI",body:"Research developing structured intervention programmes to maximise vision development through the brain's plasticity.",link:"https://www.cviscotland.org/about-cvi/research/"}
+    {tag:"trial",label:"Intervention Research",title:"Active Learning and CVI",body:"Research developing structured intervention programmes to maximise vision development through the brain's plasticity.",link:"https://cviscotland.org"}
   ],
   guides:[
     {n:1,title:"Request a Specialist CVI Assessment",body:"Standard eye charts don't capture the complexity of CVI. Ask for a functional vision assessment using the CVI Range or equivalent specialist tool."},
@@ -2754,8 +2796,8 @@ cone:{
   diagnosis:"Electroretinography (ERG) showing preferentially reduced cone responses. OCT imaging of the macula. Colour vision testing. Genetic testing strongly recommended.",
   whoAffects:"Affects approximately 1 in 30,000–40,000 people. Symptoms usually begin in childhood to early adulthood. Follows autosomal dominant, recessive, or X-linked inheritance depending on the gene.",
   research:[
-    {tag:"gene",label:"Gene Therapy",title:"CNGB3 / CNGA3 Gene Replacement",body:"Gene therapy programmes for CNGB3/CNGA3 mutations. Beacon Therapeutics / AGTC programmes are most advanced.",link:"https://www.retina-uk.org.uk/research/current-research/"},
-    {tag:"trial",label:"Clinical Trial",title:"RPGR Gene Therapy (X-Linked)",body:"MeiraGTx and Nightstar/Biogen have active Phase 2/3 trials for RPGR mutations showing preservation of function.",link:"https://www.retina-uk.org.uk/research/current-research/"}
+    {tag:"gene",label:"Gene Therapy",title:"CNGB3 / CNGA3 Gene Replacement",body:"Gene therapy programmes for CNGB3/CNGA3 mutations. Beacon Therapeutics / AGTC programmes are most advanced.",link:"https://www.retina-uk.org.uk/research/"},
+    {tag:"trial",label:"Clinical Trial",title:"RPGR Gene Therapy (X-Linked)",body:"MeiraGTx and Nightstar/Biogen have active Phase 2/3 trials for RPGR mutations showing preservation of function.",link:"https://www.retina-uk.org.uk/research/"}
   ],
   guides:[
     {n:1,title:"Get a Genetic Test",body:"Identifying your specific gene mutation is essential for accessing trials. Request a referral to an inherited retinal disease clinic — genetic testing is free on the NHS."},
@@ -2827,8 +2869,8 @@ myopic:{
   diagnosis:"OCT scanning identifies macular changes and choroidal thinning. Fluorescein angiography detects abnormal blood vessel growth. Regular monitoring by a retinal specialist is essential for people with high myopia. An Amsler grid used daily at home can detect early changes.",
   whoAffects:"People with high myopia (usually -6 dioptres or more). Prevalence is rising globally due to increasing rates of myopia. More common in people of East Asian heritage. Can affect people from their 30s onwards, much earlier than age-related AMD.",
   research:[
-    {tag:"drug",label:"NICE Approved",title:"Anti-VEGF for Myopic CNV",body:"Ranibizumab (Lucentis) and aflibercept (Eylea) are approved treatments for myopic CNV. Fewer injections are typically needed than for wet AMD — many patients require only 1–3 injections.",link:"https://www.macularsociety.org/macular-conditions/myopic-macular-degeneration/"},
-    {tag:"trial",label:"Research",title:"Scleral Reinforcement Surgery",body:"Posterior scleral reinforcement — a procedure to physically support the back of the eye and slow elongation — is being investigated as a way to prevent MMD progression in high myopes.",link:"https://www.macularsociety.org/research/research-projects/"}
+    {tag:"drug",label:"NICE Approved",title:"Anti-VEGF for Myopic CNV",body:"Ranibizumab (Lucentis) and aflibercept (Eylea) are approved treatments for myopic CNV. Fewer injections are typically needed than for wet AMD — many patients require only 1–3 injections.",link:"https://www.macularsociety.org/macular-conditions/"},
+    {tag:"trial",label:"Research",title:"Scleral Reinforcement Surgery",body:"Posterior scleral reinforcement — a procedure to physically support the back of the eye and slow elongation — is being investigated as a way to prevent MMD progression in high myopes.",link:"https://www.macularsociety.org/research/"}
   ],
   guides:[
     {n:1,title:"Monitor Daily with an Amsler Grid",body:"If you have high myopia, test each eye separately every day with an Amsler grid. If any lines appear wavy, distorted, or missing, contact your eye clinic the same day — myopic CNV can progress within hours and early treatment is critical."},
@@ -2858,8 +2900,8 @@ charlesbonnet:{
   diagnosis:"CBS is diagnosed by a doctor or ophthalmologist based on the person's description of their experiences and a confirmed history of sight loss. There are no specific tests. Many people are embarrassed to mention their hallucinations — it is important to know they are very common and are a recognised medical condition.",
   whoAffects:"Affects an estimated 1 in 2 people with significant sight loss. More common with severe or sudden vision loss. Can affect people of any age. Significantly underreported because people fear being thought to have a mental health condition.",
   research:[
-    {tag:"trial",label:"Research",title:"Understanding CBS Mechanisms",body:"Research at University College London and other centres is investigating the neurological mechanisms of CBS and potential treatments including non-invasive brain stimulation.",link:"https://www.charlesbonnetsyndrome.uk/research/"},
-    {tag:"drug",label:"Emerging",title:"Ketamine and CBS",body:"Early research suggests low-dose ketamine may reduce CBS hallucinations in some patients. Investigational — not yet a standard treatment.",link:"https://www.charlesbonnetsyndrome.uk/research/"}
+    {tag:"trial",label:"Research",title:"Understanding CBS Mechanisms",body:"Research at University College London and other centres is investigating the neurological mechanisms of CBS and potential treatments including non-invasive brain stimulation.",link:"https://www.charlesbonnetsyndrome.uk"},
+    {tag:"drug",label:"Emerging",title:"Ketamine and CBS",body:"Early research suggests low-dose ketamine may reduce CBS hallucinations in some patients. Investigational — not yet a standard treatment.",link:"https://www.charlesbonnetsyndrome.uk"}
   ],
   guides:[
     {n:1,title:"Tell Your Doctor",body:"Many people suffer in silence for years because they are afraid of being thought mentally unwell. CBS is a recognised medical condition — tell your ophthalmologist or GP. Simply knowing what is happening dramatically reduces distress for most people."},
@@ -2890,8 +2932,8 @@ opticneuritis:{
   diagnosis:"Diagnosed by an ophthalmologist or neurologist based on symptoms, visual field testing, colour vision testing, and OCT scanning of the optic nerve. MRI brain and spinal cord scanning is routinely performed to assess MS risk. VEP (visual evoked potential) testing measures the speed of signals along the optic nerve.",
   whoAffects:"Most commonly affects women aged 20–45. Associated with MS in approximately 50% of cases. Can also be associated with neuromyelitis optica (NMO), a more severe condition requiring different treatment. Optic neuritis can recur.",
   research:[
-    {tag:"drug",label:"Treatment",title:"Intravenous Methylprednisolone",body:"High-dose IV steroids speed up recovery from an acute optic neuritis episode but do not improve the final level of vision recovery. Standard treatment in most UK hospitals.",link:"https://www.mssociety.org.uk/research/explore-our-research/latest-research/optic-neuritis"},
-    {tag:"trial",label:"Neuroprotection",title:"RENEW and REVERSE Trials",body:"Trials investigating whether drugs can protect optic nerve fibres during an acute attack, preventing permanent damage. Lenadogene noluparvovec (GS010) and other agents being studied.",link:"https://www.nihr.ac.uk/news/nihr-funded-research/optic-neuritis/"}
+    {tag:"drug",label:"Treatment",title:"Intravenous Methylprednisolone",body:"High-dose IV steroids speed up recovery from an acute optic neuritis episode but do not improve the final level of vision recovery. Standard treatment in most UK hospitals.",link:"https://www.mssociety.org.uk/research"},
+    {tag:"trial",label:"Neuroprotection",title:"RENEW and REVERSE Trials",body:"Trials investigating whether drugs can protect optic nerve fibres during an acute attack, preventing permanent damage. Lenadogene noluparvovec (GS010) and other agents being studied.",link:"https://www.nihr.ac.uk"}
   ],
   guides:[
     {n:1,title:"Seek Urgent Assessment",body:"Sudden vision loss in one eye is always a medical emergency. Go to A&E or an urgent eye clinic immediately. Do not wait for a GP appointment. Early assessment determines whether MS-related treatment is needed."},
@@ -2922,7 +2964,7 @@ blepharitis:{
   diagnosis:"Diagnosed by an optometrist or ophthalmologist through examination of the eyelid margins under a slit lamp. Meibomian gland expression and photography can assess gland function. No specific tests are needed for a diagnosis.",
   whoAffects:"Extremely common — affects millions of people in the UK. More common with age. Associated with skin conditions including rosacea, seborrhoeic dermatitis, and acne. Contact lens wearers are at higher risk. Blepharitis is chronic — it rarely disappears completely but can be very well controlled with daily lid hygiene.",
   research:[
-    {tag:"drug",label:"Treatment",title:"Intense Pulsed Light (IPL) Therapy",body:"IPL treatment is showing excellent results for posterior blepharitis caused by meibomian gland dysfunction. Now available at specialist eye clinics in the UK.",link:"https://www.college-optometrists.org/clinical-guidance/clinical-management-guidelines/anterior-eye-conditions/blepharitis"},
+    {tag:"drug",label:"Treatment",title:"Intense Pulsed Light (IPL) Therapy",body:"IPL treatment is showing excellent results for posterior blepharitis caused by meibomian gland dysfunction. Now available at specialist eye clinics in the UK.",link:"https://www.college-optometrists.org/clinical-guidance/clinical-management-guidelines/anterior-eye-conditions_optometric-management/blepharitis"},
     {tag:"trial",label:"Clinical Trial",title:"Lotilaner Ophthalmic Solution",body:"A novel treatment targeting Demodex mite infestation — an increasingly recognised cause of blepharitis. Phase 3 trial data is promising.",link:"https://clinicaltrials.gov/search?cond=blepharitis+lotilaner"}
   ],
   guides:[
@@ -3230,13 +3272,20 @@ function showCondition(key) {
   var target = document.getElementById('page-condition');
   if (target) target.classList.add('active');
 
-  // Hide video resources and decorative divider — home page only
+  // Hide video resources — home page only
   var videoWrap = document.getElementById('video-resources-wrap');
   if (videoWrap) videoWrap.style.display = 'none';
 
+  // Highlight active condition in both sidebars
+  document.querySelectorAll('.sidebar-link').forEach(function(l) {
+    l.classList.remove('active');
+    var oc = l.getAttribute('onclick') || '';
+    if (oc.indexOf("showCondition('" + key + "')") !== -1) l.classList.add('active');
+  });
+
   window.scrollTo({ top: 0, behavior: 'instant' });
 
-  // Init scroll spy for tab highlighting
+  // Init scroll spy
   setTimeout(function() { initScrollSpy(key); }, 100);
 
   // Update hash for shareability
