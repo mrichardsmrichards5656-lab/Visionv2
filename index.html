@@ -202,6 +202,15 @@ p, h1, h2, h3, h4, li, span, a, button { overflow-wrap: break-word; word-wrap: b
   box-shadow: 0 0 0 1px rgba(245,184,0,0.2);
 }
 .theme-select:focus-visible { outline: 3px solid var(--yellow); outline-offset: 2px; }
+.lang-btn {
+  height: 32px; padding: 0 10px; border-radius: 50px;
+  border: 2px solid var(--border); background: var(--card2);
+  color: var(--text2); font-family: var(--font);
+  font-size: 11px; font-weight: 800; cursor: pointer;
+  flex-shrink: 0; transition: all .15s; letter-spacing: 0.05em;
+}
+.lang-btn.active { border-color: #00b140; background: #00b140; color: #fff; }
+.lang-btn:focus-visible { outline: 3px solid var(--yellow); outline-offset: 2px; }
 
 .logo-hex {
   background: var(--yellow);
@@ -342,6 +351,8 @@ body.yb .rtag.gene, body.yb .rtag.stem, body.yb .rtag.trial, body.yb .rtag.drug,
 }
 .trial-link:hover        { background: var(--yellow2); }
 .trial-link:focus-visible{ outline: 3px solid var(--text); outline-offset: 3px; }
+/* Welsh mode — label external links as English only */
+body.welsh-active .trial-link::after { content: " (Saesneg yn unig)"; font-size:0.72rem; font-weight:600; opacity:0.8; }
 
 .nc { background: var(--card); border: 2px solid var(--border); border-radius: 16px; padding: 18px; margin-bottom: 12px; display: flex; flex-direction: column; gap: 10px; box-shadow: var(--shadow); }
 .nc-num { width: 32px; height: 32px; min-width: 32px; background: var(--yellow); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.88rem; font-weight: 900; color: #fff; flex-shrink: 0; }
@@ -752,6 +763,8 @@ footer { background: var(--bg2); border-top: 3px solid var(--yellow); padding: 3
     <option value="hc">⬛ Hi-Con</option>
     <option value="yb">🟡 Yel/Blk</option>
   </select>
+  <div class="a11y-divider"></div>
+  <button class="lang-btn" id="welsh-toggle" onclick="toggleWelsh()" aria-label="Switch to Welsh / Cymraeg">CY</button>
 </div>
 
 <!-- iOS INSTALL BANNER -->
@@ -765,7 +778,128 @@ footer { background: var(--bg2); border-top: 3px solid var(--yellow); padding: 3
 <!-- ══════════════════════════════════════
      HOME PAGE
 ══════════════════════════════════════ -->
-<div id="page-home" class="page active">
+<!-- Welsh notice banner -->
+<div id="welsh-notice" style="display:none;background:#00b140;color:#fff;padding:12px 20px;font-size:0.85rem;font-weight:600;text-align:center;line-height:1.6">
+  🏴󠁧󠁢󠁷󠁬󠁳󠁥󠁳󠁿 <strong>Cymraeg</strong> — Mae'r hafan, geirfa, cymorth lleol, iechyd llygaid, cyflogaeth, tudalennau rhieni, a gwybodaeth 'Am y Cyflwr' ar gyfer yr holl 17 cyflwr ar gael yn Gymraeg. Mae'r ymchwil a'r canllawiau manwl yn Saesneg ar hyn o bryd.
+  <br><span style="font-size:0.75rem;opacity:0.9">Home, glossary, local support, eye health, employment, parents pages, and 'About' condition information for all 17 conditions available in Welsh. Research and detailed guides currently in English.</span>
+</div>
+
+<!-- Welsh home page -->
+<div id="page-home-welsh" class="welsh-page" style="display:none">
+  <main>
+    <div class="desktop-wrap">
+    <aside class="desktop-sidebar" aria-label="Llywio'r wefan">
+      <span class="sidebar-logo">◈ Hwb Golwg</span>
+      <span class="sidebar-tagline">Adnodd golwg DU am ddim</span>
+      <span class="sidebar-section">Cyflyrau</span>
+      <button class="sidebar-link" onclick=\"showConditionWelsh('stargardts')\">✦ Clefyd Stargardt</button>
+      <button class="sidebar-link" onclick=\"showConditionWelsh('amd')\">◉ Dirywiad Macular AMD</button>
+      <button class="sidebar-link" onclick=\"showConditionWelsh('glaucoma')\">◎ Glawcoma</button>
+      <button class="sidebar-link" onclick=\"showConditionWelsh('diabetic')\">◇ Retinopathi Diabetig</button>
+      <button class="sidebar-link" onclick=\"showConditionWelsh('rp')\">◈ Retinitis Pigmentosa</button>
+      <button class="sidebar-link" onclick=\"showConditionWelsh('cvi')\">◭ Nam Gweledol yr Ymennydd</button>
+      <button class="sidebar-link" onclick=\"showConditionWelsh('nystagmus')\">↔ Nystagmus</button>
+      <button class="sidebar-link" onclick=\"showConditionWelsh('albinism')\">☀ Albiniaeth</button>
+      <button class="sidebar-link" onclick=\"showConditionWelsh('usher')\">◑ Syndrom Usher</button>
+      <button class="sidebar-link" onclick=\"showConditionWelsh('lca')\">⬡ Amawrosis Cynhenid Leber</button>
+      <button class="sidebar-link" onclick=\"showConditionWelsh('cone')\">🎯 Dystroffi Côn</button>
+      <button class="sidebar-link" onclick=\"showConditionWelsh('achromatopsia')\">⬤ Achromatopsia</button>
+      <button class="sidebar-link" onclick=\"showConditionWelsh('dmo')\">💧 Oedema Macular Diabetig</button>
+      <button class="sidebar-link" onclick=\"showConditionWelsh('myopic')\">👓 Dirywiad Macular Myopig</button>
+      <button class="sidebar-link" onclick=\"showConditionWelsh('charlesbonnet')\">🧠 Syndrom Charles Bonnet</button>
+      <button class="sidebar-link" onclick=\"showConditionWelsh('opticneuritis')\">⚡ Niwritis Optig</button>
+      <button class="sidebar-link" onclick=\"showConditionWelsh('blepharitis')\">👁 Blepharaidd</button>
+      <div class="sidebar-divider"></div>
+      <span class="sidebar-section">Canllawiau ac Adnoddau</span>
+      <button class="sidebar-link" onclick="showPage('livingwell')">🌟 Canllaw Beunyddiol</button>
+      <button class="sidebar-link" onclick="showWelshPage('eyehealth')">👁️ Hanfodion Iechyd Llygaid</button>
+      <button class="sidebar-link" onclick="showWelshPage('employment')">💼 Cyflogaeth</button>
+      <button class="sidebar-link" onclick="showWelshPage('glossary')">📖 Geirfa</button>
+      <button class="sidebar-link" onclick="showWelshPage('questions')">❓ Cwestiynau i'w Gofyn</button>
+      <button class="sidebar-link" onclick="showWelshPage('localsupport')">📍 Cymorth Lleol</button>
+      <button class="sidebar-link" onclick="showWelshPage('children')">👶 I Rieni</button>
+      <div class="sidebar-divider"></div>
+      <button class="sidebar-link" onclick="showWelshPage('contact')">✉️ Cysylltu</button>
+    </aside>
+    <div class="desktop-main">
+    <div class="hero">
+      <div class="hero-eye" aria-hidden="true"><svg viewBox="0 0 120 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><ellipse cx="60" cy="30" rx="55" ry="28" stroke="var(--yellow)" stroke-width="2"/><circle cx="60" cy="30" r="18" stroke="var(--yellow)" stroke-width="2"/><circle cx="60" cy="30" r="8" fill="var(--yellow)" opacity="0.7"/><circle cx="60" cy="30" r="3" fill="var(--yellow)"/></svg></div>
+      <span class="hero-eyebrow">AM DDIM · ANNIBYNNOL · DU</span>
+      <h1 class="hero-h1">Popeth sydd ei angen arnoch, mewn un lle.</h1>
+      <p class="hero-sub">Gwybodaeth glir, hygyrch i bobl sy'n byw gyda chyflyrau golwg — a'r bobl sy'n eu cefnogi.</p>
+      <p class="last-updated">Diweddarwyd diwethaf: Mai 2026 · Adolygir yn fisol · <button onclick="showWelshPage('contact')" style="background:none;border:none;color:var(--yellow);font-family:var(--font);font-size:inherit;font-weight:700;cursor:pointer;text-decoration:underline;padding:0">Cysylltwch â ni</button></p>
+    </div>
+
+    <div class="cond-section" style="max-width:680px;margin:0 auto;padding:0 20px">
+
+      <!-- Newydd Gael Diagnosis -->
+      <div class="founder-box" style="margin-bottom:24px">
+        <p>Pan gafodd fy merch ddiagnosis o Glefyd Stargardt, roedd gen i gymaint o gwestiynau. Ni allwn ddod o hyd i unrhyw le oedd â phopeth mewn un lle — canllawiau clir, yr ymchwil ddiweddaraf, cyngor budd-daliadau, a chymorth go iawn, gyda'i gilydd.</p>
+        <p style="margin-top:10px">Felly fe'i hadeiladais. Mae'r wefan hon yma i helpu unrhyw un sy'n byw gyda cholled golwg, a'r rhai sydd agosaf atynt.</p>
+        <p style="margin-top:10px">Os nad yw eich cyflwr wedi'i restru, <button onclick="showWelshPage('contact')" style="background:none;border:none;color:var(--yellow);font-family:var(--font);font-size:inherit;font-weight:700;cursor:pointer;text-decoration:underline;padding:0">cysylltwch â ni</button> a byddaf yn edrych ar ei ychwanegu.</p>
+        <p style="margin-top:10px;font-style:italic;color:var(--yellow);font-weight:700">Am ddim, annibynnol, a'i adeiladu ar gyfer pobl â cholled golwg.</p>
+      </div>
+
+      <!-- Adnoddau -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px">
+        <button onclick="showWelshPage('glossary')" class="share-btn" style="font-size:0.82rem;padding:0 8px;min-height:42px;justify-content:center;border-radius:12px">📖 Geirfa</button>
+        <button onclick="showWelshPage('localsupport')" class="share-btn" style="font-size:0.82rem;padding:0 8px;min-height:42px;justify-content:center;border-radius:12px">📍 Cymorth Lleol</button>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:20px">
+        <button onclick="showWelshPage('eyehealth')" class="share-btn" style="font-size:0.78rem;padding:0 6px;min-height:42px;justify-content:center;border-radius:12px">👁️ Iechyd Llygaid</button>
+        <button onclick="showWelshPage('employment')" class="share-btn" style="font-size:0.78rem;padding:0 6px;min-height:42px;justify-content:center;border-radius:12px">💼 Cyflogaeth</button>
+        <button onclick="showWelshPage('children')" class="share-btn" style="font-size:0.78rem;padding:0 6px;min-height:42px;justify-content:center;border-radius:12px">👶 I Rieni</button>
+      </div>
+
+      <!-- Chwilio -->
+      <div class="search-wrap" style="margin-bottom:20px">
+        <label class="search-label" for="search-cy">Eich cyflwr</label>
+        <div class="search-row">
+          <input class="search-input" id="search-cy" type="search" placeholder="Chwilio am gyflyrau..." autocomplete="off" oninput="doSearch(this.value)" aria-label="Chwilio am gyflyrau">
+          <span class="search-icon" aria-hidden="true">🔍</span>
+        </div>
+        <div id="search-results-cy" class="search-results" role="listbox" aria-label="Canlyniadau chwilio"></div>
+      </div>
+
+      <!-- Rhestr Cyflyrau -->
+      <div role="list" aria-label="Cyflyrau llygaid">
+        <div role="listitem" class="cond-item"><button class="cond-btn" onclick=\"_isWelsh ? showConditionWelsh('stargardts') : showCondition('stargardts')\">✦ Clefyd Stargardt <span class="cond-arrow" aria-hidden="true">→</span></button></div>
+        <div role="listitem" class="cond-item"><button class="cond-btn" onclick=\"_isWelsh ? showConditionWelsh('amd') : showCondition('amd')\">◉ Dirywiad Macular AMD <span class="cond-arrow" aria-hidden="true">→</span></button></div>
+        <div role="listitem" class="cond-item"><button class="cond-btn" onclick=\"_isWelsh ? showConditionWelsh('glaucoma') : showCondition('glaucoma')\">◎ Glawcoma <span class="cond-arrow" aria-hidden="true">→</span></button></div>
+        <div role="listitem" class="cond-item"><button class="cond-btn" onclick=\"_isWelsh ? showConditionWelsh('diabetic') : showCondition('diabetic')\">◇ Retinopathi Diabetig <span class="cond-arrow" aria-hidden="true">→</span></button></div>
+        <div role="listitem" class="cond-item"><button class="cond-btn" onclick=\"_isWelsh ? showConditionWelsh('rp') : showCondition('rp')\">◈ Retinitis Pigmentosa <span class="cond-arrow" aria-hidden="true">→</span></button></div>
+        <div role="listitem" class="cond-item"><button class="cond-btn" onclick=\"_isWelsh ? showConditionWelsh('cvi') : showCondition('cvi')\">◭ Nam Gweledol yr Ymennydd <span class="cond-arrow" aria-hidden="true">→</span></button></div>
+        <div role="listitem" class="cond-item"><button class="cond-btn" onclick=\"_isWelsh ? showConditionWelsh('nystagmus') : showCondition('nystagmus')\">↔ Nystagmus <span class="cond-arrow" aria-hidden="true">→</span></button></div>
+        <div role="listitem" class="cond-item"><button class="cond-btn" onclick=\"_isWelsh ? showConditionWelsh('albinism') : showCondition('albinism')\">☀ Albiniaeth <span class="cond-arrow" aria-hidden="true">→</span></button></div>
+        <div role="listitem" class="cond-item"><button class="cond-btn" onclick=\"_isWelsh ? showConditionWelsh('usher') : showCondition('usher')\">◑ Syndrom Usher <span class="cond-arrow" aria-hidden="true">→</span></button></div>
+        <div role="listitem" class="cond-item"><button class="cond-btn" onclick=\"_isWelsh ? showConditionWelsh('lca') : showCondition('lca')\">⬡ Amawrosis Cynhenid Leber <span class="cond-arrow" aria-hidden="true">→</span></button></div>
+        <div role="listitem" class="cond-item"><button class="cond-btn" onclick=\"_isWelsh ? showConditionWelsh('cone') : showCondition('cone')\">🎯 Dystroffi Côn <span class="cond-arrow" aria-hidden="true">→</span></button></div>
+        <div role="listitem" class="cond-item"><button class="cond-btn" onclick=\"_isWelsh ? showConditionWelsh('achromatopsia') : showCondition('achromatopsia')\">⬤ Achromatopsia <span class="cond-arrow" aria-hidden="true">→</span></button></div>
+        <div role="listitem" class="cond-item"><button class="cond-btn" onclick=\"_isWelsh ? showConditionWelsh('dmo') : showCondition('dmo')\">💧 Oedema Macular Diabetig <span class="cond-arrow" aria-hidden="true">→</span></button></div>
+        <div role="listitem" class="cond-item"><button class="cond-btn" onclick=\"_isWelsh ? showConditionWelsh('myopic') : showCondition('myopic')\">👓 Dirywiad Macular Myopig <span class="cond-arrow" aria-hidden="true">→</span></button></div>
+        <div role="listitem" class="cond-item"><button class="cond-btn" onclick=\"_isWelsh ? showConditionWelsh('charlesbonnet') : showCondition('charlesbonnet')\">🧠 Syndrom Charles Bonnet <span class="cond-arrow" aria-hidden="true">→</span></button></div>
+        <div role="listitem" class="cond-item"><button class="cond-btn" onclick=\"_isWelsh ? showConditionWelsh('opticneuritis') : showCondition('opticneuritis')\">⚡ Niwritis Optig <span class="cond-arrow" aria-hidden="true">→</span></button></div>
+        <div role="listitem" class="cond-item"><button class="cond-btn" onclick=\"_isWelsh ? showConditionWelsh('blepharitis') : showCondition('blepharitis')\">👁 Blepharaidd <span class="cond-arrow" aria-hidden="true">→</span></button></div>
+      </div>
+
+      <!-- Canllaw Beunyddiol -->
+      <div style="margin:28px 0 20px">
+        <button onclick="showPage('livingwell')" class="lw-hero-btn" aria-label="Agor Canllaw Beunyddiol">
+          <span style="font-size:1.4rem" aria-hidden="true">🌟</span>
+          <span>
+            <span style="display:block;font-size:1rem;font-weight:900">Canllaw Beunyddiol</span>
+            <span style="display:block;font-size:0.8rem;color:var(--text2);margin-top:3px">Cymorth ymarferol ar gyfer bywyd bob dydd gyda cholled golwg</span>
+          </span>
+        </button>
+      </div>
+
+    </div>
+    </div><!-- end desktop-main -->
+    </div><!-- end desktop-wrap -->
+  </main>
+</div>
+
+<div id="page-home" class="page active english-only">
   <main id="main">
     <div class="desktop-wrap">
 
@@ -835,7 +969,7 @@ footer { background: var(--bg2); border-top: 3px solid var(--yellow); padding: 3
       <span class="hero-eyebrow">Free · Independent · UK</span>
       <h1>Everything you need,<br>in one place.</h1>
       <p class="hero-desc">Clear, accessible information for people living with sight conditions — and the people who support them.</p>
-      <p class="last-updated">Last updated: <time datetime="2026-04-25">April 2026</time> · Reviewed quarterly · <button onclick="showPage('contact')" style="background:none;border:none;color:var(--yellow);font-family:var(--font);font-size:inherit;cursor:pointer;text-decoration:underline;padding:0">Contact us</button></p>
+      <p class="last-updated">Last updated: <time datetime="2026-04-25">April 2026</time> · Reviewed monthly · <button onclick="showPage('contact')" style="background:none;border:none;color:var(--yellow);font-family:var(--font);font-size:inherit;cursor:pointer;text-decoration:underline;padding:0">Contact us</button></p>
 
       <div class="founder-box">
         <p class="founder-short">When my daughter was diagnosed with Stargardts, I had so many questions. I couldn't find anywhere that had everything in one place — clear guidance, the latest research, benefits advice, and real support, all together.</p>
@@ -1079,7 +1213,7 @@ footer { background: var(--bg2); border-top: 3px solid var(--yellow); padding: 3
           <span class="news-tag tech">Technology</span>
           <p class="news-text"><strong>All conditions:</strong> Apple iOS 18 introduced significant VoiceOver improvements including enhanced image descriptions and improved braille display support.</p>
         </div>
-        <p class="news-footer">Updates are verified and added each quarter. Information is for guidance only — always discuss research and treatment options with your ophthalmologist. <button onclick="showPage('contact')" style="background:none;border:none;color:var(--yellow);font-family:var(--font);font-size:0.78rem;font-weight:700;cursor:pointer;text-decoration:underline;padding:0">Spotted something missing? Let us know.</button></p>
+        <p class="news-footer">Updates are verified and added each month. Information is for guidance only — always discuss research and treatment options with your ophthalmologist. <button onclick="showPage('contact')" style="background:none;border:none;color:var(--yellow);font-family:var(--font);font-size:0.78rem;font-weight:700;cursor:pointer;text-decoration:underline;padding:0">Spotted something missing? Let us know.</button></p>
       </section>
     </div>
 
@@ -2181,7 +2315,7 @@ footer { background: var(--bg2); border-top: 3px solid var(--yellow); padding: 3
     <button class="back-btn" onclick="showPage('home')" aria-label="Back to home">← Back to home</button>
     <span class="legal-eyebrow">Transparency</span>
     <h1>How We Write<br>Our Content</h1>
-    <p class="legal-updated">Last updated: <time datetime="2026-04">April 2026</time></p>
+    <p class="legal-updated">Last updated: <time datetime="2026-05">April 2026</time></p>
 
     <div class="wb"><strong>Important:</strong> Vision Hub provides information for guidance only. It is not a substitute for professional medical advice. Always discuss your condition, treatment options, and any research with your own ophthalmologist or specialist.</div>
 
@@ -2211,7 +2345,7 @@ footer { background: var(--bg2); border-top: 3px solid var(--yellow); padding: 3
 
     <div class="lc">
       <h2>🔄 How often content is reviewed</h2>
-      <p>All content is reviewed quarterly — in January, April, July, and October each year. The date of the most recent review is shown on every condition page and in the site footer.</p>
+      <p>All content is reviewed monthly — in the first week of every month. The date of the most recent review is shown on every condition page and in the site footer.</p>
       <p style="margin-top:10px">Research and clinical trial information changes rapidly in some conditions. We do our best to keep this current but strongly recommend checking directly with specialist charities and your clinical team for the most up-to-date trial information.</p>
     </div>
 
@@ -2296,7 +2430,7 @@ footer { background: var(--bg2); border-top: 3px solid var(--yellow); padding: 3
       </div>
     </nav>
     <div class="footer-bottom">
-      © 2026 Vision Hub &nbsp;·&nbsp; <strong>Not a medical provider</strong> &nbsp;·&nbsp; Information is for guidance only — always consult your ophthalmologist &nbsp;·&nbsp; Content reviewed April 2026 &nbsp;·&nbsp;
+      © 2026 Vision Hub &nbsp;·&nbsp; <strong>Not a medical provider</strong> &nbsp;·&nbsp; Information is for guidance only — always consult your ophthalmologist &nbsp;·&nbsp; Content reviewed May 2026 &nbsp;·&nbsp;
       <a onclick="showPage('livingwell')" role="button" tabindex="0">Everyday Guide</a> &nbsp;·&nbsp;
       <a onclick="showPage('glossary')" role="button" tabindex="0">Glossary</a> &nbsp;·&nbsp;
       <a onclick="showPage('questions')" role="button" tabindex="0">Questions to Ask</a> &nbsp;·&nbsp;
@@ -2316,7 +2450,16 @@ footer { background: var(--bg2); border-top: 3px solid var(--yellow); padding: 3
 /* ─────────────── CONDITION DATA ─────────────── */
 const DATA = {
 stargardts:{
+    helpline:{org:"Retina UK Helpline",number:"01280 860363",hours:"Mon–Fri 9am–5pm",link:"https://retinauk.org.uk"},
   name:"Stargardt Disease",
+  cy:{
+    name:"Clefyd Stargardt",
+    what:"Mae Clefyd Stargardt yn gyflwr etifeddol sy'n effeithio ar y macula — rhan ganolog y retina sy'n gyfrifol am weledigaeth fanwl, darllen, adnabod wynebau, a gweld lliw. Fe'i hachosir gan fwtaniadau yn y genyn ABCA4, sy'n achosi i brotein niweidiol gronni yn y retina ac yn dinistrio celloedd ffotodderbynnydd (celloedd côn) yn raddol. Mae'n effeithio ar tua 1 ym mhob 8,000-10,000 o bobl yn y DU.",
+    howAffects:"Mae golwg canolog yn pylu'n raddol, tra bod golwg ymylol fel arfer yn cael ei gadw. Mae pobl yn aml yn disgrifio smotyn dall canolog neu ardal niwlog. Mae darllen, adnabod wynebau, a gweld manylion mân yn dod yn anoddach cynyddol. Mae sensitifrwydd i olau (ffotsoffobia) yn gyffredin. Mae'r cynnydd yn amrywio o berson i berson — gall rai bobl gynnal lefelau golwg da am flynyddoedd lawer.",
+    diagnosis:"Mae Clefyd Stargardt yn cael ei ddiagnosis fel arfer rhwng 6 a 20 oed, er y gall fersiwn oedolion ymddangos yn hwyrach. Mae offer arbenigol yn cael eu defnyddio gan offthalmolegwyr: sgan OCT (tomograffi cydlyniant optegol), angiograffi fflworescein, ac electrophysioleg. Mae profion geneteg DNA yn cadarnhau mwtaniadau ABCA4 — mae hyn yn bwysig iawn ar gyfer cymhwysedd treialon clinigol.",
+    whoAffects:"Mae Clefyd Stargardt yn effeithio ar fechgyn a merched yn gyfartal. Mae'n gyflwr awtosomaidd adweithiol — rhaid i'r ddau riant fod yn gludyddion o'r genyn diffygiol. Mae risg o 1 mewn 4 o'i etifeddu os yw'r ddau riant yn gludyddion. Gall hefyd effeithio ar oedolion hŷn — mae Clefyd Stargardt oedolion (ABCA4) weithiau'n cael ei gamdiagnosis fel AMD.",
+    researchSummary:"Mae sawl triniaeth addawol ar wahanol gamau. Mae Tinlarebant wedi cwblhau Cam 3 — nid yw ar gael eto. Mae therapi genynnau ABCA4 mewn treialon yn y DU (ASTRA, CELESTE). Trafodwch opsiynau gyda'ch offthalmolegydd."
+  },
   what:"Stargardt disease is the most common inherited macular dystrophy, affecting around 1 in 8,000–10,000 people. It is caused by mutations in the ABCA4 gene, leading to a toxic build-up of lipofuscin in the retinal pigment epithelium. Central vision progressively deteriorates, often starting in childhood or young adulthood. Peripheral vision is usually retained.",
   howAffects:"Central vision progressively deteriorates, often starting in childhood or young adulthood. Peripheral vision is usually retained. Common symptoms include blurry central vision, difficulty reading, and sensitivity to bright light.",
   diagnosis:"Typically diagnosed via fundus photography (showing yellow-white flecks), fluorescein angiography, electroretinography (ERG), and genetic testing. A retinal specialist or inherited eye disease clinic can confirm diagnosis.",
@@ -2372,7 +2515,16 @@ stargardts:{
   }
 },
 amd:{
+    helpline:{org:"Macular Society Helpline",number:"0300 3030 111",hours:"Mon–Fri 9am–5pm",link:"https://www.macularsociety.org"},
   name:"Age-Related Macular Degeneration",
+  cy:{
+    name:"Dirywiad Macular yn Gysylltiedig ag Oedran",
+    what:"AMD yw achos mwyaf cyffredin colli golwg mewn pobl dros 50 oed yn y DU, gan effeithio ar dros 600,000 o bobl. Mae'n niweidio'r macula — rhan ganolog y retina. Mae AMD sych yn datblygu'n araf; mae AMD gwlyb yn llai cyffredin ond yn gyflymach ac yn argyfwng meddygol sy'n gofyn am driniaeth frys.",
+    howAffects:"Mae golwg canolog yn mynd yn aneglur neu'n ystumio. Gall llinellau syth ymddangos yn gam — defnyddiwch grid Amsler bob dydd i brofi. Gall smotyn tywyll neu wag ymddangos yng nghanol y golwg. Mae golwg ymylol fel arfer yn cael ei gadw.",
+    diagnosis:"Canfyddir trwy sganiau OCT, ffotograffiaeth fwndws, ac angiograffi fflworescein. Gall profion llygaid blynyddol gyda'ch optometrydd ganfod AMD cynnar cyn i symptomau ymddangos.",
+    whoAffects:"Mae'n effeithio'n bennaf ar bobl dros 50 oed. Mae risg yn dyblu os ydych chi'n ysmygu. Mae hanes teuluol yn cynyddu'r risg yn sylweddol. Achos mwyaf cyffredin colli golwg difrifol yn y byd datblygedig.",
+    researchSummary:"Mae Faricimab (Vabysmo) a Pegcetacoplan (Syfovre) ar gael ar y GIG. Mae therapi genynnau ar gyfer AMD Gwlyb mewn Cam 3 — gallai newid triniaeth cyn 2030."
+  },
   what:"AMD is the leading cause of vision loss in people over 50 in the UK, affecting over 600,000 people. It damages the macula — the central part of the retina. Dry AMD progresses slowly; Wet AMD is less common but more rapid and is a medical emergency requiring urgent treatment.",
   howAffects:"Central vision becomes blurred or distorted. Straight lines may appear wavy — test with an Amsler grid daily. A dark or empty patch may develop in the centre of vision. Peripheral vision is usually preserved.",
   diagnosis:"Detected via OCT scans, fundus photography, and fluorescein angiography. Annual sight tests with your optician can detect early AMD before symptoms appear.",
@@ -2414,7 +2566,16 @@ amd:{
   ]
 },
 glaucoma:{
+    helpline:{org:"Glaucoma UK Helpline",number:"01233 648170",hours:"Mon–Fri 9am–5pm",link:"https://glaucoma.uk"},
   name:"Glaucoma",
+  cy:{
+    name:"Glawcoma",
+    what:"Mae Glawcoma yn gyflwr lle mae'r nerf optig — sy'n cario gwybodaeth weledol o'r llygad i'r ymennydd — yn cael ei niweidio'n raddol, yn aml o ganlyniad i bwysedd uchel yn y llygad. Mae'n achos mwyaf cyffredin dallineb y gellir ei atal yn y byd. Mae'n effeithio ar dros 700,000 o bobl yn y DU, a hanner ohonynt heb wybod am eu cyflwr.",
+    howAffects:"Mae Glawcoma yn dinistrio golwg ymylol yn raddol cyn effeithio ar olwg canolog. Oherwydd bod y newid yn araf, nid yw llawer o bobl yn sylwi ar unrhyw symptomau hyd nes bod colled sylweddol wedi digwydd. Unwaith y caiff celloedd nerfau eu colli, ni ellir eu hadfer.",
+    diagnosis:"Prawf gweld meysydd gweledol i fesur golwg ymylol. Mesur pwysedd y llygad (IOP). Sgan OCT i asesu iechyd y nerf optig. Mae sganiau dilynol rheolaidd yn hanfodol i fonitro cynnydd.",
+    whoAffects:"Mae risg uwch gydag oedran, hanes teuluol o lawcoma, pwysedd uchel yn y llygad, a thras Affricanaidd neu Caribïaidd. Mae perthnasau agosaf pobl â glawcoma yn gymwys am brofion llygaid NHS am ddim.",
+    researchSummary:"Mae mewnblaniad iDose TR (meddyginiaeth barhaus yn y llygad) ar y gorwel ar gyfer y DU. Mae AI Moorfields eisoes yn cael ei ddefnyddio. Mae ymchwil niwroamddiffynnol yn datblygu."
+  },
   what:"Glaucoma is a group of eye conditions that damage the optic nerve, usually caused by elevated pressure inside the eye. It is the second most common cause of blindness in the UK, affecting over 700,000 people. Half of those affected don't know they have it — making regular eye tests essential.",
   howAffects:"Peripheral vision is gradually lost, often without symptoms until significant damage has occurred. In advanced stages, tunnel vision develops. Acute angle-closure glaucoma causes sudden severe eye pain, headache, and nausea — a medical emergency.",
   diagnosis:"Detected via eye pressure measurement, optic nerve examination, visual field tests, and OCT scanning. All adults should have an eye test every two years.",
@@ -2453,7 +2614,16 @@ glaucoma:{
   ]
 },
 rp:{
+    helpline:{org:"Retina UK Helpline",number:"01280 860363",hours:"Mon–Fri 9am–5pm",link:"https://retinauk.org.uk"},
   name:"Retinitis Pigmentosa",
+  cy:{
+    name:"Retinitis Pigmentosa",
+    what:"Mae Retinitis Pigmentosa (RP) yn grŵp o gyflyrau etifeddol sy'n achosi dirywiad cynyddol y retina. Mae'n effeithio ar tua 1 ym mhob 4,000 o bobl yn y DU — tua 16,000 o bobl i gyd. Mae'n dechrau fel arfer drwy effeithio ar weledigaeth nos a golwg ymylol, gyda'r golwg canolog yn cael ei effeithio yn ddiweddarach.",
+    howAffects:"Golwg nos gwael yw'r symptom cyntaf fel arfer. Mae'r maes gweledol yn crebachu'n raddol — yn aml yn cael ei ddisgrifio fel 'golwg twnnel'. Gall sensitifrwydd i olau fod yn broblem. Mae'r cynnydd yn amrywio'n fawr rhwng unigolion — mae rhai pobl yn cynnal golwg da am ddegawdau.",
+    diagnosis:"Mae RP yn cael ei ddiagnosis drwy brawf maes gweledol, electrophysioleg (ERG), ac OCT. Mae profion geneteg yn bwysig i adnabod y genyn penodol — mae hyn yn hanfodol ar gyfer cymhwysedd therapi genynnau.",
+    whoAffects:"Mae RP yn effeithio ar ddynion a menywod. Gall gael ei etifeddu mewn sawl ffordd wahanol — awtosomaidd adweithiol, awtosomaidd trechol, neu gysylltiedig â'r X. Mae 50 o enynnau gwahanol yn gallu achosi RP.",
+    researchSummary:"Mae Luxturna ar gael ar y GIG ar gyfer mwtaniadau RPE65. Mae therapi genynnau RPGR mewn Cam 2/3. Mae optogeneteg mewn treialon cynnar ar gyfer RP datblygedig."
+  },
   what:"Retinitis Pigmentosa (RP) covers over 100 inherited retinal dystrophies affecting around 1 in 4,000 people. Rod photoreceptors are damaged first, affecting peripheral and night vision. It is the most common inherited cause of visual disability in working-age adults in the UK.",
   howAffects:"Night blindness is usually the first symptom. Peripheral vision gradually narrows, creating tunnel vision. In later stages, central vision may also be affected. The rate of progression varies enormously between individuals.",
   diagnosis:"Electroretinography (ERG), visual field testing, OCT scanning, fundus photography, and genetic testing. Genetic testing is strongly recommended as it determines treatment eligibility.",
@@ -2492,7 +2662,16 @@ rp:{
   ]
 },
 diabetic:{
+    helpline:{org:"Diabetes UK Helpline",number:"0345 123 2399",hours:"Mon–Fri 9am–6pm",link:"https://www.diabetes.org.uk"},
   name:"Diabetic Retinopathy",
+  cy:{
+    name:"Retinopathi Diabetig",
+    what:"Mae Retinopathi Diabetig yn gymhlethdod cyffredin diabetes sy'n digwydd pan fydd lefelau siwgr gwaed uchel yn niweidio pibellau gwaed y retina. Mae'n achos mwyaf cyffredin dallineb ymhlith pobl oedran gweithio yn y DU. Mae'n effeithio ar tua 1 ym mhob 3 o bobl sydd â diabetes.",
+    howAffects:"Gall golwg fod yn aneglur neu'n amrywio. Gall lliwiau ymddangos yn llai llachar. Gall fflachiadau golau neu floaters ymddangos. Yn yr achosion mwyaf difrifol, gall gwaedlif y retina neu ddatgysylltiad y retina achosi colli golwg sydyn a difrifol.",
+    diagnosis:"Mae Sgrinio Llygaid Diabetig y GIG — am ddim ac ar gael bob blwyddyn — yn canfod newidiadau cyn i symptomau ymddangos. Hwn yw'r offer diagnostig pwysicaf ar gyfer Retinopathi Diabetig. Peidiwch byth â'i golli.",
+    whoAffects:"Mae'n effeithio ar unrhyw un â Diabetes Math 1 neu Math 2. Mae risg yn cynyddu gydag hyd y diabetes, rheolaeth wael ar siwgr gwaed, pwysedd gwaed uchel, a chlefyd yr arennau.",
+    researchSummary:"Mae sgrinio llygaid diabetig am ddim bob blwyddyn — y cam pwysicaf. Mae Faricimab wedi'i gymeradwyo gan NICE ar gyfer DMO gyda llai o bigiadau. Mae therapi genynnau mewn datblygiad."
+  },
   what:"Diabetic retinopathy is the most common cause of preventable blindness in working-age adults in the UK, affecting over 1.7 million people. It is caused by high blood sugar damaging the retinal blood vessels. Anyone with Type 1 or Type 2 diabetes is at risk.",
   howAffects:"In early stages there are often no symptoms — making annual screening critical. As it progresses: floaters, blurred vision, fluctuating vision, and washed-out colours. Sudden vision loss is a medical emergency.",
   diagnosis:"Annual NHS diabetic eye screening (free for all people with diabetes) uses fundus photography to detect changes before symptoms appear.",
@@ -2529,7 +2708,16 @@ diabetic:{
   ]
 },
 lca:{
+    helpline:{org:"Retina UK Helpline",number:"01280 860363",hours:"Mon–Fri 9am–5pm",link:"https://retinauk.org.uk"},
   name:"Leber Congenital Amaurosis",
+  cy:{
+    name:"Amawrosis Cynhenid Leber",
+    what:"Mae Amawrosis Cynhenid Leber (LCA) yn grŵp o gyflyrau retinal etifeddol difrifol sy'n bresennol o enedigaeth neu'r misoedd cyntaf o fywyd. Mae'n achos mwyaf cyffredin dallineb etifeddol mewn plant. Mae LCA yn effeithio ar tua 1 ym mhob 80,000 o bobl. Mae mwy na 20 o enynnau gwahanol yn gallu achosi LCA — mae adnabod y genyn penodol yn hanfodol bwysig ar gyfer triniaeth.",
+    howAffects:"Mae nam gweledol difrifol yn bresennol o enedigaeth. Gall nystagmus (symudiad llygaid) ac ateb gwan i olau fod yn arwyddion cynnar. Mae golwg yn amrywio — gall rhai plant weld siapiau neu olau, tra bod eraill â nam gweledol dwysach.",
+    diagnosis:"Mae LCA yn cael ei amau pan fo baban yn ymateb yn wael i olau neu'n arddangos nystagmus. Mae profion arbenigol gan offthalmolegydd pediatrig, yn cynnwys electroretinogram (ERG), yn cadarnhau'r diagnosis. Mae profion geneteg yn hanfodol.",
+    whoAffects:"Mae LCA yn effeithio ar fechgyn a merched yn gyfartal. Mae'n gyflwr awtosomaidd adweithiol yn y mwyafrif o achosion — rhaid i'r ddau riant fod yn gludyddion.",
+    researchSummary:"Mae Luxturna ar gael ar y GIG ar gyfer mwtaniadau RPE65. Mae therapi CRISPR ar gyfer CEP290 mewn Cam 1/2. Mae profion geneteg yn hanfodol."
+  },
   what:"Leber Congenital Amaurosis (LCA) is a group of severe inherited retinal dystrophies and the most common cause of inherited blindness in childhood, affecting around 1 in 50,000 births. Multiple genes can cause LCA — the most significant being CEP290, GUCY2D, and RPE65.",
   howAffects:"Babies typically show rapid involuntary eye movements (nystagmus), lack of visual responsiveness, and may press on their eyes. Visual acuity is severely reduced from the first months of life. Photophobia and extreme farsightedness are common.",
   diagnosis:"Electroretinography (ERG) showing markedly reduced or absent responses. Genetic testing is essential and guides treatment eligibility. Referral to a specialist inherited retinal disease service is important from the first months of life.",
@@ -2583,7 +2771,16 @@ lca:{
   }
 },
 nystagmus:{
+    helpline:{org:"Nystagmus Network",number:"07470 363 138",hours:"Leave a message — they will call back",link:"https://www.nystagmusnet.org"},
   name:"Nystagmus",
+  cy:{
+    name:"Nystagmus",
+    what:"Mae Nystagmus yn gyflwr lle mae'r llygaid yn symud yn gyflym ac yn afreolaidd — yn ôl a blaen, i fyny ac i lawr, neu mewn cylchoedd. Nid yw'r symudiad hwn dan reolaeth ymwybodol y person. Mae'n effeithio ar tua 1 ym mhob 1,000 o bobl yn y DU. Gall fod yn bresennol o enedigaeth (nystagmus cynhenid) neu ddatblygu yn ddiweddarach mewn bywyd.",
+    howAffects:"Gall nystagmus achosi golwg aneglur, anhawster canolbwyntio, a sensitifrwydd i olau. Mae gan y rhan fwyaf o bobl â nystagmus 'barth niwl' — safle o'r pen lle mae'r symudiadau llygaid yn arafu a golwg yn gwella. Gall ymwybyddiaeth o'r barth niwl hwn wella ansawdd bywyd yn sylweddol.",
+    diagnosis:"Diagnosis gan offthalmolegydd neu orthoptydd drwy arsylwi symudiadau llygaid. Gellir mesur y barth niwl yn fanwl. Profion pellach i nodi achosion sylfaenol lle bo angen.",
+    whoAffects:"Mae Nystagmus yn aml yn cyd-fynd â chyflyrau eraill fel albiniaeth, achromatopsia, ac LCA. Gall hefyd ddigwydd ar ei ben ei hun. Mae rhai mathau yn etifeddol.",
+    researchSummary:"Mae llawdriniaeth tenotomi (Anderson) ar gael yn y DU. Mae treialon memantine wedi dangos gwelliannau mesuriadwy. Mae ymchwil i driniaethau ar gyfer achosion sylfaenol (albiniaeth, achromatopsia) hefyd yn berthnasol."
+  },
   what:"Nystagmus is a condition causing involuntary, repetitive eye movements — most commonly side-to-side. These movements reduce visual acuity because the eyes cannot fix steadily on a target. It affects approximately 1 in 1,000 people in the UK.",
   howAffects:"The involuntary movements make it difficult to focus on small or distant objects. Most people have reduced visual acuity but not complete blindness. Many find a 'null zone' — a head position where movements slow and vision is clearest.",
   diagnosis:"Diagnosed by an ophthalmologist or orthoptist. In children, typically identified in the first few months of life. Investigations to identify underlying causes (MRI, ERG, genetic testing) are routinely carried out.",
@@ -2632,7 +2829,16 @@ nystagmus:{
   }
 },
 achromatopsia:{
+    helpline:{org:"Retina UK Helpline",number:"01280 860363",hours:"Mon–Fri 9am–5pm",link:"https://retinauk.org.uk"},
   name:"Achromatopsia",
+  cy:{
+    name:"Achromatopsia",
+    what:"Mae Achromatopsia yn gyflwr genetig prin sy'n achosi absenoldeb llwyr neu rannol o weledigaeth lliw, ynghyd â sensitifrwydd eithafol i olau a golwg gostyngol. Fe'i hachosir gan fwtaniadau mewn genynnau sy'n effeithio ar gelloedd côn y retina. Mae'n effeithio ar tua 1 ym mhob 30,000-50,000 o bobl.",
+    howAffects:"Mae'r byd yn ymddangos mewn lliwiau llwyd neu washed-out (nid bob amser yn hollol ddu a gwyn). Mae sensitifrwydd eithafol i olau llachar (ffotsoffobia) yn aml yn broblem fwy sylweddol na'r absenoldeb lliw. Mae golwg yn wan mewn goleuni da ond gall wella mewn golau isel. Mae nystagmus yn gyffredin.",
+    diagnosis:"Profion gweld lliw arbenigol. Electroretinogram (ERG) i fesur ymateb y côn. Sgan OCT. Profion geneteg i gadarnhau'r mwtaniad (CNGB3 neu CNGA3 yw'r mwyaf cyffredin).",
+    whoAffects:"Mae Achromatopsia yn effeithio ar fechgyn a merched yn gyfartal. Mae'n awtosomaidd adweithiol — rhaid i'r ddau riant fod yn gludyddion.",
+    researchSummary:"Mae therapi genynnau ar gyfer CNGB3 a CNGA3 mewn treialon Cam 1/2 gyda data diogelwch addawol. Mae profion geneteg yn hanfodol i bennu cymhwysedd treial."
+  },
   what:"Achromatopsia (rod monochromacy) is a rare inherited retinal condition affecting around 1 in 30,000 people. It is caused by non-functioning cone photoreceptors, meaning people see only in black, white, and grey and have severe light sensitivity.",
   howAffects:"Colour vision is completely absent. Visual acuity is typically 6/60 or worse. Intense photophobia severely reduces vision in normal lighting. Nystagmus is present in most cases. Dark-adapted vision is normal — people often see better in dim light than bright daylight.",
   diagnosis:"Diagnosed by electroretinography (ERG) showing absent cone responses with normal rod responses, visual acuity testing, and genetic testing.",
@@ -2682,7 +2888,16 @@ achromatopsia:{
   }
 },
 usher:{
+    helpline:{org:"Sense Helpline",number:"0300 330 9256",hours:"Mon–Fri 9am–5pm",link:"https://www.sense.org.uk"},
   name:"Usher Syndrome",
+  cy:{
+    name:"Syndrom Usher",
+    what:"Mae Syndrom Usher yn gyflwr etifeddol sy'n cyfuno colli clyw â nam gweledol cynyddol (patrwm Retinitis Pigmentosa). Dyma achos mwyaf cyffredin byddar-ddall etifeddol. Mae tri phrif fath: Math 1 (colli clyw dwys/profond o enedigaeth, colled gwybodaeth vestibular), Math 2 (colli clyw cymhedrol i ddifrifol, golwg yn dechrau dirywio yn yr arddegau), a Math 3 (colli clyw cynyddol, golwg yn dirywio yn ddiweddarach).",
+    howAffects:"Mae'r cyfuniad o golli clyw a cholli golwg yn creu heriau cymhleth ar gyfer cyfathrebu, symudedd, a chyfranogi cymdeithasol. Mae'r golwg yn dirywio yn yr un modd â RP — golwg nos gwael yn gyntaf, yna maes gweledol yn crebachu.",
+    diagnosis:"Diagnosis drwy brofion clyw a phrofion llygaid arbenigol. Mae profion geneteg yn adnabod y math penodol — mae hyn yn hanfodol ar gyfer cymhwysedd treialon.",
+    whoAffects:"Mae Syndrom Usher yn effeithio ar tua 1 ym mhob 6,000-10,000 o bobl. Mae Math 2 yn fwyaf cyffredin yn y DU. Mae'n effeithio ar fechgyn a merched yn gyfartal.",
+    researchSummary:"Mae QR-421a (Stellar) ar gyfer USH2A mewn Cam 2 gyda data 24 mis addawol — y rhaglen Usher fwyaf datblygedig. Mae therapi genynnau MYO7A ar gyfer Math 1 mewn datblygiad."
+  },
   what:"Usher syndrome is the most common condition involving both hearing loss and vision loss, affecting approximately 1 in 6,000 people. It combines sensorineural hearing loss with retinitis pigmentosa. There are three types. Usher syndrome accounts for around 50% of all deaf-blind individuals.",
   howAffects:"The vision component follows a typical RP pattern: night blindness first, then progressive narrowing of peripheral vision, then central vision loss. The combination of vision and hearing loss creates a profound challenge to communication, navigation, and independence.",
   diagnosis:"Diagnosed by audiological assessment, electroretinography (ERG), visual field testing, and genetic testing. Genetic testing identifies the specific gene and is essential for trial eligibility.",
@@ -2732,7 +2947,16 @@ usher:{
   }
 },
 albinism:{
+    helpline:{org:"Albinism Fellowship",number:"01282 771900",hours:"Mon–Fri 9am–5pm",link:"https://www.albinism.org.uk"},
   name:"Albinism",
+  cy:{
+    name:"Albiniaeth",
+    what:"Mae Albiniaeth yn gyflwr genetig sy'n achosi diffyg pigment melanin yn y croen, gwallt, a llygaid. Yn ogystal ag effeithiau ar ymddangosiad, mae albiniaeth bob amser yn effeithio ar ddatblygiad y retina a'r llwybrau gweledol, gan achosi nam gweledol. Mae'n effeithio ar tua 1 ym mhob 17,000-20,000 o bobl yn y DU.",
+    howAffects:"Mae golwg wael o'r pellter fel arfer (gwelededd lleihau), nystagmus (symudiad llygaid afreolaidd), a sensitifrwydd eithriadol i olau (ffotsoffobia). Nid yw'r retina'n datblygu'n normal oherwydd diffyg melanin yn ystod datblygiad y ffetws. Nid yw sbectol yn gallu cywiro'r nam gweledol yn llawn.",
+    diagnosis:"Diagnosis clinigol yn seiliedig ar ymddangosiad a phrofion llygaid arbenigol. Gall profion geneteg gadarnhau'r math o albiniaeth — mae hyn yn berthnasol i gymhwysedd treialon yn y dyfodol.",
+    whoAffects:"Mae Albiniaeth yn effeithio ar bobl o bob cefndir ethnig, er ei fod yn fwy cyffredin mewn cymunedau penodol. Mae'r math mwyaf cyffredin yn y DU (OCA1) yn effeithio ar bob ethnigrwydd.",
+    researchSummary:"Mae ymchwil therapi genynnau OCA1/OCA2 yn gynnar iawn — 5-10 mlynedd i ffwrdd. Mae triniaethau nystagmus (tenotomi, memantine) eisoes ar gael ac yn berthnasol i lawer â albiniaeth."
+  },
   what:"Albinism is a group of inherited conditions affecting melanin production, causing reduced pigmentation of the skin, hair, and eyes and — crucially — affecting the development of the visual system. Almost all forms cause visual impairment. Affects approximately 1 in 17,000 people in the UK.",
   howAffects:"Visual impairment is caused by foveal hypoplasia, nystagmus, high refractive errors, photophobia, and misrouting of optic nerve fibres. Visual acuity typically ranges from 6/18 to 6/60. Stereoscopic (3D) vision is often absent or reduced.",
   diagnosis:"Diagnosed by OCT (to identify foveal hypoplasia — the definitive diagnostic feature), electroretinography, and genetic testing.",
@@ -2770,7 +2994,16 @@ albinism:{
   ]
 },
 cvi:{
+    helpline:{org:"RNIB Helpline",number:"0303 123 9999",hours:"Mon–Fri 8am–8pm, Sat 9am–1pm",link:"https://www.rnib.org.uk"},
   name:"Cerebral Visual Impairment",
+  cy:{
+    name:"Nam Gweledol yr Ymennydd",
+    what:"Mae Nam Gweledol yr Ymennydd (CVI) yn gyflwr lle mae'r ymennydd yn cael anhawster prosesu gwybodaeth weledol, er bod y llygaid eu hunain yn iach. Dyma achos mwyaf cyffredin nam gweledol ymhlith plant yn y DU. Fe'i hachosir fel arfer gan niwed i rannau gweledol yr ymennydd — yn aml o ganlyniad i enedigaeth gynnar, diffyg ocsigen adeg geni, neu strôc.",
+    howAffects:"Mae CVI yn wahanol i gyflyrau llygaid eraill — gall y llygaid fod yn iach ond mae'r ymennydd yn methu prosesu'r hyn a welir yn effeithiol. Mae'r symptomau'n cynnwys anhawster gyda symudiad, cymhlethdod gweledol, problemau sylw gweledol, a binder gweledol (mynd yn ddall dros dro). Mae CVI yn newid o ddydd i ddydd ac yn dibynnu ar flinder a lefelau ysgogiad.",
+    diagnosis:"Mae diagnosis CVI yn gymhleth ac yn gofyn am asesiad arbenigol. Nid yw profion llygaid safonol yn ddigon — mae angen asesiad swyddogaethol o sut mae'r plentyn yn defnyddio'i olwg mewn bywyd go iawn. Mae CVI Scotland yn cynnig adnoddau asesu ardderchog.",
+    whoAffects:"Mae CVI yn effeithio ar blant yn bennaf, er y gall effeithio ar oedolion hefyd yn dilyn strôc neu anaf i'r ymennydd. Mae'n gysylltiedig â genedigaeth gynnar, anemia cerebral, meningitis, ac epilepsi.",
+    researchSummary:"Mae rhaglenni dysgu gweithredol (fframwaith Little Bear Sees CVI Scotland) yn cael eu cefnogi gan dystiolaeth gadarn. Mae offer asesu gwell ar sail AI mewn datblygiad."
+  },
   what:"Cerebral Visual Impairment (CVI) is the most common cause of visual impairment in children in the developed world, caused by damage to the visual processing parts of the brain — not the eyes themselves. The eyes are often healthy. CVI typically results from brain injury around birth, stroke, or brain malformation.",
   howAffects:"CVI presents very differently from eye-based conditions. A child may appear to 'look through' objects, have better peripheral than central vision, or seem visually inattentive. Visual fatigue is common. Features include difficulty with visual clutter, better vision for familiar objects, light-gazing, and better responses to bright colours.",
   diagnosis:"Diagnosed by a specialist paediatric ophthalmologist or neuro-ophthalmologist. Standard visual acuity tests may underestimate functional vision. Brain MRI identifies the area of brain damage. A specialist CVI assessment is the gold standard.",
@@ -2821,7 +3054,16 @@ cvi:{
   }
 },
 cone:{
+    helpline:{org:"Retina UK Helpline",number:"01280 860363",hours:"Mon–Fri 9am–5pm",link:"https://retinauk.org.uk"},
   name:"Cone Dystrophy",
+  cy:{
+    name:"Dystroffi Côn",
+    what:"Mae Dystroffi Côn yn gyflwr etifeddol sy'n effeithio'n benodol ar gelloedd côn y retina — y celloedd sy'n gyfrifol am weledigaeth fanwl, lliw, a golwg mewn goleuni da. Mae'n wahanol i Retinitis Pigmentosa, sy'n effeithio ar gelloedd rhodenni yn gyntaf. Mae Dystroffi Côn yn effeithio ar tua 1 ym mhob 30,000 o bobl yn y DU.",
+    howAffects:"Mae golwg canolog yn pylu'n raddol. Mae gweld lliw yn dirywio. Mae sensitifrwydd eithriadol i olau llachar (ffotsoffobia) yn gyffredin. Mae darllen, adnabod wynebau, a gweithgareddau mewn goleuni llachar yn dod yn anoddach. Gall golwg ymylol aros yn eithaf da am amser hir.",
+    diagnosis:"Diagnosis drwy electroretinogram (ERG) sy'n mesur ymateb celloedd côn i oleuni. Sgan OCT i asesu strwythur y retina. Profion geneteg i adnabod y mwtaniad penodol.",
+    whoAffects:"Mae Dystroffi Côn yn effeithio ar fechgyn a merched. Gall ddigwydd mewn sawl ffordd etifeddol — awtosomaidd adweithiol, awtosomaidd trechol, neu gysylltiedig â'r X (RPGR).",
+    researchSummary:"Mae therapi genynnau RPGR mewn Cam 2/3 — un o'r rhaglenni mwyaf datblygedig ar gyfer Dystroffi Côn. Mae profion geneteg yn pennu pa dreial sy'n berthnasol."
+  },
   what:"Cone dystrophy is a group of inherited retinal conditions in which cone photoreceptors degenerate progressively over time. Unlike achromatopsia, cone dystrophies typically begin with normal or near-normal vision that deteriorates. Affects approximately 1 in 30,000–40,000 people.",
   howAffects:"Progressive loss of central vision and colour discrimination is the hallmark. Bright light sensitivity (photophobia) is prominent. Reading, recognising faces, and driving become increasingly difficult. In cone-rod dystrophy, peripheral vision and night vision are also progressively lost.",
   diagnosis:"Electroretinography (ERG) showing preferentially reduced cone responses. OCT imaging of the macula. Colour vision testing. Genetic testing strongly recommended.",
@@ -2862,7 +3104,16 @@ cone:{
 },
 
 dmo:{
+    helpline:{org:"Diabetes UK Helpline",number:"0345 123 2399",hours:"Mon–Fri 9am–6pm",link:"https://www.diabetes.org.uk"},
   name:"Diabetic Macular Oedema",
+  cy:{
+    name:"Oedema Macular Diabetig",
+    what:"Mae Oedema Macular Diabetig (DMO) yn gymhlethdod o Retinopathi Diabetig lle mae hylif yn gollwng o bibellau gwaed difrodus i mewn i'r macula. Dyma achos mwyaf cyffredin colli golwg mewn pobl â diabetes ac mae'n effeithio ar tua 1 ym mhob 10 o bobl â retinopathi diabetig.",
+    howAffects:"Mae golwg canolog yn dod yn aneglur neu'n ystumio. Mae darllen, adnabod wynebau, a gweld manylion mân yn mynd yn gynyddol anodd. Gall golwg amrywio — yn well ar rai dyddiau nag eraill oherwydd newidiadau yn lefelau'r hylif.",
+    diagnosis:"Canfyddir gan sgan OCT sy'n dangos hylif yn haenau'r macula. Mae angiograffi fflworescein yn adnabod pibellau gwaed sy'n gollwng. Mae Sgrinio Llygaid Diabetig y GIG yn canfod newidiadau cynnar.",
+    whoAffects:"Mae'n effeithio ar unrhyw un â Diabetes Math 1 neu Math 2. Mae risg yn cynyddu gyda hyd y diabetes, rheolaeth wael ar siwgr gwaed, pwysedd gwaed uchel, colesterol uchel, a chlefyd yr arennau.",
+    researchSummary:"Mae Faricimab (Vabysmo) ac Aflibercept HD wedi'u cymeradwyo gan NICE. Mae mewnblaniadau rhyddhau parhaus mewn Cam 2/3 — gallai dynnu'r angen am bigiadau reolaidd."
+  },
   what:"Diabetic Macular Oedema (DMO) is a complication of diabetic retinopathy in which fluid leaks from damaged blood vessels into the macula — the central part of the retina responsible for sharp, detailed vision. It is the most common cause of vision loss in people with diabetes and affects approximately 1 in 10 people with diabetic retinopathy. DMO can occur at any stage of diabetic retinopathy.",
   howAffects:"Central vision becomes blurred or distorted. Reading, recognising faces, and seeing fine detail become increasingly difficult. Vision may fluctuate — better on some days than others — due to changes in fluid levels. Unlike diabetic retinopathy itself, DMO directly and rapidly affects the vision used for everyday tasks.",
   diagnosis:"Detected by OCT (optical coherence tomography) scanning, which shows fluid within the layers of the macula. Fluorescein angiography identifies leaking blood vessels. Annual NHS diabetic eye screening detects early changes before symptoms appear.",
@@ -2898,7 +3149,16 @@ dmo:{
 },
 
 myopic:{
+    helpline:{org:"Macular Society Helpline",number:"0300 3030 111",hours:"Mon–Fri 9am–5pm",link:"https://www.macularsociety.org"},
   name:"Myopic Macular Degeneration",
+  cy:{
+    name:"Dirywiad Macular Myopig",
+    what:"Mae Dirywiad Macular Myopig (MMD) yn gymhlethdod difrifol o fypeia uchel (byrdra golwg difrifol, fel arfer -6 dioptri neu fwy). Mae'r llygad hirgul yn achosi niwed cynyddol i'r macula. Hwn yw achos blaenllaw nam gweledol mewn oedolion ifanc a chanol oed yn ne-ddwyrain Asia ac mae'n gynyddol gyffredin yn y DU.",
+    howAffects:"Mae golwg canolog yn dirywio'n raddol. Gall llinellau syth ymddangos yn ystumio neu'n gam. Gall smotyn dall ddatblygu. Mewn rhai achosion, mae pibellau gwaed annormal yn tyfu o dan y macula (CNV myopig), gan achosi colli golwg sydyn sy'n gofyn am driniaeth frys.",
+    diagnosis:"Sgan OCT yn adnabod newidiadau macular a theneuo coroidol. Angiograffi fflworescein yn canfod twf pibellau gwaed abnormal. Mae monitro rheolaidd gan arbenigwr retinal yn hanfodol ar gyfer pobl â mypeia uchel.",
+    whoAffects:"Pobl â mypeia uchel (fel arfer -6 dioptri neu fwy). Mae poblogrwydd yn cynyddu yn fyd-eang oherwydd cyfraddau cynyddol o fypeia. Mae'n fwy cyffredin mewn pobl o dras Dwyrain Asia.",
+    researchSummary:"Mae triniaethau gwrth-VEGF ar gael ar y GIG ar gyfer CNV myopig. Mae llawdriniaeth atgyfnerthu sgleraidd mewn ymchwil. Mae rheoli mypeia mewn plant (atropin, orthokeratology) yn atal MMD yn y dyfodol."
+  },
   what:"Myopic Macular Degeneration (MMD) is a serious complication of high myopia (severe short-sightedness, typically -6 dioptres or more) in which the elongated eyeball causes progressive damage to the macula. It is the leading cause of vision impairment in young and middle-aged adults in East Asia and is increasingly common in the UK. Unlike age-related AMD, MMD affects younger people and is directly caused by the physical stretching of the eye.",
   howAffects:"Central vision progressively deteriorates. Straight lines may appear distorted or wavy. A blind spot may develop in the centre of vision. In some cases, abnormal blood vessels grow under the macula (myopic CNV — choroidal neovascularisation), causing rapid vision loss requiring urgent treatment. Peripheral vision is usually preserved.",
   diagnosis:"OCT scanning identifies macular changes and choroidal thinning. Fluorescein angiography detects abnormal blood vessel growth. Regular monitoring by a retinal specialist is essential for people with high myopia. An Amsler grid used daily at home can detect early changes.",
@@ -2931,7 +3191,16 @@ myopic:{
 },
 
 charlesbonnet:{
+    helpline:{org:"Macular Society CBS Support",number:"0300 3030 111",hours:"Mon–Fri 9am–5pm",link:"https://www.macularsociety.org"},
   name:"Charles Bonnet Syndrome",
+  cy:{
+    name:"Syndrom Charles Bonnet",
+    what:"Mae Syndrom Charles Bonnet (CBS) yn gyflwr lle mae pobl â cholli golwg sylweddol yn profi rhithwelediadau gweledol bywiog — yn gweld pethau nad ydynt yno. Mae'n effeithio ar amcangyfrif o 1 ym mhob 2 o bobl â cholli golwg sylweddol. Er gwaethaf natur frawychus y rhithwelediadau, nid yw CBS yn gyflwr iechyd meddwl ac nid yw'n arwydd o ddementia na seicosis.",
+    howAffects:"Mae rhithwelediadau yn amrywio'n fawr — o batrymau syml, gridiau, a golau yn fflachio i ddelweddau manwl o bobl, anifeiliaid, adeiladau, a thirluniau. Maent bob amser yn dawel ac fel arfer yn cael eu cydnabod fel rhai nad ydynt yn real. Gallant achosi gofid a phryder sylweddol, yn enwedig os nad yw'r person yn gwybod beth sy'n digwydd.",
+    diagnosis:"Mae CBS yn cael ei ddiagnosis gan feddyg neu offthalmolegydd ar sail disgrifiad y person o'i brofiadau a hanes cadarnhaol o golli golwg. Nid oes profion penodol. Mae llawer o bobl yn rhy swil i sôn am eu rhithwelediadau.",
+    whoAffects:"Mae'n effeithio ar amcangyfrif o 1 ym mhob 2 o bobl â cholli golwg sylweddol. Mae'n fwy cyffredin gyda cholli golwg difrifol neu sydyn. Gall effeithio ar bobl o unrhyw oedran. Mae'n cael ei danadrodd yn sylweddol.",
+    researchSummary:"Nid oes triniaeth safonol eto. Mae TMS (ysgogi yr ymennydd) mewn ymchwil gynnar. Mae gwybod beth yw CBS ei hun yn lleihau gofid yn sylweddol — mae hyn yn wirioneddol bwysig."
+  },
   what:"Charles Bonnet Syndrome (CBS) is a condition in which people with significant sight loss experience vivid visual hallucinations — seeing things that are not there. It affects an estimated 1 in 2 people with significant vision loss, including those with AMD, glaucoma, diabetic retinopathy, and other conditions. Despite the alarming nature of the hallucinations, CBS is not a mental health condition and does not indicate dementia or psychosis. It is caused by the brain generating its own images when deprived of normal visual input.",
   howAffects:"Hallucinations vary widely — from simple patterns, grids, and flashing lights to detailed images of people, animals, buildings, and landscapes. They are always silent and usually recognised as not real by the person experiencing them. They can last seconds or hours and may occur daily or occasionally. They are often triggered by low light, tiredness, or stress. CBS can cause significant distress and anxiety, particularly if the person does not know what is happening to them.",
   diagnosis:"CBS is diagnosed by a doctor or ophthalmologist based on the person's description of their experiences and a confirmed history of sight loss. There are no specific tests. Many people are embarrassed to mention their hallucinations — it is important to know they are very common and are a recognised medical condition.",
@@ -2965,7 +3234,16 @@ charlesbonnet:{
 },
 
 opticneuritis:{
+    helpline:{org:"MS Society Helpline",number:"0808 800 8000",hours:"Mon–Fri 9am–7pm",link:"https://www.mssociety.org.uk"},
   name:"Optic Neuritis",
+  cy:{
+    name:"Niwritis Optig",
+    what:"Mae Niwritis Optig yn lid ar y nerf optig — y nerf sy'n cario gwybodaeth weledol o'r llygad i'r ymennydd. Mae'n achosi colli golwg sydyn, fel arfer mewn un llygad, yn aml gyda phoen wrth symud y llygad. Mae'n gysylltiedig yn gryf â sglerosis ymledol — bydd tua 50% o bobl â niwritis optig yn datblygu MS.",
+    howAffects:"Niwlogrwydd sydyn neu golli golwg mewn un llygad, fel arfer yn datblygu dros oriau i ddyddiau. Poen y tu ôl i'r llygad, sy'n gwaethygu wrth symud y llygad. Gostyngiad mewn gweld lliw — mae lliwiau coch yn ymddangos yn ddiflas neu wedi pylu. Yn y rhan fwyaf o achosion, mae golwg yn adfer yn sylweddol o fewn wythnosau i fisoedd.",
+    diagnosis:"Diagnosis gan offthalmolegydd neu niwrolegydd ar sail symptomau, profion maes gweledol, profion gweld lliw, a sgan OCT. Mae sgan MRI yr ymennydd a'r asgwrn cefn yn cael ei wneud fel arfer i asesu risg MS.",
+    whoAffects:"Mae'n effeithio fwyaf cyffredin ar fenywod 20-45 oed. Cysylltiedig ag MS mewn tua 50% o achosion.",
+    researchSummary:"Mae Methylprednisolone IV yn cyflymu adferiad. Mae ymchwil niwroamddiffyn mewn datblygiad. Mae cael diagnosis cynnar a thrafod risg MS gyda'ch niwrolegydd yn hanfodol."
+  },
   what:"Optic Neuritis is inflammation of the optic nerve — the nerve that carries visual information from the eye to the brain. It causes sudden vision loss, usually in one eye, often accompanied by pain on eye movement. It is strongly associated with multiple sclerosis (MS) — approximately 50% of people with optic neuritis will go on to develop MS. It can also occur in isolation or in association with other conditions including neuromyelitis optica spectrum disorder (NMOSD).",
   howAffects:"Sudden blurring or loss of vision in one eye, typically developing over hours to days. Pain behind the eye, worsened by eye movement. Reduced colour vision — red colours appear washed out or faded. In most cases, vision recovers significantly within weeks to months, though some permanent reduction may remain. The Uhthoff phenomenon — temporary worsening of vision with heat or exercise — is common.",
   diagnosis:"Diagnosed by an ophthalmologist or neurologist based on symptoms, visual field testing, colour vision testing, and OCT scanning of the optic nerve. MRI brain and spinal cord scanning is routinely performed to assess MS risk. VEP (visual evoked potential) testing measures the speed of signals along the optic nerve.",
@@ -2999,7 +3277,16 @@ opticneuritis:{
 },
 
 blepharitis:{
+    helpline:{org:"RNIB Helpline",number:"0303 123 9999",hours:"Mon–Fri 8am–8pm, Sat 9am–1pm",link:"https://www.rnib.org.uk"},
   name:"Blepharitis",
+  cy:{
+    name:"Blepharaidd",
+    what:"Mae Blepharaidd yn lid cronig cyffredin o ymylon y pilen, lle mae'r amrannau'n tyfu. Mae'n un o'r cyflyrau llygaid mwyaf cyffredin yn y DU, yn effeithio ar bobl o bob oedran. Mae dau brif fath: Blepharaidd blaen (yn effeithio ar ymyl allanol yr amrant, yn aml yn gysylltiedig â bacteria neu gyflyrau croen) a Blepharaidd ôl (yn effeithio ar ymyl mewnol yr amrant, a achosir gan ddiffyg yn chwarennau meibomaidd).",
+    howAffects:"Amrannau poenus, coch, coslyd, a chwyddedig. Llygaid cramennog neu ludiog, yn arbennig yn y bore. Teimlad llosgi neu graean yn y llygaid. Llygaid sych oherwydd aflonyddu ar ffilm dagrau. Sensitifrwydd i olau. Golwg aneglur sy'n gwella wrth blinco.",
+    diagnosis:"Diagnosis gan optometrydd neu offthalmolegydd drwy archwilio ymylon yr amrannau o dan lamp hollt. Nid oes angen profion penodol.",
+    whoAffects:"Mae Blepharaidd yn hynod gyffredin — mae'n effeithio ar filiynau o bobl yn y DU. Mae'n fwy cyffredin gydag oedran. Mae'n gysylltiedig â chyflyrau croen gan gynnwys rosasea, dermatitis seborrhoeig, ac acne.",
+    researchSummary:"Mae therapi IPL ar gael mewn clinigau arbenigol yn y DU ar gyfer blepharaidd ôl. Mae Lotilaner (Xdemvy) wedi'i gymeradwyo yn yr UDA — disgwylir yn y DU cyn hir. Mae glendid amrantau dyddiol yn parhau i fod y driniaeth bwysicaf."
+  },
   what:"Blepharitis is a common chronic inflammation of the eyelids, affecting the eyelid margins where the eyelashes grow. It is one of the most common eye conditions in the UK, affecting people of all ages. There are two main types: anterior blepharitis (affecting the outer eyelid margin, often associated with bacteria or skin conditions such as seborrhoeic dermatitis or rosacea) and posterior blepharitis (affecting the inner eyelid margin, caused by dysfunction of the meibomian glands which produce the oily layer of the tear film). Many people have both types.",
   howAffects:"Sore, red, itchy, and swollen eyelids. Crusty or sticky eyelashes, particularly in the morning. Burning or gritty sensation in the eyes. Dry eyes caused by disruption of the tear film. Sensitivity to light. Blurred vision that improves with blinking. In most cases blepharitis does not permanently damage vision, but it can cause significant discomfort and affect quality of life. In severe cases it can lead to corneal damage.",
   diagnosis:"Diagnosed by an optometrist or ophthalmologist through examination of the eyelid margins under a slit lamp. Meibomian gland expression and photography can assess gland function. No specific tests are needed for a diagnosis.",
@@ -3052,14 +3339,16 @@ function fallback(key) {
 
 /* ─────────────── RENDER CONDITION PAGE ─────────────── */
 function renderCondition(key) {
-  const d = DATA[key] || fallback(key);
+  var base = DATA[key] || fallback(key);
+  // Merge Welsh data if Welsh mode is active
+  const d = (_isWelsh && base.cy) ? Object.assign({}, base, base.cy) : base;
   const tc = {gene:"gene",stem:"stem",trial:"trial",drug:"drug",tech:"tech"};
   return `
   <div class="cond-hero">
-    <button class="back-btn" onclick="showPage('home')" aria-label="Back to conditions list">← All Conditions</button>
-    <span class="cond-hero-eyebrow">Eye Condition Guide</span>
+    <button class="back-btn" onclick="_isWelsh ? (function(){ document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active');}); var wh=document.getElementById('page-home-welsh'); if(wh){wh.style.display='';} window.scrollTo({top:0,behavior:'instant'}); })() : showPage('home')" aria-label="Back to conditions list">${_isWelsh ? '← Pob Cyflwr' : '← All Conditions'}</button>
+    <span class="cond-hero-eyebrow">${_isWelsh ? 'Canllaw Cyflyrau\'r Llygad' : 'Eye Condition Guide'}</span>
     <h1>${d.name}</h1>
-    <p style="font-size:0.75rem;color:var(--text2);margin-bottom:16px">Last reviewed: <time datetime="2026-04">April 2026</time> &nbsp;·&nbsp; <button onclick="showPage('disclaimer')" style="background:none;border:none;color:var(--text2);font-family:var(--font);font-size:inherit;cursor:pointer;text-decoration:underline;padding:0">How we write our content</button></p>
+    <p style="font-size:0.75rem;color:var(--text2);margin-bottom:16px">Last reviewed: <time datetime="2026-05">May 2026</time> &nbsp;·&nbsp; <button onclick="showPage('disclaimer')" style="background:none;border:none;color:var(--text2);font-family:var(--font);font-size:inherit;cursor:pointer;text-decoration:underline;padding:0">How we write our content</button></p>
   </div>
   <div class="cond-page-inner">
 
@@ -3083,6 +3372,7 @@ function renderCondition(key) {
         <span class="acc-arrow" aria-hidden="true">▾</span>
       </button>
       <div class="acc-body">
+        ${_isWelsh && d.cy && d.cy.researchSummary ? `<div class="wb" style="border-left:4px solid #00b140;margin-bottom:16px"><strong>🏴󠁧󠁢󠁷󠁬󠁳󠁥󠁳󠁿 Crynodeb Ymchwil:</strong> ${d.cy.researchSummary}</div>` : ''}
         ${d.research.map(r=>`
         <div class="rc">
           <span class="rtag ${tc[r.tag]||'trial'}">${r.label}</span>
@@ -3129,6 +3419,14 @@ function renderCondition(key) {
         <span class="acc-arrow" aria-hidden="true">▾</span>
       </button>
       <div class="acc-body">
+        ${d.helpline ? `<div style="background:var(--yellow);border-radius:14px;padding:16px 18px;margin-bottom:14px;display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+          <span style="font-size:1.4rem" aria-hidden="true">📞</span>
+          <div>
+            <div style="font-size:0.78rem;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;color:#000;margin-bottom:2px">${d.helpline.org}</div>
+            <a href="tel:${d.helpline.number.replace(/\s/g,'')}" style="font-size:1.3rem;font-weight:900;color:#000;text-decoration:none">${d.helpline.number}</a>
+            <div style="font-size:0.75rem;color:#333;margin-top:2px">${d.helpline.hours}</div>
+          </div>
+        </div>` : ''}
         ${d.support.map(s=>`
         <div class="sc">
           <h3>${s.title}</h3><p>${s.body}</p>
@@ -3272,6 +3570,115 @@ function toggleAcc(section, key) {
   }
 }
 
+
+/* ─────────────── WELSH PAGE ROUTING ─────────────── */
+function showConditionWelsh(key) {
+  // Show condition page in Welsh mode — keeps Welsh active
+  var base = DATA[key] || fallback(key);
+  var condContent = document.getElementById('condition-content');
+  if (condContent) condContent.innerHTML = renderCondition(key);
+
+  // Hide Welsh home, show English condition page (which uses Welsh data via _isWelsh)
+  var welshHome = document.getElementById('page-home-welsh');
+  if (welshHome) welshHome.style.display = 'none';
+
+  // Hide Welsh static pages
+  document.querySelectorAll('.welsh-page').forEach(function(p) { p.style.display = 'none'; });
+
+  // Show condition page
+  document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
+  var condPage = document.getElementById('page-condition');
+  if (condPage) condPage.classList.add('active');
+
+  // Keep Welsh active state
+  document.body.classList.add('welsh-active');
+  document.documentElement.setAttribute('lang', 'cy');
+
+  // Hide video resources
+  var videoWrap = document.getElementById('video-resources-wrap');
+  if (videoWrap) videoWrap.style.display = 'none';
+
+  // Update sidebar highlighting
+  document.querySelectorAll('.sidebar-link').forEach(function(l) {
+    l.classList.remove('active');
+    var oc = l.getAttribute('onclick') || '';
+    if (oc.indexOf("'" + key + "'") !== -1) l.classList.add('active');
+  });
+
+  window.scrollTo({ top: 0, behavior: 'instant' });
+  try { history.pushState({key:key}, '', '#' + key); } catch(e){}
+}
+
+function showWelshPage(name) {
+  if (_isWelsh) {
+    // Show Welsh version if it exists
+    var welshEl = document.getElementById('page-' + name + '-welsh');
+    if (welshEl) {
+      // Hide all welsh pages and english pages
+      document.querySelectorAll('.welsh-page').forEach(function(p) { p.style.display = 'none'; });
+      document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
+      // Hide Welsh home too
+      var wh = document.getElementById('page-home-welsh');
+      if (wh) wh.style.display = 'none';
+      // Show this Welsh page
+      welshEl.style.display = '';
+      window.scrollTo({ top: 0, behavior: 'instant' });
+      return;
+    }
+  }
+  // Fallback to English
+  showPage(name);
+}
+
+/* ─────────────── WELSH LANGUAGE TOGGLE ─────────────── */
+var _isWelsh = false;
+
+function toggleWelsh() {
+  _isWelsh = !_isWelsh;
+  var btn = document.getElementById('welsh-toggle');
+  if (btn) {
+    btn.classList.toggle('active', _isWelsh);
+    btn.setAttribute('aria-label', _isWelsh ? 'Newid i Saesneg' : 'Newid i Gymraeg');
+    btn.textContent = _isWelsh ? 'EN' : 'CY';
+  }
+
+  // Show/hide Welsh home page and notice
+  var welshHome = document.getElementById('page-home-welsh');
+  var engHome = document.getElementById('page-home');
+  var notice = document.getElementById('welsh-notice');
+
+  if (welshHome) welshHome.style.display = _isWelsh ? '' : 'none';
+  if (notice) notice.style.display = _isWelsh ? '' : 'none';
+
+  // If switching to Welsh, activate Welsh home
+  if (_isWelsh) {
+    document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
+    if (welshHome) {
+      welshHome.style.display = '';
+      welshHome.classList.add('active');
+    }
+  } else {
+    // Switch back to English home
+    document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
+    if (engHome) {
+      engHome.style.display = '';
+      engHome.classList.add('active');
+    }
+  }
+
+  document.documentElement.setAttribute('lang', _isWelsh ? 'cy' : 'en');
+  document.body.classList.toggle('welsh-active', _isWelsh);
+  localStorage.setItem('vh-lang', _isWelsh ? 'cy' : 'en');
+  window.scrollTo({ top: 0, behavior: 'instant' });
+}
+
+// Restore preference
+(function() {
+  if (localStorage.getItem('vh-lang') === 'cy') {
+    setTimeout(toggleWelsh, 300);
+  }
+})();
+
 /* ─────────────── JUST DIAGNOSED TOGGLE ─────────────── */
 function toggleJD() {
   var steps   = document.getElementById('jd-steps');
@@ -3286,6 +3693,18 @@ function toggleJD() {
 var _scrollPos = {};
 
 function showPage(name) {
+  // If Welsh active and going home, show Welsh home
+  if (_isWelsh && name === 'home') {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.welsh-page').forEach(function(p) { p.style.display = 'none'; });
+    var welshHome = document.getElementById('page-home-welsh');
+    if (welshHome) welshHome.style.display = '';
+    var videoWrap = document.getElementById('video-resources-wrap');
+    if (videoWrap) videoWrap.style.display = 'none';
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    return;
+  }
+
   // Save scroll position of current page
   var currentActive = document.querySelector('.page.active');
   if (currentActive) _scrollPos[currentActive.id] = window.scrollY;
@@ -3294,9 +3713,8 @@ function showPage(name) {
   var target = document.getElementById('page-' + name);
   if (target) target.classList.add('active');
 
-  // Show video resources and decorative divider only on home page
+  // Show video resources only on home page
   var videoWrap = document.getElementById('video-resources-wrap');
-  var decoDivider = document.querySelector('[aria-hidden="true"] svg');
   if (videoWrap) videoWrap.style.display = name === 'home' ? '' : 'none';
 
   // Restore or reset scroll
@@ -3606,5 +4024,364 @@ if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register(swUrl).catch(err => console.log('SW failed:', err));
 }
 </script>
+
+<!-- ══════════════════════════════════════
+     WELSH STATIC PAGES
+══════════════════════════════════════ -->
+
+<!-- WELSH GLOSSARY -->
+<div id="page-glossary-welsh" class="welsh-page" style="display:none">
+  <div class="legal-wrap">
+    <button class="back-btn" onclick="showPage('home');if(_isWelsh)document.getElementById('page-home-welsh').style.display=''" aria-label="Yn ôl i'r hafan">← Yn ôl</button>
+    <span class="legal-eyebrow">Termau</span>
+    <h1>Geirfa</h1>
+    <p style="font-size:0.95rem;color:var(--text2);margin-bottom:24px">Termau cyffredin llygad a meddygol wedi'u hegluro mewn iaith syml. Gweler ein <button onclick="showPage('eyehealth')" style="background:none;border:none;color:var(--yellow);font-family:var(--font);font-size:inherit;font-weight:700;cursor:pointer;text-decoration:underline;padding:0">Hanfodion Iechyd Llygaid →</button> am ragor o esboniadau.</p>
+    <div class="wb">Awgrym: Defnyddiwch swyddogaeth dod o hyd i'ch porwr (Ctrl+F ar y bwrdd gwaith) i chwilio am derm penodol.</div>
+    <div class="lc"><h2>A</h2>
+      <p><strong>Acuedd Gweledol</strong> — Pa mor glir yw eich golwg. Fel arfer wedi'i fesur fel ffracsiwn e.e. 6/6 (normal) neu 6/60.</p>
+      <p style="margin-top:10px"><strong>AMD</strong> — Dirywiad Macular yn Gysylltiedig ag Oedran. Y cyflwr llygad sy'n effeithio ar y macula a'r achos mwyaf cyffredin o golli golwg difrifol mewn pobl dros 50 oed.</p>
+      <p style="margin-top:10px"><strong>Anti-VEGF</strong> — Meddyginiaeth a chwistrellu i'r llygad i atal pibellau gwaed annormal rhag tyfu. Yn cael ei ddefnyddio ar gyfer AMD Gwlyb a DMO.</p>
+    </div>
+    <div class="lc"><h2>C</h2>
+      <p><strong>Cataracts (Cataract)</strong> — Cymylu'r lens tu mewn i'r llygad. Mae'n achosi golwg niwlog. Mae llawdriniaeth gataract syml yn ei gywiro.</p>
+      <p style="margin-top:10px"><strong>Celloedd Côn</strong> — Ffotodderbynnwyr yn y retina sy'n gyfrifol am weledigaeth lliw a manylion mewn goleuni da. Wedi'u canoli yn y macula.</p>
+      <p style="margin-top:10px"><strong>Celloedd Rhodenni</strong> — Ffotodderbynnwyr yn y retina sy'n gyfrifol am weledigaeth nos a golwg ymylol. Yn cael eu heffeithio gyntaf mewn Retinitis Pigmentosa.</p>
+      <p style="margin-top:10px"><strong>CVI</strong> — Nam Gweledol yr Ymennydd. Cyflwr lle mae'r ymennydd yn cael anhawster prosesu gwybodaeth weledol, er bod y llygaid eu hunain yn iach.</p>
+    </div>
+    <div class="lc"><h2>F</h2>
+      <p><strong>Ffotodderbynnwyr</strong> — Celloedd yn y retina sy'n sensitif i olau — celloedd côn a rhodenni.</p>
+      <p style="margin-top:10px"><strong>Fovea</strong> — Y pwynt canolog yn y macula lle mae'r golwg yn fwyaf manwl.</p>
+    </div>
+    <div class="lc"><h2>G</h2>
+      <p><strong>Glawcoma</strong> — Grŵp o gyflyrau llygaid sy'n niweidio'r nerf optig, yn aml oherwydd pwysedd uchel yn y llygad. Achos cyffredin o ddallineb y gellir ei atal.</p>
+      <p style="margin-top:10px"><strong>Grid Amsler</strong> — Grid o linellau a ddefnyddir i brofi swyddogaeth y macula. Os yw llinellau'n ymddangos yn gam neu'n goll, gallai hyn fod yn arwydd o broblem yn y macula.</p>
+    </div>
+    <div class="lc"><h2>I</h2>
+      <p><strong>IOP (Pwysedd Mewnolygol)</strong> — Pwysedd hylif o fewn y llygad. Mae'r ystod normal tua 10–21 mmHg. Mae pwysedd uchel yn cynyddu risg glawcoma.</p>
+    </div>
+    <div class="lc"><h2>L</h2>
+      <p><strong>LCA</strong> — Amawrosis Cynhenid Leber. Grŵp o gyflyrau retinal etifeddol difrifol sy'n effeithio o enedigaeth.</p>
+    </div>
+    <div class="lc"><h2>M</h2>
+      <p><strong>Macula</strong> — Ardal fach ganolog y retina sy'n gyfrifol am weledigaeth finiog a manwl — darllen, adnabod wynebau, a gweld lliw.</p>
+    </div>
+    <div class="lc"><h2>N</h2>
+      <p><strong>Nerf Optig</strong> — Y nerf sy'n cario signalau gweledol o'r retina i'r ymennydd. Yn cynnwys tua 1.2 miliwn o ffibrau nerfau.</p>
+      <p style="margin-top:10px"><strong>Nystagmus</strong> — Symudiad llygaid afreolaidd a gwibiol sy'n effeithio ar olwg.</p>
+    </div>
+    <div class="lc"><h2>O</h2>
+      <p><strong>OCT (Tomograffi Cydlyniant Optegol)</strong> — Sgan manwl trawstoriadol o'r retina sy'n dangos ei haenau a'i thrwch. Yr offeryn diagnostig pwysicaf mewn gofal llygaid modern.</p>
+      <p style="margin-top:10px"><strong>Offthalmolegydd</strong> — Meddyg arbenigol mewn cyflyrau a llawdriniaeth y llygad. Yn gweithio mewn ysbytai a chlinigau arbenigol.</p>
+      <p style="margin-top:10px"><strong>Optometrydd</strong> — Yn cynnal profion llygaid, yn rhagnodi sbectol a lensys cyffwrdd, ac yn sgrinio am gyflyrau llygaid. Ar gael mewn optegwyr ar y stryd fawr.</p>
+    </div>
+    <div class="lc"><h2>R</h2>
+      <p><strong>Retina</strong> — Haen denau o feinwe sensitif i olau ar gefn y llygad. Mae'n trosi golau yn signalau trydanol sy'n teithio ar hyd y nerf optig i'r ymennydd.</p>
+      <p style="margin-top:10px"><strong>RP</strong> — Retinitis Pigmentosa. Grŵp o gyflyrau etifeddol sy'n achosi dirywiad cynyddol y retina, yn dechrau â golwg nos gwael.</p>
+    </div>
+    <div class="lc"><h2>T</h2>
+      <p><strong>Therapi Genynnau</strong> — Triniaeth sy'n cyflenni copi cywir o enyn diffygiol i gelloedd y retina. Mae Luxturna eisoes wedi'i gymeradwyo gan y GIG ar gyfer rhai cyflyrau.</p>
+    </div>
+    <button class="back-btn" onclick="showPage('home')" style="margin-top:8px">← Yn ôl</button>
+  </div>
+</div>
+
+<!-- WELSH EYE HEALTH BASICS -->
+<div id="page-eyehealth-welsh" class="welsh-page" style="display:none">
+  <div class="legal-wrap">
+    <button class="back-btn" onclick="showPage('home')" aria-label="Yn ôl i'r hafan">← Yn ôl</button>
+    <span class="legal-eyebrow">Deall Eich Llygaid</span>
+    <h1>Hanfodion Iechyd Llygaid</h1>
+    <p style="font-size:0.95rem;color:var(--text2);margin-bottom:28px;line-height:1.8">Cyn i'r termau meddygol wneud synnwyr, mae'n helpu i ddeall sut mae'r llygad yn gweithio. Mae'r dudalen hon yn egluro'r pethau sylfaenol — yn glir ac heb jargon.</p>
+    <div class="lc">
+      <h2>👁️ Sut Mae'r Llygad yn Gweithio</h2>
+      <p>Mae'r llygad yn gweithio fel camera. Mae golau'n mynd i mewn drwy'r <strong>cornea</strong> (yr wyneb blaen clir), yn mynd drwy'r <strong>lens</strong>, ac yn cael ei ffocysu ar y <strong>retina</strong> yng nghefn y llygad. Mae'r retina yn trosi golau yn signalau trydanol sy'n teithio ar hyd y <strong>nerf optig</strong> i'r ymennydd, lle maent yn cael eu dehongli fel delweddau.</p>
+    </div>
+    <div class="lc">
+      <h2>🔴 Y Retina</h2>
+      <p>Mae'r retina yn haen denau o feinwe sensitif i olau yng nghefn y llygad. Mae'n cynnwys dau fath o gell ffotodderbynnydd:</p>
+      <ul style="margin-top:8px">
+        <li><strong>Rhodenni</strong> — cyfrifol am weledigaeth mewn golau isel a golwg ymylol. Tua 120 miliwn mewn pob llygad. Y celloedd cyntaf i gael eu heffeithio mewn Retinitis Pigmentosa.</li>
+        <li><strong>Cônau</strong> — cyfrifol am weledigaeth lliw a manylion mân mewn goleuni da. Wedi'u canoli yn y macula. Absennol neu anweithredol mewn Achromatopsia.</li>
+      </ul>
+    </div>
+    <div class="lc">
+      <h2>🎯 Y Macula</h2>
+      <p>Y macula yw'r ardal fach ganolog yn y retina — tua 5mm ar draws — sy'n gyfrifol am eich golwg mwyaf miniog a manwl. Dyma'r hyn a ddefnyddiwch i ddarllen, adnabod wynebau, gwylio teledu, a gweld lliw. Canol y macula yw'r <strong>fovea</strong>.</p>
+      <p style="margin-top:10px">Mae cyflyrau sy'n niweidio'r macula — AMD, Clefyd Stargardt, Dystroffi Côn, Oedema Macular Diabetig — yn effeithio ar olwg canolog tra fel arfer yn cadw golwg ymylol.</p>
+    </div>
+    <div class="lc">
+      <h2>🧠 Y Nerf Optig</h2>
+      <p>Mae'r nerf optig yn cario signalau trydanol o'r retina i'r ymennydd. Mae'n cynnwys tua 1.2 miliwn o ffibrau nerfau. Mae Glawcoma yn niweidio'r nerf optig — fel arfer drwy bwysedd uchel yn y llygad — gan achosi colli golwg ymylol cynyddol ac anadferadwy. Mae Niwritis Optig yn lid ar y nerf optig, yn aml yn gysylltiedig â Sglerosis Ymledol.</p>
+    </div>
+    <div class="lc">
+      <h2>📊 Deall Eich Canlyniadau Prawf Golwg</h2>
+      <p><strong>Acuedd Gweledol</strong> — wedi'i fesur fel ffracsiwn. 6/6 yw normal. Mae 6/60 yn golygu eich bod yn gweld ar 6 metr yr hyn mae rhywun â golwg normal yn ei weld ar 60 metr. Y safon gyfreithiol ar gyfer gyrru yw 6/12.</p>
+      <p style="margin-top:10px"><strong>Maes Gweledol</strong> — yr ardal lawn y gallwch ei gweld heb symud eich llygaid, gan gynnwys golwg ymylol. Wedi'i fesur ar beiriant perimedr.</p>
+      <p style="margin-top:10px"><strong>IOP (Pwysedd Mewnolygol)</strong> — yr ystod normal yw tua 10–21 mmHg. Mae IOP uchel yn cynyddu risg glawcoma.</p>
+      <p style="margin-top:10px"><strong>OCT (Tomograffi Cydlyniant Optegol)</strong> — sgan manwl trawstoriadol o'r retina. Yr offeryn diagnostig pwysicaf mewn gofal llygaid modern. Nid yw'n ymwthiol ac mae'n cymryd tua 5 munud.</p>
+    </div>
+    <div class="lc">
+      <h2>🏥 Mathau o Arbenigwyr Llygaid</h2>
+      <p><strong>Optometrydd</strong> — yn cynnal profion llygaid, yn rhagnodi sbectol a lensys cyffwrdd, ac yn sgrinio am gyflyrau llygaid.</p>
+      <p style="margin-top:10px"><strong>Offthalmolegydd</strong> — meddyg arbenigol mewn cyflyrau a llawdriniaeth y llygad. Yn gweithio mewn ysbytai.</p>
+      <p style="margin-top:10px"><strong>Orthoptydd</strong> — yn arbenigo mewn anhwylderau symudiad y llygad, nystagmus, a golwg plant.</p>
+      <p style="margin-top:10px"><strong>Arbenigwr Golwg Isel</strong> — yn darparu chwyddwyr, lensys lliw, a strategaethau ymarferol i fwyhau golwg sydd ar ôl. Ar gael drwy atgyfeiriad GIG.</p>
+      <p style="margin-top:10px"><strong>Arbenigwr Adsefydlu Golwg</strong> — yn ymweld â'ch cartref ac yn darparu hyfforddiant ymarferol ar gyfer bywyd beunyddiol gyda cholli golwg. Am ddim drwy eich awdurdod lleol.</p>
+    </div>
+    <div class="wb">Eisiau deall term penodol? Ewch i'n <button onclick="showPage('glossary')" style="background:none;border:none;color:var(--yellow);font-family:var(--font);font-size:inherit;font-weight:700;cursor:pointer;text-decoration:underline;padding:0">Geirfa →</button></div>
+    <button class="back-btn" onclick="showPage('home')" style="margin-top:8px">← Yn ôl</button>
+  </div>
+</div>
+
+<!-- WELSH FOR PARENTS -->
+<div id="page-children-welsh" class="welsh-page" style="display:none">
+  <div class="legal-wrap">
+    <button class="back-btn" onclick="showPage('home')" aria-label="Yn ôl i'r hafan">← Yn ôl</button>
+    <span class="legal-eyebrow">I Rieni</span>
+    <h1>Pan fo gan Eich Plentyn Gyflwr Golwg</h1>
+    <p style="font-size:0.95rem;color:var(--text2);margin-bottom:28px;line-height:1.8">Mae darganfod bod gan eich plentyn gyflwr golwg yn un o'r pethau anoddaf y gall rhiant ei wynebu. Mae'r dudalen hon ar eich cyfer chi — ymarferol, gonest, ac wedi'i hysgrifennu gyda'r ddealltwriaeth eich bod chi'n gwneud gwaith ardderchog.</p>
+    <div class="wb"><strong>Nid ydych chi ar eich pen eich hun.</strong> Mae miloedd o deuluoedd yn y DU yn byw bywydau cyflawn, hapus gyda phlentyn sydd â chyflwr golwg. Dechrau taith yw hyn, nid diwedd un.</div>
+    <div class="lc">
+      <h2>💛 Yn Gyntaf — Sut Rydych chi'n Teimlo</h2>
+      <p>Sioc. Ofn. Galar. Euogrwydd. Dicter. Mae'r rhain i gyd yn ymatebion hollol normal i ddiagnosis. Gallwch deimlo pob un ohonynt ar yr un pryd, neu mewn tonnau dros wythnosau a misoedd.</p>
+      <p style="margin-top:10px">Yr hyn y mae rhieni'n ei ddweud yn gyson, wrth edrych yn ôl, yw bod ofn y diagnosis yn waeth na'r realiti o fyw gydag ef. Mae plant yn hynod o addasadwy. Nid ydynt yn galaru dros y golwg nad oes ganddynt erioed wedi'i gael — maent yn tyfu i fyny gan wybod eu byd, ei feistroli, a ffynnu ynddo.</p>
+    </div>
+    <div class="lc">
+      <h2>📋 Y Camau Cyntaf</h2>
+      <ul>
+        <li><strong>Cael diagnosis genetig</strong> — lle bo'n berthnasol, mae gwybod am y mwtaniad penodol yn pennu cymhwysedd triniaeth. Am ddim ar y GIG.</li>
+        <li><strong>Gofyn am TGW</strong> — mae'r Dystysgrif Nam Gweledol yn rhad ac am ddim ac yn cael ei rhoi gan eich offthalmolegydd. Mae'n datgloi cymorth awdurdod lleol, LDA, a darpariaeth addysgol.</li>
+        <li><strong>Cysylltu ag RNIB</strong> — ffoniwch 0303 123 9999. Dywedwch wrthynt am ddiagnosis eich plentyn. Mae ganddynt gynghorwyr arbenigol ar gyfer teuluoedd plant â chyflyrau golwg.</li>
+        <li><strong>Gofyn am ATHQN</strong> — mae Athro Cymwysedig Nam Gweledol yn gymwys i weithio gyda'ch plentyn o'r oedran cynharaf. Cysylltwch â gwasanaeth cymorth synhwyraidd eich awdurdod lleol.</li>
+        <li><strong>Gwneud cais am LDA</strong> — mae Lwfans Byw i'r Anabl i blant o dan 16 oed yn gallu bod yn werth dros £600 y mis. Gall RNIB helpu.</li>
+        <li><strong>Cysylltu â theuluoedd eraill</strong> — dyma'r peth mwyaf defnyddiol y mae rhieni'n ei ddisgrifio.</li>
+      </ul>
+    </div>
+    <div class="lc">
+      <h2>🏫 Addysg</h2>
+      <p>Mae gan eich plentyn hawl i <strong>Gynllun Addysg, Iechyd a Gofal (AIG)</strong> — dogfen gyfreithiol rwymol sy'n nodi'r cymorth arbenigol y mae'n rhaid i'ch plentyn ei gael yn yr ysgol.</p>
+      <p style="margin-top:10px">Yn yr ysgol, mae gan eich plentyn hawl i: ymweliadau rheolaidd gan ATHQN, deunyddiau print mawr neu Braille, eistedd yn ffafriol, tabled neu gyfrifiadur ar gyfer gwaith agos, amser ychwanegol mewn arholiadau, goleuadau addas, a darllenydd neu ysgrifennydd os oes angen.</p>
+    </div>
+    <div class="lc">
+      <h2>💰 Cymorth Ariannol</h2>
+      <p><strong>Lwfans Byw i'r Anabl (LDA)</strong> — ar gyfer plant o dan 16 oed. Gall fod yn werth £600+ y mis ar y cyfraddau uwch. Hwn yw un o'r prif gymorthion ariannol sydd ar gael.</p>
+      <p style="margin-top:10px"><strong>Lwfans Gofalwr</strong> — os ydych chi'n treulio 35+ awr yr wythnos yn gofalu am eich plentyn, efallai eich bod yn gymwys am £86.45 yr wythnos.</p>
+      <p style="margin-top:10px">Ffoniwch RNIB (0303 123 9999) am help am ddim gyda phob cais budd-daliadau.</p>
+    </div>
+    <div class="lc">
+      <h2>🌱 Dyfodol Eich Plentyn</h2>
+      <p>Mae plant â chyflyrau golwg yn mynd i'r brifysgol, yn cael gyrfaoedd, yn teithio'n annibynnol, yn chwarae chwaraeon, yn syrthio mewn cariad, ac yn byw bywydau llawn ac anghyffredin. Mae'r dechnoleg sydd ar gael heddiw — a'r therapïau genynnau sy'n cael eu datblygu — yn gwneud y rhagolwg ar gyfer llawer o gyflyrau yn well nag y mae wedi bod erioed.</p>
+    </div>
+    <div class="lc">
+      <h2>📞 Cysylltiadau Allweddol i Deuluoedd</h2>
+      <p><strong>RNIB:</strong> <a href="tel:03031239999" style="color:var(--yellow);font-weight:700">0303 123 9999</a></p>
+      <p style="margin-top:8px"><strong>Retina UK:</strong> <a href="tel:01280860363" style="color:var(--yellow);font-weight:700">01280 860363</a></p>
+      <p style="margin-top:8px"><strong>Sense (byddar-ddall):</strong> <a href="tel:03003309256" style="color:var(--yellow);font-weight:700">0300 330 9256</a></p>
+      <p style="margin-top:8px"><strong>Llinell LDA:</strong> <a href="tel:08001214600" style="color:var(--yellow);font-weight:700">0800 121 4600</a></p>
+    </div>
+    <button class="back-btn" onclick="showPage('home')" style="margin-top:8px">← Yn ôl</button>
+  </div>
+</div>
+
+<!-- WELSH CONTACT -->
+<div id="page-contact-welsh" class="welsh-page" style="display:none">
+  <div class="legal-wrap">
+    <button class="back-btn" onclick="showPage('home')" aria-label="Yn ôl i'r hafan">← Yn ôl</button>
+    <span class="legal-eyebrow">Cysylltu</span>
+    <h1>Cysylltwch â Ni</h1>
+    <p style="font-size:0.95rem;color:var(--text2);margin-bottom:28px;line-height:1.8">Mae croeso i chi gysylltu am unrhyw reswm — i awgrymu cyflwr i'w ychwanegu, i roi gwybod am wall, i gynnig adborth, neu i gael adolygiad clinigol o'r cynnwys.</p>
+    <div class="wb"><strong>Ar gyfer argyfyngau meddygol:</strong> Ffoniwch 999 neu 111. Peidiwch â defnyddio'r ffurflen hon ar gyfer cyngor meddygol brys.</div>
+    <div class="lc">
+      <h2>✉️ Anfonwch Neges</h2>
+      <p>E-bostiwch ni yn: <a href="mailto:hello@visionhubuk.co.uk" style="color:var(--yellow);font-weight:700">hello@visionhubuk.co.uk</a></p>
+      <p style="margin-top:10px">Fel arfer byddwn yn ymateb o fewn 3-5 diwrnod gwaith.</p>
+    </div>
+    <div class="lc">
+      <h2>Rydym yn awyddus i glywed am:</h2>
+      <ul>
+        <li>Cyflyrau yr hoffech eu gweld wedi'u hychwanegu</li>
+        <li>Gwybodaeth sy'n ymddangos yn anghywir neu'n hen</li>
+        <li>Dolenni sydd wedi torri</li>
+        <li>Adborth ar hygyrchedd</li>
+        <li>Adolygiad clinigol o gynnwys</li>
+        <li>Cymorth gyda'r cyfieithiad Cymraeg</li>
+      </ul>
+    </div>
+    <button class="back-btn" onclick="showPage('home')" style="margin-top:8px">← Yn ôl</button>
+  </div>
+</div>
+
+
+<!-- WELSH EMPLOYMENT PAGE -->
+<div id="page-employment-welsh" class="welsh-page" style="display:none">
+  <div class="legal-wrap">
+    <button class="back-btn" onclick="showPage('home')" aria-label="Yn ôl i'r hafan">← Yn ôl</button>
+    <span class="legal-eyebrow">Gwaith</span>
+    <h1>Cyflogaeth a Cholli Golwg</h1>
+    <p style="font-size:0.95rem;color:var(--text2);margin-bottom:28px;line-height:1.8">Eich hawliau, y cymorth sydd ar gael, a sut i ffynnu'n broffesiynol gyda chyflwr golwg.</p>
+    <div class="wb"><strong>Rhif allweddol:</strong> Llinell Cyflogaeth RNIB — <a href="tel:03031239999" style="color:var(--yellow);font-weight:700">0303 123 9999</a> — cyngor cyfrinachol am ddim ar bob mater cyflogaeth.</div>
+    <div class="lc">
+      <h2>⚖️ Eich Hawliau Cyfreithiol</h2>
+      <p>Mae <strong>Deddf Cydraddoldeb 2010</strong> yn eich diogelu rhag gwahaniaethu yn y gwaith oherwydd eich cyflwr golwg. Rhaid i'ch cyflogwr wneud <strong>addasiadau rhesymol</strong> i gael gwared ar anfanteision rydych chi'n eu hwynebu. Mae gwrthod gwneud addasiadau rhesymol yn wahaniaethu anghyfreithlon ar sail anabledd.</p>
+      <p style="margin-top:10px">Gall addasiadau rhesymol gynnwys: meddalwedd chwyddo sgrin, goleuadau addas, dyletswyddau wedi'u haddasu, gweithio o bell, oriau hyblyg, gweithiwr cymorth penodol, neu newidiadau i'ch gweithle.</p>
+    </div>
+    <div class="lc">
+      <h2>💷 Mynediad i Waith — Hyd at £69,260 y Flwyddyn</h2>
+      <p>Mae Mynediad i Waith yn grant llywodraeth sy'n talu am offer a chymorth y mae arnoch eu hangen yn y gwaith na all eich cyflogwr eu hariannu'n rhesymol. Mae'n un o'r budd-daliadau mwyaf gwerthfawr ac ychydig a ddefnyddir sydd ar gael i bobl â cholli golwg.</p>
+      <p style="margin-top:10px">Gall Mynediad i Waith ariannu: darllenwyr sgrin (JAWS, NVDA), meddalwedd chwyddo (ZoomText), arddangos Braille, cymorthwyr cymorth neu hyfforddwyr swyddi, costau tacsi i'r gwaith os na allwch ddefnyddio trafnidiaeth gyhoeddus.</p>
+      <p style="margin-top:12px"><strong>Gwnewch gais cyn prynu unrhyw beth yn breifat.</strong> Gwneud cais ar <a href="https://www.gov.uk/access-to-work" target="_blank" rel="noopener" style="color:var(--yellow);font-weight:700">gov.uk/access-to-work ↗</a> (Saesneg yn unig)</p>
+    </div>
+    <div class="lc">
+      <h2>🗣️ Dweud wrth Eich Cyflogwr</h2>
+      <p>Nid oes rhaid i chi yn gyfreithiol ddatgelu cyflwr golwg i'ch cyflogwr, ond mae gwneud hynny yn galluogi chi i ofyn am addasiadau rhesymol. Ystyriwch ddatgelu pan fo: eich cyflwr yn effeithio ar eich gallu i wneud eich gwaith, angen addasiadau arnoch i'ch gweithle, rydych chi'n gwneud cais am rôl ac angen addasiadau yn y cyfweliad.</p>
+      <p style="margin-top:10px">Mae Llinell Cyflogaeth RNIB (0303 123 9999) yn darparu cyngor cyfrinachol am ddim ar sut i fynd ati at sgyrsiau datgelu.</p>
+    </div>
+    <div class="lc">
+      <h2>📋 Diswyddo ac Ymadael</h2>
+      <p>Os cewch chi eich diswyddo ac yn credu bod eich cyflwr golwg yn ffactor, gallai hyn fod yn wahaniaethu ar sail anabledd. Cysylltwch â:</p>
+      <ul style="margin-top:8px">
+        <li><strong>ACAS:</strong> <a href="tel:03001231100" style="color:var(--yellow);font-weight:700">0300 123 1100</a> — cyngor cyflogaeth am ddim (Saesneg)</li>
+        <li><strong>Llinell Cyflogaeth RNIB:</strong> 0303 123 9999</li>
+        <li><strong>Cyngor ar Bopeth:</strong> citizensadvice.org.uk (Saesneg yn unig)</li>
+      </ul>
+    </div>
+    <button class="back-btn" onclick="showPage('home')" style="margin-top:8px">← Yn ôl</button>
+  </div>
+</div>
+
+<!-- WELSH DISCLAIMER PAGE -->
+<div id="page-disclaimer-welsh" class="welsh-page" style="display:none">
+  <div class="legal-wrap">
+    <button class="back-btn" onclick="showPage('home')" aria-label="Yn ôl i'r hafan">← Yn ôl</button>
+    <span class="legal-eyebrow">Tryloywder</span>
+    <h1>Sut Rydym yn Ysgrifennu Ein Cynnwys</h1>
+    <div class="wb"><strong>Pwysig:</strong> Mae Hwb Golwg yn darparu gwybodaeth i arwain yn unig. Nid yw'n cymryd lle cyngor meddygol proffesiynol. Trafodwch eich cyflwr bob amser gyda'ch offthalmolegydd neu arbenigwr eich hun.</div>
+    <div class="lc">
+      <h2>📋 Pwy sy'n ysgrifennu'r cynnwys</h2>
+      <p>Cafodd Hwb Golwg ei greu gan riant plentyn â Chlefyd Stargardt. Mae cynnwys yn cael ei ymchwilio a'i ysgrifennu gan dîm Hwb Golwg gan ddefnyddio'r ffynonellau a restrir isod. Nid ydym yn weithwyr proffesiynol meddygol.</p>
+      <p style="margin-top:10px">Rydym yn anelu i gael tudalennau cyflwr wedi'u hadolygu gan weithiwr proffesiynol clinigol cymwys. Os ydych chi'n nyrs arbenigol, offthalmolegydd, neu optometrydd sy'n fodlon adolygu cynnwys, <button onclick="showPage('contact-welsh')" style="background:none;border:none;color:var(--yellow);font-family:var(--font);font-size:inherit;font-weight:700;cursor:pointer;text-decoration:underline;padding:0">cysylltwch â ni</button>.</p>
+    </div>
+    <div class="lc">
+      <h2>📚 Ffynonellau rydym yn eu defnyddio</h2>
+      <ul style="margin-top:8px">
+        <li><strong>GIG Lloegr</strong> — nhs.uk</li>
+        <li><strong>NICE (Sefydliad Cenedlaethol dros Ragoriaeth mewn Iechyd a Gofal)</strong> — nice.org.uk</li>
+        <li><strong>RNIB (Sefydliad Cenedlaethol Brenhinol y Deillion)</strong> — rnib.org.uk</li>
+        <li><strong>Cymdeithas y Macula</strong> — macularsociety.org</li>
+        <li><strong>Retina UK</strong> — retinauk.org.uk</li>
+        <li><strong>Glaucoma UK</strong> — glaucoma.uk</li>
+        <li><strong>Ysbyty Llygaid Moorfields</strong> — moorfields.nhs.uk</li>
+        <li><strong>ClinicalTrials.gov</strong> — cofrestr treialon</li>
+        <li><strong>NIHR (Sefydliad Cenedlaethol dros Ymchwil Iechyd a Gofal)</strong> — nihr.ac.uk</li>
+        <li><strong>Ymchwil a gyhoeddwyd mewn cyfnodolion adolygwyd gan gymheiriaid</strong></li>
+      </ul>
+    </div>
+    <div class="lc">
+      <h2>🔄 Pa mor aml mae cynnwys yn cael ei adolygu</h2>
+      <p>Mae'r holl gynnwys yn cael ei adolygu bob mis — yn wythnos gyntaf pob mis. Mae'r dyddiad adolygu diweddaraf yn ymddangos ar bob tudalen cyflwr.</p>
+    </div>
+    <div class="lc">
+      <h2>⚠️ Ymwadiad meddygol</h2>
+      <p>Darperir y wybodaeth ar Hwb Golwg at ddibenion gwybodaeth a chanllawiau cyffredinol yn unig. Nid yw'n gyfystyr â chyngor meddygol ac ni ddylid ei ddefnyddio fel amnewidiad am gyngor meddygol proffesiynol.</p>
+      <p style="margin-top:10px">Ceisiwch gyngor eich offthalmolegydd, meddyg teulu, neu ddarparwr iechyd cymwys arall bob amser. Peidiwch byth ag anwybyddu cyngor meddygol proffesiynol na gohirio ei geisio oherwydd rhywbeth a ddarllenoch ar y wefan hon.</p>
+    </div>
+    <div class="lc">
+      <h2>✉️ Gwallau a chywiriadau</h2>
+      <p>Rydym yn cymryd cywirdeb o ddifrif. Os credwch fod unrhyw wybodaeth ar y wefan hon yn anghywir neu'n hen, <button onclick="showPage('contact-welsh')" style="background:none;border:none;color:var(--yellow);font-family:var(--font);font-size:inherit;font-weight:700;cursor:pointer;text-decoration:underline;padding:0">cysylltwch â ni</button> a byddwn yn ymchwilio ac yn cywiro'n brydlon.</p>
+    </div>
+    <button class="back-btn" onclick="showPage('home')" style="margin-top:8px">← Yn ôl</button>
+  </div>
+</div>
+
+<!-- WELSH LOCAL SUPPORT PAGE -->
+<div id="page-localsupport-welsh" class="welsh-page" style="display:none">
+  <div class="legal-wrap">
+    <button class="back-btn" onclick="showPage('home')" aria-label="Yn ôl i'r hafan">← Yn ôl</button>
+    <span class="legal-eyebrow">Cymorth</span>
+    <h1>Cymorth Lleol</h1>
+    <p style="font-size:0.95rem;color:var(--text2);margin-bottom:28px;line-height:1.8">Dod o hyd i wasanaethau cymorth lleol, llinellau cymorth cenedlaethol, a gwasanaethau golwg isel yn y DU.</p>
+    <div class="lc">
+      <h2>🛒 Siop RNIB — Offer Arbenigol</h2>
+      <p>Siop RNIB yw manwerthwr blaenllaw'r DU ar gyfer offer arbenigol i bobl â cholli golwg — clociau siarad, mwysogion gwybodol, eitemau print mawr, a llawer mwy.</p>
+      <p style="margin-top:12px"><a href="https://shop.rnib.org.uk" target="_blank" rel="noopener" style="color:var(--yellow);font-weight:700;font-size:1rem">Ewch i Siop RNIB ↗ (Saesneg yn unig)</a></p>
+    </div>
+    <div class="lc">
+      <h2>🎓 Pentref Gwybodaeth Henshaws — Hyfforddiant Technoleg Am Ddim</h2>
+      <p>Canllawiau fideo am ddim i ddysgu pobl â cholli golwg sut i ddefnyddio technoleg — ffonau iPhone, ffonau Android, darllenwyr sgrin, a nodweddion hygyrchedd. Yr adnodd hyfforddi technoleg am ddim gorau yn y DU ar gyfer pobl â cholli golwg.</p>
+      <p style="margin-top:12px"><a href="https://www.henshaws.org.uk/knowledge-village/" target="_blank" rel="noopener" style="color:var(--yellow);font-weight:700;font-size:1rem">Ewch i Bentref Gwybodaeth Henshaws ↗ (Saesneg yn unig)</a></p>
+    </div>
+    <div class="lc">
+      <h2>📞 Llinellau Cymorth Cenedlaethol</h2>
+      <p><strong>RNIB:</strong> <a href="tel:03031239999" style="color:var(--yellow);font-weight:700">0303 123 9999</a> — Llun–Gwener 8am–8pm, Sadwrn 9am–1pm</p>
+      <p style="margin-top:10px"><strong>Cymdeithas y Macula:</strong> <a href="tel:03003030111" style="color:var(--yellow);font-weight:700">0300 3030 111</a> — Llun–Gwener 9am–5pm</p>
+      <p style="margin-top:10px"><strong>Glaucoma UK:</strong> <a href="tel:01233648170" style="color:var(--yellow);font-weight:700">01233 648170</a> — Llun–Gwener 9am–5pm</p>
+      <p style="margin-top:10px"><strong>Retina UK:</strong> <a href="tel:01280860363" style="color:var(--yellow);font-weight:700">01280 860363</a> — Llun–Gwener 9am–5pm</p>
+      <p style="margin-top:10px"><strong>RNIB Cymru:</strong> <a href="tel:02920450440" style="color:var(--yellow);font-weight:700">029 2045 0440</a> — Cymorth penodol i Gymru</p>
+    </div>
+    <div class="lc">
+      <h2>🏴󠁧󠁢󠁷󠁬󠁳󠁿 Cymorth yng Nghymru</h2>
+      <p><strong>RNIB Cymru</strong> — yn darparu gwasanaethau cymorth penodol i Gymru gan gynnwys cyngor, eiriolaeth, a chymorth cyflogaeth. <a href="https://www.rnib.org.uk/cymru" target="_blank" rel="noopener" style="color:var(--yellow);font-weight:700">rnib.org.uk/cymru ↗</a></p>
+      <p style="margin-top:10px"><strong>Gweld Cymru</strong> — prif elusen golwg Cymru. <a href="https://www.sight.cymru" target="_blank" rel="noopener" style="color:var(--yellow);font-weight:700">sight.cymru ↗</a></p>
+      <p style="margin-top:10px"><strong>GIG 111 Cymru</strong> — ar gyfer cymorth iechyd nad yw'n argyfwng: <a href="https://111.wales.nhs.uk" target="_blank" rel="noopener" style="color:var(--yellow);font-weight:700" class="no-en-label">111.wales.nhs.uk ↗</a></p>
+    </div>
+    <div class="lc">
+      <h2>👓 Gwasanaethau Golwg Isel</h2>
+      <p>Mae asesiad golwg isel GIG am ddim yn darparu chwyddwyr, lensys lliw, a strategaethau ymarferol wedi'u teilwra i'ch golwg. Gofynnwch i'ch offthalmolegydd am atgyfeiriad.</p>
+      <p style="margin-top:10px">Mae arbenigwyr adsefydlu golwg yn ymweld â'ch cartref ac yn darparu hyfforddiant ymarferol am ddim — cysylltwch â thîm synhwyraidd eich awdurdod lleol.</p>
+    </div>
+    <button class="back-btn" onclick="showPage('home')" style="margin-top:8px">← Yn ôl</button>
+  </div>
+</div>
+
+<!-- WELSH QUESTIONS TO ASK PAGE -->
+<div id="page-questions-welsh" class="welsh-page" style="display:none">
+  <div class="legal-wrap">
+    <button class="back-btn" onclick="showPage('home')" aria-label="Yn ôl">← Yn ôl</button>
+    <span class="legal-eyebrow">Paratoi</span>
+    <h1>Cwestiynau i'w Gofyn i'ch Arbenigwr Llygaid</h1>
+    <p style="font-size:0.95rem;color:var(--text2);margin-bottom:28px;line-height:1.8">Mae apwyntiadau yn gallu teimlo'n fyr a llethol. Mae paratoi ymlaen llaw yn sicrhau eich bod yn gadael gyda'r atebion sydd eu hangen arnoch.</p>
+    <div class="lc">
+      <h2>Ar Ddiagnosis</h2>
+      <ul>
+        <li>Beth yn union yw fy niagnosis?</li>
+        <li>Pa ran o'r llygad sy'n cael ei heffeithio?</li>
+        <li>A yw fy nghyflwr yn etifeddol?</li>
+        <li>A ddylwn i gael profion geneteg?</li>
+        <li>A ddylai aelodau o'm teulu gael eu profi?</li>
+        <li>Beth yw ystod y canlyniad gorau a gwaethaf?</li>
+        <li>Pa mor gyflym mae'r cyflwr fel arfer yn datblygu?</li>
+      </ul>
+    </div>
+    <div class="lc">
+      <h2>Am Driniaeth</h2>
+      <ul>
+        <li>Pa driniaeth sydd ar gael ar hyn o bryd?</li>
+        <li>A oes unrhyw driniaethau newydd ar y gorwel?</li>
+        <li>Beth yw'r ochr effeithiau posibl?</li>
+        <li>Pa mor aml mae angen i mi ddod am archwiliad?</li>
+        <li>A ddylwn i gael asesiad golwg isel?</li>
+        <li>Sut alla i fynegi gwasanaethau adsefydlu golwg?</li>
+      </ul>
+    </div>
+    <div class="lc">
+      <h2>Am Ymchwil</h2>
+      <ul>
+        <li>A oes unrhyw dreialon clinigol y gallwn i fod yn gymwys ar eu cyfer?</li>
+        <li>Beth yw ystyr fy mwtaniad genetig penodol ar gyfer cymhwysedd triniaeth?</li>
+        <li>Pa sefydliad ymchwil sydd orau i mi ei ddilyn?</li>
+      </ul>
+    </div>
+    <div class="lc">
+      <h2>Am Gymorth</h2>
+      <ul>
+        <li>A allwch chi fy nghyfeirio at wasanaeth golwg isel?</li>
+        <li>Sut alla i gael Tystysgrif Nam Gweledol?</li>
+        <li>A oes unrhyw fudd-daliadau y dylwn eu hawlio?</li>
+        <li>A oes grwpiau cymorth lleol y gallwch eu hargymell?</li>
+      </ul>
+    </div>
+    <button class="back-btn" onclick="showPage('home')" style="margin-top:8px">← Yn ôl</button>
+  </div>
+</div>
 </body>
 </html>
