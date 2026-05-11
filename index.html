@@ -6972,7 +6972,9 @@ function renderCondition(key) {
 
     <button class="back-btn" onclick="showPage('home')" aria-label="Back to conditions list">${_isWelsh ? '← Pob Cyflwr' : '← All Conditions'}</button>
 
-    ${key === 'stargardts' && !document.body.classList.contains('lb') ? `<div role="note" style="background:#d6eaf8;color:#0a3a5a;border:2px solid #7ec8ff;border-radius:12px;padding:10px 16px;margin-bottom:14px;font-size:0.85rem;font-weight:600;line-height:1.6">💙 ${_isWelsh ? 'Mae llawer o bobl â Chlefyd Stargardt yn ei chael hi'n haws darllen ar gefndir glas golau. Rhowch gynnig ar thema <button onclick="setColour('lb')" style="background:none;border:none;color:#0055a5;font-family:var(--font);font-size:inherit;font-weight:800;cursor:pointer;text-decoration:underline;padding:0">Glas/Gwyn</button> yn y bar uchod.' : 'Many people with Stargardt Disease find a light blue background easier to read. Try the <button onclick="setColour(\'lb\')" style="background:none;border:none;color:#0055a5;font-family:var(--font);font-size:inherit;font-weight:800;cursor:pointer;text-decoration:underline;padding:0">Blue/White theme</button> in the bar above.'}</div>` : ''}
+
+
+        <div id="stargardt-theme-tip" role="note" style="display:none;background:#d6eaf8;color:#0a3a5a;border:2px solid #7ec8ff;border-radius:12px;padding:10px 16px;margin-bottom:14px;font-size:0.85rem;font-weight:600;line-height:1.6">💙 Many people with Stargardt Disease find a light blue background easier to read. <button onclick="setColour('lb')" style="background:none;border:none;color:#0055a5;font-family:var(--font);font-size:inherit;font-weight:800;cursor:pointer;text-decoration:underline;padding:0">Switch to Blue/White theme →</button></div>
 
     <span class="cond-hero-eyebrow">${_isWelsh ? 'Canllaw Cyflyrau\'r Llygad' : 'Eye Condition Guide'}</span>
 
@@ -7751,7 +7753,14 @@ function showCondition(key) {
 
   var condContent = document.getElementById('condition-content');
 
-  if (condContent) condContent.innerHTML = renderCondition(key);
+  if (condContent) {
+    condContent.innerHTML = renderCondition(key);
+    // Show Stargardt theme suggestion if needed
+    var stargBanner = document.getElementById('stargardt-theme-tip');
+    if (stargBanner) {
+      stargBanner.style.display = (key === 'stargardts' && !document.body.classList.contains('lb')) ? '' : 'none';
+    }
+  }
 
 
 
@@ -8441,7 +8450,7 @@ if ('serviceWorker' in navigator) {
     var speed = parseFloat(document.getElementById('tts-speed') ? document.getElementById('tts-speed').value : '1');
     var voiceName = document.getElementById('tts-voice-sel') ? document.getElementById('tts-voice-sel').value : '';
     var text = _getTTSText(section).replace(/\s+/g, ' ').trim();
-    if (!text) { srAnnounce(_isWelsh ? 'Dim testun i'w ddarllen.' : 'No text to read.'); return; }
+    if (!text) { srAnnounce(_isWelsh ? 'Dim testun i\'w ddarllen.' : 'No text to read.'); return; }
 
     // Split into chunks to avoid browser limits
     var CHUNK = 3000;
@@ -8539,7 +8548,7 @@ if ('serviceWorker' in navigator) {
     var pnl = document.getElementById('tts-panel');
     if (pnl) {
       var lbl = pnl.querySelector('.tts-section-label');
-      if (lbl) lbl.textContent = cy ? 'Beth i'w ddarllen:' : 'What to read:';
+      if (lbl) lbl.textContent = cy ? 'Beth i\'w ddarllen:' : 'What to read:';
       var spd = pnl.querySelector('.tts-speed-label');
       if (spd) spd.textContent = cy ? 'Cyflymder:' : 'Speed:';
       var vcl = pnl.querySelector('.tts-voice-label');
