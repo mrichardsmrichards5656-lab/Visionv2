@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en-GB">
 
 <head>
 
@@ -116,6 +116,8 @@ body.lb {
   --text:#0a0a0a; --text2:#1a3a52; --border:rgba(0,80,140,0.20);
   --yellow:#0055a5; --yellow2:#0066cc; --shadow:0 2px 12px rgba(0,80,140,0.12);
   --green:#005c29; --blue:#003d7a; --red:#8b0000;
+  background-color:#d6eaf8 !important;
+  color:#0a0a0a !important;
 }
 
 body.ll {
@@ -262,7 +264,17 @@ p, h1, h2, h3, h4, li, span, a, button { overflow-wrap: break-word; word-wrap: b
 
   .sidebar-link:hover { background: var(--card); color: var(--yellow); }
 
-  .sidebar-link:focus-visible { outline: 3px solid var(--yellow); }
+  .sidebar-link:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }
+a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid var(--yellow);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+body.hc :focus-visible, body.hc a:focus-visible, body.hc button:focus-visible { outline-color: #fff; }
+body.yb :focus-visible, body.yb a:focus-visible, body.yb button:focus-visible { outline-color: #ff0; }
+body.bb :focus-visible, body.bb a:focus-visible, body.bb button:focus-visible { outline-color: #7ec8ff; }
+body.lb :focus-visible, body.lb a:focus-visible, body.lb button:focus-visible { outline-color: #0055a5; }
 
   .sidebar-divider { height: 1px; background: var(--border); margin: 12px 0; }
 
@@ -345,6 +357,10 @@ p, h1, h2, h3, h4, li, span, a, button { overflow-wrap: break-word; word-wrap: b
   scrollbar-width: none;
 
   min-height: 50px;
+
+  /* Magnifier: ensure bar scrolls rather than wraps or clips at 400% zoom */
+
+  white-space: nowrap;
 
 }
 
@@ -1155,6 +1171,12 @@ body.welsh-active .trial-link::after { content: " (Saesneg yn unig)"; font-size:
 .news-tag.benefits { background: #dbeafe; color: #1e40af; }
 
 .news-tag.tech     { background: #f3e8ff; color: #6b21a8; }
+body.lb .news-tag.research { background: #bbf7d0; color: #14532d; }
+body.lb .news-tag.benefits { background: #bfdbfe; color: #1e3a8a; }
+body.lb .news-tag.tech     { background: #e9d5ff; color: #581c87; }
+body.bb .news-tag.research, body.bb .news-tag.benefits,
+body.bb .news-tag.tech, body.bb .news-tag.general { background: #000; color: #7ec8ff; border: 1px solid #7ec8ff; }
+
 
 .news-tag.general  { background: #fef9c3; color: #854d0e; }
 
@@ -1504,7 +1526,7 @@ footer { background: var(--bg2); border-top: 3px solid var(--yellow); padding: 3
 }
 @media (prefers-contrast: more){
   :root{--border:rgba(0,0,0,0.6)!important}
-  body{--text:#000;--bg:#fff}
+  body:not(.lb):not(.hc):not(.yb):not(.bb):not(.ll):not(.dark){--text:#000;--bg:#fff}
   body.dark{--text:#fff;--bg:#000}
   a,button{text-decoration:underline}
 }
@@ -1541,6 +1563,8 @@ body.hc *:focus-visible,body.yb *:focus-visible,body.bb *:focus-visible{outline-
 
 
 <a href="#main" class="skip">Skip to main content</a>
+
+<a href="#tts-toggle" class="skip" style="left:auto;right:12px">Skip to read aloud</a>
 
 
 
@@ -1601,17 +1625,26 @@ body.hc *:focus-visible,body.yb *:focus-visible,body.bb *:focus-visible{outline-
 <div id="tts-panel" role="dialog" aria-modal="false" aria-label="Text to speech controls" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:10000;background:var(--card);border-top:3px solid var(--yellow);padding:16px 20px;box-shadow:0 -4px 24px rgba(0,0,0,0.18);font-family:var(--font)">
   <div style="max-width:680px;margin:0 auto">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:10px">
-      <strong style="font-size:0.95rem;color:var(--yellow)">🔊 Text to Speech</strong>
+      <div>
+        <strong style="font-size:0.95rem;color:var(--yellow)">🔊 Text to Speech</strong>
+        <span id="tts-status" style="display:block;font-size:0.875rem;color:var(--text2);margin-top:2px">Choose what to read, then press Play · Alt+L to open/close</span>
+      </div>
       <button onclick="document.getElementById('tts-panel').style.display='none';window.speechSynthesis.cancel();document.getElementById('tts-toggle').setAttribute('aria-pressed','false')" aria-label="Close text to speech panel" style="background:none;border:2px solid var(--border);border-radius:50%;width:44px;height:44px;cursor:pointer;color:var(--text);font-size:1.1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0">✕</button>
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px">
       <div>
         <label for="tts-section" class="tts-section-label" style="display:block;font-size:0.78rem;font-weight:800;text-transform:uppercase;letter-spacing:0.06em;color:var(--text2);margin-bottom:6px">What to read:</label>
         <select id="tts-section" aria-label="What to read" style="width:100%;height:44px;padding:0 12px;border-radius:10px;border:2px solid var(--border);background:var(--card2);color:var(--text);font-family:var(--font);font-size:0.9rem">
-          <option value="current">Current page</option>
-          <option value="news">Recent Updates</option>
-          <option value="lw">Everyday Guide</option>
-          <option value="full">Full page</option>
+          <option value="current">📄 Current page</option>
+          <option value="news">📰 Recent Updates</option>
+          <option value="benefits">💷 Benefits &amp; PIP rates</option>
+          <option value="research">🔬 Research &amp; trials</option>
+          <option value="lw">🌟 Everyday Guide</option>
+          <option value="questions">❓ Questions for your doctor</option>
+          <option value="employment">💼 Employment rights</option>
+          <option value="glossary">📖 Glossary</option>
+          <option value="eyehealth">👁️ Eye Health Basics</option>
+          <option value="full">📋 Full page</option>
         </select>
       </div>
       <div>
@@ -1631,8 +1664,9 @@ body.hc *:focus-visible,body.yb *:focus-visible,body.bb *:focus-visible{outline-
       </select>
     </div>
     <div style="display:flex;gap:10px;flex-wrap:wrap">
-      <button id="tts-play-btn" onclick="_pauseResumeSpeech()" style="flex:1;min-height:44px;background:var(--yellow);color:#fff;border:none;border-radius:12px;font-family:var(--font);font-weight:800;font-size:0.95rem;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px">▶ Play</button>
-      <button id="tts-stop-btn" onclick="_stopSpeech()" style="min-height:44px;padding:0 20px;background:var(--card2);color:var(--text);border:2px solid var(--border);border-radius:12px;font-family:var(--font);font-weight:700;font-size:0.9rem;cursor:pointer">⏹ Stop</button>
+      <button id="tts-play-btn" onclick="_pauseResumeSpeech()" aria-label="Play or pause reading" style="flex:1;min-height:44px;background:var(--yellow);color:#fff;border:none;border-radius:12px;font-family:var(--font);font-weight:800;font-size:0.95rem;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px">▶ Play</button>
+      <button id="tts-stop-btn" onclick="_stopSpeech()" aria-label="Stop reading" style="min-height:44px;padding:0 20px;background:var(--card2);color:var(--text);border:2px solid var(--border);border-radius:12px;font-family:var(--font);font-weight:700;font-size:0.9rem;cursor:pointer">⏹ Stop</button>
+      <button id="tts-copy-btn" onclick="_copyTTSText()" aria-label="Copy text to clipboard" title="Copy text to clipboard" style="min-height:44px;padding:0 16px;background:var(--card2);color:var(--text);border:2px solid var(--border);border-radius:12px;font-family:var(--font);font-weight:700;font-size:0.9rem;cursor:pointer">📋 Copy</button>
     </div>
   </div>
 </div>
@@ -1769,19 +1803,6 @@ body.hc *:focus-visible,body.yb *:focus-visible,body.bb *:focus-visible{outline-
       <p class="last-updated">Diweddarwyd diwethaf: Mai 2026 · Adolygir yn fisol · <button onclick="showWelshPage('contact')" style="background:none;border:none;color:var(--yellow);font-family:var(--font);font-size:inherit;font-weight:700;cursor:pointer;text-decoration:underline;padding:0">Cysylltwch â ni</button></p>
 
     </div>
-
-
-
-    <aside id="latest-research-may26" aria-labelledby="lr-may26-h" style="max-width:720px;margin:0 auto 24px;padding:18px 22px;background:var(--card);border:2px solid var(--yellow);border-radius:14px;box-shadow:var(--shadow)">
-<h2 id="lr-may26-h" style="font-size:0.78rem;text-transform:uppercase;letter-spacing:0.14em;color:var(--yellow);margin-bottom:10px">Latest research · May 2026</h2>
-<ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:10px;font-size:0.95rem;line-height:1.55">
-<li><strong>Stargardt:</strong> SpliceBio's <a href="https://splice.bio/splicebio-initiates-dose-expansion-portion-of-phase-1-2-astra-for-sb-007/" target="_blank" rel="noopener">SB-007 ASTRA dual-AAV gene therapy</a> began dose-expansion at Oxford (UK site). <span lang="cy">Mae treial ASTRA SpliceBio yn Rhydychen wedi cychwyn cam ehangu dos.</span></li>
-<li><strong>AMD / Geographic atrophy:</strong> <a href="https://europe.ophthalmologytimes.com/view/intravitreal-complement-inhibitor-treatment-for-geographic-atrophy-ga-viewed-favorably-by-patients" target="_blank" rel="noopener">UK study</a> reports patients view intravitreal complement inhibitors (pegcetacoplan / avacincaptad) favourably for quality of life.</li>
-<li><strong>Diabetic retinopathy:</strong> 2026 systematic review and meta-analysis on <a href="https://www.frontiersin.org/journals/medicine/articles/10.3389/fmed.2026.1778742/full" target="_blank" rel="noopener">GLP-1 receptor agonists (Ozempic/Wegovy class) and DR risk</a> — discuss with your diabetes team before stopping.</li>
-<li><strong>Retinal disease (general):</strong> NIH/NEI <a href="https://www.newswise.com/articles/nih-research-points-to-new-therapeutic-opportunities-for-retinal-diseases" target="_blank" rel="noopener">May 2026 study</a> links glucose metabolism to epigenetic changes in photoreceptors — opens new drug targets for inherited retinal disease.</li>
-</ul>
-<p style="font-size:0.8rem;color:var(--text2);margin-top:10px">Always check with your ophthalmologist or RNIB (0303 123 9999) before acting on research news.</p>
-</aside>
 
 <div class="cond-section" style="max-width:680px;margin:0 auto;padding:0 20px">
 
@@ -2041,7 +2062,7 @@ body.hc *:focus-visible,body.yb *:focus-visible,body.bb *:focus-visible{outline-
 
       <div aria-hidden="true" style="text-align:center;margin-bottom:28px;opacity:0.85">
 
-        <svg viewBox="0 0 320 180" width="100%" style="max-width:380px;display:inline-block" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="0 0 320 180" width="100%" aria-hidden="true" style="max-width:380px;display:inline-block" xmlns="http://www.w3.org/2000/svg">
 
           <circle cx="160" cy="90" r="85" fill="var(--yellow)" opacity="0.08"/>
 
@@ -2671,7 +2692,7 @@ body.hc *:focus-visible,body.yb *:focus-visible,body.bb *:focus-visible{outline-
 
       <div class="sidebar-divider"></div>
 
-      <button class="sidebar-link" onclick="showPage('home')">🏠 Home</button>
+      <button class="sidebar-link" onclick="showPage('home')" aria-label="Home">🏠 Home</button>
 
       <button class="sidebar-link" onclick="showPage('help')"><span aria-hidden="true">🆘</span> Help &amp; Support</button>
       <button class="sidebar-link" onclick="showPage('contact')"><span aria-hidden="true">✉️</span> Contact</button>
@@ -5024,7 +5045,7 @@ body.hc *:focus-visible,body.yb *:focus-visible,body.bb *:focus-visible{outline-
 
 <div aria-hidden="true" style="max-width:680px;margin:0 auto;padding:0 20px;text-align:center;opacity:0.4">
 
-  <svg viewBox="0 0 400 40" width="100%" xmlns="http://www.w3.org/2000/svg">
+  <svg viewBox="0 0 400 40" width="100%" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
 
     <path d="M0,20 Q50,5 100,20 Q150,35 200,20 Q250,5 300,20 Q350,35 400,20" fill="none" stroke="var(--yellow)" stroke-width="2" stroke-linecap="round"/>
 
@@ -6974,7 +6995,7 @@ function renderCondition(key) {
 
 
 
-        <div id="stargardt-theme-tip" role="note" style="display:none;background:#d6eaf8;color:#0a3a5a;border:2px solid #7ec8ff;border-radius:12px;padding:10px 16px;margin-bottom:14px;font-size:0.85rem;font-weight:600;line-height:1.6">💙 Many people with Stargardt Disease find a light blue background easier to read. <button onclick="setColour('lb')" style="background:none;border:none;color:#0055a5;font-family:var(--font);font-size:inherit;font-weight:800;cursor:pointer;text-decoration:underline;padding:0">Switch to Blue/White theme →</button></div>
+        <div id="stargardt-theme-tip" role="note" style="display:none;background:#d6eaf8;color:#0a3a5a;border:2px solid #7ec8ff;border-radius:12px;padding:10px 16px;margin-bottom:14px;font-size:0.85rem;font-weight:600;line-height:1.6">💙 ${_isWelsh ? "Mae llawer o bobl â Chlefyd Stargardt yn ei chael hi'n haws ar gefndir glas golau." : "Many people with Stargardt Disease find a light blue background easier to read."} <button onclick="setColour('lb')" style="background:none;border:none;color:#0055a5;font-family:var(--font);font-size:inherit;font-weight:800;cursor:pointer;text-decoration:underline;padding:0">${_isWelsh ? "Newid i thema Glas/Gwyn →" : "Switch to Blue/White theme →"}</button></div>
 
     <span class="cond-hero-eyebrow">${_isWelsh ? 'Canllaw Cyflyrau\'r Llygad' : 'Eye Condition Guide'}</span>
 
@@ -7576,7 +7597,7 @@ function toggleWelsh() {
 
 
 
-  document.documentElement.setAttribute('lang', _isWelsh ? 'cy' : 'en');
+  document.documentElement.setAttribute('lang', _isWelsh ? 'cy' : 'en-GB');
 
   document.body.classList.toggle('welsh-active', _isWelsh);
 
@@ -7626,17 +7647,8 @@ function toggleWelsh() {
 
 
 
-// Restore preference
-
-(function() {
-
-  if (localStorage.getItem('vh-lang') === 'cy') {
-
-    setTimeout(toggleWelsh, 300);
-
-  }
-
-})();
+// Welsh language is NOT auto-restored - user must choose each session
+// This ensures English is always the default on every page load
 
 
 
@@ -7744,6 +7756,8 @@ function showPage(name) {
 
 
 function showCondition(key) {
+
+  window._currentCondKey = key;
 
   // Save home scroll position
 
@@ -7978,7 +7992,37 @@ function setColour(mode) {
 
   document.body.classList.remove('dark','ll','hc','yb','bb','lb');
 
+  // Reset any inline style overrides
+  document.body.style.backgroundColor = '';
+  document.body.style.color = '';
+
   if (mode) document.body.classList.add(mode);
+
+  // Light blue: force inline styles to win against any media query
+  if (mode === 'lb') {
+    document.body.style.backgroundColor = '#d6eaf8';
+    document.body.style.color = '#0a0a0a';
+    document.documentElement.style.backgroundColor = '#d6eaf8';
+    document.documentElement.style.setProperty('--bg', '#d6eaf8');
+    document.documentElement.style.setProperty('--bg2', '#bee3f8');
+    document.documentElement.style.setProperty('--card', '#ffffff');
+    document.documentElement.style.setProperty('--card2', '#eaf4fc');
+    document.documentElement.style.setProperty('--text', '#0a0a0a');
+    document.documentElement.style.setProperty('--text2', '#1a3a52');
+    document.documentElement.style.setProperty('--yellow', '#0055a5');
+    document.documentElement.style.setProperty('--border', 'rgba(0,80,140,0.20)');
+  } else {
+    // Clear any inline CSS variables set for lb
+    document.documentElement.style.backgroundColor = '';
+    document.documentElement.style.removeProperty('--bg');
+    document.documentElement.style.removeProperty('--bg2');
+    document.documentElement.style.removeProperty('--card');
+    document.documentElement.style.removeProperty('--card2');
+    document.documentElement.style.removeProperty('--text');
+    document.documentElement.style.removeProperty('--text2');
+    document.documentElement.style.removeProperty('--yellow');
+    document.documentElement.style.removeProperty('--border');
+  }
 
   try { localStorage.setItem('vh-colour', mode); } catch(e){}
 
@@ -7991,6 +8035,10 @@ function setColour(mode) {
 
 
 /* ─────────────── SHARE / COPY ─────────────── */
+
+function printPage() {
+  window.print();
+}
 
 function sharePage() {
 
@@ -8202,21 +8250,37 @@ function filterConds(q) {
 
   try {
 
-    const saved  = localStorage.getItem('vh-size');
+    // DEFAULT: English, Light theme, small text (scale 1)
+    // Only restore saved prefs if the user has explicitly set them
 
-    const size   = saved ? parseFloat(saved) : 1;
+    var savedSize   = localStorage.getItem('vh-size');
+    var savedColour = localStorage.getItem('vh-colour');
+    // NEVER restore Welsh as a default - always start in English
+    // User must actively choose Welsh each session
+    localStorage.removeItem('vh-lang');
 
-    const colour = localStorage.getItem('vh-colour') ?? '';
-
+    // Size: default 1 (small)
+    var size = savedSize ? parseFloat(savedSize) : 1;
     setSize(size);
 
+    // Colour: default light (empty string = light theme)
+    var colour = (savedColour !== null) ? savedColour : '';
     if (colour !== '') setColour(colour);
 
-    const sel = document.getElementById('col-select');
-
-    if (sel) sel.value = colour;
+    var sel = document.getElementById('col-select');
+    if (sel) sel.value = colour || '';
 
   } catch(e) {}
+
+  // Preload TTS voices so they're ready when panel opens
+
+  if (window.speechSynthesis) {
+
+    window.speechSynthesis.getVoices();
+
+    window.speechSynthesis.onvoiceschanged = function() { window.speechSynthesis.getVoices(); };
+
+  }
 
 })();
 
@@ -8415,6 +8479,11 @@ if ('serviceWorker' in navigator) {
       sel.appendChild(o);
     });
     if (!current && ordered.length) sel.value = ordered[0].name;
+    // Restore saved voice preference
+    if (window._savedTTSVoice) {
+      var match = ordered.find(function(v){ return v.name === window._savedTTSVoice; });
+      if (match) sel.value = match.name;
+    }
   }
 
   function _getTTSText(section) {
@@ -8430,6 +8499,44 @@ if ('serviceWorker' in navigator) {
       var lw = document.getElementById('page-livingwell');
       return lw ? lw.innerText : '';
     }
+    if (section === 'benefits') {
+      // Read benefits section from employment page + news benefits items
+      var emp = document.getElementById('page-employment');
+      var empText = emp ? emp.innerText : '';
+      // Also grab benefits news items
+      var bItems = document.querySelectorAll('.news-tag.benefits');
+      var bNews = '';
+      bItems.forEach(function(tag) { bNews += tag.parentElement.innerText + ' '; });
+      return (bNews + ' ' + empText).trim();
+    }
+    if (section === 'research') {
+      // Research news items + current condition research section if open
+      var rItems = document.querySelectorAll('.news-tag.research');
+      var rText = '';
+      rItems.forEach(function(tag) { rText += tag.parentElement.innerText + ' '; });
+      // Also try condition research accordion if open
+      var condResearch = document.querySelector('#acc-research-' + (window._currentCondKey || ''));
+      if (condResearch) rText += condResearch.innerText;
+      return rText.trim() || visible.innerText;
+    }
+    if (section === 'questions') {
+      var qp = document.getElementById('page-questions');
+      return qp ? qp.innerText : '';
+    }
+    if (section === 'employment') {
+      var ep = document.getElementById('page-employment');
+      return ep ? ep.innerText : '';
+    }
+    if (section === 'glossary') {
+      var gp = document.getElementById(_isWelsh ? 'page-glossary-welsh' : 'page-glossary');
+      if (!gp) gp = document.getElementById('page-glossary');
+      return gp ? gp.innerText : '';
+    }
+    if (section === 'eyehealth') {
+      var ehp = document.getElementById(_isWelsh ? 'page-eyehealth-welsh' : 'page-eyehealth');
+      if (!ehp) ehp = document.getElementById('page-eyehealth');
+      return ehp ? ehp.innerText : '';
+    }
     if (section === 'full') {
       return visible.innerText;
     }
@@ -8442,46 +8549,70 @@ if ('serviceWorker' in navigator) {
   function _startSpeech() {
     var synth = window.speechSynthesis;
     if (!synth || typeof SpeechSynthesisUtterance === 'undefined') {
-      alert('Sorry — your browser cannot read pages aloud. Try Chrome, Edge or Safari, or use VoiceOver / TalkBack on your device.');
+      alert('Text to speech is not supported in this browser. Please use Chrome or Safari.');
       return;
     }
+
     synth.cancel();
-    var section = document.getElementById('tts-section') ? document.getElementById('tts-section').value : 'current';
-    var speed = parseFloat(document.getElementById('tts-speed') ? document.getElementById('tts-speed').value : '1');
-    var voiceName = document.getElementById('tts-voice-sel') ? document.getElementById('tts-voice-sel').value : '';
+
+    var section = (document.getElementById('tts-section') || {}).value || 'current';
+    var speed   = parseFloat((document.getElementById('tts-speed') || {}).value || '0.9');
+
     var text = _getTTSText(section).replace(/\s+/g, ' ').trim();
-    if (!text) { srAnnounce(_isWelsh ? 'Dim testun i\'w ddarllen.' : 'No text to read.'); return; }
 
-    // Split into chunks to avoid browser limits
-    var CHUNK = 3000;
-    var chunks = [];
-    for (var i = 0; i < text.length; i += CHUNK) chunks.push(text.slice(i, i + CHUNK));
-
-    var idx = 0;
-    function speakNext() {
-      if (idx >= chunks.length) {
-        document.getElementById('tts-toggle').setAttribute('aria-pressed','false');
-        document.getElementById('tts-play-btn') && (document.getElementById('tts-play-btn').textContent = '▶ ' + (_isWelsh ? 'Chwarae' : 'Play'));
-        srAnnounce(_isWelsh ? 'Wedi gorffen darllen.' : 'Finished reading.');
-        return;
-      }
-      _utter = new SpeechSynthesisUtterance(chunks[idx++]);
-      _utter.rate = speed;
-      _utter.lang = document.documentElement.lang === 'cy' ? 'cy-GB' : 'en-GB';
-      if (voiceName) {
-        var v = _ttsVoices.find(function(v){ return v.name === voiceName; });
-        if (v) _utter.voice = v;
-      }
-      _utter.onend = speakNext;
-      window.speechSynthesis.speak(_utter);
+    // Fallback: if section returns nothing, read visible page text
+    if (!text || text.length < 10) {
+      var main = document.getElementById('main') || document.body;
+      text = main.innerText.replace(/\s+/g, ' ').trim();
     }
-    speakNext();
-    document.getElementById('tts-toggle').setAttribute('aria-pressed','true');
-    var pb = document.getElementById('tts-play-btn');
-    if (pb) pb.textContent = '⏸ ' + (_isWelsh ? 'Oedi' : 'Pause');
-    srAnnounce(_isWelsh ? 'Yn darllen y dudalen yn uchel.' : 'Reading page aloud.');
+
+    if (!text) { alert('Nothing to read.'); return; }
+
+    // Keep under 3000 chars for reliable mobile speech
+    if (text.length > 3000) text = text.slice(0, 3000);
+
+    _utter = new SpeechSynthesisUtterance(text);
+    _utter.lang   = 'en-GB';  // Always English default
+    _utter.rate   = speed;
+    _utter.volume = 1;
+    _utter.pitch  = 1;
+
+    _utter.onstart = function() {
+      var pb   = document.getElementById('tts-play-btn');
+      var stat = document.getElementById('tts-status');
+      if (pb)   pb.textContent   = '\u23f8 Pause';
+      if (stat) stat.textContent = 'Reading...';
+    };
+
+    _utter.onend = function() {
+      var tog  = document.getElementById('tts-toggle');
+      var pb   = document.getElementById('tts-play-btn');
+      var stat = document.getElementById('tts-status');
+      if (tog)  tog.setAttribute('aria-pressed', 'false');
+      if (pb)   pb.textContent   = '\u25b6 Play';
+      if (stat) stat.textContent = 'Finished. Press Play to read again.';
+    };
+
+    _utter.onerror = function(e) {
+      if (e.error === 'interrupted') return;
+      var pb   = document.getElementById('tts-play-btn');
+      var stat = document.getElementById('tts-status');
+      if (pb)   pb.textContent   = '\u25b6 Play';
+      if (stat) stat.textContent = 'Error. Please try again.';
+    };
+
+    // Update UI immediately
+    var tog  = document.getElementById('tts-toggle');
+    var pb   = document.getElementById('tts-play-btn');
+    var stat = document.getElementById('tts-status');
+    if (tog)  tog.setAttribute('aria-pressed', 'true');
+    if (pb)   pb.textContent   = '\u23f8 Pause';
+    if (stat) stat.textContent = 'Starting...';
+
+    synth.speak(_utter);
   }
 
+  
   function _pauseResumeSpeech() {
     var synth = window.speechSynthesis;
     var pb = document.getElementById('tts-play-btn');
@@ -8500,13 +8631,29 @@ if ('serviceWorker' in navigator) {
 
   function _stopSpeech() {
     window.speechSynthesis.cancel();
+    if (typeof _ttsKeepalive !== 'undefined' && _ttsKeepalive) { clearInterval(_ttsKeepalive); _ttsKeepalive = null; }
     document.getElementById('tts-toggle').setAttribute('aria-pressed','false');
     var pb = document.getElementById('tts-play-btn');
     if (pb) pb.textContent = '▶ ' + (_isWelsh ? 'Chwarae' : 'Play');
     srAnnounce(_isWelsh ? 'Wedi stopio.' : 'Stopped.');
     var panel = document.getElementById('tts-panel');
     if (panel) { panel.style.display = 'none'; }
+    var stat = document.getElementById('tts-status');
+    if (stat) stat.textContent = 'Press Play to start reading · Alt+L to open/close';
   }
+
+  window._copyTTSText = function() {
+    var section = document.getElementById('tts-section') ? document.getElementById('tts-section').value : 'current';
+    var text = _getTTSText(section).replace(/\s+/g, ' ').trim();
+    if (!text) return;
+    navigator.clipboard.writeText(text).then(function() {
+      var btn = document.getElementById('tts-copy-btn');
+      if (btn) { var orig = btn.textContent; btn.textContent = '✓ Copied!'; setTimeout(function(){ btn.textContent = orig; }, 2000); }
+      srAnnounce(_isWelsh ? 'Testun wedi\'i gopi\u00f3.' : 'Text copied to clipboard.');
+    }).catch(function() {
+      srAnnounce(_isWelsh ? 'Methwyd copi\u00f3.' : 'Could not copy text.');
+    });
+  };
 
   window.togglePageSpeech = function() {
     var synth = window.speechSynthesis;
@@ -8522,6 +8669,15 @@ if ('serviceWorker' in navigator) {
       // Populate voices
       if (synth.getVoices) { _ttsVoices = synth.getVoices(); _loadVoices(); }
       if (synth.onvoiceschanged !== undefined) synth.onvoiceschanged = _loadVoices;
+      // Restore persisted speed
+      try {
+        var savedSpeed = localStorage.getItem('vh-tts-speed');
+        var savedVoice = localStorage.getItem('vh-tts-voice');
+        var spd = document.getElementById('tts-speed');
+        if (spd && savedSpeed) spd.value = savedSpeed;
+        // Voice restored after voices load in _loadVoices
+        window._savedTTSVoice = savedVoice;
+      } catch(e) {}
       // Set Welsh labels if needed
       _updateTTSLabels();
       var pb = document.getElementById('tts-play-btn');
@@ -8534,12 +8690,21 @@ if ('serviceWorker' in navigator) {
 
   function _updateTTSLabels() {
     var cy = _isWelsh;
+    // If on a condition page, update 'Current page' label to show condition name
+    var condName = window._currentCondKey ? (window.DATA && window.DATA[window._currentCondKey] ? window.DATA[window._currentCondKey].name : '') : '';
+    var currentLabel = condName ? '📄 ' + condName : (cy ? '📄 Tudalen bresennol' : '📄 Current page');
     var secSel = document.getElementById('tts-section');
     if (secSel) {
-      secSel.options[0] && (secSel.options[0].textContent = cy ? 'Tudalen bresennol' : 'Current page');
-      secSel.options[1] && (secSel.options[1].textContent = cy ? 'Diweddariadau Diweddar' : 'Recent Updates');
-      secSel.options[2] && (secSel.options[2].textContent = cy ? 'Canllaw Beunyddiol' : 'Everyday Guide');
-      secSel.options[3] && (secSel.options[3].textContent = cy ? 'Tudalen lawn' : 'Full page');
+      secSel.options[0] && (secSel.options[0].textContent = currentLabel);
+      secSel.options[1] && (secSel.options[1].textContent = cy ? '📰 Diweddariadau Diweddar' : '📰 Recent Updates');
+      secSel.options[2] && (secSel.options[2].textContent = cy ? '💷 Budd-daliadau a chyfraddau PIP' : '💷 Benefits & PIP rates');
+      secSel.options[3] && (secSel.options[3].textContent = cy ? '🔬 Ymchwil a threialon' : '🔬 Research & trials');
+      secSel.options[4] && (secSel.options[4].textContent = cy ? '🌟 Canllaw Beunyddiol' : '🌟 Everyday Guide');
+      secSel.options[5] && (secSel.options[5].textContent = cy ? `❓ Cwestiynau i’ch meddyg` : `❓ Questions for your doctor`);
+      secSel.options[6] && (secSel.options[6].textContent = cy ? '💼 Hawliau cyflogaeth' : '💼 Employment rights');
+      secSel.options[7] && (secSel.options[7].textContent = cy ? '📖 Geirfa' : '📖 Glossary');
+      secSel.options[8] && (secSel.options[8].textContent = cy ? '👁️ Hanfodion Iechyd Llygaid' : '👁️ Eye Health Basics');
+      secSel.options[9] && (secSel.options[9].textContent = cy ? '📋 Tudalen lawn' : '📋 Full page');
     }
     var pb = document.getElementById('tts-play-btn');
     if (pb && !window.speechSynthesis.speaking) pb.textContent = '▶ ' + (cy ? 'Chwarae' : 'Play');
@@ -8556,6 +8721,15 @@ if ('serviceWorker' in navigator) {
     }
   }
   window._updateTTSLabels = _updateTTSLabels;
+
+  // Alt+L keyboard shortcut to open/close TTS panel
+  document.addEventListener('keydown', function(e) {
+    if (e.altKey && (e.key === 'l' || e.key === 'L')) {
+      e.preventDefault();
+      togglePageSpeech();
+      return;
+    }
+  });
 
   // Focus trap for TTS panel
   document.addEventListener('keydown', function(e) {
