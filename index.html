@@ -1581,6 +1581,21 @@ html.theme-lb .card, html.theme-lb [class*="card"] { background: #e8f5fb !import
 html.theme-lb .news-box { background: #dff0f8 !important; }
 html.theme-lb .cond-item { background: #dff0f8 !important; }
 html.theme-lb .hero { background: #b8dff0 !important; }
+html.theme-lb .acc-item { background: #daeef8 !important; border-color: rgba(0,100,180,0.3) !important; }
+html.theme-lb .acc-body { background: #daeef8 !important; }
+html.theme-lb .acc-btn { background: #daeef8 !important; }
+html.theme-lb .ic,
+html.theme-lb .nc,
+html.theme-lb .rc,
+html.theme-lb .tc,
+html.theme-lb .wb { background: #c8e6f5 !important; border-color: rgba(0,100,180,0.3) !important; }
+html.theme-lb .cond-item { background: #daeef8 !important; }
+html.theme-lb .card,
+html.theme-lb .founder-box,
+html.theme-lb [class*="card"] { background: #daeef8 !important; }
+html.theme-lb .news-box { background: #daeef8 !important; border-color: rgba(0,100,180,0.3) !important; }
+html.theme-lb .legal-wrap,
+html.theme-lb .cond-page-inner { background: transparent !important; }
 </style>
 </head>
 
@@ -7017,7 +7032,7 @@ function renderCondition(key) {
 
 
 
-        <div id="stargardt-theme-tip" role="note" style="display:none;background:#d6eaf8;color:#0a3a5a;border:2px solid #7ec8ff;border-radius:12px;padding:10px 16px;margin-bottom:14px;font-size:0.85rem;font-weight:600;line-height:1.6">💙 ${_isWelsh ? "Mae llawer o bobl â Chlefyd Stargardt yn ei chael hi'n haws ar gefndir glas golau." : "Many people with Stargardt Disease find a light blue background easier to read."} <button onclick="setColour('lb')" style="background:none;border:none;color:#0055a5;font-family:var(--font);font-size:inherit;font-weight:800;cursor:pointer;text-decoration:underline;padding:0">${_isWelsh ? "Newid i thema Glas/Gwyn →" : "Switch to Blue/White theme →"}</button></div>
+        <div id="stargardt-theme-tip" role="note" style="display:none;background:#d6eaf8;color:#0a3a5a;border:2px solid #7ec8ff;border-radius:12px;padding:10px 16px;margin-bottom:14px;font-size:0.85rem;font-weight:600;line-height:1.6">💙 ${_isWelsh ? "Mae llawer o bobl â Chlefyd Stargardt yn ei chael hi'n haws ar gefndir glas golau." : "Many people with Stargardt Disease find a light blue background easier to read."} <button onclick="setColour('lb')" style="background:none;border:none;color:#0055a5;font-family:var(--font);font-size:inherit;font-weight:800;cursor:pointer;text-decoration:underline;padding:0">${_isWelsh ? "Newid i thema Glas/Du →" : "Switch to Blue/Black theme →"}</button></div>
 
     <span class="cond-hero-eyebrow">${_isWelsh ? 'Canllaw Cyflyrau\'r Llygad' : 'Eye Condition Guide'}</span>
 
@@ -7702,6 +7717,9 @@ var _scrollPos = {};
 
 function showPage(name) {
 
+  // Preserve Narrow Reading mode across navigation
+  var _nrOn = document.body.classList.contains('narrow-reading');
+
   // If Welsh active and going home, show Welsh home
 
   if (_isWelsh && name === 'home') {
@@ -7773,6 +7791,9 @@ function showPage(name) {
 
   window.scrollTo({ top: savedPos, behavior: 'instant' });
 
+  // Keep Narrow Reading mode active after navigation
+  if (_nrOn) document.body.classList.add('narrow-reading');
+
 }
 
 
@@ -7780,6 +7801,8 @@ function showPage(name) {
 function showCondition(key) {
 
   window._currentCondKey = key;
+
+  var _nrOn = document.body.classList.contains('narrow-reading');
 
   // Save home scroll position
 
@@ -7797,6 +7820,8 @@ function showCondition(key) {
       stargBanner.style.display = (key === 'stargardts' && !document.body.classList.contains('lb')) ? '' : 'none';
     }
   }
+  // Keep NR mode active
+  if (_nrOn) document.body.classList.add('narrow-reading');
 
 
 
@@ -8451,6 +8476,14 @@ if ('serviceWorker' in navigator) {
   }
 
   // Reading ruler — follows cursor / focus
+  window.toggleNarrowReading = function(){
+    var on = document.body.classList.toggle('narrow-reading');
+    try{ localStorage.setItem('vh-narrow', on?'1':'0'); }catch(e){}
+    var b = document.getElementById('narrow-toggle');
+    if(b) b.setAttribute('aria-pressed', on?'true':'false');
+    srAnnounce(on ? 'Narrow reading on' : 'Narrow reading off');
+  };
+
   window.toggleReadingRuler = function(){
     var on = document.body.classList.toggle('reading-ruler');
     try{ localStorage.setItem('rule', on?'1':'0'); }catch(e){}
@@ -8473,16 +8506,32 @@ if ('serviceWorker' in navigator) {
 
     function cleanText(el) {
       if (!el) return '';
-      // Clone and strip navigation/UI junk before reading
       var clone = el.cloneNode(true);
-      var junk = clone.querySelectorAll(
+      // Remove UI chrome elements entirely
+      clone.querySelectorAll(
         '.desktop-sidebar, aside, .back-btn, .share-bar, .a11y-bar, ' +
         '.cond-list, .search-wrap, .back-top, .sidebar-logo, ' +
         '.sidebar-tagline, .sidebar-divider, .sidebar-section, ' +
-        '.acc-btn, script, style, #tts-panel'
-      );
-      junk.forEach(function(j){ j.remove(); });
-      return clone.innerText.replace(/\s+/g, ' ').trim();
+        '.acc-btn, .cond-arrow, .share-btn, script, style, #tts-panel, ' +
+        '.news-footer, .hero-eyebrow, .legal-updated, .trial-link, ' +
+        '[aria-hidden="true"]'
+      ).forEach(function(j){ j.remove(); });
+      var raw = clone.innerText;
+      // Clean up symbols and UI artifacts
+      // Remove UI symbols and arrows
+      raw = raw.replace(/[▼▲▾▴←→◀▶‹›»«↑↓⬆⬇◉◎◈◭↔☀◑⬡◇◆]/g, '');
+      // Remove standalone numbers (accordion section numbers)
+      raw = raw.replace(/^\s*\d+\s*$/gm, '');
+      // Remove very short UI-only lines (NR, Dx, A etc)
+      raw = raw.replace(/^\s*[A-Z]{1,3}\+?\s*$/gm, '');
+      // Remove lines that are just dashes or bullets
+      raw = raw.replace(/^\s*[•·–—\-]+\s*$/gm, '');
+      // Collapse excess whitespace
+      raw = raw.replace(/\n{3,}/g, '\n\n');
+      raw = raw.replace(/[ \t]{2,}/g, ' ');
+      // Natural pause after headings - add period so speech engine pauses
+      raw = raw.replace(/^([A-Z][A-Za-z &]{4,40})\n([A-Za-z])/gm, '$1. $2');
+      return raw.trim();
     }
 
     var pages = {
