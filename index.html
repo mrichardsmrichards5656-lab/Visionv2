@@ -50,7 +50,7 @@
 
   --text:   #1a1a2e;
 
-  --text2:  #4a4a6a;
+  --text2:  #5a5a7a;
 
   --border: rgba(0,0,0,0.10);
 
@@ -109,15 +109,6 @@ body.bb {
   --bg:#000; --bg2:#000; --card:#0a1228; --card2:#0f1a3a;
   --text:#7ec8ff; --text2:#5aa8e8; --border:rgba(126,200,255,0.35);
   --yellow:#7ec8ff; --yellow2:#a8d8ff; --shadow:none;
-}
-/* Light Blue / Black — Stargardt-friendly, reduces glare, high contrast */
-body.lb {
-  --bg:#d6eaf8; --bg2:#bee3f8; --card:#ffffff; --card2:#eaf4fc;
-  --text:#0a0a0a; --text2:#1a3a52; --border:rgba(0,80,140,0.20);
-  --yellow:#0055a5; --yellow2:#0066cc; --shadow:0 2px 12px rgba(0,80,140,0.12);
-  --green:#005c29; --blue:#003d7a; --red:#8b0000;
-  background-color:#d6eaf8 !important;
-  color:#0a0a0a !important;
 }
 
 body.ll {
@@ -264,17 +255,7 @@ p, h1, h2, h3, h4, li, span, a, button { overflow-wrap: break-word; word-wrap: b
 
   .sidebar-link:hover { background: var(--card); color: var(--yellow); }
 
-  .sidebar-link:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }
-a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible,
-[tabindex]:focus-visible {
-  outline: 3px solid var(--yellow);
-  outline-offset: 3px;
-  border-radius: 4px;
-}
-body.hc :focus-visible, body.hc a:focus-visible, body.hc button:focus-visible { outline-color: #fff; }
-body.yb :focus-visible, body.yb a:focus-visible, body.yb button:focus-visible { outline-color: #ff0; }
-body.bb :focus-visible, body.bb a:focus-visible, body.bb button:focus-visible { outline-color: #7ec8ff; }
-body.lb :focus-visible, body.lb a:focus-visible, body.lb button:focus-visible { outline-color: #0055a5; }
+  .sidebar-link:focus-visible { outline: 3px solid var(--yellow); }
 
   .sidebar-divider { height: 1px; background: var(--border); margin: 12px 0; }
 
@@ -358,10 +339,6 @@ body.lb :focus-visible, body.lb a:focus-visible, body.lb button:focus-visible { 
 
   min-height: 50px;
 
-  /* Magnifier: ensure bar scrolls rather than wraps or clips at 400% zoom */
-
-  white-space: nowrap;
-
 }
 
 .a11y-bar::-webkit-scrollbar { display: none; }
@@ -388,7 +365,7 @@ body.lb :focus-visible, body.lb a:focus-visible, body.lb button:focus-visible { 
 
 .ab {
 
-  width: 44px; height: 44px;
+  width: 32px; height: 32px;
 
   background: var(--card2); border: 2px solid var(--border);
 
@@ -420,7 +397,7 @@ body.lb :focus-visible, body.lb a:focus-visible, body.lb button:focus-visible { 
 
 .theme-select {
 
-  height: 44px; padding: 0 12px; border-radius: 50px;
+  height: 36px; padding: 0 12px; border-radius: 50px;
 
   border: 2px solid var(--yellow); background: var(--card2);
 
@@ -438,7 +415,7 @@ body.lb :focus-visible, body.lb a:focus-visible, body.lb button:focus-visible { 
 
 .lang-btn {
 
-  height: 44px; padding: 0 12px; border-radius: 50px;
+  height: 36px; padding: 0 12px; border-radius: 50px;
 
   border: 2px solid #00b140; background: var(--card2);
 
@@ -1171,12 +1148,6 @@ body.welsh-active .trial-link::after { content: " (Saesneg yn unig)"; font-size:
 .news-tag.benefits { background: #dbeafe; color: #1e40af; }
 
 .news-tag.tech     { background: #f3e8ff; color: #6b21a8; }
-body.lb .news-tag.research { background: #bbf7d0; color: #14532d; }
-body.lb .news-tag.benefits { background: #bfdbfe; color: #1e3a8a; }
-body.lb .news-tag.tech     { background: #e9d5ff; color: #581c87; }
-body.bb .news-tag.research, body.bb .news-tag.benefits,
-body.bb .news-tag.tech, body.bb .news-tag.general { background: #000; color: #7ec8ff; border: 1px solid #7ec8ff; }
-
 
 .news-tag.general  { background: #fef9c3; color: #854d0e; }
 
@@ -1526,7 +1497,7 @@ footer { background: var(--bg2); border-top: 3px solid var(--yellow); padding: 3
 }
 @media (prefers-contrast: more){
   :root{--border:rgba(0,0,0,0.6)!important}
-  body:not(.lb):not(.hc):not(.yb):not(.bb):not(.ll):not(.dark){--text:#000;--bg:#fff}
+  body{--text:#000;--bg:#fff}
   body.dark{--text:#fff;--bg:#000}
   a,button{text-decoration:underline}
 }
@@ -1555,48 +1526,117 @@ body.reading-ruler .reading-ruler-bar{display:block}
 body.hc *:focus-visible,body.yb *:focus-visible,body.bb *:focus-visible{outline-color:#fff!important}
 
 
-/* NARROW READING MODE - 58ch max width for easier scanning */
-body.narrow-reading .hero,
-body.narrow-reading .cond-page-inner,
-body.narrow-reading .legal-wrap,
-body.narrow-reading .cond-section,
-body.narrow-reading .news-box,
-body.narrow-reading .desktop-main > * {
-  max-width: 58ch !important;
+/* ══ BLUE/BLACK THEME (lb) ══ */
+body.lb { background-color: #cce8f4 !important; color: #000 !important; }
+body.lb .a11y-bar { background: #a8d5ea !important; }
+body.lb .desktop-sidebar { background: #b8dff0 !important; }
+body.lb .desktop-main { background: #cce8f4 !important; }
+body.lb .hero { background: #b8dff0 !important; }
+body.lb .card, body.lb .founder-box { background: #e0f2fb !important; }
+body.lb .acc-item { background: #d8eef8 !important; border-color: rgba(0,100,180,0.3) !important; }
+body.lb .acc-body { background: #d8eef8 !important; }
+body.lb .acc-btn { background: #d8eef8 !important; }
+body.lb .ic, body.lb .nc, body.lb .rc, body.lb .tc, body.lb .wb, body.lb .sc { background: #c5e5f5 !important; border-color: rgba(0,100,180,0.3) !important; }
+body.lb .cond-item { background: #d8eef8 !important; }
+body.lb .news-box { background: #d8eef8 !important; border-color: rgba(0,100,180,0.3) !important; }
+body.lb .cond-btn { background: #d8eef8 !important; color: #000 !important; }
+body.lb .news-tag.research { background: #b0ddf0 !important; color: #003a5c !important; }
+body.lb .news-tag.benefits { background: #b0d5f0 !important; color: #003060 !important; }
+body.lb .news-tag.tech { background: #d0d8f5 !important; color: #002080 !important; }
+
+
+/* ══ NARROW READING MODE ══ */
+body.nr-active .hero,
+body.nr-active .cond-page-inner,
+body.nr-active .legal-wrap,
+body.nr-active .cond-section,
+body.nr-active .news-box,
+body.nr-active .desktop-main > * { max-width: 58ch !important; }
+
+
+/* ══ TTS SENTENCE HIGHLIGHTING ══ */
+.tts-sent { transition: background-color 0.15s ease; border-radius: 3px; }
+.tts-sent.tts-active { background-color: #ffe066 !important; color: #000 !important; outline: 2px solid #f5b800; border-radius: 3px; }
+body.dark .tts-sent.tts-active, body.ll .tts-sent.tts-active { background-color: #b38000 !important; color: #fff !important; }
+body.lb .tts-sent.tts-active { background-color: #0055a5 !important; color: #fff !important; }
+body.hc .tts-sent.tts-active { background-color: #fff !important; color: #000 !important; outline: 3px solid #fff; }
+
+
+/* Override inline background:var(--card) in lb theme */
+body.lb [style*="background:var(--card)"],
+body.lb [style*="background: var(--card)"] {
+  background-color: #d8eef8 !important;
+}
+body.lb #jd-box,
+body.lb #jd-steps,
+body.lb .jd-step,
+body.lb .video-card,
+body.lb .news-item {
+  background: #d8eef8 !important;
+  border-color: rgba(0,100,180,0.25) !important;
+}
+/* Welsh home condition items in lb */
+body.lb [role="list"] .cond-item,
+body.lb [role="listitem"] .cond-btn {
+  background: #d8eef8 !important;
 }
 
-</style>
 
-
-<style>
-/* LIGHT BLUE THEME - highest specificity, beats all other rules */
-html.theme-lb,
-html.theme-lb body {
-  background-color: #cce8f4 !important;
-  color: #000000 !important;
+/* Mini listen-to-section button */
+.acc-listen {
+  background: none;
+  border: 1.5px solid var(--border);
+  border-radius: 50%;
+  width: 36px; height: 36px;
+  display: inline-flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--text2);
+  flex-shrink: 0;
+  transition: background 0.15s, color 0.15s;
+  margin-left: 8px;
 }
-html.theme-lb .a11y-bar { background: #a8d5ea !important; }
-html.theme-lb .desktop-sidebar { background: #b8dff0 !important; }
-html.theme-lb .card, html.theme-lb [class*="card"] { background: #e8f5fb !important; }
-html.theme-lb .news-box { background: #dff0f8 !important; }
-html.theme-lb .cond-item { background: #dff0f8 !important; }
-html.theme-lb .hero { background: #b8dff0 !important; }
-html.theme-lb .acc-item { background: #daeef8 !important; border-color: rgba(0,100,180,0.3) !important; }
-html.theme-lb .acc-body { background: #daeef8 !important; }
-html.theme-lb .acc-btn { background: #daeef8 !important; }
-html.theme-lb .ic,
-html.theme-lb .nc,
-html.theme-lb .rc,
-html.theme-lb .tc,
-html.theme-lb .wb { background: #c8e6f5 !important; border-color: rgba(0,100,180,0.3) !important; }
-html.theme-lb .cond-item { background: #daeef8 !important; }
-html.theme-lb .card,
-html.theme-lb .founder-box,
-html.theme-lb [class*="card"] { background: #daeef8 !important; }
-html.theme-lb .news-box { background: #daeef8 !important; border-color: rgba(0,100,180,0.3) !important; }
-html.theme-lb .legal-wrap,
-html.theme-lb .cond-page-inner { background: transparent !important; }
+.acc-listen:hover, .acc-listen:focus-visible {
+  background: var(--yellow);
+  color: #000;
+  border-color: var(--yellow);
+  outline: 2px solid var(--yellow);
+  outline-offset: 2px;
+}
+.acc-listen.speaking {
+  background: var(--yellow);
+  color: #000;
+  border-color: var(--yellow);
+  animation: pulse-listen 1s infinite;
+}
+@keyframes pulse-listen {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+
+/* Additional lb theme overrides for remaining white boxes */
+body.lb .wb,
+body.lb .video-card,
+body.lb .trial-card,
+body.lb .guide-card,
+body.lb .support-card,
+body.lb .ic,
+body.lb .nc,
+body.lb .rc,
+body.lb .tc,
+body.lb .sc { background: #c8e6f5 !important; border-color: rgba(0,100,180,0.25) !important; }
+body.lb .legal-box,
+body.lb [class*="box"] { background: #d4ecf7 !important; }
+body.lb .share-btn { background: #d4ecf7 !important; }
+body.lb .fb-btn { background: #d4ecf7 !important; }
+body.lb .acc-item.open { border-color: #0055a5 !important; }
+/* Force any element with inline background:var(--card) */
+body.lb { --card: #d8eef8; --card2: #c8e4f4; }
+
+.sr-only { position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0; }
 </style>
+
 </head>
 
 <body>
@@ -1605,60 +1645,47 @@ html.theme-lb .cond-page-inner { background: transparent !important; }
 
 <a href="#main" class="skip">Skip to main content</a>
 
-<a href="#tts-toggle" class="skip" style="left:auto;right:12px">Skip to read aloud</a>
-
 
 
 <!-- ACCESSIBILITY BAR -->
 
 <div class="a11y-bar" role="toolbar" aria-label="Accessibility controls">
 
-  <div class="logo-hex" aria-hidden="true" style="width:22px;height:22px;flex-shrink:0"></div>
-
-  <span class="site-name" onclick="showPage('home')" role="link" tabindex="0" aria-label="Vision Hub home">Vision Hub</span>
+  <span class="site-name" onclick="showPage('home')" role="link" tabindex="0" aria-label="Vision Hub home" style="font-weight:900;color:var(--yellow);cursor:pointer;flex-shrink:0;font-size:0.9rem">Vision Hub</span>
 
   <div class="a11y-divider"></div>
 
-  <span class="a11y-label" aria-hidden="true">Text</span>
-
-  <button class="ab ab-s on" id="sz-s"  onclick="setSize(1)"    aria-pressed="true"  aria-label="Small text">A</button>
-
-  <button class="ab ab-m"    id="sz-m"  onclick="setSize(1.35)" aria-pressed="false" aria-label="Medium text">A</button>
-
-  <button class="ab ab-l"    id="sz-l"  onclick="setSize(1.7)"  aria-pressed="false" aria-label="Large text">A</button>
-
-  <button class="ab ab-xl"   id="sz-xl" onclick="setSize(2.2)"  aria-pressed="false" aria-label="Extra large text">A</button>
+  <div role="group" aria-label="Text size" style="display:flex;align-items:center;gap:3px;flex-shrink:0">
+    <span class="a11y-label" aria-hidden="true" style="font-size:0.7rem">Text</span>
+    <button class="ab ab-s on" id="sz-s"  onclick="setSize(1)"    aria-pressed="true"  aria-label="Small text"      title="Small text">A</button>
+    <button class="ab ab-m"    id="sz-m"  onclick="setSize(1.35)" aria-pressed="false" aria-label="Medium text"     title="Medium text">A</button>
+    <button class="ab ab-l"    id="sz-l"  onclick="setSize(1.7)"  aria-pressed="false" aria-label="Large text"      title="Large text">A</button>
+    <button class="ab ab-xl"   id="sz-xl" onclick="setSize(2.2)"  aria-pressed="false" aria-label="Extra large text" title="Extra large">A</button>
+  </div>
 
   <div class="a11y-divider"></div>
 
-  <span class="a11y-label" aria-hidden="true" style="margin-left:4px">THEME</span>
-
-  <select id="col-select" onchange="setColour(this.value)" aria-label="Choose colour theme" class="theme-select">
-
+  <select id="col-select" onchange="setColour(this.value)" aria-label="Colour theme" class="theme-select" title="Colour theme">
     <option value="">☀️ Light</option>
-
-    <option value="dark">🌙 Dark</option>
-
     <option value="lb">💙 Blue/Black</option>
-
+    <option value="dark">🌙 Dark</option>
     <option value="ll">👁️ Low Light</option>
-
     <option value="hc">⬛ Hi-Con</option>
-
     <option value="yb">🟡 Yel/Blk</option>
-
   </select>
 
   <div class="a11y-divider"></div>
 
-  <button class="lang-btn" id="welsh-toggle" onclick="toggleWelsh()" aria-label="Switch to Welsh / Cymraeg">CY</button>
+  <div role="group" aria-label="Reading aids" style="display:flex;align-items:center;gap:3px;flex-shrink:0">
+    <button class="ab" id="dys-toggle"    onclick="toggleDyslexic()"       aria-pressed="false" title="Dyslexia font (OpenDyslexic)" aria-label="Toggle dyslexia-friendly font" style="font-size:0.65rem;font-weight:900">Aa</button>
+    <button class="ab" id="rule-toggle"   onclick="toggleReadingRuler()"   aria-pressed="false" title="Reading ruler" aria-label="Toggle reading ruler">▭</button>
+    <button class="ab" id="narrow-toggle" onclick="toggleNarrowReading()"  aria-pressed="false" title="Narrow reading (shorter lines)" aria-label="Toggle narrow reading mode" style="font-size:0.6rem;font-weight:900">NR</button>
+    <button class="ab" id="tts-toggle"    onclick="togglePageSpeech()"     aria-pressed="false" title="Read aloud (text to speech)" aria-label="Read page aloud">🔊</button>
+  </div>
 
   <div class="a11y-divider"></div>
-  <button class="ab" id="dys-toggle"  onclick="toggleDyslexic()"   aria-pressed="false" aria-label="Toggle dyslexia-friendly font" title="Dyslexia-friendly font">Dx</button>
-  <button class="ab" id="rule-toggle" onclick="toggleReadingRuler()" aria-pressed="false" aria-label="Toggle reading ruler" title="Reading ruler">▭</button>
 
-  <button class="ab" id="narrow-toggle" onclick="toggleNarrowReading()" aria-pressed="false" aria-label="Toggle narrow reading mode" title="Narrow reading (easier to track lines)" style="font-size:0.7rem;font-weight:900">NR</button>
-  <button class="ab" id="tts-toggle"  onclick="togglePageSpeech()"  aria-pressed="false" aria-label="Listen to this page" title="Listen to page">🔊</button>
+  <button class="lang-btn" id="welsh-toggle" onclick="toggleWelsh()" aria-label="Switch to Welsh / Newid i Gymraeg" title="Welsh / Cymraeg">CY</button>
 
 </div>
 
@@ -1667,16 +1694,15 @@ html.theme-lb .cond-page-inner { background: transparent !important; }
   <div style="max-width:600px;margin:0 auto">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
       <strong style="color:#f5b800;font-size:1rem">🔊 Read Aloud</strong>
-      <button id="tts-close" style="background:#333;border:none;color:#fff;width:44px;height:44px;border-radius:50%;font-size:1.2rem;cursor:pointer" onclick="document.getElementById('tts-panel').style.display='none';window.speechSynthesis&&window.speechSynthesis.cancel()">✕</button>
+      <button style="background:#333;border:none;color:#fff;width:44px;height:44px;border-radius:50%;font-size:1.2rem;cursor:pointer" onclick="document.getElementById('tts-panel').style.display='none';ttsStop()">✕</button>
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
       <div>
-        <label style="display:block;color:#ccc;font-size:0.85rem;margin-bottom:6px">What to read:</label>
+        <label style="display:block;color:#ccc;font-size:0.875rem;margin-bottom:6px">What to read:</label>
         <select id="tts-section" style="width:100%;height:44px;padding:0 10px;border-radius:8px;border:none;background:#333;color:#fff;font-size:0.9rem">
           <option value="current">Current page</option>
           <option value="news">Recent Updates</option>
           <option value="benefits">Benefits &amp; PIP</option>
-          <option value="research">Research &amp; Trials</option>
           <option value="lw">Everyday Guide</option>
           <option value="questions">Questions for doctor</option>
           <option value="employment">Employment rights</option>
@@ -1685,7 +1711,7 @@ html.theme-lb .cond-page-inner { background: transparent !important; }
         </select>
       </div>
       <div>
-        <label style="display:block;color:#ccc;font-size:0.85rem;margin-bottom:6px">Speed:</label>
+        <label style="display:block;color:#ccc;font-size:0.875rem;margin-bottom:6px">Speed:</label>
         <select id="tts-speed" style="width:100%;height:44px;padding:0 10px;border-radius:8px;border:none;background:#333;color:#fff;font-size:0.9rem">
           <option value="0.6">Slow</option>
           <option value="0.85" selected>Normal</option>
@@ -1695,16 +1721,16 @@ html.theme-lb .cond-page-inner { background: transparent !important; }
       </div>
     </div>
     <div style="margin-bottom:16px">
-      <label style="display:block;color:#ccc;font-size:0.85rem;margin-bottom:6px">Voice:</label>
+      <label style="display:block;color:#ccc;font-size:0.875rem;margin-bottom:6px">Voice:</label>
       <select id="tts-voice-sel" style="width:100%;height:44px;padding:0 10px;border-radius:8px;border:none;background:#333;color:#fff;font-size:0.9rem">
         <option value="">Default English voice</option>
       </select>
     </div>
     <div style="display:flex;gap:10px">
-      <button id="tts-play-btn" style="flex:1;height:52px;background:#f5b800;color:#000;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer" onclick="ttsPlay()">▶ Play</button>
-      <button style="height:52px;padding:0 20px;background:#333;color:#fff;border:none;border-radius:10px;font-size:1rem;cursor:pointer" onclick="ttsStop()">⏹ Stop</button>
+      <button id="tts-play-btn" onclick="ttsPlay()" style="flex:1;height:52px;background:#f5b800;color:#000;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer">▶ Play</button>
+      <button id="tts-stop-btn" onclick="ttsStop()" style="height:52px;padding:0 20px;background:#333;color:#fff;border:none;border-radius:10px;font-size:1rem;cursor:pointer">⏹ Stop</button>
     </div>
-    <p id="tts-status" style="color:#aaa;font-size:0.8rem;margin-top:10px;text-align:center">Select what to read and press Play</p>
+    <p id="tts-status" style="color:#aaa;font-size:0.875rem;margin-top:10px;text-align:center">Choose what to read, then press Play</p>
   </div>
 </div>
 
@@ -1795,29 +1821,29 @@ html.theme-lb .cond-page-inner { background: transparent !important; }
 
       <button class="sidebar-link" onclick="showConditionWelsh('myopic')"><span aria-hidden="true">👓</span> Dirywiad Macular Myopig</button>
 
-      <button class="sidebar-link" onclick="showConditionWelsh('charlesbonnet')"><span aria-hidden="true">🧠</span> Syndrom Charles Bonnet</button>
+      <button class="sidebar-link" onclick="showConditionWelsh('charlesbonnet')">🧠 Syndrom Charles Bonnet</button>
 
-      <button class="sidebar-link" onclick="showConditionWelsh('opticneuritis')"><span aria-hidden="true">⚡</span> Niwritis Optig</button>
+      <button class="sidebar-link" onclick="showConditionWelsh('opticneuritis')">⚡ Niwritis Optig</button>
 
-      <button class="sidebar-link" onclick="showConditionWelsh('blepharitis')"><span aria-hidden="true">👁</span> Bleffaritis</button>
+      <button class="sidebar-link" onclick="showConditionWelsh('blepharitis')">👁 Bleffaritis</button>
 
       <div class="sidebar-divider"></div>
 
       <span class="sidebar-section">Canllawiau ac Adnoddau</span>
 
-      <button class="sidebar-link" onclick="showPage('livingwell')"><span aria-hidden="true">🌟</span> Canllaw Beunyddiol</button>
+      <button class="sidebar-link" onclick="showPage('livingwell')">🌟 Canllaw Beunyddiol</button>
 
       <button class="sidebar-link" onclick="showWelshPage('eyehealth')">👁️ Hanfodion Iechyd Llygaid</button>
 
-      <button class="sidebar-link" onclick="showWelshPage('employment')"><span aria-hidden="true">💼</span> Cyflogaeth</button>
+      <button class="sidebar-link" onclick="showWelshPage('employment')">💼 Cyflogaeth</button>
 
-      <button class="sidebar-link" onclick="showWelshPage('glossary')"><span aria-hidden="true">📖</span> Geirfa</button>
+      <button class="sidebar-link" onclick="showWelshPage('glossary')">📖 Geirfa</button>
 
-      <button class="sidebar-link" onclick="showWelshPage('questions')"><span aria-hidden="true">❓</span> Cwestiynau i'w Gofyn</button>
+      <button class="sidebar-link" onclick="showWelshPage('questions')">❓ Cwestiynau i'w Gofyn</button>
 
-      <button class="sidebar-link" onclick="showWelshPage('localsupport')"><span aria-hidden="true">📍</span> Cymorth Lleol</button>
+      <button class="sidebar-link" onclick="showWelshPage('localsupport')">📍 Cymorth Lleol</button>
 
-      <button class="sidebar-link" onclick="showWelshPage('children')"><span aria-hidden="true">👶</span> I Rieni</button>
+      <button class="sidebar-link" onclick="showWelshPage('children')">👶 I Rieni</button>
 
       <div class="sidebar-divider"></div>
 
@@ -1840,6 +1866,10 @@ html.theme-lb .cond-page-inner { background: transparent !important; }
       <p class="last-updated">Diweddarwyd diwethaf: Mai 2026 · Adolygir yn fisol · <button onclick="showWelshPage('contact')" style="background:none;border:none;color:var(--yellow);font-family:var(--font);font-size:inherit;font-weight:700;cursor:pointer;text-decoration:underline;padding:0">Cysylltwch â ni</button></p>
 
     </div>
+
+
+
+    
 
 <div class="cond-section" style="max-width:680px;margin:0 auto;padding:0 20px">
 
@@ -1865,19 +1895,19 @@ html.theme-lb .cond-page-inner { background: transparent !important; }
 
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px">
 
-        <button onclick="showWelshPage('glossary')" class="share-btn" style="font-size:0.82rem;padding:0 8px;min-height:44px;justify-content:center;border-radius:12px">📖 Geirfa</button>
+        <button onclick="showWelshPage('glossary')" class="share-btn" style="font-size:0.82rem;padding:0 8px;min-height:42px;justify-content:center;border-radius:12px">📖 Geirfa</button>
 
-        <button onclick="showWelshPage('localsupport')" class="share-btn" style="font-size:0.82rem;padding:0 8px;min-height:44px;justify-content:center;border-radius:12px">📍 Cymorth Lleol</button>
+        <button onclick="showWelshPage('localsupport')" class="share-btn" style="font-size:0.82rem;padding:0 8px;min-height:42px;justify-content:center;border-radius:12px">📍 Cymorth Lleol</button>
 
       </div>
 
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:20px">
 
-        <button onclick="showWelshPage('eyehealth')" class="share-btn" style="font-size:0.78rem;padding:0 6px;min-height:44px;justify-content:center;border-radius:12px">👁️ Iechyd Llygaid</button>
+        <button onclick="showWelshPage('eyehealth')" class="share-btn" style="font-size:0.78rem;padding:0 6px;min-height:42px;justify-content:center;border-radius:12px">👁️ Iechyd Llygaid</button>
 
-        <button onclick="showWelshPage('employment')" class="share-btn" style="font-size:0.78rem;padding:0 6px;min-height:44px;justify-content:center;border-radius:12px">💼 Cyflogaeth</button>
+        <button onclick="showWelshPage('employment')" class="share-btn" style="font-size:0.78rem;padding:0 6px;min-height:42px;justify-content:center;border-radius:12px">💼 Cyflogaeth</button>
 
-        <button onclick="showWelshPage('children')" class="share-btn" style="font-size:0.78rem;padding:0 6px;min-height:44px;justify-content:center;border-radius:12px">👶 I Rieni</button>
+        <button onclick="showWelshPage('children')" class="share-btn" style="font-size:0.78rem;padding:0 6px;min-height:42px;justify-content:center;border-radius:12px">👶 I Rieni</button>
 
       </div>
 
@@ -1899,13 +1929,15 @@ html.theme-lb .cond-page-inner { background: transparent !important; }
 
         <div id="search-results-cy" class="search-results" role="listbox" aria-label="Canlyniadau chwilio"></div>
 
+        <p id="cond-hint-cy" aria-live="polite" style="font-size:0.875rem;color:var(--text2);margin:8px 0 4px;line-height:1.5"></p>
+
       </div>
 
 
 
       <!-- Rhestr Cyflyrau -->
 
-      <div role="list" aria-label="Cyflyrau llygaid">
+      <div role="list" id="cond-list-cy" aria-label="Cyflyrau llygaid" style="display:none">
 
         <div role="listitem" class="cond-item"><button class="cond-btn" onclick="_isWelsh ? showConditionWelsh('stargardts') : showCondition('stargardts')"><span aria-hidden="true">✦</span> Clefyd Stargardt <span class="cond-arrow" aria-hidden="true">→</span></button></div>
 
@@ -1935,11 +1967,11 @@ html.theme-lb .cond-page-inner { background: transparent !important; }
 
         <div role="listitem" class="cond-item"><button class="cond-btn" onclick="_isWelsh ? showConditionWelsh('myopic') : showCondition('myopic')"><span aria-hidden="true">👓</span> Dirywiad Macular Myopig <span class="cond-arrow" aria-hidden="true">→</span></button></div>
 
-        <div role="listitem" class="cond-item"><button class="cond-btn" onclick="_isWelsh ? showConditionWelsh('charlesbonnet') : showCondition('charlesbonnet')"><span aria-hidden="true">🧠</span> Syndrom Charles Bonnet <span class="cond-arrow" aria-hidden="true">→</span></button></div>
+        <div role="listitem" class="cond-item"><button class="cond-btn" onclick="_isWelsh ? showConditionWelsh('charlesbonnet') : showCondition('charlesbonnet')">🧠 Syndrom Charles Bonnet <span class="cond-arrow" aria-hidden="true">→</span></button></div>
 
-        <div role="listitem" class="cond-item"><button class="cond-btn" onclick="_isWelsh ? showConditionWelsh('opticneuritis') : showCondition('opticneuritis')"><span aria-hidden="true">⚡</span> Niwritis Optig <span class="cond-arrow" aria-hidden="true">→</span></button></div>
+        <div role="listitem" class="cond-item"><button class="cond-btn" onclick="_isWelsh ? showConditionWelsh('opticneuritis') : showCondition('opticneuritis')">⚡ Niwritis Optig <span class="cond-arrow" aria-hidden="true">→</span></button></div>
 
-        <div role="listitem" class="cond-item"><button class="cond-btn" onclick="_isWelsh ? showConditionWelsh('blepharitis') : showCondition('blepharitis')"><span aria-hidden="true">👁</span> Bleffaritis <span class="cond-arrow" aria-hidden="true">→</span></button></div>
+        <div role="listitem" class="cond-item"><button class="cond-btn" onclick="_isWelsh ? showConditionWelsh('blepharitis') : showCondition('blepharitis')">👁 Bleffaritis <span class="cond-arrow" aria-hidden="true">→</span></button></div>
 
       </div>
 
@@ -1950,7 +1982,7 @@ html.theme-lb .cond-page-inner { background: transparent !important; }
         <span class="section-label">Bywyd bob dydd</span>
         <button class="cond-btn" onclick="showPage('livingwell')" aria-label="Agor Canllaw Beunyddiol" style="height:auto;flex-direction:column;align-items:flex-start;gap:8px;padding:20px 26px">
           <span style="display:flex;align-items:center;justify-content:space-between;width:100%;gap:12px">
-            <span style="font-size:1.05rem;font-weight:800"><span aria-hidden="true">🌟</span> Canllaw Beunyddiol</span>
+            <span style="font-size:1.05rem;font-weight:800">🌟 Canllaw Beunyddiol</span>
             <span class="cond-arrow" aria-hidden="true" style="flex-shrink:0">→</span>
           </span>
           <span style="font-size:0.85rem;font-weight:600;color:var(--text2);line-height:1.5">Awgrymiadau ymarferol i wneud bywyd bob dydd yn haws</span>
@@ -2054,11 +2086,11 @@ html.theme-lb .cond-page-inner { background: transparent !important; }
 
       <button class="sidebar-link" onclick="showCondition('myopic')"><span aria-hidden="true">👓</span> Myopic MD</button>
 
-      <button class="sidebar-link" onclick="showCondition('charlesbonnet')"><span aria-hidden="true">🧠</span> Charles Bonnet Syndrome</button>
+      <button class="sidebar-link" onclick="showCondition('charlesbonnet')">🧠 Charles Bonnet Syndrome</button>
 
-      <button class="sidebar-link" onclick="showCondition('opticneuritis')"><span aria-hidden="true">⚡</span> Optic Neuritis</button>
+      <button class="sidebar-link" onclick="showCondition('opticneuritis')">⚡ Optic Neuritis</button>
 
-      <button class="sidebar-link" onclick="showCondition('blepharitis')"><span aria-hidden="true">👁</span> Blepharitis</button>
+      <button class="sidebar-link" onclick="showCondition('blepharitis')">👁 Blepharitis</button>
 
 
 
@@ -2066,19 +2098,19 @@ html.theme-lb .cond-page-inner { background: transparent !important; }
 
       <span class="sidebar-section">Guides &amp; Resources</span>
 
-      <button class="sidebar-link" onclick="showPage('livingwell')"><span aria-hidden="true">🌟</span> Everyday Guide</button>
+      <button class="sidebar-link" onclick="showPage('livingwell')">🌟 Everyday Guide</button>
 
       <button class="sidebar-link" onclick="showPage('eyehealth')">👁️ Eye Health Basics</button>
 
-      <button class="sidebar-link" onclick="showPage('employment')"><span aria-hidden="true">💼</span> Employment</button>
+      <button class="sidebar-link" onclick="showPage('employment')">💼 Employment</button>
 
-      <button class="sidebar-link" onclick="showPage('glossary')"><span aria-hidden="true">📖</span> Glossary</button>
+      <button class="sidebar-link" onclick="showPage('glossary')">📖 Glossary</button>
 
-      <button class="sidebar-link" onclick="showPage('questions')"><span aria-hidden="true">❓</span> Questions to Ask</button>
+      <button class="sidebar-link" onclick="showPage('questions')">❓ Questions to Ask</button>
 
-      <button class="sidebar-link" onclick="showPage('localsupport')"><span aria-hidden="true">📍</span> Local Support</button>
+      <button class="sidebar-link" onclick="showPage('localsupport')">📍 Local Support</button>
 
-      <button class="sidebar-link" onclick="showPage('children')"><span aria-hidden="true">👶</span> For Parents</button>
+      <button class="sidebar-link" onclick="showPage('children')">👶 For Parents</button>
 
 
 
@@ -2099,7 +2131,7 @@ html.theme-lb .cond-page-inner { background: transparent !important; }
 
       <div aria-hidden="true" style="text-align:center;margin-bottom:28px;opacity:0.85">
 
-        <svg viewBox="0 0 320 180" width="100%" aria-hidden="true" style="max-width:380px;display:inline-block" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="0 0 320 180" width="100%" style="max-width:380px;display:inline-block" xmlns="http://www.w3.org/2000/svg">
 
           <circle cx="160" cy="90" r="85" fill="var(--yellow)" opacity="0.08"/>
 
@@ -2201,7 +2233,7 @@ html.theme-lb .cond-page-inner { background: transparent !important; }
 
           <button id="jd-toggle" onclick="toggleJD()" aria-expanded="false" aria-controls="jd-steps"
 
-            style="background:none;border:2px solid var(--border);color:var(--text2);border-radius:50px;padding:6px 14px;font-family:var(--font);font-size:0.78rem;font-weight:700;cursor:pointer;white-space:nowrap;flex-shrink:0;min-height:44px;transition:border-color .15s,color .15s"
+            style="background:none;border:2px solid var(--border);color:var(--text2);border-radius:50px;padding:6px 14px;font-family:var(--font);font-size:0.78rem;font-weight:700;cursor:pointer;white-space:nowrap;flex-shrink:0;min-height:36px;transition:border-color .15s,color .15s"
 
             onmouseover="this.style.borderColor='var(--yellow)';this.style.color='var(--yellow)'"
 
@@ -2233,7 +2265,7 @@ html.theme-lb .cond-page-inner { background: transparent !important; }
 
                 <p style="font-size:0.88rem;color:var(--text2);margin-top:3px;line-height:1.7">Ask your ophthalmologist what your diagnosis means for your vision long term. Write your questions down beforehand — you will forget them in the room.</p>
 
-                <button onclick="showPage('questions')" style="display:inline-flex;align-items:center;gap:6px;margin-top:10px;background:var(--yellow);color:#000;border:none;padding:9px 18px;border-radius:50px;font-family:var(--font);font-size:0.82rem;font-weight:800;cursor:pointer;min-height:44px">❓ Questions to ask your doctor →</button>
+                <button onclick="showPage('questions')" style="display:inline-flex;align-items:center;gap:6px;margin-top:10px;background:var(--yellow);color:#000;border:none;padding:9px 18px;border-radius:50px;font-family:var(--font);font-size:0.82rem;font-weight:800;cursor:pointer;min-height:40px">❓ Questions to ask your doctor →</button>
 
               </div>
 
@@ -2321,19 +2353,19 @@ html.theme-lb .cond-page-inner { background: transparent !important; }
 
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px" role="group" aria-label="Useful resources">
 
-        <button onclick="showPage('glossary')" class="share-btn" style="font-size:0.82rem;padding:0 8px;min-height:44px;justify-content:center;border-radius:12px" aria-label="Open Glossary">📖 Glossary</button>
+        <button onclick="showPage('glossary')" class="share-btn" style="font-size:0.82rem;padding:0 8px;min-height:42px;justify-content:center;border-radius:12px" aria-label="Open Glossary">📖 Glossary</button>
 
-        <button onclick="showPage('localsupport')" class="share-btn" style="font-size:0.82rem;padding:0 8px;min-height:44px;justify-content:center;border-radius:12px" aria-label="Open Local Support">📍 Local Support</button>
+        <button onclick="showPage('localsupport')" class="share-btn" style="font-size:0.82rem;padding:0 8px;min-height:42px;justify-content:center;border-radius:12px" aria-label="Open Local Support">📍 Local Support</button>
 
       </div>
 
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:20px" role="group" aria-label="More resources">
 
-        <button onclick="showPage('eyehealth')" class="share-btn" style="font-size:0.78rem;padding:0 6px;min-height:44px;justify-content:center;border-radius:12px" aria-label="Open Eye Health Basics">👁️ Eye Health</button>
+        <button onclick="showPage('eyehealth')" class="share-btn" style="font-size:0.78rem;padding:0 6px;min-height:42px;justify-content:center;border-radius:12px" aria-label="Open Eye Health Basics">👁️ Eye Health</button>
 
-        <button onclick="showPage('employment')" class="share-btn" style="font-size:0.78rem;padding:0 6px;min-height:44px;justify-content:center;border-radius:12px" aria-label="Open Employment guide">💼 Employment</button>
+        <button onclick="showPage('employment')" class="share-btn" style="font-size:0.78rem;padding:0 6px;min-height:42px;justify-content:center;border-radius:12px" aria-label="Open Employment guide">💼 Employment</button>
 
-        <button onclick="showPage('children')" class="share-btn" style="font-size:0.78rem;padding:0 6px;min-height:44px;justify-content:center;border-radius:12px" aria-label="Open For Parents guide">👶 For Parents</button>
+        <button onclick="showPage('children')" class="share-btn" style="font-size:0.78rem;padding:0 6px;min-height:42px;justify-content:center;border-radius:12px" aria-label="Open For Parents guide">👶 For Parents</button>
 
       </div>
 
@@ -2341,15 +2373,17 @@ html.theme-lb .cond-page-inner { background: transparent !important; }
 
       <div class="search-wrap" style="margin-bottom:16px">
 
-        <label for="csearch" style="font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:0.12em;color:var(--text2)">Your condition</label>
+        <label for="csearch" style="font-size:0.875rem;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;color:var(--text)">Search conditions</label>
 
-        <input type="search" id="csearch" placeholder="e.g. Stargardt, glaucoma…" autocomplete="off" aria-controls="cond-list">
+        <input type="search" id="csearch" placeholder="Type a condition — e.g. Stargardt, glaucoma, RP…" autocomplete="off" aria-controls="cond-list">
 
         <span class="search-icon" aria-hidden="true">🔍</span>
 
       </div>
 
-      <div class="cond-list" id="cond-list" role="list">
+      <p id="cond-hint" aria-live="polite" style="font-size:0.875rem;color:var(--text2);margin:8px 0 12px;line-height:1.5">Start typing to find your condition. <strong>17 conditions</strong> covered.</p>
+
+      <div class="cond-list" id="cond-list" role="list" style="display:none">
 
         <div role="listitem" class="cond-item">
 
@@ -2535,7 +2569,7 @@ html.theme-lb .cond-page-inner { background: transparent !important; }
 
           <span style="display:flex;align-items:center;justify-content:space-between;width:100%;gap:12px">
 
-            <span style="font-size:1.05rem;font-weight:800"><span aria-hidden="true">🌟</span> Everyday Guide</span>
+            <span style="font-size:1.05rem;font-weight:800">🌟 Everyday Guide</span>
 
             <span class="cond-arrow" aria-hidden="true" style="flex-shrink:0">→</span>
 
@@ -2703,33 +2737,33 @@ html.theme-lb .cond-page-inner { background: transparent !important; }
 
       <button class="sidebar-link" onclick="showCondition('myopic')"><span aria-hidden="true">👓</span> Myopic MD</button>
 
-      <button class="sidebar-link" onclick="showCondition('charlesbonnet')"><span aria-hidden="true">🧠</span> Charles Bonnet Syndrome</button>
+      <button class="sidebar-link" onclick="showCondition('charlesbonnet')">🧠 Charles Bonnet Syndrome</button>
 
-      <button class="sidebar-link" onclick="showCondition('opticneuritis')"><span aria-hidden="true">⚡</span> Optic Neuritis</button>
+      <button class="sidebar-link" onclick="showCondition('opticneuritis')">⚡ Optic Neuritis</button>
 
-      <button class="sidebar-link" onclick="showCondition('blepharitis')"><span aria-hidden="true">👁</span> Blepharitis</button>
+      <button class="sidebar-link" onclick="showCondition('blepharitis')">👁 Blepharitis</button>
 
       <div class="sidebar-divider"></div>
 
       <span class="sidebar-section">Guides &amp; Resources</span>
 
-      <button class="sidebar-link" onclick="showPage('livingwell')"><span aria-hidden="true">🌟</span> Everyday Guide</button>
+      <button class="sidebar-link" onclick="showPage('livingwell')">🌟 Everyday Guide</button>
 
       <button class="sidebar-link" onclick="showPage('eyehealth')">👁️ Eye Health Basics</button>
 
-      <button class="sidebar-link" onclick="showPage('employment')"><span aria-hidden="true">💼</span> Employment</button>
+      <button class="sidebar-link" onclick="showPage('employment')">💼 Employment</button>
 
-      <button class="sidebar-link" onclick="showPage('glossary')"><span aria-hidden="true">📖</span> Glossary</button>
+      <button class="sidebar-link" onclick="showPage('glossary')">📖 Glossary</button>
 
-      <button class="sidebar-link" onclick="showPage('questions')"><span aria-hidden="true">❓</span> Questions to Ask</button>
+      <button class="sidebar-link" onclick="showPage('questions')">❓ Questions to Ask</button>
 
-      <button class="sidebar-link" onclick="showPage('localsupport')"><span aria-hidden="true">📍</span> Local Support</button>
+      <button class="sidebar-link" onclick="showPage('localsupport')">📍 Local Support</button>
 
-      <button class="sidebar-link" onclick="showPage('children')"><span aria-hidden="true">👶</span> For Parents</button>
+      <button class="sidebar-link" onclick="showPage('children')">👶 For Parents</button>
 
       <div class="sidebar-divider"></div>
 
-      <button class="sidebar-link" onclick="showPage('home')" aria-label="Home"><span aria-hidden="true">🏠</span> Home</button>
+      <button class="sidebar-link" onclick="showPage('home')">🏠 Home</button>
 
       <button class="sidebar-link" onclick="showPage('help')"><span aria-hidden="true">🆘</span> Help &amp; Support</button>
       <button class="sidebar-link" onclick="showPage('contact')"><span aria-hidden="true">✉️</span> Contact</button>
@@ -2763,8 +2797,6 @@ html.theme-lb .cond-page-inner { background: transparent !important; }
   <div class="legal-wrap">
 
     <button class="back-btn" onclick="showPage('home')" aria-label="Back to home">← Back to home</button>
-
-    <div id="lw-welsh-notice" style="display:none;background:#00b140;color:#fff;padding:12px 18px;border-radius:12px;margin-bottom:20px;font-size:0.88rem;font-weight:600;line-height:1.6" role="note" aria-live="polite">🏴󠁧󠁢󠁷󠁬󠁳󠁥󠁳󠁥 Mae'r dudalen hon ar gael yn Saesneg yn unig ar hyn o bryd. / This page is currently in English only.</div>
 
     <span class="legal-eyebrow">Daily Life</span>
 
@@ -3721,8 +3753,6 @@ html.theme-lb .cond-page-inner { background: transparent !important; }
   <div class="legal-wrap">
 
     <button class="back-btn" onclick="showPage('home')" aria-label="Back to home">← Back to home</button>
-
-    <div id="a11y-welsh-notice" style="display:none;background:#00b140;color:#fff;padding:12px 18px;border-radius:12px;margin-bottom:20px;font-size:0.88rem;font-weight:600;line-height:1.6" role="note">🏴󠁧󠁢󠁷󠁬󠁳󠁥󠁳󠁥 Mae'r dudalen hon ar gael yn Saesneg yn unig. / This page is currently in English only.</div>
 
     <span class="legal-eyebrow">Legal</span>
 
@@ -4841,7 +4871,6 @@ html.theme-lb .cond-page-inner { background: transparent !important; }
 <div id="page-help" class="page" role="main" aria-label="Help and Support">
   <div class="legal-wrap">
     <button class="back-btn" onclick="showPage('home')" aria-label="Back to home">← Back to home</button>
-    <div id="help-welsh-notice" style="display:none;background:#00b140;color:#fff;padding:12px 18px;border-radius:12px;margin-bottom:20px;font-size:0.88rem;font-weight:600;line-height:1.6" role="note">🏴󠁧󠁢󠁷󠁬󠁳󠁥󠁳󠁥 Mae'r dudalen hon ar gael yn Saesneg yn unig. / This page is currently in English only.</div>
     <span class="legal-eyebrow">Practical help</span>
     <h1>Help &amp; Support</h1>
     <p class="legal-updated">Last updated: <time datetime="2026-05-15">May 2026</time></p>
@@ -5082,7 +5111,7 @@ html.theme-lb .cond-page-inner { background: transparent !important; }
 
 <div aria-hidden="true" style="max-width:680px;margin:0 auto;padding:0 20px;text-align:center;opacity:0.4">
 
-  <svg viewBox="0 0 400 40" width="100%" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+  <svg viewBox="0 0 400 40" width="100%" xmlns="http://www.w3.org/2000/svg">
 
     <path d="M0,20 Q50,5 100,20 Q150,35 200,20 Q250,5 300,20 Q350,35 400,20" fill="none" stroke="var(--yellow)" stroke-width="2" stroke-linecap="round"/>
 
@@ -7030,9 +7059,29 @@ function renderCondition(key) {
 
     <button class="back-btn" onclick="showPage('home')" aria-label="Back to conditions list">${_isWelsh ? '← Pob Cyflwr' : '← All Conditions'}</button>
 
-
-
-        <div id="stargardt-theme-tip" role="note" style="display:none;background:#d6eaf8;color:#0a3a5a;border:2px solid #7ec8ff;border-radius:12px;padding:10px 16px;margin-bottom:14px;font-size:0.85rem;font-weight:600;line-height:1.6">💙 ${_isWelsh ? "Mae llawer o bobl â Chlefyd Stargardt yn ei chael hi'n haws ar gefndir glas golau." : "Many people with Stargardt Disease find a light blue background easier to read."} <button onclick="setColour('lb')" style="background:none;border:none;color:#0055a5;font-family:var(--font);font-size:inherit;font-weight:800;cursor:pointer;text-decoration:underline;padding:0">${_isWelsh ? "Newid i thema Glas/Du →" : "Switch to Blue/Black theme →"}</button></div>
+    ${(function(){
+      var tips={
+        stargardts:{t:'lb',l:'Blue/Black',m:'Many people with Stargardt Disease find a pale blue background reduces glare.'},
+        amd:{t:'lb',l:'Blue/Black',m:'A pale blue background can reduce glare and help with central vision loss in AMD.'},
+        achromatopsia:{t:'hc',l:'Hi-Con',m:'High contrast mode removes colour dependency, helpful in achromatopsia.'},
+        albinism:{t:'lb',l:'Blue/Black',m:'Low-glare pale blue is often easier for people with albinism.'},
+        nystagmus:{t:'ll',l:'Low Light',m:'Low light mode can help reduce visual noise with nystagmus.'},
+        charlesbonnet:{t:'dark',l:'Dark',m:'A dark background may reduce triggers for Charles Bonnet hallucinations.'},
+        rp:{t:'dark',l:'Dark',m:'Dark mode preserves night vision and reduces light sensitivity in RP.'},
+        cone:{t:'hc',l:'Hi-Con',m:'High contrast maximises the limited colour vision in cone dystrophy.'},
+        glaucoma:{t:'ll',l:'Low Light',m:'Low light mode reduces brightness discomfort with glaucoma.'},
+        lca:{t:'dark',l:'Dark',m:'Dark mode reduces overall brightness, helping light sensitivity in LCA.'},
+        diabetic:{t:'lb',l:'Blue/Black',m:'A pale blue background can reduce glare in diabetic retinopathy.'},
+        dmo:{t:'lb',l:'Blue/Black',m:'The low-glare pale blue background may help with central vision distortion in DMO.'},
+        myopic:{t:'dark',l:'Dark',m:'Dark mode can reduce brightness that may aggravate myopic macular degeneration.'}
+      };
+      var tip=tips[key];
+      if(!tip||document.body.classList.contains(tip.t)) return '';
+      var tipId='theme-tip-'+key;
+      var switchBtn='<button onclick="setColour(\''+tip.t+'\');document.getElementById(\''+tipId+'\').remove()" style="background:none;border:none;color:var(--yellow);font-family:var(--font);font-size:0.875rem;font-weight:800;cursor:pointer;text-decoration:underline;padding:0;margin-left:8px">Switch now</button>';
+      var closeBtn='<button onclick="document.getElementById(\''+tipId+'\').remove()" aria-label="Dismiss suggestion" style="float:right;background:none;border:none;color:var(--text2);cursor:pointer;font-size:1.1rem;padding:0;line-height:1">×</button>';
+      return '<div id="'+tipId+'" role="note" aria-live="polite" style="background:var(--card2);border:2px solid var(--yellow);border-radius:12px;padding:12px 16px;margin-bottom:16px;font-size:0.875rem;line-height:1.6">'+closeBtn+'💡 '+tip.m+switchBtn+'</div>';
+    })()}
 
     <span class="cond-hero-eyebrow">${_isWelsh ? 'Canllaw Cyflyrau\'r Llygad' : 'Eye Condition Guide'}</span>
 
@@ -7048,13 +7097,17 @@ function renderCondition(key) {
 
     <div class="acc-item" id="acc-about-${key}">
 
-      <button class="acc-btn" onclick="toggleAcc('about','${key}')" aria-expanded="false">
+      <div style="display:flex;align-items:center;gap:8px"><button class="acc-btn" onclick="toggleAcc('about','${key}')" aria-expanded="false">
 
         <span class="acc-left"><span class="acc-num">1</span><span class="acc-label">What is ${d.name}?</span></span>
+
+        
 
         <span class="acc-arrow" aria-hidden="true">▾</span>
 
       </button>
+      <button class="acc-listen" onclick="event.stopPropagation();listenToSection('about','${key}',this)" aria-label="Listen to What is" title="Listen to What is" tabindex="0">🔊<span class="sr-only"> What is</span></button>
+      </div>
 
       <div class="acc-body">
 
@@ -7076,13 +7129,17 @@ function renderCondition(key) {
 
     <div class="acc-item" id="acc-research-${key}">
 
-      <button class="acc-btn" onclick="toggleAcc('research','${key}')" aria-expanded="false">
+      <div style="display:flex;align-items:center;gap:8px"><button class="acc-btn" onclick="toggleAcc('research','${key}')" aria-expanded="false">
 
         <span class="acc-left"><span class="acc-num">2</span><span class="acc-label">Latest Research &amp; Clinical Trials</span></span>
+
+        
 
         <span class="acc-arrow" aria-hidden="true">▾</span>
 
       </button>
+      <button class="acc-listen" onclick="event.stopPropagation();listenToSection('research','${key}',this)" aria-label="Listen to Latest Research" title="Listen to Latest Research" tabindex="0">🔊<span class="sr-only"> Latest Research</span></button>
+      </div>
 
       <div class="acc-body">
 
@@ -7110,15 +7167,21 @@ function renderCondition(key) {
 
     <div class="acc-item" id="acc-guides-${key}">
 
-      <button class="acc-btn" onclick="toggleAcc('guides','${key}')" aria-expanded="false">
+      <div style="display:flex;align-items:center;gap:8px"><button class="acc-btn" onclick="toggleAcc('guides','${key}')" aria-expanded="false">
 
         <span class="acc-left"><span class="acc-num">3</span><span class="acc-label">Practical How-To Guides</span></span>
+
+        
 
         <span class="acc-arrow" aria-hidden="true">▾</span>
 
       </button>
+      <button class="acc-listen" onclick="event.stopPropagation();listenToSection('guides','${key}',this)" aria-label="Listen to Practical How-To Guides" title="Listen to Practical How-To Guides" tabindex="0">🔊<span class="sr-only"> Practical How-To Guides</span></button>
+      </div>
 
       <div class="acc-body">
+
+        ${_isWelsh ? '<p style="background:#00b140;color:#fff;padding:8px 14px;border-radius:8px;font-size:0.85rem;margin-bottom:12px">🏴󠁧󠁢󠁷󠁬󠁳󠁥󠁳󠁥 Mae\'r adran hon ar gael yn Saesneg yn unig ar hyn o bryd. / This section is currently in English only.</p>' : ''}
 
         ${d.guides.map(g=>`
 
@@ -7138,15 +7201,21 @@ function renderCondition(key) {
 
     <div class="acc-item" id="acc-tech-${key}">
 
-      <button class="acc-btn" onclick="toggleAcc('tech','${key}')" aria-expanded="false">
+      <div style="display:flex;align-items:center;gap:8px"><button class="acc-btn" onclick="toggleAcc('tech','${key}')" aria-expanded="false">
 
         <span class="acc-left"><span class="acc-num">4</span><span class="acc-label">Assistive Technology</span></span>
+
+        
 
         <span class="acc-arrow" aria-hidden="true">▾</span>
 
       </button>
+      <button class="acc-listen" onclick="event.stopPropagation();listenToSection('tech','${key}',this)" aria-label="Listen to Assistive Technology" title="Listen to Assistive Technology" tabindex="0">🔊<span class="sr-only"> Assistive Technology</span></button>
+      </div>
 
       <div class="acc-body">
+
+        ${_isWelsh ? '<p style="background:#00b140;color:#fff;padding:8px 14px;border-radius:8px;font-size:0.85rem;margin-bottom:12px">🏴󠁧󠁢󠁷󠁬󠁳󠁥󠁳󠁥 Mae\'r adran hon ar gael yn Saesneg yn unig ar hyn o bryd. / This section is currently in English only.</p>' : ''}
 
         ${d.tech.map(t=>`
 
@@ -7170,15 +7239,21 @@ function renderCondition(key) {
 
     <div class="acc-item" id="acc-support-${key}">
 
-      <button class="acc-btn" onclick="toggleAcc('support','${key}')" aria-expanded="false">
+      <div style="display:flex;align-items:center;gap:8px"><button class="acc-btn" onclick="toggleAcc('support','${key}')" aria-expanded="false">
 
         <span class="acc-left"><span class="acc-num">5</span><span class="acc-label">Support &amp; Community</span></span>
+
+        
 
         <span class="acc-arrow" aria-hidden="true">▾</span>
 
       </button>
+      <button class="acc-listen" onclick="event.stopPropagation();listenToSection('support','${key}',this)" aria-label="Listen to Support and Community" title="Listen to Support and Community" tabindex="0">🔊<span class="sr-only"> Support and Community</span></button>
+      </div>
 
       <div class="acc-body">
+
+        ${_isWelsh ? '<p style="background:#00b140;color:#fff;padding:8px 14px;border-radius:8px;font-size:0.85rem;margin-bottom:12px">🏴󠁧󠁢󠁷󠁬󠁳󠁥󠁳󠁥 Mae\'r adran hon ar gael yn Saesneg yn unig ar hyn o bryd. / This section is currently in English only.</p>' : ''}
 
         ${d.helpline ? `<div style="background:var(--yellow);border-radius:14px;padding:16px 18px;margin-bottom:14px;display:flex;align-items:center;gap:14px;flex-wrap:wrap">
 
@@ -7216,15 +7291,21 @@ function renderCondition(key) {
 
     <div class="acc-item" id="acc-benefits-${key}">
 
-      <button class="acc-btn" onclick="toggleAcc('benefits','${key}')" aria-expanded="false">
+      <div style="display:flex;align-items:center;gap:8px"><button class="acc-btn" onclick="toggleAcc('benefits','${key}')" aria-expanded="false">
 
         <span class="acc-left"><span class="acc-num">6</span><span class="acc-label">Benefits &amp; Financial Help</span></span>
+
+        
 
         <span class="acc-arrow" aria-hidden="true">▾</span>
 
       </button>
+      <button class="acc-listen" onclick="event.stopPropagation();listenToSection('benefits','${key}',this)" aria-label="Listen to Benefits and Financial Help" title="Listen to Benefits and Financial Help" tabindex="0">🔊<span class="sr-only"> Benefits and Financial Help</span></button>
+      </div>
 
       <div class="acc-body">
+
+        ${_isWelsh ? '<p style="background:#00b140;color:#fff;padding:8px 14px;border-radius:8px;font-size:0.85rem;margin-bottom:12px">🏴󠁧󠁢󠁷󠁬󠁳󠁥󠁳󠁥 Mae\'r adran hon ar gael yn Saesneg yn unig ar hyn o bryd. / This section is currently in English only.</p>' : ''}
 
         <div class="wb"><strong>You are entitled to these benefits.</strong> An estimated £3.5 billion in disability benefits goes unclaimed every year. Call RNIB (0303 123 9999) for free help with forms.</div>
 
@@ -7254,15 +7335,21 @@ function renderCondition(key) {
 
     <div class="acc-item" id="acc-living-${key}">
 
-      <button class="acc-btn" onclick="toggleAcc('living','${key}')" aria-expanded="false">
+      <div style="display:flex;align-items:center;gap:8px"><button class="acc-btn" onclick="toggleAcc('living','${key}')" aria-expanded="false">
 
         <span class="acc-left"><span class="acc-num">7</span><span class="acc-label">Living with ${d.name}</span></span>
+
+        
 
         <span class="acc-arrow" aria-hidden="true">▾</span>
 
       </button>
+      <button class="acc-listen" onclick="event.stopPropagation();listenToSection('living','${key}',this)" aria-label="Listen to Living with this condition" title="Listen to Living with this condition" tabindex="0">🔊<span class="sr-only"> Living with this condition</span></button>
+      </div>
 
       <div class="acc-body">
+
+        ${_isWelsh ? '<p style="background:#00b140;color:#fff;padding:8px 14px;border-radius:8px;font-size:0.85rem;margin-bottom:12px">🏴󠁧󠁢󠁷󠁬󠁳󠁥󠁳󠁥 Mae\'r adran hon ar gael yn Saesneg yn unig ar hyn o bryd. / This section is currently in English only.</p>' : ''}
 
         ${d.livingWith.map(l=>`
 
@@ -7286,15 +7373,21 @@ function renderCondition(key) {
 
     <div class="acc-item" id="acc-parents-${key}">
 
-      <button class="acc-btn" onclick="toggleAcc('parents','${key}')" aria-expanded="false">
+      <div style="display:flex;align-items:center;gap:8px"><button class="acc-btn" onclick="toggleAcc('parents','${key}')" aria-expanded="false">
 
         <span class="acc-left"><span class="acc-num">👶</span><span class="acc-label">For Parents</span></span>
+
+        
 
         <span class="acc-arrow" aria-hidden="true">▾</span>
 
       </button>
+      <button class="acc-listen" onclick="event.stopPropagation();listenToSection('parents','${key}',this)" aria-label="Listen to For Parents" title="Listen to For Parents" tabindex="0">🔊<span class="sr-only"> For Parents</span></button>
+      </div>
 
       <div class="acc-body">
+
+        ${_isWelsh ? '<p style="background:#00b140;color:#fff;padding:8px 14px;border-radius:8px;font-size:0.85rem;margin-bottom:12px">🏴󠁧󠁢󠁷󠁬󠁳󠁥󠁳󠁥 Mae\'r adran hon ar gael yn Saesneg yn unig ar hyn o bryd. / This section is currently in English only.</p>' : ''}
 
         <div class="wb"><strong>${d.forParents.intro}</strong></div>
 
@@ -7439,6 +7532,147 @@ function initScrollSpy(key) {
 
 
 /* ─────────────── CONDITION PAGE ACCORDION ─────────────── */
+
+function listenToSection(section, key, btn) {
+  var synth = window.speechSynthesis;
+  if (!synth || typeof SpeechSynthesisUtterance === 'undefined') {
+    alert('Text to speech is not supported in this browser.');
+    return;
+  }
+
+  // If already speaking this section, stop it
+  if (btn.classList.contains('speaking')) {
+    synth.cancel();
+    btn.classList.remove('speaking');
+    btn.setAttribute('aria-label', 'Listen to this section');
+    btn.textContent = '🔊';
+    return;
+  }
+
+  // Stop any other speech
+  synth.cancel();
+  document.querySelectorAll('.acc-listen.speaking').forEach(function(b) {
+    b.classList.remove('speaking');
+    b.textContent = '🔊';
+  });
+
+  // Get the accordion body content
+  var accId = 'acc-' + section + '-' + key;
+  var accItem = document.getElementById(accId);
+  if (!accItem) return;
+
+  // Open the accordion if closed
+  var accBody = accItem.querySelector('.acc-body');
+  if (!accBody) return;
+  var wasOpen = accItem.classList.contains('open');
+  if (!wasOpen) {
+    toggleAcc(section, key);
+    // Wait for it to open
+    setTimeout(function() { speakAccSection(accBody, btn); }, 200);
+  } else {
+    speakAccSection(accBody, btn);
+  }
+}
+
+function speakAccSection(accBody, btn) {
+  var synth = window.speechSynthesis;
+  var clone = accBody.cloneNode(true);
+  clone.querySelectorAll('[aria-hidden="true"], .trial-link, .share-btn, button, .acc-listen').forEach(function(j){ j.remove(); });
+  var text = (clone.innerText || clone.textContent || '').replace(/\s+/g, ' ').trim();
+
+  // Expand abbreviations
+  text = text.replace(/\bAMD\b/g, 'Age-related macular degeneration');
+  text = text.replace(/\bRP\b/g, 'retinitis pigmentosa');
+  text = text.replace(/\bPIP\b/g, 'Personal Independence Payment');
+  text = text.replace(/\bNHS\b/g, 'National Health Service');
+  text = text.replace(/\bECLO\b/g, 'Eye Clinic Liaison Officer');
+
+  if (!text) return;
+
+  btn.classList.add('speaking');
+  btn.setAttribute('aria-label', 'Stop reading this section');
+  btn.textContent = '⏹';
+
+  var utter = new SpeechSynthesisUtterance(text);
+  utter.lang = 'en-GB';
+  utter.rate = parseFloat((document.getElementById('tts-speed') || {}).value || '0.85');
+  utter.volume = 1;
+
+  utter.onend = function() {
+    btn.classList.remove('speaking');
+    btn.textContent = '🔊';
+    btn.setAttribute('aria-label', 'Listen to this section');
+  };
+  utter.onerror = function(e) {
+    if (e.error === 'interrupted') return;
+    btn.classList.remove('speaking');
+    btn.textContent = '🔊';
+    btn.setAttribute('aria-label', 'Listen to this section');
+  };
+
+  synth.speak(utter);
+}
+
+
+  // Add listen buttons to section headings on static pages
+  function addListenButtons(container) {
+    if (!container) return;
+    // Find h2 headings that don't already have a listen button
+    var headings = container.querySelectorAll('h2:not(.sr):not([data-listen-added])');
+    headings.forEach(function(h2) {
+      if (h2.closest('.acc-item')) return; // skip accordion headings (already have listen)
+      if (h2.closest('.a11y-bar')) return;
+      h2.setAttribute('data-listen-added', '1');
+      var btn = document.createElement('button');
+      btn.className = 'acc-listen';
+      btn.setAttribute('aria-label', 'Listen to this section');
+      btn.setAttribute('title', 'Listen to this section');
+      btn.style.verticalAlign = 'middle';
+      btn.style.marginLeft = '8px';
+      btn.innerHTML = '🔊<span class="sr-only"> ' + h2.textContent.trim().slice(0, 30) + '</span>';
+      btn.onclick = function() {
+        var synth = window.speechSynthesis;
+        if (!synth) return;
+        if (btn.classList.contains('speaking')) {
+          synth.cancel();
+          btn.classList.remove('speaking');
+          btn.innerHTML = '🔊<span class="sr-only"> ' + h2.textContent.trim().slice(0, 30) + '</span>';
+          return;
+        }
+        synth.cancel();
+        document.querySelectorAll('.acc-listen.speaking').forEach(function(b) {
+          b.classList.remove('speaking');
+        });
+        // Get content: h2's next sibling elements until next h2
+        var textParts = [h2.textContent.trim() + '. '];
+        var el = h2.nextElementSibling;
+        var count = 0;
+        while (el && el.tagName !== 'H2' && count < 20) {
+          if (!el.querySelector('button') || el.tagName === 'P' || el.tagName === 'UL') {
+            textParts.push(el.textContent.replace(/\s+/g, ' ').trim());
+          }
+          el = el.nextElementSibling;
+          count++;
+        }
+        var text = textParts.join(' ').replace(/[▼▲←→✦›•]/g, '').replace(/\s+/g, ' ').trim();
+        if (!text) return;
+        if (text.length > 2000) text = text.slice(0, 2000);
+        var utt = new SpeechSynthesisUtterance(text);
+        utt.lang = 'en-GB';
+        utt.rate = parseFloat((document.getElementById('tts-speed') || {}).value || '0.85');
+        utt.volume = 1;
+        utt.onend = function() { btn.classList.remove('speaking'); btn.innerHTML = '🔊<span class="sr-only"> ' + h2.textContent.trim().slice(0, 30) + '</span>'; };
+        utt.onerror = function(e) { if (e.error !== 'interrupted') { btn.classList.remove('speaking'); } };
+        btn.classList.add('speaking');
+        synth.speak(utt);
+      };
+      h2.appendChild(btn);
+    });
+  }
+
+  // Call addListenButtons when page changes
+  var _origShowPage = window.showPage || function(){};
+
 
 function toggleAcc(section, key) {
 
@@ -7634,49 +7868,11 @@ function toggleWelsh() {
 
 
 
-  document.documentElement.setAttribute('lang', _isWelsh ? 'cy' : 'en-GB');
+  document.documentElement.setAttribute('lang', _isWelsh ? 'cy' : 'en');
 
   document.body.classList.toggle('welsh-active', _isWelsh);
 
-  localStorage.setItem('vh-lang', _isWelsh ? 'cy' : 'en');
-
-  // Translate a11y toolbar aria-labels
-
-  var cy = _isWelsh;
-
-  var dysBtn = document.getElementById('dys-toggle');
-
-  var ruleBtn = document.getElementById('rule-toggle');
-
-  var ttsBtn = document.getElementById('tts-toggle');
-
-  var szS = document.getElementById('sz-s');
-
-  var szM = document.getElementById('sz-m');
-
-  var szL = document.getElementById('sz-l');
-
-  var szXL = document.getElementById('sz-xl');
-
-  var colSel = document.getElementById('col-select');
-
-  if(dysBtn) dysBtn.setAttribute('aria-label', cy ? 'Toglo ffont dislecsia' : 'Toggle dyslexia-friendly font');
-
-  if(ruleBtn) ruleBtn.setAttribute('aria-label', cy ? 'Toglo rheolwr darllen' : 'Toggle reading ruler');
-
-  if(ttsBtn) ttsBtn.setAttribute('aria-label', cy ? 'Gwrando ar y dudalen hon' : 'Listen to this page');
-
-  if(szS) szS.setAttribute('aria-label', cy ? 'Testun bach' : 'Small text');
-
-  if(szM) szM.setAttribute('aria-label', cy ? 'Testun canolig' : 'Medium text');
-
-  if(szL) szL.setAttribute('aria-label', cy ? 'Testun mawr' : 'Large text');
-
-  if(szXL) szXL.setAttribute('aria-label', cy ? 'Testun mwy fawr' : 'Extra large text');
-
-  if(colSel) colSel.setAttribute('aria-label', cy ? 'Dewis thema lliw' : 'Choose colour theme');
-
-  if(typeof _updateTTSLabels === 'function') _updateTTSLabels();
+  try { localStorage.setItem('vh-lang', _isWelsh ? 'cy' : 'en'); } catch(e) {}
 
   window.scrollTo({ top: 0, behavior: 'instant' });
 
@@ -7684,8 +7880,7 @@ function toggleWelsh() {
 
 
 
-// Welsh language is NOT auto-restored - user must choose each session
-// This ensures English is always the default on every page load
+// Welsh is NOT auto-restored — user must choose each session
 
 
 
@@ -7715,10 +7910,27 @@ var _scrollPos = {};
 
 
 
-function showPage(name) {
+function applyNRState() {
+  if (localStorage.getItem('vh-narrow') === '1') {
+    document.body.classList.add('nr-active');
+    var b = document.getElementById('narrow-toggle');
+    if (b) { b.setAttribute('aria-pressed','true'); b.style.background='var(--yellow)'; b.style.color='#000'; }
+  } else {
+    document.body.classList.remove('nr-active');
+    var b = document.getElementById('narrow-toggle');
+    if (b) { b.setAttribute('aria-pressed','false'); b.style.background=''; b.style.color=''; }
+  }
+}
 
-  // Preserve Narrow Reading mode across navigation
-  var _nrOn = document.body.classList.contains('narrow-reading');
+window.toggleNarrowReading = function() {
+  var on = document.body.classList.toggle('nr-active');
+  try { localStorage.setItem('vh-narrow', on ? '1' : '0'); } catch(e) {}
+  var b = document.getElementById('narrow-toggle');
+  if (b) { b.setAttribute('aria-pressed', on ? 'true' : 'false'); b.style.background = on ? 'var(--yellow)' : ''; b.style.color = on ? '#000' : ''; }
+  srAnnounce(on ? 'Narrow reading on — line width reduced for easier tracking' : 'Narrow reading off');
+};
+
+function showPage(name) {
 
   // If Welsh active and going home, show Welsh home
 
@@ -7744,14 +7956,6 @@ function showPage(name) {
 
 
 
-  // Hide Welsh home when navigating to any non-home page
-
-  var welshHomeEl = document.getElementById('page-home-welsh');
-
-  if (welshHomeEl) welshHomeEl.style.display = 'none';
-
-
-
   // Save scroll position of current page
 
   var currentActive = document.querySelector('.page.active');
@@ -7765,15 +7969,6 @@ function showPage(name) {
   var target = document.getElementById('page-' + name);
 
   if (target) target.classList.add('active');
-
-  // Show Welsh notice on English-only pages when in Welsh mode
-
-  var lwNotice = document.getElementById('lw-welsh-notice');
-  if (lwNotice) lwNotice.style.display = (_isWelsh && name === 'livingwell') ? '' : 'none';
-  var helpNotice = document.getElementById('help-welsh-notice');
-  if (helpNotice) helpNotice.style.display = (_isWelsh && name === 'help') ? '' : 'none';
-  var a11yNotice = document.getElementById('a11y-welsh-notice');
-  if (a11yNotice) a11yNotice.style.display = (_isWelsh && name === 'a11y') ? '' : 'none';
 
 
 
@@ -7791,18 +7986,17 @@ function showPage(name) {
 
   window.scrollTo({ top: savedPos, behavior: 'instant' });
 
-  // Keep Narrow Reading mode active after navigation
-  if (_nrOn) document.body.classList.add('narrow-reading');
+  applyNRState();
+
+  // Add listen buttons to section headings
+  var _activePage = document.querySelector('.page.active');
+  if (_activePage) setTimeout(function(){ addListenButtons(_activePage); }, 100);
 
 }
 
 
 
 function showCondition(key) {
-
-  window._currentCondKey = key;
-
-  var _nrOn = document.body.classList.contains('narrow-reading');
 
   // Save home scroll position
 
@@ -7812,16 +8006,7 @@ function showCondition(key) {
 
   var condContent = document.getElementById('condition-content');
 
-  if (condContent) {
-    condContent.innerHTML = renderCondition(key);
-    // Show Stargardt theme suggestion if needed
-    var stargBanner = document.getElementById('stargardt-theme-tip');
-    if (stargBanner) {
-      stargBanner.style.display = (key === 'stargardts' && !document.body.classList.contains('lb')) ? '' : 'none';
-    }
-  }
-  // Keep NR mode active
-  if (_nrOn) document.body.classList.add('narrow-reading');
+  if (condContent) { condContent.innerHTML = renderCondition(key); setTimeout(function(){ addListenButtons(condContent); }, 200); }
 
 
 
@@ -8038,38 +8223,27 @@ function setSize(scale) {
 function setColour(mode) {
 
   document.body.classList.remove('dark','ll','hc','yb','bb','lb');
-
-  // Reset any inline style overrides
-  document.body.style.backgroundColor = '';
-  document.body.style.color = '';
+  document.body.style.removeProperty('background-color');
+  document.body.style.removeProperty('color');
 
   if (mode) document.body.classList.add(mode);
 
-  // Light blue theme: use html class for maximum CSS specificity
-  document.documentElement.classList.remove('theme-lb');
-  document.body.style.backgroundColor = '';
-  document.body.style.color = '';
+  // lb: also force inline styles to beat media queries
   if (mode === 'lb') {
-    document.documentElement.classList.add('theme-lb');
     document.body.style.setProperty('background-color', '#cce8f4', 'important');
     document.body.style.setProperty('color', '#000000', 'important');
   }
 
   try { localStorage.setItem('vh-colour', mode); } catch(e){}
 
-  const sel = document.getElementById('col-select');
-
-  if (sel) sel.value = mode;
+  var sel = document.getElementById('col-select');
+  if (sel) sel.value = mode || '';
 
 }
 
 
 
 /* ─────────────── SHARE / COPY ─────────────── */
-
-function printPage() {
-  window.print();
-}
 
 function sharePage() {
 
@@ -8243,34 +8417,84 @@ function fuzzyMatch(query, target) {
 
 
 
+function doSearch(q) {
+  var list = document.getElementById('cond-list-cy');
+  var hint = document.getElementById('cond-hint-cy');
+  if (!list) return;
+  q = (q || '').trim();
+  if (!q) {
+    list.style.display = 'none';
+    if (hint) hint.textContent = '';
+    return;
+  }
+  var ql = q.toLowerCase();
+  var items = list.querySelectorAll('.cond-item');
+  var shown = 0;
+  items.forEach(function(item) {
+    var btn = item.querySelector('.cond-btn');
+    var text = btn ? btn.textContent.toLowerCase() : '';
+    var match = text.indexOf(ql) !== -1 || fuzzyMatch(ql, text);
+    item.style.display = match ? '' : 'none';
+    if (match) shown++;
+  });
+  list.style.display = shown > 0 ? '' : 'none';
+  if (hint) hint.textContent = shown > 0 ? shown + ' cyflwr wedi\'i ddarganfod' : 'Dim cyflyrau wedi\'u darganfod ar gyfer "' + q + '"';
+}
+
 function filterConds(q) {
+  q = (q || '').trim();
+  var list = document.getElementById('cond-list');
+  var hint = document.getElementById('cond-hint');
+  if (!list) return;
 
-  q = (q || '').toLowerCase().trim();
-
-  var items = document.getElementsByClassName('cond-item');
-
-  for (var i = 0; i < items.length; i++) {
-
-    var btn = items[i].querySelector('.cond-btn');
-
-    if (!btn) continue;
-
-    var onclick = btn.getAttribute('onclick') || '';
-
-    var condKey = (onclick.match(/showCondition\('(\w+)'\)/) || [])[1] || '';
-
-    var label    = btn.textContent.toLowerCase();
-
-    var keywords = (COND_KEYWORDS[condKey] || []).join(' ');
-
-    var haystack = label + ' ' + keywords;
-
-    var match    = !q || fuzzyMatch(q, haystack);
-
-    items[i].style.display = match ? '' : 'none';
-
+  if (!q) {
+    list.style.display = 'none';
+    list.innerHTML = '';
+    if (hint) hint.innerHTML = 'Start typing to find your condition. <strong>17 conditions</strong> covered.';
+    return;
   }
 
+  var ql = q.toLowerCase();
+  var allConds = [
+    {key:'stargardts',name:'Stargardt Disease'},
+    {key:'amd',name:'Age-Related Macular Degeneration'},
+    {key:'glaucoma',name:'Glaucoma'},
+    {key:'rp',name:'Retinitis Pigmentosa'},
+    {key:'diabetic',name:'Diabetic Retinopathy'},
+    {key:'lca',name:'Leber Congenital Amaurosis'},
+    {key:'nystagmus',name:'Nystagmus'},
+    {key:'achromatopsia',name:'Achromatopsia'},
+    {key:'usher',name:'Usher Syndrome'},
+    {key:'albinism',name:'Albinism'},
+    {key:'cvi',name:'Cerebral Visual Impairment'},
+    {key:'cone',name:'Cone Dystrophy'},
+    {key:'dmo',name:'Diabetic Macular Oedema'},
+    {key:'myopic',name:'Myopic Macular Degeneration'},
+    {key:'charlesbonnet',name:'Charles Bonnet Syndrome'},
+    {key:'opticneuritis',name:'Optic Neuritis'},
+    {key:'blepharitis',name:'Blepharitis'}
+  ];
+
+  var matches = allConds.filter(function(c) {
+    var kw = (COND_KEYWORDS[c.key] || []).join(' ');
+    return fuzzyMatch(ql, c.name.toLowerCase() + ' ' + c.key + ' ' + kw);
+  });
+
+  if (!matches.length) {
+    list.style.display = 'none';
+    list.innerHTML = '';
+    if (hint) hint.textContent = 'No conditions found for "' + q + '". Try a different spelling.';
+    return;
+  }
+
+  if (hint) hint.innerHTML = matches.length + ' condition' + (matches.length > 1 ? 's' : '') + ' found:';
+
+  list.innerHTML = matches.map(function(c) {
+    var onclick = 'showCondition(\'' + c.key + '\')';
+    return '<div role="listitem" class="cond-item"><button class="cond-btn" onclick="' + onclick + '" aria-label="Open ' + c.name + ' information"><span aria-hidden="true">✶</span> ' + c.name + ' <span class="cond-arrow" aria-hidden="true">›</span></button></div>';
+  }).join('');
+
+  list.style.display = '';
 }
 
 
@@ -8281,39 +8505,55 @@ function filterConds(q) {
 
   try {
 
-    // DEFAULT: English, Light theme, small text (scale 1)
-    // Only restore saved prefs if the user has explicitly set them
-
-    var savedSize   = localStorage.getItem('vh-size');
-    var savedColour = localStorage.getItem('vh-colour');
-    // NEVER restore Welsh as a default - always start in English
-    // User must actively choose Welsh each session
-    localStorage.removeItem('vh-lang');
-
-    // Size: default 1 (small)
+    // Size — default 1 (small)
+    var savedSize = localStorage.getItem('vh-size');
     var size = savedSize ? parseFloat(savedSize) : 1;
     setSize(size);
 
-    // Colour: default light (empty string = light theme)
-    var colour = (savedColour !== null) ? savedColour : '';
-    if (colour !== '') setColour(colour);
-
+    // Colour theme — default light
+    var savedColour = localStorage.getItem('vh-colour') || '';
+    if (savedColour) setColour(savedColour);
     var sel = document.getElementById('col-select');
-    if (sel) sel.value = colour || '';
+    if (sel) sel.value = savedColour;
+
+    // Narrow reading mode
+    applyNRState();
+
+    // Dyslexia font
+    if (localStorage.getItem('dyslexic') === '1') {
+      document.body.classList.add('dyslexic');
+      var db = document.getElementById('dys-toggle');
+      if (db) db.setAttribute('aria-pressed', 'true');
+    }
+
+    // Reading ruler
+    if (localStorage.getItem('rule') === '1') {
+      document.body.classList.add('reading-ruler');
+      var rb = document.getElementById('rule-toggle');
+      if (rb) rb.setAttribute('aria-pressed', 'true');
+    }
+
+    // TTS speed
+    var ttsSpeed = localStorage.getItem('vh-tts-speed');
+    if (ttsSpeed) {
+      var spd = document.getElementById('tts-speed');
+      if (spd) spd.value = ttsSpeed;
+    }
+
+    // Welsh language — restore if previously chosen
+    if (localStorage.getItem('vh-lang') === 'cy') {
+      setTimeout(function() {
+        if (typeof toggleWelsh === 'function') toggleWelsh();
+      }, 100);
+    }
 
   } catch(e) {}
 
-  // Restore narrow reading mode
-  if(localStorage.getItem('vh-narrow')==='1'){ document.body.classList.add('narrow-reading'); var nb=document.getElementById('narrow-toggle'); if(nb) nb.setAttribute('aria-pressed','true'); }
-
-  // Preload TTS voices so they're ready when panel opens
-
   if (window.speechSynthesis) {
-
     window.speechSynthesis.getVoices();
-
-    window.speechSynthesis.onvoiceschanged = function() { window.speechSynthesis.getVoices(); };
-
+    if (window.speechSynthesis.onvoiceschanged !== undefined) {
+      window.speechSynthesis.onvoiceschanged = function() { window.speechSynthesis.getVoices(); };
+    }
   }
 
 })();
@@ -8476,14 +8716,6 @@ if ('serviceWorker' in navigator) {
   }
 
   // Reading ruler — follows cursor / focus
-  window.toggleNarrowReading = function(){
-    var on = document.body.classList.toggle('narrow-reading');
-    try{ localStorage.setItem('vh-narrow', on?'1':'0'); }catch(e){}
-    var b = document.getElementById('narrow-toggle');
-    if(b) b.setAttribute('aria-pressed', on?'true':'false');
-    srAnnounce(on ? 'Narrow reading on' : 'Narrow reading off');
-  };
-
   window.toggleReadingRuler = function(){
     var on = document.body.classList.toggle('reading-ruler');
     try{ localStorage.setItem('rule', on?'1':'0'); }catch(e){}
@@ -8498,181 +8730,212 @@ if ('serviceWorker' in navigator) {
   });
   if(localStorage.getItem('rule')==='1'){ document.body.classList.add('reading-ruler'); }
 
-  // ─── TEXT TO SPEECH ───────────────────────────────────────────
+  // ══ TEXT TO SPEECH WITH SENTENCE HIGHLIGHTING ══
   var _ttsUtter = null;
+  var _ttsSentSpans = [];
+  var _ttsIdx = 0;
 
-  function ttsGetText() {
+  function ttsGetEl() {
     var section = (document.getElementById('tts-section')||{}).value || 'current';
-
-    function cleanText(el) {
-      if (!el) return '';
-      var clone = el.cloneNode(true);
-      // Remove UI chrome elements entirely
-      clone.querySelectorAll(
-        '.desktop-sidebar, aside, .back-btn, .share-bar, .a11y-bar, ' +
-        '.cond-list, .search-wrap, .back-top, .sidebar-logo, ' +
-        '.sidebar-tagline, .sidebar-divider, .sidebar-section, ' +
-        '.acc-btn, .cond-arrow, .share-btn, script, style, #tts-panel, ' +
-        '.news-footer, .hero-eyebrow, .legal-updated, .trial-link, ' +
-        '[aria-hidden="true"]'
-      ).forEach(function(j){ j.remove(); });
-      var raw = clone.innerText;
-      // Clean up symbols and UI artifacts
-      // Remove UI symbols and arrows
-      raw = raw.replace(/[▼▲▾▴←→◀▶‹›»«↑↓⬆⬇◉◎◈◭↔☀◑⬡◇◆]/g, '');
-      // Remove standalone numbers (accordion section numbers)
-      raw = raw.replace(/^\s*\d+\s*$/gm, '');
-      // Remove very short UI-only lines (NR, Dx, A etc)
-      raw = raw.replace(/^\s*[A-Z]{1,3}\+?\s*$/gm, '');
-      // Remove lines that are just dashes or bullets
-      raw = raw.replace(/^\s*[•·–—\-]+\s*$/gm, '');
-      // Collapse excess whitespace
-      raw = raw.replace(/\n{3,}/g, '\n\n');
-      raw = raw.replace(/[ \t]{2,}/g, ' ');
-      // Natural pause after headings - add period so speech engine pauses
-      raw = raw.replace(/^([A-Z][A-Za-z &]{4,40})\n([A-Za-z])/gm, '$1. $2');
-      return raw.trim();
+    var map = {news:'.news-box', lw:'#page-livingwell', questions:'#page-questions',
+               employment:'#page-employment', glossary:'#page-glossary', eyehealth:'#page-eyehealth', benefits:'#page-employment'};
+    if (section !== 'current' && map[section]) {
+      var el = document.querySelector(map[section]);
+      if (el) return el;
     }
+    return document.querySelector('.page.active') || document.body;
+  }
 
-    var pages = {
-      news:       '.news-box',
-      lw:         '#page-livingwell',
-      questions:  '#page-questions',
-      employment: '#page-employment',
-      glossary:   '#page-glossary',
-      eyehealth:  '#page-eyehealth',
-      benefits:   '#page-employment',
-      research:   '.news-tag.research'
-    };
+  function ttsCleanText(el) {
+    var clone = el.cloneNode(true);
+    clone.querySelectorAll('.desktop-sidebar,aside,.back-btn,.share-bar,.a11y-bar,.cond-list,.search-wrap,.acc-btn,[aria-hidden="true"],script,style,#tts-panel,.sidebar-section,.sidebar-logo,.cond-arrow,.search-icon,.news-box-date').forEach(function(j){ j.remove(); });
+    var raw = clone.innerText || clone.textContent || '';
+    // Remove UI arrows and symbols
+    raw = raw.replace(/[\u25BC\u25B2\u25BE\u25B4\u2190\u2192\u25C0\u25B6\u2191\u2193\u2736\u203A\u2022]/g, '');
+    // Remove emoji (surrogate pairs)
+    raw = raw.replace(/[\uD83C-\uDBFF][\uDC00-\uDFFF]/g, '');
+    // Expand common abbreviations for natural reading
+    raw = raw.replace(/\bAMD\b/g, 'Age-related macular degeneration');
+    raw = raw.replace(/\bRP\b/g, 'retinitis pigmentosa');
+    raw = raw.replace(/\bCVI\b/g, 'cerebral visual impairment');
+    raw = raw.replace(/\bLCA\b/g, 'Leber congenital amaurosis');
+    raw = raw.replace(/\bDMO\b/g, 'diabetic macular oedema');
+    raw = raw.replace(/\bPIP\b/g, 'Personal Independence Payment');
+    raw = raw.replace(/\bESA\b/g, 'Employment and Support Allowance');
+    raw = raw.replace(/\bNHS\b/g, 'National Health Service');
+    raw = raw.replace(/\bECLO\b/g, 'Eye Clinic Liaison Officer');
+    raw = raw.replace(/\bRNIB\b/g, 'Royal National Institute of Blind People');
+    // Add pause after headings (all-caps lines or lines ending without punctuation before next line)
+    raw = raw.replace(/([^\.\!\?\:])(\n)([A-Z])/g, '$1. $3');
+    // Remove standalone numbers (section numbers)
+    raw = raw.replace(/^\s*\d+\s*$/gm, '');
+    // Collapse whitespace
+    raw = raw.replace(/\n{3,}/g, '\n\n');
+    raw = raw.replace(/[ \t]{2,}/g, ' ');
+    return raw.trim();
+  }
 
-    if (section === 'research') {
-      // Collect all research news items text
-      var items = document.querySelectorAll('.news-tag.research');
-      var txt = '';
-      items.forEach(function(tag) {
-        var item = tag.closest('.news-item');
-        if (item) txt += item.innerText + ' ';
+  function ttsWrap(el) {
+    ttsUnwrap();
+    // Get all text nodes, skip UI elements
+    var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, {
+      acceptNode: function(node) {
+        var p = node.parentNode;
+        while (p && p !== el) {
+          var t = (p.tagName||'').toLowerCase();
+          var c = (p.className||'').toString();
+          if (t==='script'||t==='style'||t==='button'||t==='select'||t==='input'||
+              p.getAttribute('aria-hidden')==='true'||
+              c.indexOf('sidebar')!==-1||c.indexOf('a11y-bar')!==-1||c.indexOf('back-btn')!==-1) {
+            return NodeFilter.FILTER_REJECT;
+          }
+          p = p.parentNode;
+        }
+        return node.textContent.trim().length > 3 ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+      }
+    });
+    var nodes = [], n;
+    while ((n = walker.nextNode())) nodes.push(n);
+    var spans = [];
+    nodes.forEach(function(textNode) {
+      var text = textNode.textContent;
+      // Split on sentence endings, but not on abbreviations (Mr. Dr. etc)
+      // Simple approach: split after . ! ? followed by space and capital
+      var sentences = [];
+      var remaining = text;
+      var sentRegex = /([^.!?]*[.!?]+)(?=\s+[A-Z\u00C0-\u024F"]|\s*$)/g;
+      var match, lastIdx = 0;
+      while ((match = sentRegex.exec(text)) !== null) {
+        var s = text.slice(lastIdx, match.index + match[0].length);
+        if (s.trim().length > 3) sentences.push(s);
+        lastIdx = match.index + match[0].length;
+      }
+      if (lastIdx < text.length) {
+        var tail = text.slice(lastIdx).trim();
+        if (tail.length > 3) sentences.push(tail);
+      }
+      if (sentences.length < 2) sentences = [text];
+      var frag = document.createDocumentFragment();
+      sentences.forEach(function(s) {
+        if (!s.trim()) return;
+        var sp = document.createElement('span');
+        sp.className = 'tts-sent';
+        sp.textContent = s;
+        frag.appendChild(sp);
+        spans.push(sp);
       });
-      return txt.trim();
+      textNode.parentNode.replaceChild(frag, textNode);
+    });
+    return spans;
+  }
+
+  function ttsUnwrap() {
+    document.querySelectorAll('.tts-sent').forEach(function(sp) {
+      var p = sp.parentNode;
+      if (p) { while (sp.firstChild) p.insertBefore(sp.firstChild, sp); p.removeChild(sp); }
+    });
+    _ttsSentSpans = [];
+    _ttsIdx = 0;
+  }
+
+  function ttsSpeakFrom(idx, voices) {
+    // Remove previous highlight
+    document.querySelectorAll('.tts-sent.tts-active').forEach(function(s){ s.classList.remove('tts-active'); });
+    if (idx >= _ttsSentSpans.length) {
+      ttsUnwrap();
+      var pb = document.getElementById('tts-play-btn');
+      var st = document.getElementById('tts-status');
+      if (pb) pb.textContent = '\u25b6 Play';
+      if (st) st.textContent = 'Finished.';
+      _ttsActive = false;
+      return;
+    }
+    var sp = _ttsSentSpans[idx];
+    var text = sp.textContent.trim();
+    if (!text) { ttsSpeakFrom(idx+1, voices); return; }
+
+    sp.classList.add('tts-active');
+    sp.scrollIntoView({behavior:'smooth', block:'center'});
+
+    _ttsUtter = new SpeechSynthesisUtterance(text);
+    _ttsUtter.lang = 'en-GB';
+    _ttsUtter.rate = parseFloat((document.getElementById('tts-speed')||{}).value || '0.85');
+    _ttsUtter.volume = 1;
+
+    var vname = (document.getElementById('tts-voice-sel')||{}).value || '';
+    if (vname && voices && voices.length) {
+      var match = voices.find(function(v){ return v.name === vname; });
+      if (match) _ttsUtter.voice = match;
     }
 
-    if (section !== 'current' && pages[section]) {
-      var el = document.querySelector(pages[section]);
-      if (el) return cleanText(el);
-    }
+    _ttsUtter.onend = function() { _ttsIdx = idx+1; ttsSpeakFrom(_ttsIdx, voices); };
+    _ttsUtter.onerror = function(e) { if (e.error !== 'interrupted') { _ttsIdx = idx+1; ttsSpeakFrom(_ttsIdx, voices); } };
 
-    // Current: read active visible page, stripped of UI chrome
-    var active = document.querySelector('.welsh-page[style*="block"]') ||
-                 document.querySelector('.page.active') ||
-                 document.body;
-    return cleanText(active);
+    var st = document.getElementById('tts-status');
+    if (st) st.textContent = 'Reading ' + (idx+1) + ' of ' + _ttsSentSpans.length;
+
+    window.speechSynthesis.speak(_ttsUtter);
   }
 
   window.ttsPlay = function() {
     var synth = window.speechSynthesis;
     if (!synth || typeof SpeechSynthesisUtterance === 'undefined') {
-      alert('Text to speech is not supported in this browser.');
+      alert('Text to speech is not supported in this browser. Try Chrome or Safari.');
       return;
     }
-
     synth.cancel();
+    ttsUnwrap();
 
-    var rawText = ttsGetText().replace(/\s+/g, ' ').trim();
-    if (!rawText) { alert('No text found to read.'); return; }
+    var el = ttsGetEl();
+    _ttsSentSpans = ttsWrap(el);
+    if (!_ttsSentSpans.length) { alert('No text found to read.'); return; }
 
-    var speed = parseFloat((document.getElementById('tts-speed')||{}).value || '0.85');
-    var vname = (document.getElementById('tts-voice-sel')||{}).value || '';
-
-    // Split into 180-char chunks at word boundaries - fixes Android stopping
-    var chunks = rawText.match(/.{1,180}(\s|$)/g) || [rawText];
-    var chunkIndex = 0;
-
-    function speakChunk(voiceList) {
-      if (chunkIndex >= chunks.length) {
-        var pb = document.getElementById('tts-play-btn');
-        var st = document.getElementById('tts-status');
-        if (pb) pb.textContent = '\u25b6 Play';
-        if (st) st.textContent = 'Finished.';
-        return;
-      }
-      var utt = new SpeechSynthesisUtterance(chunks[chunkIndex]);
-      utt.lang = 'en-GB';
-      utt.rate = speed;
-      utt.volume = 1;
-      if (vname && voiceList && voiceList.length) {
-        var match = voiceList.find(function(v) { return v.name === vname; });
-        if (match) utt.voice = match;
-      }
-      utt.onend = function() { chunkIndex++; speakChunk(voiceList); };
-      utt.onerror = function(e) {
-        if (e.error === 'interrupted') return;
-        var st = document.getElementById('tts-status');
-        if (st) st.textContent = 'Error: ' + e.error + '. Please try again.';
-        var pb = document.getElementById('tts-play-btn');
-        if (pb) pb.textContent = '\u25b6 Play';
-      };
-      synth.speak(utt);
-    }
-
+    _ttsActive = true;
+    _ttsIdx = 0;
     var pb = document.getElementById('tts-play-btn');
     var st = document.getElementById('tts-status');
-    if (pb) pb.textContent = '\u23f8 Speaking...';
-    if (st) st.textContent = 'Reading ' + chunks.length + ' part' + (chunks.length > 1 ? 's' : '') + '...';
+    if (pb) pb.textContent = '\u23f8 Reading...';
+    if (st) st.textContent = 'Starting...';
 
     var voices = synth.getVoices();
     if (voices.length) {
-      speakChunk(voices);
+      ttsSpeakFrom(0, voices);
     } else {
-      // Voices not loaded yet - wait for them (Android Chrome)
-      if (st) st.textContent = 'Loading voice, please wait...';
-      synth.onvoiceschanged = function() {
-        synth.onvoiceschanged = null;
-        speakChunk(synth.getVoices());
-      };
+      synth.onvoiceschanged = function() { synth.onvoiceschanged = null; ttsSpeakFrom(0, synth.getVoices()); };
     }
-  }
+  };
 
   window.ttsStop = function() {
     window.speechSynthesis && window.speechSynthesis.cancel();
+    ttsUnwrap();
+    _ttsActive = false;
     var pb = document.getElementById('tts-play-btn');
     var st = document.getElementById('tts-status');
-    if (pb) pb.textContent = '▶ Play';
+    if (pb) pb.textContent = '\u25b6 Play';
     if (st) st.textContent = 'Stopped.';
   };
 
   window.togglePageSpeech = function() {
     var panel = document.getElementById('tts-panel');
     if (!panel) return;
-    var open = panel.style.display === 'none' || panel.style.display === '';
+    var open = panel.style.display === 'none' || !panel.style.display;
     panel.style.display = open ? 'block' : 'none';
     if (open) {
-      // Load voices into selector
-      var sel = document.getElementById('tts-voice-sel');
-      if (sel && window.speechSynthesis) {
-        var loadVoicesIntoPanel = function() {
-          var voices = window.speechSynthesis.getVoices();
+      var synth = window.speechSynthesis;
+      if (synth) {
+        var loadV = function() {
+          var sel = document.getElementById('tts-voice-sel');
+          if (!sel) return;
+          var voices = synth.getVoices();
           if (voices.length > 1) {
             sel.innerHTML = '<option value="">Default English voice</option>';
-            voices.forEach(function(v) {
-              if (v.lang.indexOf('en') === 0 || v.lang.indexOf('cy') === 0) {
-                var o = document.createElement('option');
-                o.value = v.name;
-                o.textContent = v.name + ' (' + v.lang + ')';
-                sel.appendChild(o);
-              }
-            });
-            // Auto-select Welsh voice if CY mode active
-            if (_isWelsh) {
-              var wv = voices.find(function(v){
-                return v.lang.indexOf('cy') === 0 || v.name.toLowerCase().indexOf('gwyneth') !== -1 || v.name.toLowerCase().indexOf('welsh') !== -1;
-              });
-              if (wv) sel.value = wv.name;
-            }
+            voices.filter(function(v){ return v.lang.indexOf('en') === 0 || v.lang.indexOf('cy') === 0; })
+              .forEach(function(v) { var o = document.createElement('option'); o.value = v.name; o.textContent = v.name + ' (' + v.lang + ')'; sel.appendChild(o); });
           }
         };
-        var vv = window.speechSynthesis.getVoices();
-        if (vv.length) { loadVoicesIntoPanel(); }
-        else { window.speechSynthesis.onvoiceschanged = function(){ loadVoicesIntoPanel(); window.speechSynthesis.onvoiceschanged = null; }; }
+        var v = synth.getVoices();
+        if (v.length) loadV();
+        else { synth.onvoiceschanged = function(){ loadV(); synth.onvoiceschanged = null; }; }
       }
       var pb = document.getElementById('tts-play-btn');
       if (pb) pb.focus();
@@ -8680,24 +8943,6 @@ if ('serviceWorker' in navigator) {
       ttsStop();
     }
   };
-
-  // Load voices when available
-  if (window.speechSynthesis && window.speechSynthesis.onvoiceschanged !== undefined) {
-    window.speechSynthesis.onvoiceschanged = function() { window.speechSynthesis.getVoices(); };
-  }
-
-  // Focus trap for TTS panel
-  document.addEventListener('keydown', function(e) {
-    var panel = document.getElementById('tts-panel');
-    if (!panel || panel.style.display === 'none') return;
-    if (e.key === 'Escape') { _stopSpeech(); panel.style.display = 'none'; document.getElementById('tts-toggle').focus(); return; }
-    if (e.key !== 'Tab') return;
-    var focusable = panel.querySelectorAll('button, select, [tabindex]:not([tabindex="-1"])');
-    if (!focusable.length) return;
-    var first = focusable[0], last = focusable[focusable.length - 1];
-    if (e.shiftKey) { if (document.activeElement === first) { e.preventDefault(); last.focus(); } }
-    else { if (document.activeElement === last) { e.preventDefault(); first.focus(); } }
-  });
 
   // Esc to close any open modal/page overlay (heuristic: hides element with class .open or aria-modal)
   document.addEventListener('keydown', function(e){
@@ -9155,7 +9400,7 @@ function copyAISLetter(){
 
   <div class="legal-wrap">
 
-    <button class="back-btn" onclick="showPage('home');if(_isWelsh){var wh=document.getElementById('page-home-welsh');if(wh)wh.style.display='';}" aria-label="Yn ôl i'r hafan">← Yn ôl</button>
+    <button class="back-btn" onclick="showPage('home')" aria-label="Yn ôl i'r hafan">← Yn ôl</button>
 
     <span class="legal-eyebrow">Gwaith</span>
 
