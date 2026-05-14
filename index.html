@@ -547,7 +547,7 @@ p, h1, h2, h3, h4, li, span, a, button { overflow-wrap: break-word; word-wrap: b
 
 .search-wrap input:focus { border-color: var(--yellow); box-shadow: 0 0 0 3px rgba(245,184,0,.22); }
 
-.search-icon { position: absolute; right: 18px; bottom: 50%; transform: translateY(50%); color: var(--yellow); font-size: 1.1rem; pointer-events: none; }
+.search-icon { position: absolute; right: 18px; top: 50%; transform: translateY(-50%); color: #888; font-size: 0.9rem; pointer-events: none; opacity: 0.6; }
 
 
 
@@ -1649,23 +1649,45 @@ body.lb { --card: #d8eef8; --card2: #c8e4f4; }
 
 <!-- ACCESSIBILITY BAR -->
 
+<style>
+.ab, .tb-btn {
+  display:inline-flex;flex-direction:column;align-items:center;justify-content:center;
+  background:var(--card2);border:1.5px solid var(--border);border-radius:10px;
+  cursor:pointer;font-family:var(--font);color:var(--text);gap:1px;
+  min-width:44px;min-height:50px;padding:4px 6px;flex-shrink:0;
+  transition:background .15s,border-color .15s;
+}
+.tb-btn:hover{background:var(--yellow);color:#000;border-color:var(--yellow);}
+.tb-btn:focus-visible{outline:3px solid var(--yellow);outline-offset:2px;}
+.tb-btn[aria-pressed=false]:not(:hover){background:var(--card2);color:var(--text);border-color:var(--border);}
+.tb-btn[aria-pressed=true]{background:var(--yellow);color:#000;border-color:var(--yellow);}
+.tb-icon{font-size:1rem;line-height:1;font-weight:900;}
+.tb-label{font-size:0.55rem;font-weight:800;text-transform:uppercase;letter-spacing:0.04em;line-height:1;white-space:nowrap;}
+.tb-select{height:50px;border-radius:10px;border:1.5px solid var(--border);background:var(--card2);color:var(--text);font-family:var(--font);font-size:0.75rem;padding:0 6px;flex-shrink:0;cursor:pointer;}
+.tb-lang{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;min-width:44px;min-height:50px;padding:4px 6px;border-radius:10px;border:2px solid #00b140;background:var(--card2);color:#00b140;font-family:var(--font);cursor:pointer;flex-shrink:0;gap:1px;}
+.tb-lang[aria-pressed=true]{background:#00b140;color:#fff;}
+.tb-lang[aria-pressed=false]:not(:hover){background:var(--card2);color:#00b140;}
+.tb-lang .tb-icon{font-size:0.9rem;font-weight:900;}
+.tb-lang .tb-label{font-size:0.5rem;color:inherit;}
+.tb-divider{width:1px;height:36px;background:var(--border);flex-shrink:0;}
+</style>
+
 <div class="a11y-bar" role="toolbar" aria-label="Accessibility controls">
 
-  <span class="site-name" onclick="showPage('home')" role="link" tabindex="0" aria-label="Vision Hub home" style="font-weight:900;color:var(--yellow);cursor:pointer;flex-shrink:0;font-size:0.9rem">Vision Hub</span>
+  <span class="site-name" onclick="showPage('home')" role="link" tabindex="0" aria-label="Vision Hub home" style="font-weight:900;color:var(--yellow);cursor:pointer;flex-shrink:0;font-size:0.85rem;white-space:nowrap">Vision Hub</span>
 
-  <div class="a11y-divider"></div>
+  <div class="tb-divider"></div>
 
-  <div role="group" aria-label="Text size" style="display:flex;align-items:center;gap:3px;flex-shrink:0">
-    <span class="a11y-label" aria-hidden="true" style="font-size:0.7rem">Text</span>
-    <button class="ab ab-s on" id="sz-s"  onclick="setSize(1)"    aria-pressed="true"  aria-label="Small text"      title="Small text">A</button>
-    <button class="ab ab-m"    id="sz-m"  onclick="setSize(1.35)" aria-pressed="false" aria-label="Medium text"     title="Medium text">A</button>
-    <button class="ab ab-l"    id="sz-l"  onclick="setSize(1.7)"  aria-pressed="false" aria-label="Large text"      title="Large text">A</button>
-    <button class="ab ab-xl"   id="sz-xl" onclick="setSize(2.2)"  aria-pressed="false" aria-label="Extra large text" title="Extra large">A</button>
+  <div role="group" aria-label="Text size" style="display:flex;gap:3px;align-items:center">
+    <button class="tb-btn ab-s on" id="sz-s"  onclick="setSize(1)"    aria-pressed="true"  aria-label="Small text"><span class="tb-icon" style="font-size:0.8rem">A</span><span class="tb-label">Small</span></button>
+    <button class="tb-btn ab-m"    id="sz-m"  onclick="setSize(1.35)" aria-pressed="false" aria-label="Medium text"><span class="tb-icon">A</span><span class="tb-label">Med</span></button>
+    <button class="tb-btn ab-l"    id="sz-l"  onclick="setSize(1.7)"  aria-pressed="false" aria-label="Large text"><span class="tb-icon" style="font-size:1.1rem">A</span><span class="tb-label">Large</span></button>
+    <button class="tb-btn ab-xl"   id="sz-xl" onclick="setSize(2.2)"  aria-pressed="false" aria-label="Extra large text"><span class="tb-icon" style="font-size:1.2rem">A</span><span class="tb-label">X-Lrg</span></button>
   </div>
 
-  <div class="a11y-divider"></div>
+  <div class="tb-divider"></div>
 
-  <select id="col-select" onchange="setColour(this.value)" aria-label="Colour theme" class="theme-select" title="Colour theme">
+  <select id="col-select" onchange="setColour(this.value)" aria-label="Colour theme" class="tb-select" title="Colour theme">
     <option value="">☀️ Light</option>
     <option value="lb">💙 Blue/Black</option>
     <option value="dark">🌙 Dark</option>
@@ -1674,18 +1696,16 @@ body.lb { --card: #d8eef8; --card2: #c8e4f4; }
     <option value="yb">🟡 Yel/Blk</option>
   </select>
 
-  <div class="a11y-divider"></div>
+  <div class="tb-divider"></div>
 
-  <div role="group" aria-label="Reading aids" style="display:flex;align-items:center;gap:3px;flex-shrink:0">
-    <button class="ab" id="dys-toggle"    onclick="toggleDyslexic()"       aria-pressed="false" title="Dyslexia font (OpenDyslexic)" aria-label="Toggle dyslexia-friendly font" style="font-size:0.65rem;font-weight:900">Aa</button>
-    <button class="ab" id="rule-toggle"   onclick="toggleReadingRuler()"   aria-pressed="false" title="Reading ruler" aria-label="Toggle reading ruler">▭</button>
-    <button class="ab" id="narrow-toggle" onclick="toggleNarrowReading()"  aria-pressed="false" title="Narrow reading (shorter lines)" aria-label="Toggle narrow reading mode" style="font-size:0.6rem;font-weight:900">NR</button>
-    <button class="ab" id="tts-toggle"    onclick="togglePageSpeech()"     aria-pressed="false" title="Read aloud (text to speech)" aria-label="Read page aloud">🔊</button>
-  </div>
+  <button class="tb-btn" id="dys-toggle"    onclick="toggleDyslexic()"       aria-pressed="false" aria-label="Toggle dyslexia-friendly font"><span class="tb-icon" style="font-size:0.85rem">Aa</span><span class="tb-label">Dyslexic</span></button>
+  <button class="tb-btn" id="rule-toggle"   onclick="toggleReadingRuler()"   aria-pressed="false" aria-label="Toggle reading ruler"><span class="tb-icon">▭</span><span class="tb-label">Ruler</span></button>
+  <button class="tb-btn" id="narrow-toggle" onclick="toggleNarrowReading()"  aria-pressed="false" aria-label="Toggle narrow reading mode"><span class="tb-icon" style="font-size:0.75rem">↔</span><span class="tb-label">Narrow</span></button>
+  <button class="tb-btn" id="tts-toggle"    onclick="togglePageSpeech()"     aria-pressed="false" aria-label="Read page aloud"><span class="tb-icon">🔊</span><span class="tb-label">Listen</span></button>
 
-  <div class="a11y-divider"></div>
+  <div class="tb-divider"></div>
 
-  <button class="lang-btn" id="welsh-toggle" onclick="toggleWelsh()" aria-label="Switch to Welsh / Newid i Gymraeg" title="Welsh / Cymraeg">CY</button>
+  <button class="tb-lang" id="welsh-toggle" onclick="toggleWelsh()" aria-pressed="false" aria-label="Switch to Welsh / Newid i Gymraeg"><span class="tb-icon">🏴󠁧󠁢󠁷󠁬󠁳󠁥󠁳󠁥</span><span class="tb-label">Welsh</span></button>
 
 </div>
 
@@ -2183,16 +2203,22 @@ body.lb { --card: #d8eef8; --card2: #c8e4f4; }
 
 
 
-      <div class="founder-box">
-
-        <p class="founder-short">When my daughter was diagnosed with Stargardts, I had so many questions. I couldn't find anywhere that had everything in one place — clear guidance, the latest research, benefits advice, and real support, all together.</p>
-
-        <p class="founder-short" style="margin-top:14px">So I built it. This site is here to help anyone living with sight loss, and those closest to them.</p>
-
-        <p class="founder-short" style="margin-top:14px">If your condition isn't listed, <button onclick="showPage('contact')" style="background:none;border:none;color:var(--yellow);font-family:var(--font);font-size:inherit;font-weight:700;cursor:pointer;text-decoration:underline;padding:0">get in touch</button> and I'll look into adding it.</p>
-
-        <p class="founder-short" style="margin-top:16px;padding-top:14px;border-top:1px solid var(--border);color:var(--yellow);font-weight:700;font-size:0.9rem;letter-spacing:0.01em">Free, independent, and built for people with sight loss.</p>
-
+      <div style="background:var(--card);border:2px solid var(--yellow);border-radius:16px;margin-bottom:24px;">
+        <div style="padding:16px 20px 12px">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:10px">
+            <span style="font-size:0.95rem;font-weight:700;color:var(--text)">💛 Why this site exists</span>
+            <button class="acc-listen" onclick="listenToSection('founder','home',this)" aria-label="Listen to why this site was made" title="Listen to this section" style="width:32px;height:32px;flex-shrink:0">🔊</button>
+          </div>
+          <p style="font-size:0.9rem;color:var(--text2);line-height:1.6;margin:0 0 10px">When my daughter was diagnosed with Stargardts, I had so many questions. I couldn't find anywhere that had everything in one place.</p>
+          <button id="founder-expand-btn" onclick="document.getElementById('founder-full').style.display='block';this.style.display='none'" style="background:none;border:none;color:var(--yellow);font-family:var(--font);font-size:0.875rem;font-weight:700;cursor:pointer;text-decoration:underline;padding:0;margin-bottom:4px">Read more ▼</button>
+        </div>
+        <div id="founder-full" style="display:none;padding:0 20px 20px">
+          <p style="margin-bottom:10px;line-height:1.6">So I built it. This site is here to help anyone living with sight loss, and those closest to them.</p>
+          <p style="margin-bottom:10px;line-height:1.6">If your condition isn't listed, <button onclick="showPage('contact')" style="background:none;border:none;color:var(--yellow);font-family:var(--font);font-size:inherit;font-weight:700;cursor:pointer;text-decoration:underline;padding:0">get in touch</button> and I'll look into adding it.</p>
+          <hr style="border:none;border-top:1px solid var(--border);margin:12px 0">
+          <p style="font-weight:700;color:var(--yellow);font-style:italic;font-size:0.9rem">Free, independent, and built for people with sight loss.</p>
+          <button onclick="document.getElementById('founder-full').style.display='none';document.getElementById('founder-expand-btn').style.display='inline'" style="background:none;border:none;color:var(--text2);font-family:var(--font);font-size:0.8rem;cursor:pointer;text-decoration:underline;padding:4px 0 0;display:block">Show less ▲</button>
+        </div>
       </div>
 
 
@@ -2215,8 +2241,21 @@ body.lb { --card: #d8eef8; --card2: #c8e4f4; }
 
     <section class="cond-section" aria-label="Conditions list">
 
+      <!-- SEARCH CONDITIONS — PROMINENT FIRST -->
+      <div style="background:var(--yellow);border-radius:20px;padding:20px 20px 16px;margin-bottom:24px">
+        <p style="font-size:0.8rem;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;color:#000;margin:0 0 6px">Find your condition</p>
+        <p style="font-size:1rem;font-weight:700;color:#000;margin:0 0 12px;line-height:1.4">Search 17 eye conditions — get research, practical guides, benefits help &amp; support</p>
+        <div class="search-wrap" style="margin-bottom:8px;background:none">
+          <input type="search" id="csearch" placeholder="e.g. Stargardt, glaucoma, AMD, RP…" autocomplete="off" aria-controls="cond-list" aria-label="Search eye conditions" style="background:#fff;color:#000;font-size:1rem;border:none;border-radius:50px;padding:14px 48px 14px 20px;width:100%;box-shadow:0 2px 8px rgba(0,0,0,0.15)">
+          <span class="search-icon" aria-hidden="true" style="color:#555">🔍</span>
+        </div>
+        <p id="cond-hint" aria-live="polite" style="font-size:0.85rem;color:#333;margin:6px 0 0;line-height:1.5">Start typing to find your condition</p>
+      </div>
 
+      <div class="cond-list" id="cond-list" role="list" style="display:none;margin-bottom:16px">
+      </div>
 
+      <!-- JUST DIAGNOSED -->
       <!-- JUST DIAGNOSED -->
 
       <div id="jd-box" style="background:var(--card);border:2px solid var(--border);border-radius:16px;padding:22px;margin-bottom:24px;box-shadow:var(--shadow)">
@@ -2351,6 +2390,7 @@ body.lb { --card: #d8eef8; --card2: #c8e4f4; }
 
       <!-- USEFUL RESOURCES ROW -->
 
+      <!-- QUICK LINKS -->
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px" role="group" aria-label="Useful resources">
 
         <button onclick="showPage('glossary')" class="share-btn" style="font-size:0.82rem;padding:0 8px;min-height:42px;justify-content:center;border-radius:12px" aria-label="Open Glossary">📖 Glossary</button>
@@ -2371,229 +2411,7 @@ body.lb { --card: #d8eef8; --card2: #c8e4f4; }
 
 
 
-      <div class="search-wrap" style="margin-bottom:16px">
-
-        <label for="csearch" style="font-size:0.875rem;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;color:var(--text)">Search conditions</label>
-
-        <input type="search" id="csearch" placeholder="Type a condition — e.g. Stargardt, glaucoma, RP…" autocomplete="off" aria-controls="cond-list">
-
-        <span class="search-icon" aria-hidden="true">🔍</span>
-
-      </div>
-
-      <p id="cond-hint" aria-live="polite" style="font-size:0.875rem;color:var(--text2);margin:8px 0 12px;line-height:1.5">Start typing to find your condition. <strong>17 conditions</strong> covered.</p>
-
-      <div class="cond-list" id="cond-list" role="list" style="display:none">
-
-        <div role="listitem" class="cond-item">
-
-          <button class="cond-btn" onclick="showCondition('stargardts')" aria-label="Open Stargardt Disease information">
-
-            <span aria-hidden="true">✦</span> Stargardt Disease <span class="cond-arrow" aria-hidden="true">→</span>
-
-          </button>
-
-        </div>
-
-        <div role="listitem" class="cond-item">
-
-          <button class="cond-btn" onclick="showCondition('amd')" aria-label="Open Age-related Macular Degeneration information">
-
-            <span aria-hidden="true">◉</span> Age-related Macular Degeneration <span class="cond-arrow" aria-hidden="true">→</span>
-
-          </button>
-
-        </div>
-
-        <div role="listitem" class="cond-item">
-
-          <button class="cond-btn" onclick="showCondition('glaucoma')" aria-label="Open Glaucoma information">
-
-            <span aria-hidden="true">◎</span> Glaucoma <span class="cond-arrow" aria-hidden="true">→</span>
-
-          </button>
-
-        </div>
-
-        <div role="listitem" class="cond-item">
-
-          <button class="cond-btn" onclick="showCondition('diabetic')" aria-label="Open Diabetic Retinopathy information">
-
-            <span aria-hidden="true">◇</span> Diabetic Retinopathy <span class="cond-arrow" aria-hidden="true">→</span>
-
-          </button>
-
-        </div>
-
-        <div role="listitem" class="cond-item">
-
-          <button class="cond-btn" onclick="showCondition('rp')" aria-label="Open Retinitis Pigmentosa information">
-
-            <span aria-hidden="true">◈</span> Retinitis Pigmentosa <span class="cond-arrow" aria-hidden="true">→</span>
-
-          </button>
-
-        </div>
-
-        <div role="listitem" class="cond-item">
-
-          <button class="cond-btn" onclick="showCondition('cvi')" aria-label="Open Cerebral Visual Impairment information">
-
-            <span aria-hidden="true">◭</span> Cerebral Visual Impairment <span class="cond-arrow" aria-hidden="true">→</span>
-
-          </button>
-
-        </div>
-
-        <div role="listitem" class="cond-item">
-
-          <button class="cond-btn" onclick="showCondition('nystagmus')" aria-label="Open Nystagmus information">
-
-            <span aria-hidden="true">↔</span> Nystagmus <span class="cond-arrow" aria-hidden="true">→</span>
-
-          </button>
-
-        </div>
-
-        <div role="listitem" class="cond-item">
-
-          <button class="cond-btn" onclick="showCondition('albinism')" aria-label="Open Albinism information">
-
-            <span aria-hidden="true">☀</span> Albinism <span class="cond-arrow" aria-hidden="true">→</span>
-
-          </button>
-
-        </div>
-
-        <div role="listitem" class="cond-item">
-
-          <button class="cond-btn" onclick="showCondition('usher')" aria-label="Open Usher Syndrome information">
-
-            <span aria-hidden="true">◑</span> Usher Syndrome <span class="cond-arrow" aria-hidden="true">→</span>
-
-          </button>
-
-        </div>
-
-        <div role="listitem" class="cond-item">
-
-          <button class="cond-btn" onclick="showCondition('lca')" aria-label="Open Leber Congenital Amaurosis information">
-
-            <span aria-hidden="true">⬡</span> Leber Congenital Amaurosis <span class="cond-arrow" aria-hidden="true">→</span>
-
-          </button>
-
-        </div>
-
-        <div role="listitem" class="cond-item">
-
-          <button class="cond-btn" onclick="showCondition('cone')" aria-label="Open Cone Dystrophy information">
-
-            <span aria-hidden="true">🎯</span> Cone Dystrophy <span class="cond-arrow" aria-hidden="true">→</span>
-
-          </button>
-
-        </div>
-
-        <div role="listitem" class="cond-item">
-
-          <button class="cond-btn" onclick="showCondition('dmo')" aria-label="Open Diabetic Macular Oedema information">
-
-            <span aria-hidden="true">💧</span> Diabetic Macular Oedema <span class="cond-arrow" aria-hidden="true">→</span>
-
-          </button>
-
-        </div>
-
-        <div role="listitem" class="cond-item">
-
-          <button class="cond-btn" onclick="showCondition('myopic')" aria-label="Open Myopic Macular Degeneration information">
-
-            <span aria-hidden="true">👓</span> Myopic Macular Degeneration <span class="cond-arrow" aria-hidden="true">→</span>
-
-          </button>
-
-        </div>
-
-        <div role="listitem" class="cond-item">
-
-          <button class="cond-btn" onclick="showCondition('charlesbonnet')" aria-label="Open Charles Bonnet Syndrome information">
-
-            🧠 Charles Bonnet Syndrome <span class="cond-arrow" aria-hidden="true">→</span>
-
-          </button>
-
-        </div>
-
-        <div role="listitem" class="cond-item">
-
-          <button class="cond-btn" onclick="showCondition('opticneuritis')" aria-label="Open Optic Neuritis information">
-
-            ⚡ Optic Neuritis <span class="cond-arrow" aria-hidden="true">→</span>
-
-          </button>
-
-        </div>
-
-        <div role="listitem" class="cond-item">
-
-          <button class="cond-btn" onclick="showCondition('blepharitis')" aria-label="Open Blepharitis information">
-
-            👁 Blepharitis <span class="cond-arrow" aria-hidden="true">→</span>
-
-          </button>
-
-        </div>
-
-        <div role="listitem" class="cond-item">
-
-          <button class="cond-btn" onclick="showCondition('achromatopsia')" aria-label="Open Achromatopsia information">
-
-            <span aria-hidden="true">⬤</span> Achromatopsia <span class="cond-arrow" aria-hidden="true">→</span>
-
-          </button>
-
-        </div>
-
-      </div>
-
-
-
-      <!-- Everyday Guide prompt -->
-
-      <div style="margin-top:28px;padding-top:24px;border-top:2px solid var(--border)">
-
-        <span class="section-label">Daily life</span>
-
-        <button class="cond-btn" onclick="showPage('livingwell')" aria-label="Open Everyday Guide" style="height:auto;flex-direction:column;align-items:flex-start;gap:8px;padding:20px 26px">
-
-          <span style="display:flex;align-items:center;justify-content:space-between;width:100%;gap:12px">
-
-            <span style="font-size:1.05rem;font-weight:800">🌟 Everyday Guide</span>
-
-            <span class="cond-arrow" aria-hidden="true" style="flex-shrink:0">→</span>
-
-          </span>
-
-          <span style="font-size:0.85rem;font-weight:600;color:var(--text2);line-height:1.5">Practical tips to make daily life easier</span>
-
-          <span style="font-size:0.78rem;font-weight:700;color:var(--yellow);line-height:1.7">Cooking &nbsp;·&nbsp; Parenting &nbsp;·&nbsp; Sport &amp; Fitness &nbsp;·&nbsp; Makeup &amp; Grooming &nbsp;·&nbsp; Listening &amp; Audiobooks &nbsp;·&nbsp; Travel &nbsp;·&nbsp; Work &nbsp;·&nbsp; Mental Health</span>
-
-        </button>
-
-      </div>
-
-
-
-
-
-
-
-
-
-
-
-    </section>
+</section>
 
 
 
@@ -7811,6 +7629,7 @@ function toggleWelsh() {
   if (btn) {
 
     btn.classList.toggle('active', _isWelsh);
+    btn.setAttribute('aria-pressed', _isWelsh ? 'true' : 'false');
 
     btn.setAttribute('aria-label', _isWelsh ? 'Newid i Saesneg' : 'Newid i Gymraeg');
 
@@ -7874,6 +7693,21 @@ function toggleWelsh() {
 
   try { localStorage.setItem('vh-lang', _isWelsh ? 'cy' : 'en'); } catch(e) {}
 
+  // Translate search box and home labels
+  var cyhint = document.getElementById('cond-hint');
+  var cyinput = document.getElementById('csearch');
+  var searchLabel = document.querySelector('label[for="csearch"]');
+  var searchDesc = document.querySelector('#csearch').parentElement && document.querySelector('#csearch').parentElement.previousElementSibling;
+  if (_isWelsh) {
+    if (cyhint) cyhint.textContent = 'Dechreuwch deipio i ddod o hyd i\'ch cyflwr';
+    if (cyinput) cyinput.placeholder = 'e.e. Stargardt, glawcoma, AMD, RP…';
+    if (searchLabel) searchLabel.textContent = 'Dod o hyd i\'ch cyflwr';
+  } else {
+    if (cyhint) cyhint.textContent = 'Start typing to find your condition';
+    if (cyinput) cyinput.placeholder = 'e.g. Stargardt, glaucoma, AMD, RP…';
+    if (searchLabel) searchLabel.textContent = 'Find your condition';
+  }
+
   window.scrollTo({ top: 0, behavior: 'instant' });
 
 }
@@ -7926,8 +7760,8 @@ window.toggleNarrowReading = function() {
   var on = document.body.classList.toggle('nr-active');
   try { localStorage.setItem('vh-narrow', on ? '1' : '0'); } catch(e) {}
   var b = document.getElementById('narrow-toggle');
-  if (b) { b.setAttribute('aria-pressed', on ? 'true' : 'false'); b.style.background = on ? 'var(--yellow)' : ''; b.style.color = on ? '#000' : ''; }
-  srAnnounce(on ? 'Narrow reading on — line width reduced for easier tracking' : 'Narrow reading off');
+  if (b) { b.setAttribute('aria-pressed', on ? 'true' : 'false'); }
+  srAnnounce(on ? 'Narrow reading on' : 'Narrow reading off');
 };
 
 function showPage(name) {
@@ -8877,43 +8711,175 @@ if ('serviceWorker' in navigator) {
     window.speechSynthesis.speak(_ttsUtter);
   }
 
+  // ══ TEXT TO SPEECH ══
+  var _ttsUtter = null;
+  var _ttsActive = false;
+
+  // Get readable text from an element, cleaned for natural speech
+  function ttsReadableText(el) {
+    if (!el) return '';
+    var clone = el.cloneNode(true);
+    // Remove UI noise
+    clone.querySelectorAll(
+      'script,style,button,.acc-btn,.acc-listen,.back-btn,.share-bar,' +
+      '.a11y-bar,.search-wrap,.sidebar,.desktop-sidebar,[aria-hidden="true"],' +
+      '.cond-list,.cond-arrow,.search-icon,.tts-status,.acc-num'
+    ).forEach(function(j) { j.remove(); });
+
+    var text = clone.innerText || clone.textContent || '';
+
+    // Expand abbreviations
+    text = text.replace(/\bAMD\b/g, 'Age-related macular degeneration');
+    text = text.replace(/\bRP\b/g, 'retinitis pigmentosa');
+    text = text.replace(/\bLCA\b/g, 'Leber congenital amaurosis');
+    text = text.replace(/\bCVI\b/g, 'cerebral visual impairment');
+    text = text.replace(/\bDMO\b/g, 'diabetic macular oedema');
+    text = text.replace(/\bPIP\b/g, 'Personal Independence Payment');
+    text = text.replace(/\bESA\b/g, 'Employment and Support Allowance');
+    text = text.replace(/\bNHS\b/g, 'National Health Service');
+    text = text.replace(/\bECLO\b/g, 'Eye Clinic Liaison Officer');
+    text = text.replace(/\bRNIB\b/g, 'Royal National Institute of Blind People');
+    text = text.replace(/\bGP\b/g, 'G.P.');
+    text = text.replace(/\bUK\b/g, 'United Kingdom');
+
+    // Clean symbols
+    text = text.replace(/[▼▲▾▴←→◀▶✦›‹•◉◈⬡]/g, '');
+    text = text.replace(/[\uD83C-\uDBFF][\uDC00-\uDFFF]/g, ' ');
+
+    // Add pauses after headings (lines that don't end in punctuation)
+    text = text.replace(/([^\.\!\?\:\,\;])(\n)([A-Z\u00C0-\u024F])/g, '$1. $3');
+
+    // Clean whitespace
+    text = text.replace(/\n{3,}/g, '\n\n');
+    text = text.replace(/[ \t]{2,}/g, ' ');
+    text = text.trim();
+
+    return text;
+  }
+
+  // Split text into natural sentence chunks for sequential reading
+  function ttsSplitSentences(text) {
+    // Android-safe sentence splitting - no lookbehind
+    var sentences = [];
+    // Add space after sentence-ending punctuation to help splitting
+    var t = text
+      .replace(/([.!?])\s+/g, '$1\x0a')
+      .replace(/\x0a+/g, '\x0a');
+    var lines = t.split('\x0a');
+    lines.forEach(function(line) {
+      line = line.trim();
+      if (line.length > 4) sentences.push(line);
+    });
+    return sentences.length > 0 ? sentences : [text.trim()];
+  }
+
+  function ttsGetEl() {
+    var section = (document.getElementById('tts-section') || {}).value || 'current';
+    var map = {
+      news: '.news-box', lw: '#page-livingwell',
+      questions: '#page-questions', employment: '#page-employment',
+      glossary: '#page-glossary', eyehealth: '#page-eyehealth',
+      benefits: '#page-employment'
+    };
+    if (section !== 'current' && map[section]) {
+      var el = document.querySelector(map[section]);
+      if (el) return el;
+    }
+    return document.querySelector('.page.active') || document.body;
+  }
+
   window.ttsPlay = function() {
     var synth = window.speechSynthesis;
     if (!synth || typeof SpeechSynthesisUtterance === 'undefined') {
       alert('Text to speech is not supported in this browser. Try Chrome or Safari.');
       return;
     }
+
     synth.cancel();
-    ttsUnwrap();
+    _ttsActive = true;
+
+    // Small delay after cancel gives browser time to release audio on mobile
+    setTimeout(function() {
 
     var el = ttsGetEl();
-    _ttsSentSpans = ttsWrap(el);
-    if (!_ttsSentSpans.length) { alert('No text found to read.'); return; }
+    var text = ttsReadableText(el);
 
-    _ttsActive = true;
-    _ttsIdx = 0;
+    if (!text || text.length < 5) {
+      alert('No readable content found on this page.');
+      return;
+    }
+
+    var speed = parseFloat((document.getElementById('tts-speed') || {}).value || '0.85');
+    var vname = (document.getElementById('tts-voice-sel') || {}).value || '';
+
+    // Split into sentences for natural flow
+    var sentences = ttsSplitSentences(text);
+    var idx = 0;
+
     var pb = document.getElementById('tts-play-btn');
     var st = document.getElementById('tts-status');
     if (pb) pb.textContent = '\u23f8 Reading...';
-    if (st) st.textContent = 'Starting...';
+    if (st) st.textContent = 'Reading ' + sentences.length + ' sentence' + (sentences.length !== 1 ? 's' : '') + '...';
+
+    function speakNext(voices) {
+      if (!_ttsActive || idx >= sentences.length) {
+        _ttsActive = false;
+        if (pb) pb.textContent = '\u25b6 Play';
+        if (st) st.textContent = idx >= sentences.length ? 'Finished.' : 'Stopped.';
+        return;
+      }
+
+      var sentence = sentences[idx].trim();
+      idx++;
+
+      if (!sentence) { speakNext(voices); return; }
+
+      _ttsUtter = new SpeechSynthesisUtterance(sentence);
+      _ttsUtter.lang = 'en-GB';
+      _ttsUtter.rate = speed;
+      _ttsUtter.volume = 1;
+      _ttsUtter.pitch = 1;
+
+      if (vname && voices && voices.length) {
+        var v = voices.find(function(v) { return v.name === vname; });
+        if (v) _ttsUtter.voice = v;
+      }
+
+      if (st) st.textContent = 'Sentence ' + idx + ' of ' + sentences.length;
+
+      _ttsUtter.onend = function() { setTimeout(function(){ speakNext(voices); }, 30); };
+      _ttsUtter.onerror = function(e) {
+        if (e.error === 'interrupted') return;
+        setTimeout(function(){ speakNext(voices); }, 30);
+      };
+
+      synth.speak(_ttsUtter);
+    }
 
     var voices = synth.getVoices();
     if (voices.length) {
-      ttsSpeakFrom(0, voices);
+      speakNext(voices);
     } else {
-      synth.onvoiceschanged = function() { synth.onvoiceschanged = null; ttsSpeakFrom(0, synth.getVoices()); };
+      if (st) st.textContent = 'Loading voice...';
+      synth.onvoiceschanged = function() {
+        synth.onvoiceschanged = null;
+        speakNext(synth.getVoices());
+      };
     }
+
+    }, 150); // end of cancel timeout
   };
 
   window.ttsStop = function() {
-    window.speechSynthesis && window.speechSynthesis.cancel();
-    ttsUnwrap();
     _ttsActive = false;
+    window.speechSynthesis && window.speechSynthesis.cancel();
     var pb = document.getElementById('tts-play-btn');
     var st = document.getElementById('tts-status');
     if (pb) pb.textContent = '\u25b6 Play';
     if (st) st.textContent = 'Stopped.';
   };
+
+  
 
   window.togglePageSpeech = function() {
     var panel = document.getElementById('tts-panel');
