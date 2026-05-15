@@ -574,21 +574,25 @@ p, h1, h2, h3, h4, li, span, a, button { overflow-wrap: break-word; word-wrap: b
 
 .cond-btn {
 
-  width: 100%; background: var(--card); border: 2px solid var(--border);
+  width: 100%; background: #fff; border: none; border-bottom: 1px solid #eee;
 
-  color: var(--text); padding: 12px 16px; border-radius: 12px;
+  color: #000; padding: 14px 16px; border-radius: 0;
 
-  font-family: var(--font); font-size: 0.95rem; font-weight: 700;
+  font-family: var(--font); font-size: 1rem; font-weight: 700;
 
   cursor: pointer; text-align: left; display: flex; align-items: center;
 
-  justify-content: space-between; gap: 8px; min-height: 44px;
+  justify-content: space-between; gap: 8px; min-height: 48px;
 
-  line-height: 1.2; transition: background .18s, border-color .18s, color .18s;
+  line-height: 1.2; transition: background .1s;
 
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 
+  touch-action: manipulation;
+
 }
+.cond-btn:active { background: #f0f0f0; }
+.cond-list .cond-item:last-child .cond-btn { border-bottom: none; }
 
 .cond-btn:hover        { background: var(--card2); border-color: var(--yellow); color: var(--yellow); }
 
@@ -1535,8 +1539,8 @@ body.hc *:focus-visible,body.yb *:focus-visible,body.bb *:focus-visible{outline-
 body.lb { background-color: #cce8f4 !important; color: #000 !important; }
 body.lb .a11y-bar { background: #a8d5ea !important; }
 body.lb .desktop-sidebar { background: #b8dff0 !important; }
-body.lb .cond-helpline-btn { background: #000 !important; color: #fff !important; }
-body.lb .cond-helpline-btn * { color: #fff !important; }
+body.lb .cond-helpline-btn { background: #a8d5ea !important; color: #000 !important; }
+body.lb .cond-helpline-btn * { color: #000 !important; }
 body.lb .desktop-main { background: #cce8f4 !important; }
 body.lb .hero { background: #b8dff0 !important; }
 body.lb .card, body.lb .founder-box { background: #e0f2fb !important; }
@@ -1647,21 +1651,19 @@ body.lb [class*="box"] { background: #d4ecf7 !important; }
 body.lb .share-btn { background: #d4ecf7 !important; }
 body.lb .fb-btn { background: #d4ecf7 !important; }
 body.lb .cf-submit { background: #d4ecf7 !important; color: #000 !important; border-color: rgba(0,100,180,0.4) !important; }
-body.lb [style*="background:var(--yellow)"] { background: #000 !important; color: #fff !important; }
-body.lb [style*="background: var(--yellow)"] { background: #000 !important; color: #fff !important; }
 body.lb .acc-item.open { border-color: #0055a5 !important; }
-body.lb .acc-arrow { color: #003a80 !important; }
+body.lb .acc-arrow { color: #000 !important; }
 body.lb .acc-listen { border-color: rgba(0,58,128,0.4) !important; }
 /* Force any element with inline background:var(--card) */
 body.lb { --card: #d8eef8; --card2: #c8e4f4; }
 body.lb .lc { background: #d8eef8 !important; border-color: rgba(0,100,180,0.25) !important; color: #000 !important; }
-body.lb .lc h2 { color: #003a80 !important; }
+body.lb .lc h2 { color: #000 !important; }
 body.lb .cf-submit { background: #d4ecf7 !important; color: #000 !important; border-color: rgba(0,100,180,0.4) !important; }
-body.lb [style*="background:var(--yellow)"] { background: #000 !important; color: #fff !important; }
-body.lb [style*="background: var(--yellow)"] { background: #000 !important; color: #fff !important; }
-body.lb .acc-num { background: #000 !important; color: #fff !important; }
-body.lb .back-top { background: #000 !important; color: #fff !important; }
-body.lb .cond-hero-eyebrow { color: #003a80 !important; }
+body.lb [style*="background:var(--yellow)"] { background: #a8d5ea !important; color: #000 !important; }
+body.lb [style*="background: var(--yellow)"] { background: #a8d5ea !important; color: #000 !important; }
+body.lb .acc-num { background: #a8d5ea !important; color: #000 !important; }
+body.lb .back-top { background: #003a80 !important; color: #fff !important; }
+body.lb .cond-hero-eyebrow { color: #000 !important; }
 
 
 /* ══ FOCUS MODE ══ */
@@ -2345,13 +2347,12 @@ body.focus-mode::after {
         <p style="font-size:0.8rem;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;color:#000;margin:0 0 6px">Find your condition</p>
         <p style="font-size:1rem;font-weight:700;color:#000;margin:0 0 12px;line-height:1.4">Search 17 eye conditions — get research, practical guides, benefits help &amp; support</p>
         <div class="search-wrap" style="margin-bottom:8px;background:none">
-          <input type="search" id="csearch" placeholder="e.g. Stargardt, glaucoma, AMD, RP…" autocomplete="off" aria-controls="cond-list" aria-label="Search eye conditions" style="background:#fff;color:#000;font-size:1rem;border:none;border-radius:50px;padding:14px 48px 14px 20px;width:100%;box-shadow:0 2px 8px rgba(0,0,0,0.15)">
+          <input type="search" id="csearch" placeholder="e.g. AMD, glaucoma, RP…" autocomplete="off" aria-controls="cond-list" aria-label="Search eye conditions" style="background:#fff;color:#000;font-size:1rem;border:none;border-radius:50px;padding:14px 48px 14px 20px;width:100%;box-shadow:0 2px 8px rgba(0,0,0,0.15)">
           <span class="search-icon" aria-hidden="true" style="color:#555">🔍</span>
         </div>
-        <p id="cond-hint" aria-live="polite" style="font-size:0.95rem;font-weight:700;color:#000;margin:8px 0 0;line-height:1.5">Start typing to find your condition</p>
-      </div>
-
-      <div class="cond-list" id="cond-list" role="list" style="display:none;max-height:55vh;overflow-y:auto;-webkit-overflow-scrolling:touch;margin-top:2px">
+        <p id="cond-hint" aria-live="polite" style="font-size:0.95rem;font-weight:700;color:#000;margin:4px 0 0;line-height:1.5">Start typing to find your condition</p>
+        <div class="cond-list" id="cond-list" role="list" style="display:none;max-height:50vh;overflow-y:auto;-webkit-overflow-scrolling:touch;margin-top:6px;border-radius:12px;overflow:hidden;background:#fff">
+        </div>
       </div>
 
       <!-- JUST DIAGNOSED -->
@@ -4181,7 +4182,7 @@ body.focus-mode::after {
 
       <p>RNIB's support finder lets you search by postcode for local sight loss groups, rehabilitation services, and specialist support in your area.</p>
 
-      <p style="margin-top:12px"><a href="https://www.rnib.org.uk/your-eyes/navigating-sight-loss/support-that-starts-with-you/" target="_blank" rel="noopener" style="color:var(--yellow);font-weight:700;font-size:1rem">Find support near you at rnib.org.uk ↗</a></p>
+      <p style="margin-top:12px"><a href="https://www.rnib.org.uk/your-eyes/navigating-sight-loss/eye-care-services-and-roles/eye-care-liaison-officers-eclos/" target="_blank" rel="noopener" style="color:var(--yellow);font-weight:700;font-size:1rem">Find support near you at rnib.org.uk ↗</a></p>
 
       <p style="margin-top:12px;font-size:0.85rem;color:var(--text2)">This link goes to RNIB's website. If the link has moved, go to rnib.org.uk and search "find support near you".</p>
 
@@ -5137,8 +5138,8 @@ body.focus-mode::after {
         <li><strong>Contact RNIB</strong> — call <a href="tel:03031239999" style="color:var(--yellow);font-weight:700">0303 123 9999</a>. RNIB funds ECLOs in many UK hospitals and can tell you whether yours has one.</li>
         <li><strong>Macular Society ECLO search</strong> — if you have a macular condition, the Macular Society funds dedicated ECLOs at many UK hospitals.</li>
       </ol>
-      <p style="margin-top:14px"><a href="https://www.macularsociety.org/" target="_blank" rel="noopener" style="color:var(--yellow);font-weight:700">Macular Society website ↗</a></p>
-      <p style="margin-top:10px"><a href="https://www.rnib.org.uk/" target="_blank" rel="noopener" style="color:var(--yellow);font-weight:700">RNIB website ↗</a></p>
+      <p style="margin-top:14px"><a href="https://www.macularsociety.org/about/media/news/2024/july/understanding-the-role-of-an-eclo/" target="_blank" rel="noopener" style="color:var(--yellow);font-weight:700">Understanding the role of an ECLO (Macular Society) ↗</a></p>
+      <p style="margin-top:10px"><a href="https://www.rnib.org.uk/your-eyes/navigating-sight-loss/eye-care-services-and-roles/eye-care-liaison-officers-eclos/" target="_blank" rel="noopener" style="color:var(--yellow);font-weight:700">RNIB living with sight loss ↗</a></p>
     </div>
 
     <div class="lc">
@@ -5294,13 +5295,13 @@ body.focus-mode::after {
 
         <a href="https://www.macularsociety.org"    target="_blank" rel="noopener">Macular Society</a>
 
-        <a href="https://glaucoma.uk"               target="_blank" rel="noopener">Glaucoma UK</a>
+        <a href="https://glaucoma.uk/about-glaucoma/"               target="_blank" rel="noopener">Glaucoma UK</a>
 
         <a href="https://retinauk.org.uk"      target="_blank" rel="noopener">Retina UK</a>
 
         <a href="https://clinicaltrials.gov"        target="_blank" rel="noopener">Clinical Trials</a>
 
-        <a href="https://www.gov.uk/pip"            target="_blank" rel="noopener">PIP Benefits</a>
+        <a href="https://www.gov.uk/pip/how-to-claim"            target="_blank" rel="noopener">PIP Benefits</a>
 
         <a href="https://www.guidedogs.org.uk"      target="_blank" rel="noopener">Guide Dogs</a>
 
@@ -5596,7 +5597,7 @@ amd:{
 
 glaucoma:{
 
-    helpline:{org:"Glaucoma UK Helpline",number:"01233 648170",hours:"Mon–Fri 9am–5pm",link:"https://glaucoma.uk"},
+    helpline:{org:"Glaucoma UK Helpline",number:"01233 648170",hours:"Mon–Fri 9am–5pm",link:"https://glaucoma.uk/about-glaucoma/"},
 
   name:"Glaucoma",
 
@@ -5626,13 +5627,13 @@ glaucoma:{
 
   research:[
 
-    {tag:"drug",label:"✅ FDA Approved — UK Pending",title:"iDose TR (Travoprost) Implant",body:"A tiny implant placed inside the eye delivers continuous pressure-lowering medication for years — eliminating daily eye drops. FDA approved 2024. Expected to reach UK clinics within 1–2 years pending NICE evaluation.",link:"https://glaucoma.uk/about-glaucoma/treatment/"},
+    {tag:"drug",label:"✅ FDA Approved — UK Pending",title:"iDose TR (Travoprost) Implant",body:"A tiny implant placed inside the eye delivers continuous pressure-lowering medication for years — eliminating daily eye drops. FDA approved 2024. Expected to reach UK clinics within 1–2 years pending NICE evaluation.",link:"https://glaucoma.uk/about-glaucoma//about-glaucoma/treatment/"},
 
     {tag:"tech",label:"✅ In Use at Moorfields",title:"AI Progression Detection",body:"DeepMind and Moorfields Eye Hospital's AI can detect glaucoma progression on OCT scans years earlier than current clinical methods. Already being used at Moorfields and rolling out across NHS eye units.",link:"https://www.moorfields.nhs.uk/research-innovation"},
 
-    {tag:"gene",label:"🔬 Pipeline",title:"Neuroprotection Research",body:"Trials investigating whether drugs can protect optic nerve fibres from dying — going beyond just lowering pressure. This could preserve vision even when IOP control is incomplete. Several Phase 2 trials ongoing.",link:"https://glaucoma.uk/about-glaucoma/treatment/"},
+    {tag:"gene",label:"🔬 Pipeline",title:"Neuroprotection Research",body:"Trials investigating whether drugs can protect optic nerve fibres from dying — going beyond just lowering pressure. This could preserve vision even when IOP control is incomplete. Several Phase 2 trials ongoing.",link:"https://glaucoma.uk/about-glaucoma//about-glaucoma/treatment/"},
 
-    {tag:"gene",label:"🌅 Horizon",title:"Gene Therapy for Glaucoma",body:"Early research into gene therapy approaches targeting the trabecular meshwork (the eye's drainage system) to permanently improve fluid drainage and reduce IOP without daily medication.",link:"https://glaucoma.uk/about-glaucoma/treatment/"},
+    {tag:"gene",label:"🌅 Horizon",title:"Gene Therapy for Glaucoma",body:"Early research into gene therapy approaches targeting the trabecular meshwork (the eye's drainage system) to permanently improve fluid drainage and reduce IOP without daily medication.",link:"https://glaucoma.uk/about-glaucoma//about-glaucoma/treatment/"},
 
     {tag:"trial",label:"🔗 Find UK Trials",title:"NIHR Be Part of Research — Glaucoma",body:"Find and register for UK clinical trials for glaucoma.",link:"https://bepartofresearch.nihr.ac.uk/results/listing/?resultsfound=true&q=glaucoma&location="}
 
@@ -5658,7 +5659,7 @@ glaucoma:{
 
   support:[
 
-    {title:"Glaucoma UK",body:"Free helpline 01233 648170, specialist nurse advice, publications, and local support groups.",link:"https://glaucoma.uk"},
+    {title:"Glaucoma UK",body:"Free helpline 01233 648170, specialist nurse advice, publications, and local support groups.",link:"https://glaucoma.uk/about-glaucoma/"},
 
     {title:"RNIB (UK)",body:"Helpline 0303 123 9999, talking books, benefits advice, and emotional support.",link:"https://www.rnib.org.uk"}
 
@@ -6908,7 +6909,7 @@ charlesbonnet:{
 
   support:[
 
-    {title:"Macular Society CBS Support",body:"Dedicated CBS information, helpline, and peer support. One of the best specialist resources for CBS in the UK.",link:"https://www.macularsociety.org/charles-bonnet-syndrome"},
+    {title:"Macular Society CBS Support",body:"Dedicated CBS information, helpline, and peer support. One of the best specialist resources for CBS in the UK.",link:"https://www.macularsociety.org/charles-bonnet-syndrome/"},
 
     {title:"RNIB",body:"Helpline 0303 123 9999. CBS information and emotional support.",link:"https://www.rnib.org.uk"},
 
@@ -7159,7 +7160,7 @@ function renderCondition(key) {
 
     ${(function(){
       var tips={
-        stargardts:{t:'lb',l:'Blue/Black',m:'Many people with Stargardt's Disease find a pale blue background reduces glare.'},
+        stargardts:{t:'lb',l:'Blue/Black',m:'Many people with Stargardt\u2019s Disease find a pale blue background reduces glare.'},
         amd:{t:'lb',l:'Blue/Black',m:'A pale blue background can reduce glare and help with central vision loss in AMD.'},
         achromatopsia:{t:'hc',l:'Hi-Con',m:'High contrast mode removes colour dependency, helpful in achromatopsia.'},
         albinism:{t:'lb',l:'Blue/Black',m:'Low-glare pale blue is often easier for people with albinism.'},
@@ -8178,6 +8179,17 @@ function showPage(name) {
 
 
 
+// Called when user taps a search result - clears search and opens condition in one tap
+function selectCondition(key) {
+  var s = document.getElementById('csearch');
+  if (s) { s.value = ''; s.blur(); }
+  var l = document.getElementById('cond-list');
+  if (l) l.style.display = 'none';
+  var h = document.getElementById('cond-hint');
+  if (h) { h.style.display = 'block'; h.innerHTML = 'Start typing to find your condition. <strong>17 conditions</strong> covered.'; }
+  showCondition(key);
+}
+
 function showCondition(key) {
   var d = DATA[key];
   if (d) {
@@ -8677,9 +8689,16 @@ function filterConds(q) {
   if (hint) hint.style.display = 'none';  // hide hint, results appear directly
 
   list.innerHTML = matches.map(function(c) {
-    var onclick = 'showCondition(\'' + c.key + '\')';
-    return '<div role="listitem" class="cond-item"><button class="cond-btn" onclick="' + onclick + '" aria-label="Open ' + c.name + ' information"><span aria-hidden="true" style="flex-shrink:0">✶</span><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0">' + c.name + '</span><span class="cond-arrow" aria-hidden="true" style="flex-shrink:0">›</span></button></div>';
+    return '<div role="listitem" class="cond-item"><button class="cond-btn" data-key="' + c.key + '" aria-label="Open ' + c.name + ' information" style="touch-action:manipulation"><span aria-hidden="true" style="flex-shrink:0">✶</span><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0"> ' + c.name + '</span><span class="cond-arrow" aria-hidden="true" style="flex-shrink:0">›</span></button></div>';
   }).join('');
+
+  // pointerdown fires before keyboard dismissal on Android — true single tap
+  list.querySelectorAll('.cond-btn[data-key]').forEach(function(btn) {
+    btn.addEventListener('pointerdown', function(e) {
+      e.preventDefault();
+      selectCondition(btn.getAttribute('data-key'));
+    });
+  });
 
   list.style.display = '';
 }
@@ -9432,13 +9451,13 @@ function bcShowAdultResults() {
   var cards = '', headline = '';
   if (impact === 'severe') {
     headline = 'Based on your answers, you are likely entitled to several significant benefits.';
-    cards += bcCard('PIP - Daily Living (Enhanced)', '&pound;114.60/week (May 2026)', 'For daily living difficulties caused by sight loss. RNIB will help you apply for free.', 'https://www.gov.uk/pip', 'Apply at gov.uk/pip');
-    cards += bcCard('PIP - Mobility (Enhanced)', '&pound;80.00/week (May 2026)', 'Enhanced rate qualifies for Motability Scheme.', 'https://www.gov.uk/pip', 'Apply at gov.uk/pip');
+    cards += bcCard('PIP - Daily Living (Enhanced)', '&pound;114.60/week (May 2026)', 'For daily living difficulties caused by sight loss. RNIB will help you apply for free.', 'https://www.gov.uk/pip/how-to-claim', 'Apply at gov.uk/pip');
+    cards += bcCard('PIP - Mobility (Enhanced)', '&pound;80.00/week (May 2026)', 'Enhanced rate qualifies for Motability Scheme.', 'https://www.gov.uk/pip/how-to-claim', 'Apply at gov.uk/pip');
     if (working === 'yes') cards += bcCard('Access to Work', 'Up to &pound;69,260/year', 'Grant for specialist equipment and support at work. Apply BEFORE buying anything.', 'https://www.gov.uk/access-to-work', 'Apply at gov.uk');
     if (working === 'no') cards += bcCard('Universal Credit / ESA', 'Varies', 'If you cannot work, you may qualify for Universal Credit with Limited Capability for Work.', 'https://www.gov.uk/universal-credit', 'Check at gov.uk');
   } else if (impact === 'moderate') {
     headline = 'You are likely entitled to at least PIP Daily Living at standard rate.';
-    cards += bcCard('PIP - Daily Living (Standard)', '&pound;43.00/week (May 2026)', 'Even moderate sight loss usually qualifies. Do not assume you will not qualify.', 'https://www.gov.uk/pip', 'Apply at gov.uk/pip');
+    cards += bcCard('PIP - Daily Living (Standard)', '&pound;43.00/week (May 2026)', 'Even moderate sight loss usually qualifies. Do not assume you will not qualify.', 'https://www.gov.uk/pip/how-to-claim', 'Apply at gov.uk/pip');
     if (working === 'yes') cards += bcCard('Access to Work', 'Up to &pound;69,260/year', 'Funds screen magnification, large print, and adjusted lighting at work.', 'https://www.gov.uk/access-to-work', 'Apply at gov.uk');
   } else {
     headline = 'Your situation may still qualify for support.';
@@ -9531,7 +9550,7 @@ var TRIALS_DATA = {
     {tag:'Find More',title:'NIHR Be Part of Research',body:'',link:'https://bepartofresearch.nihr.ac.uk/results/listing/?resultsfound=true&q=cone+dystrophy&location='}
   ],
   glaucoma:[
-    {tag:'FDA Approved - UK Pending',title:'iDose TR Travoprost Implant',body:'Continuous medication. Expected UK 1-2 years.',link:'https://glaucoma.uk'},
+    {tag:'FDA Approved - UK Pending',title:'iDose TR Travoprost Implant',body:'Continuous medication. Expected UK 1-2 years.',link:'https://glaucoma.uk/about-glaucoma/'},
     {tag:'Find More',title:'NIHR Be Part of Research',body:'',link:'https://bepartofresearch.nihr.ac.uk/results/listing/?resultsfound=true&q=glaucoma&location='}
   ],
   diabetic:[
