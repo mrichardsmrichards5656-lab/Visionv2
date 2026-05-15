@@ -44,13 +44,13 @@
 
   --card2:  #f5f0e8;
 
-  --yellow: #d4820a;
+  --yellow: #b86d00;
 
-  --yellow2:#e8960f;
+  --yellow2:#d4820a;
 
   --text:   #1a1a2e;
 
-  --text2:  #5a5a7a;
+  --text2:  #4a4a6a;
 
   --border: rgba(0,0,0,0.10);
 
@@ -313,8 +313,6 @@ p, h1, h2, h3, h4, li, span, a, button { overflow-wrap: break-word; word-wrap: b
 
   background: var(--bg2);
 
-  border-bottom: 3px solid var(--yellow);
-
   padding: 6px 10px;
 
   display: flex;
@@ -329,12 +327,6 @@ p, h1, h2, h3, h4, li, span, a, button { overflow-wrap: break-word; word-wrap: b
 
   overflow-y: hidden;
 
-  position: sticky;
-
-  top: 0;
-
-  z-index: 200;
-
   -webkit-overflow-scrolling: touch;
 
   scrollbar-width: none;
@@ -344,6 +336,14 @@ p, h1, h2, h3, h4, li, span, a, button { overflow-wrap: break-word; word-wrap: b
 }
 
 .a11y-bar::-webkit-scrollbar { display: none; }
+
+/* Sticky wrapper for both rows */
+.a11y-bar-outer {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  border-bottom: 3px solid var(--yellow);
+}
 
 .a11y-bar .site-name {
 
@@ -1712,6 +1712,19 @@ body.focus-mode::after {
 
 
 .sr-only { position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0; }
+/* ══ TWO-ROW A11Y BAR (mobile) ══ */
+.a11y-bar-row2 {
+  background: var(--bg2);
+  padding: 3px 10px 5px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-top: 1px solid var(--border);
+}
+@media (min-width: 640px) {
+  .a11y-bar-row2 { display: none !important; }
+}
+
 </style>
 
 </head>
@@ -1740,7 +1753,7 @@ body.focus-mode::after {
 .tb-btn[aria-pressed="true"]{background:var(--yellow) !important;color:#000 !important;border-color:var(--yellow) !important;}
 .tb-icon{font-size:1rem;line-height:1;font-weight:900;}
 .tb-label{font-size:0.55rem;font-weight:800;text-transform:uppercase;letter-spacing:0.04em;line-height:1;white-space:nowrap;}
-.tb-select{height:50px;border-radius:10px;border:1.5px solid var(--border);background:var(--card2);color:var(--text);font-family:var(--font);font-size:0.75rem;padding:0 6px;flex-shrink:0;cursor:pointer;}
+.tb-select{height:50px;border-radius:10px;border:1.5px solid var(--border);background:var(--card2);color:var(--text);font-family:var(--font);font-size:0.65rem;padding:0 2px;flex-shrink:0;cursor:pointer;max-width:80px;}
 .tb-lang{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;min-width:44px;min-height:50px;padding:4px 6px;border-radius:10px;border:2px solid #00b140;background:var(--card2);color:#00b140;font-family:var(--font);cursor:pointer;flex-shrink:0;gap:1px;}
 .tb-lang[aria-pressed=true]{background:#00b140;color:#fff;}
 .tb-lang[aria-pressed=false]:not(:hover){background:var(--card2);color:#00b140;}
@@ -1749,9 +1762,10 @@ body.focus-mode::after {
 .tb-divider{width:1px;height:36px;background:var(--border);flex-shrink:0;}
 </style>
 
+<div class="a11y-bar-outer">
 <div class="a11y-bar" role="toolbar" aria-label="Accessibility controls">
 
-  <span class="site-name" onclick="showPage('home')" role="link" tabindex="0" aria-label="Vision Hub home" style="font-weight:900;color:var(--yellow);cursor:pointer;flex-shrink:0;font-size:0.85rem;white-space:nowrap">Vision Hub</span>
+  <span class="site-name" onclick="showPage('home')" role="link" tabindex="0" aria-label="Vision Hub home" style="font-weight:900;color:var(--yellow);cursor:pointer;flex-shrink:0;white-space:nowrap;font-size:0.75rem">VH</span>
 
   <div class="tb-divider"></div>
 
@@ -1766,25 +1780,28 @@ body.focus-mode::after {
 
   <select id="col-select" onchange="setColour(this.value)" aria-label="Colour theme" class="tb-select" title="Colour theme">
     <option value="">☀️ Light</option>
-    <option value="lb">💙 Blue/Black</option>
+    <option value="lb">💙 Blue</option>
     <option value="dark">🌙 Dark</option>
-    <option value="ll">👁️ Low Light</option>
+    <option value="ll">👁️ Lo-Lt</option>
     <option value="hc">⬛ Hi-Con</option>
-    <option value="yb">🟡 Yel/Blk</option>
+    <option value="yb">🟡 Yel</option>
   </select>
 
+</div>
+
+<!-- Row 2: feature toggles (mobile only) -->
+<div class="a11y-bar-row2" role="toolbar" aria-label="Accessibility features">
+
+  <button class="tb-btn" id="tts-toggle"     onclick="togglePageSpeech()"   aria-pressed="false" aria-label="Read page aloud"><span class="tb-icon">🔊</span><span class="tb-label">Listen</span></button>
+  <button class="tb-btn" id="dys-toggle"     onclick="toggleDyslexic()"     aria-pressed="false" aria-label="Toggle dyslexia-friendly font"><span class="tb-icon" style="font-size:0.85rem">Aa</span><span class="tb-label">Dyslexic</span></button>
+  <button class="tb-btn" id="rule-toggle"    onclick="toggleReadingRuler()" aria-pressed="false" aria-label="Toggle reading ruler"><span class="tb-icon">▭</span><span class="tb-label">Ruler</span></button>
+  <button class="tb-btn" id="spacing-toggle" onclick="toggleSpacing()"      aria-pressed="false" aria-label="Increase line spacing"><span class="tb-icon" style="font-size:0.8rem">≡</span><span class="tb-label">Spacing</span></button>
   <div class="tb-divider"></div>
-
-  <button class="tb-btn" id="dys-toggle"    onclick="toggleDyslexic()"       aria-pressed="false" aria-label="Toggle dyslexia-friendly font"><span class="tb-icon" style="font-size:0.85rem">Aa</span><span class="tb-label">Dyslexic</span></button>
-  <button class="tb-btn" id="rule-toggle"   onclick="toggleReadingRuler()"   aria-pressed="false" aria-label="Toggle reading ruler"><span class="tb-icon">▭</span><span class="tb-label">Ruler</span></button>
-  <button class="tb-btn" id="tts-toggle"    onclick="togglePageSpeech()"     aria-pressed="false" aria-label="Read page aloud"><span class="tb-icon">🔊</span><span class="tb-label">Listen</span></button>
-  <button class="tb-btn" id="spacing-toggle" onclick="toggleSpacing()" aria-pressed="false" aria-label="Increase line spacing"><span class="tb-icon" style="font-size:0.8rem">≡</span><span class="tb-label">Spacing</span></button>
-
-  <div class="tb-divider"></div>
-
-  <button class="tb-lang" id="welsh-toggle" onclick="toggleWelsh()" aria-pressed="false" aria-label="Switch to Welsh / Newid i Gymraeg"><span class="tb-icon" id="welsh-icon" style="font-size:0.7rem;font-weight:900">CY</span><span class="tb-label" id="welsh-label">Welsh</span></button>
+  <button class="tb-lang" id="welsh-toggle"  onclick="toggleWelsh()"        aria-pressed="false" aria-label="Switch to Welsh / Newid i Gymraeg"><span class="tb-icon" id="welsh-icon" style="font-size:0.7rem;font-weight:900">CY</span><span class="tb-label" id="welsh-label">Welsh</span></button>
 
 </div>
+
+</div><!-- end a11y-bar-outer -->
 
 <!-- STICKY PAGE TITLE (shows on scroll for zoomed users) -->
 <div id="sticky-title" role="navigation" aria-label="Page navigation">
@@ -8160,6 +8177,8 @@ function showPage(name) {
   // Add listen buttons to section headings
   var _activePage = document.querySelector('.page.active');
   if (_activePage) setTimeout(function(){ addListenButtons(_activePage); }, 100);
+
+
 
 }
 
