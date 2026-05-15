@@ -24,7 +24,7 @@
 
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 
 <style>
 
@@ -64,7 +64,7 @@
 
   --shadow: 0 2px 12px rgba(0,0,0,0.08);
 
-  --font:   'Inter', sans-serif;
+  --font:   'Atkinson Hyperlegible', sans-serif;
 
   --scale:  1;
 
@@ -134,6 +134,8 @@ html { font-size: calc(17px * var(--scale)); scroll-behavior: smooth; overflow-x
 body {
 
   font-family: var(--font);
+
+  font-weight: 400;
 
   font-size: 1rem;
 
@@ -473,7 +475,7 @@ p, h1, h2, h3, h4, li, span, a, button { overflow-wrap: break-word; word-wrap: b
 
 }
 
-.hero h1 { font-size: clamp(1.9rem, 6vw, 2.8rem); font-weight: 900; line-height: 1.1; margin-bottom: 14px; color: var(--text); }
+.hero h1 { font-size: clamp(1.9rem, 6vw, 2.8rem); font-weight: 900; line-height: 1.1; overflow-wrap: break-word; word-wrap: break-word; margin-bottom: 14px; color: var(--text); }
 
 .hero-desc { font-size: 1.05rem; color: var(--text2); margin-bottom: 26px; line-height: 1.8; }
 
@@ -497,7 +499,10 @@ p, h1, h2, h3, h4, li, span, a, button { overflow-wrap: break-word; word-wrap: b
 
   transition: border-color .15s, color .15s;
 
+  white-space: normal; overflow-wrap: break-word; word-break: break-word;
+
 }
+
 
 .share-btn:hover        { border-color: var(--yellow); color: var(--yellow); }
 
@@ -591,7 +596,7 @@ p, h1, h2, h3, h4, li, span, a, button { overflow-wrap: break-word; word-wrap: b
 
 .cond-arrow { font-size: 1.1rem; flex-shrink: 0; margin-left: auto; }
 .cond-btn > span[aria-hidden="true"]:first-child { flex-shrink: 0; width: 1.6em; text-align: center; }
-.cond-btn { justify-content: flex-start; }
+.cond-btn { justify-content: flex-start; overflow-wrap: break-word; word-break: break-word; }
 
 
 
@@ -1089,9 +1094,9 @@ body.welsh-active .trial-link::after { content: " (Saesneg yn unig)"; font-size:
 
 .legal-updated { font-size: 0.82rem; color: var(--text2); margin-bottom: 32px; }
 
-.lc { background: var(--card); border: 2px solid var(--border); border-radius: 16px; padding: 22px 24px; margin-bottom: 14px; box-shadow: var(--shadow); }
+.lc { background: var(--card); border: 2px solid var(--border); border-radius: 16px; padding: 22px 24px; margin-bottom: 14px; box-shadow: var(--shadow); overflow-wrap: break-word; word-break: break-word; }
 
-.lc h2 { font-size: 1.1rem; font-weight: 800; color: var(--yellow); margin-bottom: 10px; }
+.lc h2 { font-size: 1.1rem; font-weight: 800; color: var(--yellow); margin-bottom: 10px; overflow-wrap: break-word; }
 
 .lc p, .lc li { font-size: 0.95rem; color: var(--text2); line-height: 1.85; }
 
@@ -1377,7 +1382,7 @@ footer { background: var(--bg2); border-top: 3px solid var(--yellow); padding: 3
 
 .acc-item.open .acc-btn { background: var(--card2); }
 
-.acc-left { display: flex; align-items: center; gap: 12px; }
+.acc-left { display: flex; align-items: center; gap: 12px; min-width: 0; overflow: hidden; }
 
 .acc-num {
 
@@ -1393,7 +1398,7 @@ footer { background: var(--bg2); border-top: 3px solid var(--yellow); padding: 3
 
 .acc-item.open .acc-num { background: var(--yellow); }
 
-.acc-label { font-size: 1rem; font-weight: 800; color: var(--text); }
+.acc-label { font-size: 1rem; font-weight: 800; color: var(--text); overflow-wrap: break-word; word-break: break-word; min-width: 0; }
 
 .acc-arrow { font-size: 1rem; color: var(--yellow); flex-shrink: 0; transition: transform .25s; }
 
@@ -1505,7 +1510,7 @@ body.dyslexic, body.dyslexic *{
   font-family:'Atkinson Hyperlegible','OpenDyslexic',Verdana,sans-serif!important;
   letter-spacing:0.03em;word-spacing:0.08em;line-height:1.7!important;
 }
-body.wide-spacing, body.wide-spacing *{letter-spacing:0.08em!important;word-spacing:0.16em!important;line-height:1.8!important}
+body.wide-spacing, body.wide-spacing *{letter-spacing:0.06em!important;word-spacing:0.12em!important;line-height:2.1!important}
 body.reading-ruler{cursor:none}
 .reading-ruler-bar{
   position:fixed;left:0;right:0;height:48px;background:rgba(245,184,0,0.18);
@@ -1530,6 +1535,8 @@ body.hc *:focus-visible,body.yb *:focus-visible,body.bb *:focus-visible{outline-
 body.lb { background-color: #cce8f4 !important; color: #000 !important; }
 body.lb .a11y-bar { background: #a8d5ea !important; }
 body.lb .desktop-sidebar { background: #b8dff0 !important; }
+body.lb .cond-helpline-btn { background: #0055a5 !important; color: #fff !important; }
+body.lb .cond-helpline-btn * { color: #fff !important; }
 body.lb .desktop-main { background: #cce8f4 !important; }
 body.lb .hero { background: #b8dff0 !important; }
 body.lb .card, body.lb .founder-box { background: #e0f2fb !important; }
@@ -1546,16 +1553,25 @@ body.lb .news-tag.tech { background: #d0d8f5 !important; color: #002080 !importa
 
 
 /* ══ NARROW READING MODE ══ */
-body.nr-active .hero,
-body.nr-active .cond-page-inner,
-body.nr-active .legal-wrap,
-body.nr-active .cond-section,
-body.nr-active .news-box,
-body.nr-active .desktop-main > * { max-width: 58ch !important; }
+body.nr-active .hero, body.narrow-reading .hero,
+body.nr-active .cond-page-inner, body.narrow-reading .cond-page-inner,
+body.nr-active .legal-wrap, body.narrow-reading .legal-wrap,
+body.nr-active .cond-section, body.narrow-reading .cond-section,
+body.nr-active .news-box, body.narrow-reading .news-box,
+body.nr-active .desktop-main > *, body.narrow-reading .desktop-main > * { max-width: 58ch !important; }
 
 
 /* ══ TTS SENTENCE HIGHLIGHTING ══ */
 .tts-sent { transition: background-color 0.15s ease; border-radius: 3px; }
+.tts-para-active {
+  background: rgba(245,184,0,0.18) !important;
+  border-radius: 6px !important;
+  padding: 2px 4px !important;
+  margin: -2px -4px !important;
+  transition: background 0.3s ease !important;
+  box-shadow: 0 0 0 2px rgba(245,184,0,0.3) !important;
+  outline: none !important;
+}
 .tts-sent.tts-active { background-color: #ffe066 !important; color: #000 !important; outline: 2px solid #f5b800; border-radius: 3px; }
 body.dark .tts-sent.tts-active, body.ll .tts-sent.tts-active { background-color: #b38000 !important; color: #fff !important; }
 body.lb .tts-sent.tts-active { background-color: #0055a5 !important; color: #fff !important; }
@@ -1634,6 +1650,52 @@ body.lb .acc-item.open { border-color: #0055a5 !important; }
 /* Force any element with inline background:var(--card) */
 body.lb { --card: #d8eef8; --card2: #c8e4f4; }
 
+
+/* ══ FOCUS MODE ══ */
+body.focus-mode .desktop-sidebar,
+body.focus-mode .hero,
+body.focus-mode .cond-section,
+body.focus-mode .search-wrap,
+body.focus-mode .share-bar,
+body.focus-mode .back-top,
+body.focus-mode footer,
+body.focus-mode .back-btn,
+body.focus-mode .section-divider,
+body.focus-mode .founder-box,
+body.focus-mode #video-resources-wrap,
+body.focus-mode .news-box { display: none !important; }
+body.focus-mode .desktop-main { margin: 0 auto !important; max-width: 680px !important; }
+body.focus-mode .cond-page-inner { padding: 20px !important; }
+body.focus-mode .legal-wrap { padding-top: 16px !important; }
+body.focus-mode::after {
+  content: 'Focus Mode — distractions hidden';
+  position: fixed; bottom: 8px; left: 50%; transform: translateX(-50%);
+  background: var(--yellow); color: #000; font-size: 0.7rem; font-weight: 800;
+  padding: 4px 12px; border-radius: 50px; z-index: 9999;
+  font-family: var(--font); pointer-events: none; opacity: 0.8;
+}
+
+
+/* ══ STICKY PAGE TITLE (for zoomed users) ══ */
+#sticky-title {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 9000;
+  background: var(--yellow); color: #000;
+  padding: 6px 12px;
+  display: none;
+  align-items: center; justify-content: space-between;
+  font-family: var(--font);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  gap: 12px;
+}
+#sticky-title.vis { display: flex; }
+#sticky-title-back {
+  background: none; border: none; color: #000; font-family: var(--font);
+  font-size: 0.85rem; font-weight: 800; cursor: pointer;
+  padding: 4px 8px; min-height: 36px;
+}
+#sticky-title-name { flex: 1; text-align: center; font-size: 0.8rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+
 .sr-only { position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0; }
 </style>
 
@@ -1643,7 +1705,7 @@ body.lb { --card: #d8eef8; --card2: #c8e4f4; }
 
 
 
-<a href="#main" class="skip">Skip to main content</a>
+<a href="#main" class="skip" style="position:absolute;top:-999px;left:-999px;z-index:99999;background:var(--yellow);color:#000;padding:12px 24px;font-weight:800;border-radius:0 0 8px 8px;text-decoration:none;font-size:1rem" onfocus="this.style.top='0';this.style.left='50%';this.style.transform='translateX(-50%)'" onblur="this.style.top='-999px';this.style.left='-999px'">Skip to main content</a>
 
 
 
@@ -1659,8 +1721,8 @@ body.lb { --card: #d8eef8; --card2: #c8e4f4; }
 }
 .tb-btn:hover{background:var(--yellow);color:#000;border-color:var(--yellow);}
 .tb-btn:focus-visible{outline:3px solid var(--yellow);outline-offset:2px;}
-.tb-btn[aria-pressed=false]:not(:hover){background:var(--card2);color:var(--text);border-color:var(--border);}
-.tb-btn[aria-pressed=true]{background:var(--yellow);color:#000;border-color:var(--yellow);}
+.tb-btn[aria-pressed="false"]{background:var(--card2) !important;color:var(--text) !important;border-color:var(--border) !important;}
+.tb-btn[aria-pressed="true"]{background:var(--yellow) !important;color:#000 !important;border-color:var(--yellow) !important;}
 .tb-icon{font-size:1rem;line-height:1;font-weight:900;}
 .tb-label{font-size:0.55rem;font-weight:800;text-transform:uppercase;letter-spacing:0.04em;line-height:1;white-space:nowrap;}
 .tb-select{height:50px;border-radius:10px;border:1.5px solid var(--border);background:var(--card2);color:var(--text);font-family:var(--font);font-size:0.75rem;padding:0 6px;flex-shrink:0;cursor:pointer;}
@@ -1700,26 +1762,40 @@ body.lb { --card: #d8eef8; --card2: #c8e4f4; }
 
   <button class="tb-btn" id="dys-toggle"    onclick="toggleDyslexic()"       aria-pressed="false" aria-label="Toggle dyslexia-friendly font"><span class="tb-icon" style="font-size:0.85rem">Aa</span><span class="tb-label">Dyslexic</span></button>
   <button class="tb-btn" id="rule-toggle"   onclick="toggleReadingRuler()"   aria-pressed="false" aria-label="Toggle reading ruler"><span class="tb-icon">▭</span><span class="tb-label">Ruler</span></button>
-  <button class="tb-btn" id="narrow-toggle" onclick="toggleNarrowReading()"  aria-pressed="false" aria-label="Toggle narrow reading mode"><span class="tb-icon" style="font-size:0.75rem">↔</span><span class="tb-label">Narrow</span></button>
   <button class="tb-btn" id="tts-toggle"    onclick="togglePageSpeech()"     aria-pressed="false" aria-label="Read page aloud"><span class="tb-icon">🔊</span><span class="tb-label">Listen</span></button>
+  <button class="tb-btn" id="spacing-toggle" onclick="toggleSpacing()" aria-pressed="false" aria-label="Increase line spacing"><span class="tb-icon" style="font-size:0.8rem">≡</span><span class="tb-label">Spacing</span></button>
 
   <div class="tb-divider"></div>
 
-  <button class="tb-lang" id="welsh-toggle" onclick="toggleWelsh()" aria-pressed="false" aria-label="Switch to Welsh / Newid i Gymraeg"><span class="tb-icon">🏴󠁧󠁢󠁷󠁬󠁳󠁥󠁳󠁥</span><span class="tb-label">Welsh</span></button>
+  <button class="tb-lang" id="welsh-toggle" onclick="toggleWelsh()" aria-pressed="false" aria-label="Switch to Welsh / Newid i Gymraeg"><span class="tb-icon" id="welsh-icon" style="font-size:0.7rem;font-weight:900">CY</span><span class="tb-label" id="welsh-label">Welsh</span></button>
 
 </div>
 
+<!-- STICKY PAGE TITLE (shows on scroll for zoomed users) -->
+<div id="sticky-title" role="navigation" aria-label="Page navigation">
+  <button id="sticky-title-back" onclick="window.stickyBack && stickyBack()" aria-label="Go back" style="background:none;border:2px solid #000;border-radius:50px;color:#000;font-family:inherit;font-size:0.85rem;font-weight:800;cursor:pointer;padding:6px 14px;min-height:40px">← Back</button>
+  <button onclick="showPage('home')" style="background:#000;border:none;color:var(--yellow);font-size:0.85rem;font-weight:800;cursor:pointer;padding:6px 14px;border-radius:50px;min-height:40px;font-family:inherit" aria-label="Go to home page">🏠 Home</button>
+</div>
+
 <!-- TTS PANEL -->
-<div id="tts-panel" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:10000;background:#1a1a2e;border-top:4px solid #f5b800;padding:20px;font-family:sans-serif">
+<!-- Minimised floating bar (shows while reading) -->
+<div id="tts-mini" style="display:none;position:fixed;bottom:16px;left:50%;transform:translateX(-50%);z-index:10001;background:#1a1a2e;border:2px solid #f5b800;border-radius:50px;padding:8px 16px;display:none;align-items:center;gap:12px;box-shadow:0 4px 20px rgba(0,0,0,0.5);white-space:nowrap">
+  <span id="tts-mini-status" style="color:#f5b800;font-size:0.85rem;font-weight:700">Reading...</span>
+  <button onclick="ttsStop()" style="background:#f5b800;border:none;color:#000;width:36px;height:36px;border-radius:50%;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center" aria-label="Stop reading">⏹</button>
+  <button onclick="ttsPanelExpand()" style="background:#333;border:none;color:#fff;width:36px;height:36px;border-radius:50%;font-size:0.9rem;cursor:pointer;display:flex;align-items:center;justify-content:center" aria-label="Expand controls">⚙</button>
+</div>
+
+<!-- Full TTS panel (shows for setup / when expanded) -->
+<div id="tts-panel" role="dialog" aria-label="Read Aloud controls" aria-modal="true" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:10000;background:#1a1a2e;border-top:4px solid #f5b800;padding:20px;font-family:sans-serif">
   <div style="max-width:600px;margin:0 auto">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
       <strong style="color:#f5b800;font-size:1rem">🔊 Read Aloud</strong>
-      <button style="background:#333;border:none;color:#fff;width:44px;height:44px;border-radius:50%;font-size:1.2rem;cursor:pointer" onclick="document.getElementById('tts-panel').style.display='none';ttsStop()">✕</button>
+      <button style="background:#333;border:none;color:#fff;width:44px;height:44px;border-radius:50%;font-size:1.2rem;cursor:pointer" onclick="ttsClose()" aria-label="Close">✕</button>
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
       <div>
         <label style="display:block;color:#ccc;font-size:0.875rem;margin-bottom:6px">What to read:</label>
-        <select id="tts-section" style="width:100%;height:44px;padding:0 10px;border-radius:8px;border:none;background:#333;color:#fff;font-size:0.9rem">
+        <select id="tts-section" onchange="ttsHandleSectionChange(this.value)" style="width:100%;height:44px;padding:0 10px;border-radius:8px;border:none;background:#333;color:#fff;font-size:0.9rem">
           <option value="current">Current page</option>
           <option value="news">Recent Updates</option>
           <option value="benefits">Benefits &amp; PIP</option>
@@ -1750,6 +1826,10 @@ body.lb { --card: #d8eef8; --card2: #c8e4f4; }
       <button id="tts-play-btn" onclick="ttsPlay()" style="flex:1;height:52px;background:#f5b800;color:#000;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer">▶ Play</button>
       <button id="tts-stop-btn" onclick="ttsStop()" style="height:52px;padding:0 20px;background:#333;color:#fff;border:none;border-radius:10px;font-size:1rem;cursor:pointer">⏹ Stop</button>
     </div>
+    <label style="display:flex;align-items:center;gap:10px;color:#ccc;font-size:0.875rem;margin-top:12px;cursor:pointer">
+      <input type="checkbox" id="tts-enlarge" style="width:18px;height:18px;accent-color:#f5b800">
+      Enlarge active paragraph while reading
+    </label>
     <p id="tts-status" style="color:#aaa;font-size:0.875rem;margin-top:10px;text-align:center">Choose what to read, then press Play</p>
   </div>
 </div>
@@ -2136,6 +2216,12 @@ body.lb { --card: #d8eef8; --card2: #c8e4f4; }
 
       <div class="sidebar-divider"></div>
 
+      <button class="sidebar-link" onclick="showPage('benefits-calc')">💰 Benefits Calculator</button>
+      <button class="sidebar-link" onclick="showPage('trials')">🔬 Clinical Trials</button>
+      <button class="sidebar-link" onclick="showPage('eclo')">👁️ Find Your ECLO</button>
+
+      <div class="sidebar-divider"></div>
+
       <button class="sidebar-link" onclick="showPage('help')"><span aria-hidden="true">🆘</span> Help &amp; Support</button>
       <button class="sidebar-link" onclick="showPage('contact')"><span aria-hidden="true">✉️</span> Contact</button>
 
@@ -2207,7 +2293,7 @@ body.lb { --card: #d8eef8; --card2: #c8e4f4; }
         <div style="padding:16px 20px 12px">
           <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:10px">
             <span style="font-size:0.95rem;font-weight:700;color:var(--text)">💛 Why this site exists</span>
-            <button class="acc-listen" onclick="listenToSection('founder','home',this)" aria-label="Listen to why this site was made" title="Listen to this section" style="width:32px;height:32px;flex-shrink:0">🔊</button>
+            <button class="acc-listen" onclick="listenToFounder(this)" aria-label="Listen to why this site was made" aria-pressed="false" title="Listen to this section" style="width:32px;height:32px;flex-shrink:0">🔊</button>
           </div>
           <p style="font-size:0.9rem;color:var(--text2);line-height:1.6;margin:0 0 10px">When my daughter was diagnosed with Stargardts, I had so many questions. I couldn't find anywhere that had everything in one place.</p>
           <button id="founder-expand-btn" onclick="document.getElementById('founder-full').style.display='block';this.style.display='none'" style="background:none;border:none;color:var(--yellow);font-family:var(--font);font-size:0.875rem;font-weight:700;cursor:pointer;text-decoration:underline;padding:0;margin-bottom:4px">Read more ▼</button>
@@ -2249,10 +2335,10 @@ body.lb { --card: #d8eef8; --card2: #c8e4f4; }
           <input type="search" id="csearch" placeholder="e.g. Stargardt, glaucoma, AMD, RP…" autocomplete="off" aria-controls="cond-list" aria-label="Search eye conditions" style="background:#fff;color:#000;font-size:1rem;border:none;border-radius:50px;padding:14px 48px 14px 20px;width:100%;box-shadow:0 2px 8px rgba(0,0,0,0.15)">
           <span class="search-icon" aria-hidden="true" style="color:#555">🔍</span>
         </div>
-        <p id="cond-hint" aria-live="polite" style="font-size:0.85rem;color:#333;margin:6px 0 0;line-height:1.5">Start typing to find your condition</p>
+        <p id="cond-hint" aria-live="polite" style="font-size:0.95rem;font-weight:700;color:#000;margin:8px 0 0;line-height:1.5">Start typing to find your condition</p>
       </div>
 
-      <div class="cond-list" id="cond-list" role="list" style="display:none;margin-bottom:16px">
+      <div class="cond-list" id="cond-list" role="list" style="display:none;margin-bottom:16px;max-height:60vh;overflow-y:auto;-webkit-overflow-scrolling:touch">
       </div>
 
       <!-- JUST DIAGNOSED -->
@@ -2260,7 +2346,7 @@ body.lb { --card: #d8eef8; --card2: #c8e4f4; }
 
       <div id="jd-box" style="background:var(--card);border:2px solid var(--border);border-radius:16px;padding:22px;margin-bottom:24px;box-shadow:var(--shadow)">
 
-        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:4px">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:4px;flex-wrap:wrap">
 
           <div>
 
@@ -2368,9 +2454,9 @@ body.lb { --card: #d8eef8; --card2: #c8e4f4; }
 
               <div style="padding-top:4px">
 
-                <span style="font-size:0.95rem;font-weight:800;color:var(--text)">Find your condition below</span>
+                <span style="font-size:0.95rem;font-weight:800;color:var(--text)">Search for your condition above</span>
 
-                <p style="font-size:0.88rem;color:var(--text2);margin-top:3px;line-height:1.7">Everything specific to your diagnosis is in the list below — research, assistive technology, step-by-step guides, and support organisations.</p>
+                <p style="font-size:0.88rem;color:var(--text2);margin-top:3px;line-height:1.7">Use the search box above to find your condition — research, assistive technology, step-by-step guides, and support organisations, all in one place.</p>
 
               </div>
 
@@ -2399,7 +2485,7 @@ body.lb { --card: #d8eef8; --card2: #c8e4f4; }
 
       </div>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:20px" role="group" aria-label="More resources">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(80px,1fr));gap:8px;margin-bottom:20px" role="group" aria-label="More resources">
 
         <button onclick="showPage('eyehealth')" class="share-btn" style="font-size:0.78rem;padding:0 6px;min-height:42px;justify-content:center;border-radius:12px" aria-label="Open Eye Health Basics">👁️ Eye Health</button>
 
@@ -2407,6 +2493,12 @@ body.lb { --card: #d8eef8; --card2: #c8e4f4; }
 
         <button onclick="showPage('children')" class="share-btn" style="font-size:0.78rem;padding:0 6px;min-height:42px;justify-content:center;border-radius:12px" aria-label="Open For Parents guide">👶 For Parents</button>
 
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:20px" role="group" aria-label="More resources">
+        <button onclick="showPage('benefits-calc')" class="share-btn" style="font-size:0.78rem;padding:0 6px;min-height:42px;justify-content:center;border-radius:12px" aria-label="Open Benefits Calculator">💰 Benefits Calc</button>
+        <button onclick="showPage('trials')" class="share-btn" style="font-size:0.78rem;padding:0 6px;min-height:42px;justify-content:center;border-radius:12px" aria-label="Find Clinical Trials">🔬 Trials</button>
+        <button onclick="showPage('eclo')" class="share-btn" style="font-size:0.78rem;padding:0 6px;min-height:42px;justify-content:center;border-radius:12px" aria-label="Find Your ECLO">👁️ ECLO</button>
       </div>
 
 
@@ -2582,6 +2674,12 @@ body.lb { --card: #d8eef8; --card2: #c8e4f4; }
       <div class="sidebar-divider"></div>
 
       <button class="sidebar-link" onclick="showPage('home')">🏠 Home</button>
+
+      <button class="sidebar-link" onclick="showPage('benefits-calc')">💰 Benefits Calculator</button>
+      <button class="sidebar-link" onclick="showPage('trials')">🔬 Clinical Trials</button>
+      <button class="sidebar-link" onclick="showPage('eclo')">👁️ Find Your ECLO</button>
+
+      <div class="sidebar-divider"></div>
 
       <button class="sidebar-link" onclick="showPage('help')"><span aria-hidden="true">🆘</span> Help &amp; Support</button>
       <button class="sidebar-link" onclick="showPage('contact')"><span aria-hidden="true">✉️</span> Contact</button>
@@ -4995,6 +5093,174 @@ body.lb { --card: #d8eef8; --card2: #c8e4f4; }
 
 
 
+<!-- ══════════════════════════════════════
+     ECLO FINDER PAGE
+══════════════════════════════════════ -->
+<div id="page-eclo" class="page" role="main" aria-label="Find Your ECLO">
+  <div class="legal-wrap">
+    <button class="back-btn" onclick="showPage('home')" aria-label="Back to home">← Back to home</button>
+    <span class="legal-eyebrow">Eye Clinic Support</span>
+    <h1>Find Your ECLO</h1>
+    <p style="font-size:0.95rem;color:var(--text2);margin-bottom:24px;line-height:1.8">An <strong>Eye Clinic Liaison Officer (ECLO)</strong> is a specialist support worker based in hospital eye clinics. They are one of the most useful — and least known — resources available to people with sight loss. Their help is free.</p>
+
+    <div class="lc" style="border-color:var(--yellow)">
+      <h2>What does an ECLO do?</h2>
+      <p>An ECLO bridges the gap between your clinical appointment and your life outside the clinic. They can:</p>
+      <ul style="margin-top:10px">
+        <li>Explain your diagnosis in plain language after your appointment</li>
+        <li>Help you understand what support and benefits you are entitled to</li>
+        <li>Refer you to rehabilitation services, social care, and local support groups</li>
+        <li>Help you fill in CVI paperwork and benefits forms</li>
+        <li>Connect you with counselling and emotional support</li>
+        <li>Advise on assistive technology and practical daily living aids</li>
+      </ul>
+    </div>
+
+    <div class="lc">
+      <h2>🔍 Find your ECLO</h2>
+      <p>ECLOs are employed by hospital eye departments or charities such as RNIB, Macular Society, and Glaucoma UK. The best way to find yours:</p>
+      <ol style="margin-top:10px;padding-left:20px;line-height:2">
+        <li><strong>Ask at your eye clinic</strong> — ask the receptionist or your ophthalmologist whether there is an ECLO at your hospital. Many clinics don't advertise them prominently.</li>
+        <li><strong>Contact RNIB</strong> — call <a href="tel:03031239999" style="color:var(--yellow);font-weight:700">0303 123 9999</a>. RNIB funds ECLOs in many UK hospitals and can tell you whether yours has one.</li>
+        <li><strong>Macular Society ECLO search</strong> — if you have a macular condition, the Macular Society funds dedicated ECLOs at many UK hospitals.</li>
+      </ol>
+      <p style="margin-top:14px"><a href="https://www.macularsociety.org/support/eclo/" target="_blank" rel="noopener" style="color:var(--yellow);font-weight:700">Find a Macular Society ECLO ↗</a></p>
+      <p style="margin-top:10px"><a href="https://www.rnib.org.uk/living-with-sight-loss/support-for-you/eye-clinic-liaison-officers-eclos/" target="_blank" rel="noopener" style="color:var(--yellow);font-weight:700">Find an RNIB ECLO ↗</a></p>
+    </div>
+
+    <div class="lc">
+      <h2>💡 If your clinic doesn't have an ECLO</h2>
+      <p>Not every hospital has an ECLO — particularly smaller or more rural units. If yours doesn't:</p>
+      <ul style="margin-top:10px">
+        <li><strong>Ask your ophthalmologist</strong> to refer you to one at a larger nearby centre</li>
+        <li><strong>Contact your local sight loss charity</strong> — many provide similar one-to-one support</li>
+        <li>RNIB's helpline (0303 123 9999) provides telephone ECLO-style support</li>
+        <li>The Macular Society's helpline (0300 3030 111) has specialist nurse advisors</li>
+      </ul>
+    </div>
+
+    <div class="lc">
+      <h2>👁️ What to ask your ECLO</h2>
+      <ul style="margin-top:8px">
+        <li>What does my diagnosis mean in practical terms day to day?</li>
+        <li>What benefits and financial support am I entitled to?</li>
+        <li>How do I get my Certificate of Visual Impairment (CVI)?</li>
+        <li>Can you refer me to a Vision Rehabilitation Specialist?</li>
+        <li>Are there support groups for my condition in this area?</li>
+        <li>What assistive technology would help me most?</li>
+        <li>Are there any clinical trials I might be eligible for?</li>
+      </ul>
+    </div>
+
+    <div class="wb"><strong>Newly diagnosed?</strong> Requesting an ECLO appointment is one of the first five steps we recommend — see our <button onclick="showPage('home')" style="background:none;border:none;color:var(--yellow);font-family:var(--font);font-size:inherit;font-weight:700;cursor:pointer;text-decoration:underline;padding:0">Just Diagnosed guide on the home page</button>.</div>
+
+    <button class="back-btn" onclick="showPage('home')" style="margin-top:8px">← Back to home</button>
+  </div>
+</div>
+<!-- ══════════════════════════════════════
+     CLINICAL TRIALS PAGE
+══════════════════════════════════════ -->
+<div id="page-trials" class="page" role="main" aria-label="Clinical Trials Finder">
+  <div class="legal-wrap">
+    <button class="back-btn" onclick="showPage('home')" aria-label="Back to home">← Back to home</button>
+    <span class="legal-eyebrow">Research</span>
+    <h1>Clinical Trials Finder</h1>
+    <p style="font-size:0.95rem;color:var(--text2);margin-bottom:24px;line-height:1.8">UK clinical trials currently recruiting or recently active for inherited and acquired eye conditions. Select your condition to see what's available.</p>
+
+    <div class="wb"><strong>Always discuss trials with your ophthalmologist</strong> before registering interest. Eligibility depends on your specific genetic mutation, disease stage, and other factors.</div>
+
+    <div style="margin:20px 0">
+      <label for="trials-condition-sel" style="display:block;font-size:0.88rem;font-weight:700;color:var(--text2);margin-bottom:8px">Select your condition:</label>
+      <select id="trials-condition-sel" onchange="showTrialsForCondition(this.value)" class="tb-select" style="width:100%;height:52px;font-size:1rem;border-radius:12px;padding:0 16px;border:2px solid var(--border)">
+        <option value="">— Choose a condition —</option>
+        <option value="stargardts">Stargardt Disease</option>
+        <option value="amd">Age-Related Macular Degeneration</option>
+        <option value="rp">Retinitis Pigmentosa</option>
+        <option value="lca">Leber Congenital Amaurosis</option>
+        <option value="usher">Usher Syndrome</option>
+        <option value="achromatopsia">Achromatopsia</option>
+        <option value="cone">Cone Dystrophy</option>
+        <option value="glaucoma">Glaucoma</option>
+        <option value="diabetic">Diabetic Retinopathy / DMO</option>
+        <option value="nystagmus">Nystagmus</option>
+        <option value="cvi">Cerebral Visual Impairment</option>
+        <option value="myopic">Myopic Macular Degeneration</option>
+        <option value="charlesbonnet">Charles Bonnet Syndrome</option>
+        <option value="opticneuritis">Optic Neuritis / MS</option>
+        <option value="albinism">Albinism</option>
+      </select>
+    </div>
+
+    <div id="trials-results" style="margin-top:8px"></div>
+
+    <div class="lc" style="margin-top:24px">
+      <h2>🔍 Search all UK eye trials</h2>
+      <p>NIHR's Be Part of Research covers all UK clinical trials. Search by your specific condition for the most current recruitment status.</p>
+      <p style="margin-top:12px"><a href="https://bepartofresearch.nihr.ac.uk/results/listing/?resultsfound=true&q=eye+vision&location=" target="_blank" rel="noopener" style="color:var(--yellow);font-weight:700;font-size:1rem">Search NIHR Be Part of Research ↗</a></p>
+    </div>
+    <div class="lc">
+      <h2>🧬 Genetic testing for trial eligibility</h2>
+      <p>Many trials require a confirmed genetic diagnosis. NHS genetic testing for inherited eye conditions is free — ask your ophthalmologist for a referral to an Inherited Retinal Disease clinic. Your specific mutation determines which trials you can access.</p>
+    </div>
+    <button class="back-btn" onclick="showPage('home')" style="margin-top:8px">← Back to home</button>
+  </div>
+</div>
+<!-- ══════════════════════════════════════
+     BENEFITS CALCULATOR PAGE
+══════════════════════════════════════ -->
+<div id="page-benefits-calc" class="page" role="main" aria-label="Benefits Calculator">
+  <div class="legal-wrap">
+    <button class="back-btn" onclick="showPage('home')" aria-label="Back to home">← Back to home</button>
+    <span class="legal-eyebrow">Financial Support</span>
+    <h1>Benefits Calculator</h1>
+    <p style="font-size:0.95rem;color:var(--text2);margin-bottom:28px;line-height:1.8">Answer a few questions to find out which UK benefits and financial support you or your child may be entitled to. Rates are May 2026 figures.</p>
+
+    <div class="wb"><strong>Important:</strong> This tool gives guidance only. Always apply with support from RNIB (0303 123 9999) or Citizens Advice — applications made with help succeed far more often.</div>
+
+    <div id="bc-quiz" style="margin-top:24px">
+      <!-- Q1 -->
+      <div id="bc-q1" class="lc">
+        <h2>Who is this for?</h2>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-top:12px">
+          <button class="cf-submit" style="background:var(--card2);color:var(--text);border:2px solid var(--border)" onclick="bcAnswer('who','adult')">Myself (adult aged 16–66)</button>
+          <button class="cf-submit" style="background:var(--card2);color:var(--text);border:2px solid var(--border)" onclick="bcAnswer('who','pension')">Myself (over state pension age)</button>
+          <button class="cf-submit" style="background:var(--card2);color:var(--text);border:2px solid var(--border)" onclick="bcAnswer('who','child')">My child (under 16)</button>
+        </div>
+      </div>
+      <!-- Q2 -->
+      <div id="bc-q2" class="lc" style="display:none">
+        <h2>Are you currently working?</h2>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-top:12px">
+          <button class="cf-submit" style="background:var(--card2);color:var(--text);border:2px solid var(--border)" onclick="bcAnswer('working','yes')">Yes, employed or self-employed</button>
+          <button class="cf-submit" style="background:var(--card2);color:var(--text);border:2px solid var(--border)" onclick="bcAnswer('working','no')">No, not currently working</button>
+          <button class="cf-submit" style="background:var(--card2);color:var(--text);border:2px solid var(--border)" onclick="bcAnswer('working','student')">Student</button>
+        </div>
+      </div>
+      <!-- Q3 -->
+      <div id="bc-q3" class="lc" style="display:none">
+        <h2>How does your sight condition affect daily life?</h2>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-top:12px">
+          <button class="cf-submit" style="background:var(--card2);color:var(--text);border:2px solid var(--border)" onclick="bcAnswer('impact','severe')">Significantly — I need help with daily tasks or getting around</button>
+          <button class="cf-submit" style="background:var(--card2);color:var(--text);border:2px solid var(--border)" onclick="bcAnswer('impact','moderate')">Moderately — some tasks are difficult but I manage most things</button>
+          <button class="cf-submit" style="background:var(--card2);color:var(--text);border:2px solid var(--border)" onclick="bcAnswer('impact','mild')">Mildly — mainly affects reading or fine detail</button>
+        </div>
+      </div>
+      <!-- Q4 -->
+      <div id="bc-q4" class="lc" style="display:none">
+        <h2>Do you have a Certificate of Visual Impairment (CVI)?</h2>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-top:12px">
+          <button class="cf-submit" style="background:var(--card2);color:var(--text);border:2px solid var(--border)" onclick="bcAnswer('cvi','yes')">Yes</button>
+          <button class="cf-submit" style="background:var(--card2);color:var(--text);border:2px solid var(--border)" onclick="bcAnswer('cvi','no')">No</button>
+          <button class="cf-submit" style="background:var(--card2);color:var(--text);border:2px solid var(--border)" onclick="bcAnswer('cvi','unsure')">Not sure</button>
+        </div>
+      </div>
+      <!-- Results -->
+      <div id="bc-results" style="display:none"></div>
+      <!-- Restart -->
+      <button id="bc-restart" onclick="bcRestart()" class="back-btn" style="display:none;margin-top:16px">← Start again</button>
+    </div>
+  </div>
+</div>
 <button class="back-top" id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
 
 
@@ -6876,6 +7142,7 @@ function renderCondition(key) {
   <div class="cond-hero">
 
     <button class="back-btn" onclick="showPage('home')" aria-label="Back to conditions list">${_isWelsh ? '← Pob Cyflwr' : '← All Conditions'}</button>
+    <button onclick="window.print()" class="back-btn" style="margin-left:8px;color:var(--text2)" aria-label="Print or save as PDF"><span aria-hidden="true">🖨️</span> Print / Save PDF</button>
 
     ${(function(){
       var tips={
@@ -6896,9 +7163,19 @@ function renderCondition(key) {
       var tip=tips[key];
       if(!tip||document.body.classList.contains(tip.t)) return '';
       var tipId='theme-tip-'+key;
-      var switchBtn='<button onclick="setColour(\''+tip.t+'\');document.getElementById(\''+tipId+'\').remove()" style="background:none;border:none;color:var(--yellow);font-family:var(--font);font-size:0.875rem;font-weight:800;cursor:pointer;text-decoration:underline;padding:0;margin-left:8px">Switch now</button>';
+
       var closeBtn='<button onclick="document.getElementById(\''+tipId+'\').remove()" aria-label="Dismiss suggestion" style="float:right;background:none;border:none;color:var(--text2);cursor:pointer;font-size:1.1rem;padding:0;line-height:1">×</button>';
-      return '<div id="'+tipId+'" role="note" aria-live="polite" style="background:var(--card2);border:2px solid var(--yellow);border-radius:12px;padding:12px 16px;margin-bottom:16px;font-size:0.875rem;line-height:1.6">'+closeBtn+'💡 '+tip.m+switchBtn+'</div>';
+      var tipStyles = {
+        'lb':   'background:#d4eef8;border-color:#0055a5;color:#000',
+        'dark': 'background:#1a1a2e;border-color:#f5b800;color:#e8e8e8',
+        'hc':   'background:#000;border-color:#fff;color:#fff',
+        'll':   'background:#1a1205;border-color:#f5b800;color:#e8d5b0',
+        'yb':   'background:#111;border-color:#ff0;color:#ff0'
+      };
+      var tStyle = tipStyles[tip.t] || 'background:var(--card2);border-color:var(--yellow);color:var(--text)';
+      var btnStyle = tip.t === 'dark' || tip.t === 'll' || tip.t === 'hc' ? 'color:#f5b800' : 'color:#0055a5';
+      if (tip.t === 'hc') btnStyle = 'color:#fff';
+      return '<div id="'+tipId+'" role="note" aria-live="polite" style="'+tStyle+';border:2px solid;border-radius:12px;padding:12px 16px;margin-bottom:16px;font-size:0.875rem;line-height:1.6">'+closeBtn+'💡 '+tip.m+'<button onclick="themeTipSwitch(\''+tipId+'\',\''+tip.t+'\',\''+tip.l+'\')" style="background:none;border:none;font-family:var(--font);font-size:0.875rem;font-weight:800;cursor:pointer;text-decoration:underline;padding:0;margin-left:8px;'+btnStyle+'">Switch now</button></div>';
     })()}
 
     <span class="cond-hero-eyebrow">${_isWelsh ? 'Canllaw Cyflyrau\'r Llygad' : 'Eye Condition Guide'}</span>
@@ -6911,7 +7188,15 @@ function renderCondition(key) {
 
   <div class="cond-page-inner">
 
-
+    <!-- Helpline call button — prominent at top -->
+    ${d.helpline ? `<a href="tel:${d.helpline.number.replace(/\s/g,'')}" class="cond-helpline-btn" style="display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--yellow);color:#000;border-radius:14px;padding:14px 18px;margin-bottom:20px;text-decoration:none;font-family:var(--font)" aria-label="Call ${d.helpline.org}">
+      <div>
+        <div style="font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:2px">${d.helpline.org}</div>
+        <div style="font-size:1.2rem;font-weight:900">${d.helpline.number}</div>
+        <div style="font-size:0.72rem;margin-top:1px">${d.helpline.hours}</div>
+      </div>
+      <span style="font-size:1.8rem" aria-hidden="true">📞</span>
+    </a>` : ''}
 
     <div class="acc-item" id="acc-about-${key}">
 
@@ -7436,7 +7721,7 @@ function speakAccSection(accBody, btn) {
   function addListenButtons(container) {
     if (!container) return;
     // Find h2 headings that don't already have a listen button
-    var headings = container.querySelectorAll('h2:not(.sr):not([data-listen-added])');
+    var headings = container.querySelectorAll('h2:not(.sr):not([data-listen-added]), h3:not(.sr):not([data-listen-added])');
     headings.forEach(function(h2) {
       if (h2.closest('.acc-item')) return; // skip accordion headings (already have listen)
       if (h2.closest('.a11y-bar')) return;
@@ -7564,6 +7849,7 @@ function showConditionWelsh(key) {
 
   document.documentElement.setAttribute('lang', 'cy');
 
+  document.documentElement.lang = _isWelsh ? 'cy' : 'en-GB';
   var btn = document.getElementById('welsh-toggle');
 
   if (btn) { btn.classList.add('active'); btn.textContent = 'EN'; }
@@ -7633,7 +7919,10 @@ function toggleWelsh() {
 
     btn.setAttribute('aria-label', _isWelsh ? 'Newid i Saesneg' : 'Newid i Gymraeg');
 
-    btn.textContent = _isWelsh ? 'EN' : 'CY';
+    var wi = document.getElementById('welsh-icon');
+    var wl = document.getElementById('welsh-label');
+    if (wi) wi.textContent = _isWelsh ? 'EN' : 'CY';
+    if (wl) wl.textContent = _isWelsh ? 'English' : 'Welsh';
 
   }
 
@@ -7745,26 +8034,45 @@ var _scrollPos = {};
 
 
 function applyNRState() {
-  if (localStorage.getItem('vh-narrow') === '1') {
-    document.body.classList.add('nr-active');
-    var b = document.getElementById('narrow-toggle');
-    if (b) { b.setAttribute('aria-pressed','true'); b.style.background='var(--yellow)'; b.style.color='#000'; }
-  } else {
-    document.body.classList.remove('nr-active');
-    var b = document.getElementById('narrow-toggle');
-    if (b) { b.setAttribute('aria-pressed','false'); b.style.background=''; b.style.color=''; }
-  }
+  var on = localStorage.getItem('vh-narrow') === '1';
+  document.body.classList.toggle('nr-active', on);
+  var b = document.getElementById('narrow-toggle');
+  if (b) b.setAttribute('aria-pressed', on ? 'true' : 'false');
 }
 
 window.toggleNarrowReading = function() {
   var on = document.body.classList.toggle('nr-active');
+  document.body.classList.toggle('narrow-reading', on);
   try { localStorage.setItem('vh-narrow', on ? '1' : '0'); } catch(e) {}
   var b = document.getElementById('narrow-toggle');
-  if (b) { b.setAttribute('aria-pressed', on ? 'true' : 'false'); }
+  if (b) { b.setAttribute('aria-pressed', on ? 'true' : 'false'); b.blur(); }
   srAnnounce(on ? 'Narrow reading on' : 'Narrow reading off');
 };
 
 function showPage(name) {
+
+  // Announce to screen readers
+  var _srPageNames = {
+    home:'Home page', livingwell:'Everyday Guide', glossary:'Glossary',
+    eyehealth:'Eye Health Basics', employment:'Employment and Sight Loss',
+    questions:'Questions to Ask Your Doctor', localsupport:'Find Local Support',
+    children:'For Parents', contact:'Contact Us', help:'Help and Support',
+    'benefits-calc':'Benefits Calculator', trials:'Clinical Trials Finder',
+    eclo:'Find Your ECLO', privacy:'Privacy Policy',
+    disclaimer:'How We Write Our Content', a11y:'Accessibility Statement'
+  };
+  srAnnounce('Navigated to: ' + (_srPageNames[name] || name));
+
+  // Update sticky title for zoomed users
+  var _pageNames = {
+    home:'Vision Hub', livingwell:'Everyday Guide', glossary:'Glossary',
+    eyehealth:'Eye Health Basics', employment:'Employment', questions:'Questions to Ask',
+    localsupport:'Local Support', children:'For Parents', contact:'Contact Us',
+    help:'Help & Support', 'benefits-calc':'Benefits Calculator',
+    trials:'Clinical Trials', eclo:'Find Your ECLO', privacy:'Privacy Policy',
+    disclaimer:'How We Write Our Content', a11y:'Accessibility'
+  };
+  updateStickyTitle(_pageNames[name] || 'Vision Hub', name !== 'home' ? function(){ showPage('home'); } : null);
 
   // If Welsh active and going home, show Welsh home
 
@@ -7822,15 +8130,47 @@ function showPage(name) {
 
   applyNRState();
 
+  // Add RNIB helpline strip to legal pages
+  setTimeout(function() {
+    var lw = document.querySelector('.page.active .legal-wrap');
+    if (lw && !lw.querySelector('.rnib-strip')) {
+      var strip = document.createElement('div');
+      strip.className = 'rnib-strip';
+      strip.style.cssText = 'background:var(--card);border:2px solid var(--yellow);border-radius:12px;padding:14px 18px;margin:24px 0 8px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap';
+      strip.innerHTML = '<span style="font-size:0.88rem;color:var(--text2)"><strong style="color:var(--text)">Need help?</strong> RNIB helpline — specialists for all sight conditions</span><a href="tel:03031239999" style="background:var(--yellow);color:#000;font-family:var(--font);font-size:0.95rem;font-weight:900;padding:10px 20px;border-radius:50px;text-decoration:none;min-height:44px;display:inline-flex;align-items:center;white-space:nowrap">📞 0303 123 9999</a>';
+      var backs = lw.querySelectorAll('.back-btn');
+      var last = backs[backs.length - 1];
+      if (last) lw.insertBefore(strip, last);
+    }
+  }, 50);
+
   // Add listen buttons to section headings
   var _activePage = document.querySelector('.page.active');
   if (_activePage) setTimeout(function(){ addListenButtons(_activePage); }, 100);
+
+  // Add print button to legal pages if not already there
+  var _lw = _activePage && _activePage.querySelector('.legal-wrap');
+  if (_lw && !_lw.querySelector('.print-btn-added')) {
+    var _pb = document.createElement('button');
+    _pb.className = 'back-btn print-btn-added';
+    _pb.style.cssText = 'color:var(--text2);margin-bottom:16px';
+    _pb.setAttribute('aria-label', 'Print or save as PDF');
+    _pb.innerHTML = '🖨️ Print / Save PDF';
+    _pb.onclick = function() { window.print(); };
+    var _firstBack = _lw.querySelector('.back-btn');
+    if (_firstBack) _firstBack.parentNode.insertBefore(_pb, _firstBack.nextSibling);
+  }
 
 }
 
 
 
 function showCondition(key) {
+  var d = DATA[key];
+  if (d) {
+    updateStickyTitle(d.name, function(){ showPage('home'); });
+    srAnnounce('Navigated to: ' + d.name + ' condition guide');
+  }
 
   // Save home scroll position
 
@@ -8537,11 +8877,26 @@ if ('serviceWorker' in navigator) {
   };
 
   // Dyslexia-friendly font
+  window.toggleFocusMode = function() {
+    var on = document.body.classList.toggle('focus-mode');
+    var b = document.getElementById('focus-toggle');
+    if (b) { b.setAttribute('aria-pressed', on ? 'true' : 'false'); b.blur(); }
+    srAnnounce(on ? 'Focus mode on — sidebar and navigation hidden' : 'Focus mode off');
+  };
+
+  window.toggleSpacing = function() {
+    var on = document.body.classList.toggle('wide-spacing');
+    try { localStorage.setItem('vh-spacing', on ? '1' : '0'); } catch(e) {}
+    var b = document.getElementById('spacing-toggle');
+    if (b) { b.setAttribute('aria-pressed', on ? 'true' : 'false'); b.blur(); }
+    srAnnounce(on ? 'Wide line spacing on' : 'Line spacing normal');
+  };
+
   window.toggleDyslexic = function(){
     var on = document.body.classList.toggle('dyslexic');
     try{ localStorage.setItem('dyslexic', on?'1':'0'); }catch(e){}
     var b = document.getElementById('dys-toggle');
-    if(b) b.setAttribute('aria-pressed', on?'true':'false');
+    if(b) { b.setAttribute('aria-pressed', on?'true':'false'); b.blur(); }
     srAnnounce(on ? 'Dyslexia-friendly font on' : 'Dyslexia-friendly font off');
   };
   if(localStorage.getItem('dyslexic')==='1'){
@@ -8554,7 +8909,7 @@ if ('serviceWorker' in navigator) {
     var on = document.body.classList.toggle('reading-ruler');
     try{ localStorage.setItem('rule', on?'1':'0'); }catch(e){}
     var b = document.getElementById('rule-toggle');
-    if(b) b.setAttribute('aria-pressed', on?'true':'false');
+    if(b) { b.setAttribute('aria-pressed', on?'true':'false'); b.blur(); }
     srAnnounce(on ? 'Reading ruler on' : 'Reading ruler off');
   };
   document.addEventListener('mousemove', function(e){
@@ -8712,80 +9067,66 @@ if ('serviceWorker' in navigator) {
   }
 
   // ══ TEXT TO SPEECH ══
-  var _ttsUtter = null;
   var _ttsActive = false;
+  var _ttsClosed = false;
+  var _stickyActivePage = 'home';
+  var _ttsEl = null;      // current element being spoken
+  var _ttsParas = [];     // array of {el, text} paragraph objects
+  var _ttsParaIdx = 0;
 
-  // Get readable text from an element, cleaned for natural speech
-  function ttsReadableText(el) {
-    if (!el) return '';
-    var clone = el.cloneNode(true);
-    // Remove UI noise
-    clone.querySelectorAll(
-      'script,style,button,.acc-btn,.acc-listen,.back-btn,.share-bar,' +
-      '.a11y-bar,.search-wrap,.sidebar,.desktop-sidebar,[aria-hidden="true"],' +
-      '.cond-list,.cond-arrow,.search-icon,.tts-status,.acc-num'
-    ).forEach(function(j) { j.remove(); });
-
-    var text = clone.innerText || clone.textContent || '';
-
-    // Expand abbreviations
-    text = text.replace(/\bAMD\b/g, 'Age-related macular degeneration');
-    text = text.replace(/\bRP\b/g, 'retinitis pigmentosa');
-    text = text.replace(/\bLCA\b/g, 'Leber congenital amaurosis');
-    text = text.replace(/\bCVI\b/g, 'cerebral visual impairment');
-    text = text.replace(/\bDMO\b/g, 'diabetic macular oedema');
-    text = text.replace(/\bPIP\b/g, 'Personal Independence Payment');
-    text = text.replace(/\bESA\b/g, 'Employment and Support Allowance');
-    text = text.replace(/\bNHS\b/g, 'National Health Service');
-    text = text.replace(/\bECLO\b/g, 'Eye Clinic Liaison Officer');
-    text = text.replace(/\bRNIB\b/g, 'Royal National Institute of Blind People');
-    text = text.replace(/\bGP\b/g, 'G.P.');
-    text = text.replace(/\bUK\b/g, 'United Kingdom');
-
-    // Clean symbols
-    text = text.replace(/[▼▲▾▴←→◀▶✦›‹•◉◈⬡]/g, '');
-    text = text.replace(/[\uD83C-\uDBFF][\uDC00-\uDFFF]/g, ' ');
-
-    // Add pauses after headings (lines that don't end in punctuation)
-    text = text.replace(/([^\.\!\?\:\,\;])(\n)([A-Z\u00C0-\u024F])/g, '$1. $3');
-
-    // Clean whitespace
-    text = text.replace(/\n{3,}/g, '\n\n');
-    text = text.replace(/[ \t]{2,}/g, ' ');
-    text = text.trim();
-
-    return text;
+  // Get readable text, expanding abbreviations
+  function ttsClean(text) {
+    return text
+      .replace(/\bAMD\b/g, 'Age-related macular degeneration')
+      .replace(/\bRP\b/g, 'retinitis pigmentosa')
+      .replace(/\bLCA\b/g, 'Leber congenital amaurosis')
+      .replace(/\bCVI\b/g, 'cerebral visual impairment')
+      .replace(/\bDMO\b/g, 'diabetic macular oedema')
+      .replace(/\bPIP\b/g, 'Personal Independence Payment')
+      .replace(/\bESA\b/g, 'Employment and Support Allowance')
+      .replace(/\bNHS\b/g, 'National Health Service')
+      .replace(/\bECLO\b/g, 'Eye Clinic Liaison Officer')
+      .replace(/\bRNIB\b/g, 'Royal National Institute of Blind People')
+      .replace(/\bGP\b/g, 'G.P.')
+      .replace(/\bUK\b/g, 'United Kingdom')
+      .replace(/[▼▲▾▴←→◀▶✦›‹•◉◈⬡]/g, '')
+      .replace(/\s+/g, ' ').trim();
   }
 
-  // Split text into natural sentence chunks for sequential reading
+  // Split text into sentences (Android-compatible, no lookbehind)
   function ttsSplitSentences(text) {
-    // Android-safe sentence splitting - no lookbehind
-    var sentences = [];
-    // Add space after sentence-ending punctuation to help splitting
-    var t = text
-      .replace(/([.!?])\s+/g, '$1\x0a')
-      .replace(/\x0a+/g, '\x0a');
-    var lines = t.split('\x0a');
-    lines.forEach(function(line) {
-      line = line.trim();
-      if (line.length > 4) sentences.push(line);
-    });
-    return sentences.length > 0 ? sentences : [text.trim()];
+    var marked = text.replace(/([.!?])\s+/g, '$1\x0a').replace(/\x0a+/g, '\x0a');
+    return marked.split('\x0a').map(function(s){ return s.trim(); }).filter(function(s){ return s.length > 4; });
   }
 
-  function ttsGetEl() {
-    var section = (document.getElementById('tts-section') || {}).value || 'current';
-    var map = {
-      news: '.news-box', lw: '#page-livingwell',
-      questions: '#page-questions', employment: '#page-employment',
-      glossary: '#page-glossary', eyehealth: '#page-eyehealth',
-      benefits: '#page-employment'
-    };
-    if (section !== 'current' && map[section]) {
-      var el = document.querySelector(map[section]);
-      if (el) return el;
-    }
-    return document.querySelector('.page.active') || document.body;
+  // Collect paragraphs from an element for TTS
+  function ttsGetParagraphs(el) {
+    if (!el) return [];
+    var paras = [];
+    // Walk all text-bearing block elements
+    var nodes = el.querySelectorAll('p, h1, h2, h3, li, .lw-tip p, .lw-tip h3, dt, dd, .wb');
+    nodes.forEach(function(node) {
+      // Skip navigation buttons and UI chrome
+      if (node.closest('.acc-btn, .back-btn, .share-btn, .acc-listen, .a11y-bar, .sidebar')) return;
+      if (node.closest('button, [role="button"]')) return;
+      var text = ttsClean(node.innerText || node.textContent || '');
+      // Strip emoji characters from text before checking length
+      text = text.replace(/[\u{1F000}-\u{1FFFF}]/gu, '').replace(/[\u{2600}-\u{27FF}]/gu, '').trim();
+      if (text.length > 10) paras.push({ el: node, text: text });
+    });
+    return paras;
+  }
+
+  // Highlight a paragraph element
+  function ttsHighlightPara(el) {
+    // Remove previous highlights
+    document.querySelectorAll('.tts-para-active').forEach(function(e) {
+      e.classList.remove('tts-para-active');
+      e.style.removeProperty('font-size');
+    });
+    if (!el) return;
+    el.classList.add('tts-para-active');
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
   window.ttsPlay = function() {
@@ -8798,85 +9139,123 @@ if ('serviceWorker' in navigator) {
     synth.cancel();
     _ttsActive = true;
 
-    // Small delay after cancel gives browser time to release audio on mobile
-    setTimeout(function() {
+    var section = (document.getElementById('tts-section') || {}).value || 'current';
+    var map = { news: '.news-box', lw: '#page-livingwell', questions: '#page-questions',
+                employment: '#page-employment', glossary: '#page-glossary',
+                eyehealth: '#page-eyehealth', benefits: '#page-employment' };
+    var el = (section !== 'current' && map[section])
+      ? document.querySelector(map[section])
+      : (document.querySelector('.page.active') || document.body);
 
-    var el = ttsGetEl();
-    var text = ttsReadableText(el);
+    _ttsParas = ttsGetParagraphs(el);
+    if (!_ttsParas.length) { alert('No readable content found.'); return; }
 
-    if (!text || text.length < 5) {
-      alert('No readable content found on this page.');
-      return;
-    }
-
+    _ttsParaIdx = 0;
     var speed = parseFloat((document.getElementById('tts-speed') || {}).value || '0.85');
     var vname = (document.getElementById('tts-voice-sel') || {}).value || '';
-
-    // Split into sentences for natural flow
-    var sentences = ttsSplitSentences(text);
-    var idx = 0;
-
+    var enlarge = document.getElementById('tts-enlarge') && document.getElementById('tts-enlarge').checked;
     var pb = document.getElementById('tts-play-btn');
     var st = document.getElementById('tts-status');
-    if (pb) pb.textContent = '\u23f8 Reading...';
-    if (st) st.textContent = 'Reading ' + sentences.length + ' sentence' + (sentences.length !== 1 ? 's' : '') + '...';
 
-    function speakNext(voices) {
-      if (!_ttsActive || idx >= sentences.length) {
+    function speakPara(voices) {
+      if (!_ttsActive || _ttsParaIdx >= _ttsParas.length) {
         _ttsActive = false;
+        ttsHighlightPara(null);
         if (pb) pb.textContent = '\u25b6 Play';
-        if (st) st.textContent = idx >= sentences.length ? 'Finished.' : 'Stopped.';
+        if (st) st.textContent = _ttsParaIdx >= _ttsParas.length ? 'Finished.' : 'Stopped.';
         return;
       }
 
-      var sentence = sentences[idx].trim();
-      idx++;
+      var para = _ttsParas[_ttsParaIdx];
+      _ttsParaIdx++;
 
-      if (!sentence) { speakNext(voices); return; }
+      // Highlight and optionally enlarge
+      ttsHighlightPara(para.el);
+      if (enlarge) { para.el.style.fontSize = '1.3em'; }
+      if (st) st.textContent = 'Reading ' + _ttsParaIdx + ' of ' + _ttsParas.length;
+      var ms = document.getElementById('tts-mini-status');
+      if (ms) ms.textContent = _ttsParaIdx + ' / ' + _ttsParas.length;
 
-      _ttsUtter = new SpeechSynthesisUtterance(sentence);
-      _ttsUtter.lang = 'en-GB';
-      _ttsUtter.rate = speed;
-      _ttsUtter.volume = 1;
-      _ttsUtter.pitch = 1;
+      // Split paragraph into sentences
+      var sentences = ttsSplitSentences(para.text);
+      var sentIdx = 0;
 
-      if (vname && voices && voices.length) {
-        var v = voices.find(function(v) { return v.name === vname; });
-        if (v) _ttsUtter.voice = v;
+      function speakSent() {
+        if (!_ttsActive || sentIdx >= sentences.length) {
+          setTimeout(function() { speakPara(voices); }, 50);
+          return;
+        }
+        var utt = new SpeechSynthesisUtterance(sentences[sentIdx++]);
+        utt.lang = 'en-GB';
+        utt.rate = speed;
+        utt.volume = 1;
+        utt.pitch = 1;
+        if (vname && voices) {
+          var v = voices.find(function(v) { return v.name === vname; });
+          if (v) utt.voice = v;
+        }
+        utt.onend = function() { setTimeout(speakSent, 30); };
+        utt.onerror = function(e) { if (e.error !== 'interrupted') setTimeout(speakSent, 30); };
+        synth.speak(utt);
       }
 
-      if (st) st.textContent = 'Sentence ' + idx + ' of ' + sentences.length;
-
-      _ttsUtter.onend = function() { setTimeout(function(){ speakNext(voices); }, 30); };
-      _ttsUtter.onerror = function(e) {
-        if (e.error === 'interrupted') return;
-        setTimeout(function(){ speakNext(voices); }, 30);
-      };
-
-      synth.speak(_ttsUtter);
+      setTimeout(speakSent, 100);
     }
 
-    var voices = synth.getVoices();
-    if (voices.length) {
-      speakNext(voices);
-    } else {
-      if (st) st.textContent = 'Loading voice...';
-      synth.onvoiceschanged = function() {
-        synth.onvoiceschanged = null;
-        speakNext(synth.getVoices());
-      };
-    }
+    if (pb) pb.textContent = '\u23f8 Reading...';
+    ttsPanelMinimise();
 
-    }, 150); // end of cancel timeout
+    ttsPanelMinimise();
+    setTimeout(function() {
+      var voices = synth.getVoices();
+      if (voices.length) {
+        speakPara(voices);
+      } else {
+        if (st) st.textContent = 'Loading voice...';
+        synth.onvoiceschanged = function() {
+          synth.onvoiceschanged = null;
+          speakPara(synth.getVoices());
+        };
+      }
+    }, 150);
   };
 
   window.ttsStop = function() {
     _ttsActive = false;
     window.speechSynthesis && window.speechSynthesis.cancel();
+    ttsHighlightPara(null);
     var pb = document.getElementById('tts-play-btn');
     var st = document.getElementById('tts-status');
     if (pb) pb.textContent = '\u25b6 Play';
     if (st) st.textContent = 'Stopped.';
+    // Hide mini bar and re-show full panel (reading finished or stopped mid-read)
+    var mini = document.getElementById('tts-mini');
+    if (mini) mini.style.display = 'none';
+    var panel = document.getElementById('tts-panel');
+    if (!_ttsClosed && panel && panel.style.display === 'none') {
+      panel.style.display = 'block';
+    }
+    // Clear orange from all section listen buttons
+    document.querySelectorAll('.acc-listen[aria-pressed="true"]').forEach(function(b) {
+      b.setAttribute('aria-pressed', 'false');
+    });
+  };
+
+  // Close TTS entirely (X button) - stops reading and hides everything
+  window.ttsClose = function() {
+    _ttsActive = false;
+    _ttsClosed = true;
+    window.speechSynthesis && window.speechSynthesis.cancel();
+    ttsHighlightPara(null);
+    var pb = document.getElementById('tts-play-btn');
+    if (pb) pb.textContent = '\u25b6 Play';
+    var st = document.getElementById('tts-status');
+    if (st) st.textContent = 'Choose what to read, then press Play';
+    document.getElementById('tts-panel').style.display = 'none';
+    document.getElementById('tts-mini').style.display = 'none';
+    var tb = document.getElementById('tts-toggle');
+    if (tb) tb.setAttribute('aria-pressed', 'false');
+    setTimeout(function() { _ttsClosed = false; }, 300);
   };
 
   
@@ -8899,6 +9278,32 @@ if ('serviceWorker' in navigator) {
               .forEach(function(v) { var o = document.createElement('option'); o.value = v.name; o.textContent = v.name + ' (' + v.lang + ')'; sel.appendChild(o); });
           }
         };
+
+  // Minimise panel when playing starts, re-expand when stopped
+  window.ttsPanelExpand = function() {
+    document.getElementById('tts-mini').style.display = 'none';
+    document.getElementById('tts-panel').style.display = 'block';
+  };
+
+  window.ttsPanelMinimise = function() {
+    var panel = document.getElementById('tts-panel');
+    if (panel) panel._wasOpen = panel.style.display !== 'none';
+    if (panel) panel.style.display = 'none';
+    var mini = document.getElementById('tts-mini');
+    if (mini) mini.style.display = 'flex';
+  };
+
+  // Handle section change - navigate to that page
+  window.ttsHandleSectionChange = function(val) {
+    var pageMap = {
+      news: 'home', benefits: 'employment', lw: 'livingwell',
+      questions: 'questions', employment: 'employment',
+      glossary: 'glossary', eyehealth: 'eyehealth'
+    };
+    if (val !== 'current' && pageMap[val]) {
+      showPage(pageMap[val]);
+    }
+  };
         var v = synth.getVoices();
         if (v.length) loadV();
         else { synth.onvoiceschanged = function(){ loadV(); synth.onvoiceschanged = null; }; }
@@ -8981,6 +9386,287 @@ function copyAISLetter(){
   try{ document.execCommand('copy'); if(window.srAnnounce) srAnnounce('Letter copied to clipboard'); }
   catch(e){ alert('Press Ctrl+C / Cmd+C to copy.'); }
 }
+
+// == BENEFITS CALCULATOR ==
+var _bcAnswers = {};
+function bcCard(title, amount, desc, link, linkText) {
+  return '<div class="lc" style="border-color:var(--yellow);margin-bottom:10px">' +
+    '<h2 style="color:var(--yellow)">' + title + '</h2>' +
+    (amount ? '<p style="font-size:1.1rem;font-weight:900;color:var(--text);margin-bottom:8px">' + amount + '</p>' : '') +
+    '<p>' + desc + '</p>' +
+    (link ? '<p style="margin-top:10px"><a href="' + link + '" target="_blank" rel="noopener" style="color:var(--yellow);font-weight:700">' + linkText + ' &rarr;</a></p>' : '') +
+    '</div>';
+}
+function bcAnswer(q, val) {
+  _bcAnswers[q] = val;
+  ['bc-q1','bc-q2','bc-q3','bc-q4','bc-results','bc-restart'].forEach(function(id) {
+    var el = document.getElementById(id); if (el) el.style.display = 'none';
+  });
+  if (q === 'who') {
+    if (val === 'child') { bcShowChildResults(); return; }
+    if (val === 'pension') { bcShowPensionResults(); return; }
+    document.getElementById('bc-q2').style.display = 'block';
+  } else if (q === 'working') {
+    document.getElementById('bc-q3').style.display = 'block';
+  } else if (q === 'impact') {
+    document.getElementById('bc-q4').style.display = 'block';
+  } else if (q === 'cvi') {
+    bcShowAdultResults();
+  }
+}
+function bcShowAdultResults() {
+  var impact = _bcAnswers.impact, working = _bcAnswers.working, hasCvi = _bcAnswers.cvi;
+  var cards = '', headline = '';
+  if (impact === 'severe') {
+    headline = 'Based on your answers, you are likely entitled to several significant benefits.';
+    cards += bcCard('PIP - Daily Living (Enhanced)', '&pound;114.60/week (May 2026)', 'For daily living difficulties caused by sight loss. RNIB will help you apply for free.', 'https://www.gov.uk/pip', 'Apply at gov.uk/pip');
+    cards += bcCard('PIP - Mobility (Enhanced)', '&pound;80.00/week (May 2026)', 'Enhanced rate qualifies for Motability Scheme.', 'https://www.gov.uk/pip', 'Apply at gov.uk/pip');
+    if (working === 'yes') cards += bcCard('Access to Work', 'Up to &pound;69,260/year', 'Grant for specialist equipment and support at work. Apply BEFORE buying anything.', 'https://www.gov.uk/access-to-work', 'Apply at gov.uk');
+    if (working === 'no') cards += bcCard('Universal Credit / ESA', 'Varies', 'If you cannot work, you may qualify for Universal Credit with Limited Capability for Work.', 'https://www.gov.uk/universal-credit', 'Check at gov.uk');
+  } else if (impact === 'moderate') {
+    headline = 'You are likely entitled to at least PIP Daily Living at standard rate.';
+    cards += bcCard('PIP - Daily Living (Standard)', '&pound;43.00/week (May 2026)', 'Even moderate sight loss usually qualifies. Do not assume you will not qualify.', 'https://www.gov.uk/pip', 'Apply at gov.uk/pip');
+    if (working === 'yes') cards += bcCard('Access to Work', 'Up to &pound;69,260/year', 'Funds screen magnification, large print, and adjusted lighting at work.', 'https://www.gov.uk/access-to-work', 'Apply at gov.uk');
+  } else {
+    headline = 'Your situation may still qualify for support.';
+    cards += bcCard('Free NHS Eye Tests', 'Free', 'A diagnosed sight condition means free NHS eye tests and enhanced optical vouchers.', 'https://www.nhs.uk', 'Check at nhs.uk');
+  }
+  if (hasCvi === 'yes') {
+    cards += bcCard('Free Bus Pass', 'Free', 'CVI registration qualifies you for a free bus pass. Apply via your local council.', 'https://www.gov.uk/apply-for-disabled-bus-pass', 'Apply at gov.uk');
+    cards += bcCard('Blue Badge', 'Free', 'Severely sight impaired registration = automatic Blue Badge eligibility.', 'https://www.gov.uk/apply-blue-badge', 'Apply at gov.uk');
+    cards += bcCard('Council Tax Reduction', 'Up to 25% off', 'Tell your local council you have a CVI.', '', '');
+    cards += bcCard('50% TV Licence Discount', '&pound;79.85 saving/year', 'SSI/blind registration. Apply at tvlicensing.co.uk.', 'https://www.tvlicensing.co.uk', 'Apply');
+  } else {
+    cards += bcCard('Get Your CVI First', 'Unlocks major benefits', 'A CVI from your ophthalmologist is free and unlocks bus pass, Blue Badge, council tax reduction and more.', '', '');
+  }
+  if (hasCvi === 'yes' && impact === 'severe') {
+    cards += bcCard("Blind Person's Tax Allowance", '&pound;3,130 added to Personal Allowance', 'Registered SSI? Tell HMRC - not applied automatically.', 'https://www.gov.uk/blind-persons-allowance', 'Claim at gov.uk');
+  }
+  cards += '<div class="wb" style="margin-top:16px"><strong>Next step:</strong> Call RNIB on <a href="tel:03031239999" style="color:var(--yellow);font-weight:700">0303 123 9999</a> for a free personalised benefits check.</div>';
+  var r = document.getElementById('bc-results');
+  r.innerHTML = '<div class="lc" style="margin-bottom:16px"><h2>Your Results</h2><p>' + headline + '</p></div>' + cards;
+  r.style.display = 'block';
+  document.getElementById('bc-restart').style.display = 'inline-flex';
+  r.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+function bcShowPensionResults() {
+  var cards = '';
+  cards += bcCard('Attendance Allowance', '&pound;73.90 or &pound;110.40/week', 'For over state pension age with care needs.', 'https://www.gov.uk/attendance-allowance', 'Apply at gov.uk');
+  cards += bcCard('Pension Credit', 'Tops up to &pound;218.15/week', 'Widely unclaimed. Unlocks free dental, rent help, Council Tax Reduction.', 'https://www.gov.uk/pension-credit', 'Check at gov.uk');
+  cards += bcCard('CVI Benefits', 'Bus pass, Blue Badge, TV licence', 'Free from your ophthalmologist. Unlocks multiple benefits.', '', '');
+  cards += '<div class="wb" style="margin-top:16px"><strong>Next step:</strong> Call Age UK on <a href="tel:08001696565" style="color:var(--yellow);font-weight:700">0800 169 6565</a> for a free benefits check.</div>';
+  var r = document.getElementById('bc-results');
+  r.innerHTML = '<div class="lc" style="margin-bottom:16px"><h2>Your Results</h2><p>As an older person with a sight condition, you have several specific entitlements.</p></div>' + cards;
+  r.style.display = 'block'; document.getElementById('bc-restart').style.display = 'inline-flex';
+  r.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+function bcShowChildResults() {
+  var cards = '';
+  cards += bcCard('Disability Living Allowance (DLA)', 'Up to &pound;194.60/week', 'Both Care and Mobility components may apply. RNIB will help free.', 'https://www.gov.uk/disability-living-allowance-children', 'Apply at gov.uk');
+  cards += bcCard('EHC Plan', 'Legally binding school support', 'Funds QTVI, specialist technology, large print, and extra exam time.', 'https://www.gov.uk/children-with-special-educational-needs', 'Guidance at gov.uk');
+  cards += bcCard("Carer's Allowance", '&pound;86.45/week', 'If you provide 35+ hours of care per week.', 'https://www.gov.uk/carers-allowance', 'Check at gov.uk');
+  cards += '<div class="wb" style="margin-top:16px"><strong>Next step:</strong> Call RNIB on <a href="tel:03031239999" style="color:var(--yellow);font-weight:700">0303 123 9999</a> for free help with DLA forms.</div>';
+  var r = document.getElementById('bc-results');
+  r.innerHTML = '<div class="lc" style="margin-bottom:16px"><h2>Your Results</h2><p>Children with sight conditions are entitled to significant support.</p></div>' + cards;
+  r.style.display = 'block'; document.getElementById('bc-restart').style.display = 'inline-flex';
+  r.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+function bcRestart() {
+  _bcAnswers = {};
+  ['bc-q2','bc-q3','bc-q4','bc-results','bc-restart'].forEach(function(id) {
+    var el = document.getElementById(id); if (el) el.style.display = 'none';
+  });
+  document.getElementById('bc-q1').style.display = 'block';
+  document.getElementById('bc-q1').scrollIntoView({ behavior: 'smooth' });
+}
+
+// == CLINICAL TRIALS FINDER ==
+var TRIALS_DATA = {
+  stargardts:[
+    {tag:'Phase 1/2',title:'SpliceBio SB-007 - ASTRA Trial (Oxford)',body:'Covers all ABCA4 mutations. Recruiting at Oxford.',link:'https://splice.bio'},
+    {tag:'Phase 1/2',title:'AAVantgarde AAVB-039 - CELESTE (UK)',body:'Dual-vector AAV gene therapy. UK MHRA approved. Recruiting UK and US.',link:'https://www.aavantgarde.com'},
+    {tag:'Phase 3 Complete',title:'Tinlarebant (Belite Bio)',body:'FDA approval sought 2026. Not yet available.',link:'https://retinauk.org.uk/medical-research/'},
+    {tag:'Find More',title:'NIHR Be Part of Research',body:'Search current UK Stargardt trials.',link:'https://bepartofresearch.nihr.ac.uk/results/listing/?resultsfound=true&q=Stargardt&location='}
+  ],
+  amd:[
+    {tag:'NHS Approved',title:'Pegcetacoplan (Syfovre) - Geographic Atrophy',body:'First approved treatment for advanced dry AMD. NICE approved.',link:'https://www.nice.org.uk/guidance/ta897'},
+    {tag:'NHS Approved',title:'Faricimab (Vabysmo) - Wet AMD',body:'Up to every 4 months. NICE approved.',link:'https://www.nice.org.uk/guidance/ta897'},
+    {tag:'Phase 3',title:'4D-150 Gene Therapy',body:'Single injection for continuous anti-VEGF. Data expected 2027.',link:'https://clinicaltrials.gov'},
+    {tag:'Find More',title:'NIHR Be Part of Research',body:'',link:'https://bepartofresearch.nihr.ac.uk/results/listing/?resultsfound=true&q=macular+degeneration&location='}
+  ],
+  rp:[
+    {tag:'NHS Approved',title:'Luxturna - RPE65 Mutations',body:'Available now at NHS specialist centres.',link:'https://www.nice.org.uk/guidance/hst11'},
+    {tag:'Phase 2/3',title:'MeiraGTx RPGR Gene Therapy',body:'X-linked RP. Significant visual field preservation at 12 months.',link:'https://retinauk.org.uk/medical-research/'},
+    {tag:'Find More',title:'NIHR Be Part of Research',body:'',link:'https://bepartofresearch.nihr.ac.uk/results/listing/?resultsfound=true&q=retinitis+pigmentosa&location='}
+  ],
+  lca:[
+    {tag:'NHS Approved',title:'Luxturna - RPE65-LCA',body:'Available at NHS specialist centres.',link:'https://www.nice.org.uk/guidance/hst11'},
+    {tag:'Phase 1/2',title:'EDIT-101 CRISPR - CEP290',body:'Most common LCA gene. Phase 1/2 results encouraging.',link:'https://retinauk.org.uk/medical-research/'},
+    {tag:'Find More',title:'NIHR Be Part of Research',body:'',link:'https://bepartofresearch.nihr.ac.uk/results/listing/?resultsfound=true&q=leber+congenital+amaurosis&location='}
+  ],
+  usher:[
+    {tag:'Phase 2',title:'QR-421a - USH2A',body:'24-month data shows preserved visual function.',link:'https://retinauk.org.uk/medical-research/'},
+    {tag:'Find More',title:'NIHR Be Part of Research',body:'',link:'https://bepartofresearch.nihr.ac.uk/results/listing/?resultsfound=true&q=usher+syndrome&location='}
+  ],
+  achromatopsia:[
+    {tag:'Phase 1/2',title:'CNGB3 Gene Therapy (50% of cases)',body:'Good safety data and early functional improvements.',link:'https://retinauk.org.uk/medical-research/'},
+    {tag:'Phase 1/2',title:'CNGA3 Gene Therapy',body:'Promising safety and early efficacy signals.',link:'https://retinauk.org.uk/medical-research/'},
+    {tag:'Find More',title:'NIHR Be Part of Research',body:'',link:'https://bepartofresearch.nihr.ac.uk/results/listing/?resultsfound=true&q=achromatopsia&location='}
+  ],
+  cone:[
+    {tag:'Phase 2/3',title:'MeiraGTx RPGR - X-Linked Cone Dystrophy',body:'Significant preservation of visual function.',link:'https://retinauk.org.uk/medical-research/'},
+    {tag:'Find More',title:'NIHR Be Part of Research',body:'',link:'https://bepartofresearch.nihr.ac.uk/results/listing/?resultsfound=true&q=cone+dystrophy&location='}
+  ],
+  glaucoma:[
+    {tag:'FDA Approved - UK Pending',title:'iDose TR Travoprost Implant',body:'Continuous medication. Expected UK 1-2 years.',link:'https://glaucoma.uk'},
+    {tag:'Find More',title:'NIHR Be Part of Research',body:'',link:'https://bepartofresearch.nihr.ac.uk/results/listing/?resultsfound=true&q=glaucoma&location='}
+  ],
+  diabetic:[
+    {tag:'NHS Approved',title:'Faricimab (Vabysmo) - DMO',body:'Up to every 4 months. NICE approved.',link:'https://www.nice.org.uk/guidance/ta799'},
+    {tag:'NHS Approved',title:'Aflibercept HD (Eylea HD)',body:'Fewer injections. NICE approved 2024.',link:'https://www.nice.org.uk'},
+    {tag:'Find More',title:'NIHR Be Part of Research',body:'',link:'https://bepartofresearch.nihr.ac.uk/results/listing/?resultsfound=true&q=diabetic+retinopathy&location='}
+  ],
+  nystagmus:[
+    {tag:'Available',title:'Tenotomy (Anderson Procedure)',body:'Eye muscle surgery shifting the null zone.',link:'https://www.nystagmusnet.org'},
+    {tag:'Find More',title:'NIHR Be Part of Research',body:'',link:'https://bepartofresearch.nihr.ac.uk/results/listing/?resultsfound=true&q=nystagmus&location='}
+  ],
+  cvi:[
+    {tag:'Evidence-Based',title:'Active Learning (CVI Scotland)',body:'Strong evidence for improving visual function in children.',link:'https://cviscotland.org'},
+    {tag:'Find Studies',title:'NIHR Be Part of Research',body:'',link:'https://bepartofresearch.nihr.ac.uk/results/listing/?resultsfound=true&q=cerebral+visual+impairment&location='}
+  ],
+  myopic:[
+    {tag:'NHS Available',title:'Anti-VEGF for Myopic CNV',body:'Seek same-day treatment if CNV detected.',link:'https://www.macularsociety.org'},
+    {tag:'Find More',title:'NIHR Be Part of Research',body:'',link:'https://bepartofresearch.nihr.ac.uk/results/listing/?resultsfound=true&q=myopic+macular&location='}
+  ],
+  charlesbonnet:[
+    {tag:'Pipeline',title:'TMS Brain Stimulation - UCL',body:'Non-invasive. Early-stage research.',link:'https://www.charlesbonnetsyndrome.uk'},
+    {tag:'Find More',title:'NIHR Be Part of Research',body:'',link:'https://bepartofresearch.nihr.ac.uk/results/listing/?resultsfound=true&q=charles+bonnet&location='}
+  ],
+  opticneuritis:[
+    {tag:'Standard Treatment',title:'IV Methylprednisolone',body:'Speeds recovery from acute episode. Standard UK care.',link:'https://www.mssociety.org.uk'},
+    {tag:'Find More',title:'NIHR Be Part of Research',body:'',link:'https://bepartofresearch.nihr.ac.uk/results/listing/?resultsfound=true&q=optic+neuritis&location='}
+  ],
+  albinism:[
+    {tag:'Horizon (5-10 years)',title:'OCA1/OCA2 Gene Therapy',body:'Preclinical. University of Manchester partnerships.',link:'https://www.albinism.org.uk'},
+    {tag:'Find More',title:'NIHR Be Part of Research',body:'',link:'https://bepartofresearch.nihr.ac.uk/results/listing/?resultsfound=true&q=albinism&location='}
+  ]
+};
+function showTrialsForCondition(key) {
+  var container = document.getElementById('trials-results');
+  if (!key) { container.innerHTML = ''; return; }
+  var trials = TRIALS_DATA[key];
+  if (!trials) { container.innerHTML = '<div class="wb">No trial data yet.</div>'; return; }
+  var label = document.querySelector('#trials-condition-sel option:checked');
+  var html = '<h2 style="color:var(--yellow);margin-bottom:16px">' + (label ? label.textContent : '') + '</h2>';
+  trials.forEach(function(t) {
+    html += '<div class="lc" style="margin-bottom:10px"><span style="display:inline-block;background:rgba(245,184,0,0.12);border:1px solid var(--yellow);color:var(--yellow);font-size:0.7rem;font-weight:800;padding:3px 10px;border-radius:50px;margin-bottom:8px">' + t.tag + '</span><h2 style="font-size:1rem">' + t.title + '</h2>';
+    if (t.body) html += '<p style="margin-top:6px">' + t.body + '</p>';
+    if (t.link) html += '<p style="margin-top:10px"><a href="' + t.link + '" target="_blank" rel="noopener" style="color:var(--yellow);font-weight:700">More information</a></p>';
+    html += '</div>';
+  });
+  container.innerHTML = html;
+  container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+  // Theme tip switch — applies theme and updates tip to confirmation (not remove)
+  window.themeTipSwitch = function(tipId, themeKey, themeLabel) {
+    setColour(themeKey);
+    var el = document.getElementById(tipId);
+    if (!el) return;
+    var tipStyles = {
+      'lb':   'background:#d4eef8;border-color:#0055a5;color:#000',
+      'dark': 'background:#1a1a2e;border-color:#f5b800;color:#e8e8e8',
+      'hc':   'background:#000;border-color:#fff;color:#fff',
+      'll':   'background:#1a1205;border-color:#f5b800;color:#e8d5b0',
+      'yb':   'background:#111;border-color:#ff0;color:#ff0'
+    };
+    var s = tipStyles[themeKey] || '';
+    if (s) { s.split(';').forEach(function(rule) { var p=rule.split(':'); if(p[0]&&p[1]) el.style[p[0].trim()]=p[1].trim(); }); }
+    var undoCol = themeKey==='dark'||themeKey==='ll'||themeKey==='hc' ? '#f5b800' : '#0055a5';
+    // Show confirmation with just an Undo button — keeps box visible
+    el.innerHTML = '<span style="font-weight:700">✓ Switched to ' + themeLabel + ' theme.</span>' +
+      ' <button onclick="setColour(\'\');themeTipSwitch.restore(\''+tipId+'\',\''+themeKey+'\',\''+themeLabel+'\')" style="background:none;border:none;font-family:var(--font);font-size:0.85rem;font-weight:800;cursor:pointer;text-decoration:underline;padding:0;margin-left:10px;color:' + undoCol + '">Undo</button>';
+  };
+
+  // Restore tip to original state after Undo
+  themeTipSwitch.restore = function(tipId, themeKey, themeLabel) {
+    setColour(''); // revert to light
+    var el = document.getElementById(tipId);
+    if (!el) return;
+    // Restore original tip colours and content
+    el.style.background = ''; el.style.borderColor = ''; el.style.color = '';
+    var tipStyles = {
+      'lb':   'background:#d4eef8;border-color:#0055a5;color:#000',
+      'dark': 'background:#1a1a2e;border-color:#f5b800;color:#e8e8e8',
+      'hc':   'background:#000;border-color:#fff;color:#fff',
+      'll':   'background:#1a1205;border-color:#f5b800;color:#e8d5b0',
+      'yb':   'background:#111;border-color:#ff0;color:#ff0'
+    };
+    var s = tipStyles[themeKey] || '';
+    if (s) { s.split(';').forEach(function(rule) { var p=rule.split(':'); if(p[0]&&p[1]) el.style[p[0].trim()]=p[1].trim(); }); }
+    var btnStyle = themeKey==='dark'||themeKey==='ll'||themeKey==='hc' ? 'color:#f5b800' : 'color:#0055a5';
+    el.innerHTML = '💡 You switched back. <button onclick="themeTipSwitch(\''+tipId+'\',\''+themeKey+'\',\''+themeLabel+'\')" style="background:none;border:none;font-family:var(--font);font-size:0.875rem;font-weight:800;cursor:pointer;text-decoration:underline;padding:0;margin-left:6px;' + btnStyle + '">Switch again</button>' +
+      ' <button onclick="document.getElementById(\''+tipId+'\').remove()" style="background:none;border:none;font-family:var(--font);font-size:0.8rem;cursor:pointer;opacity:0.6;text-decoration:underline;padding:0;margin-left:8px">Close</button>';
+  };
+
+  // ══ STICKY PAGE TITLE ══
+  var _stickyPage = '';
+  var _stickyBack = null;
+  window.stickyBack = function() {
+    if (_stickyBack) _stickyBack();
+    else showPage('home');
+  };
+
+  function updateStickyTitle(name, backFn) {
+    _stickyPage = name;
+    _stickyBack = backFn;
+    // Track active page for scroll listener
+    _stickyActivePage = backFn ? 'sub' : 'home';
+    var bb = document.getElementById('sticky-title-back');
+    if (bb) bb.style.visibility = backFn ? 'visible' : 'hidden';
+    // Hide immediately when going to home
+    if (!backFn) { var bar=document.getElementById('sticky-title'); if(bar) bar.classList.remove('vis'); }
+  }
+
+  // Show sticky bar after scrolling 80px past the a11y bar
+  window.addEventListener('scroll', function() {
+    var bar = document.getElementById('sticky-title');
+    if (!bar) return;
+    // Never show on home page
+    if (_stickyActivePage === 'home') { bar.classList.remove('vis'); return; }
+    // On subpages: show after any scroll (even small), so back is always reachable
+    if (window.scrollY > 40) bar.classList.add('vis');
+    else bar.classList.remove('vis');
+  }, { passive: true });
+
+  window.listenToFounder = function(btn) {
+    var synth = window.speechSynthesis;
+    if (!synth || typeof SpeechSynthesisUtterance === 'undefined') {
+      alert('Text to speech is not supported in this browser.');
+      return;
+    }
+    // Toggle off if already speaking
+    if (btn.getAttribute('aria-pressed') === 'true') {
+      synth.cancel();
+      btn.setAttribute('aria-pressed', 'false');
+      return;
+    }
+    synth.cancel();
+    // Collect text from the founder box paragraphs
+    var founderEl = btn.closest('div').parentElement;
+    if (!founderEl) return;
+    var paras = founderEl.querySelectorAll('p');
+    var text = '';
+    paras.forEach(function(p) { text += ' ' + (p.innerText || p.textContent); });
+    text = text.replace(/Read more.*$/s,'').trim();
+    if (!text) return;
+    btn.setAttribute('aria-pressed', 'true');
+    var utt = new SpeechSynthesisUtterance(text);
+    utt.lang = 'en-GB'; utt.rate = 0.85;
+    utt.onend = function() { btn.setAttribute('aria-pressed', 'false'); };
+    utt.onerror = function() { btn.setAttribute('aria-pressed', 'false'); };
+    synth.speak(utt);
+  };
 
 </script>
 
