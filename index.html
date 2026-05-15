@@ -7156,7 +7156,6 @@ function renderCondition(key) {
   <div class="cond-hero">
 
     <button class="back-btn" onclick="showPage('home')" aria-label="Back to conditions list">${_isWelsh ? '← Pob Cyflwr' : '← All Conditions'}</button>
-    <button onclick="window.print()" class="back-btn" style="margin-left:8px;color:var(--text2)" aria-label="Print or save as PDF"><span aria-hidden="true">🖨️</span> Print / Save PDF</button>
 
     ${(function(){
       var tips={
@@ -8161,19 +8160,6 @@ function showPage(name) {
   // Add listen buttons to section headings
   var _activePage = document.querySelector('.page.active');
   if (_activePage) setTimeout(function(){ addListenButtons(_activePage); }, 100);
-
-  // Add print button to legal pages if not already there
-  var _lw = _activePage && _activePage.querySelector('.legal-wrap');
-  if (_lw && !_lw.querySelector('.print-btn-added')) {
-    var _pb = document.createElement('button');
-    _pb.className = 'back-btn print-btn-added';
-    _pb.style.cssText = 'color:var(--text2);margin-bottom:16px';
-    _pb.setAttribute('aria-label', 'Print or save as PDF');
-    _pb.innerHTML = '🖨️ Print / Save PDF';
-    _pb.onclick = function() { window.print(); };
-    var _firstBack = _lw.querySelector('.back-btn');
-    if (_firstBack) _firstBack.parentNode.insertBefore(_pb, _firstBack.nextSibling);
-  }
 
 }
 
