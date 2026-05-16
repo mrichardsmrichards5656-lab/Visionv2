@@ -2401,9 +2401,9 @@ body.focus-mode::after {
       <div style="background:#fffbf0;border:3px solid var(--yellow);border-radius:20px;padding:20px 20px 16px;margin-bottom:36px;box-shadow:var(--shadow)">
         <p style="font-size:0.8rem;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;color:var(--yellow);margin:0 0 6px">Find your condition</p>
         <p style="font-size:1rem;font-weight:700;color:var(--text);margin:0 0 12px;line-height:1.4">Search 17 eye conditions — get research, practical guides, benefits help &amp; support</p>
-        <div class="search-wrap" style="margin-bottom:8px;background:none">
-          <input type="search" id="csearch" placeholder="e.g. AMD, glaucoma, RP…" autocomplete="off" aria-controls="cond-list" aria-label="Search eye conditions" style="background:#fff;color:#000;font-size:1rem;border:2px solid var(--border);border-radius:50px;padding:14px 48px 14px 20px;width:100%;box-shadow:0 1px 4px rgba(0,0,0,0.06)">
-          <span class="search-icon" aria-hidden="true" style="color:var(--yellow)">🔍</span>
+        <div style="display:flex;gap:8px;margin-bottom:8px;flex-wrap:wrap">
+          <input type="search" id="csearch" placeholder="e.g. AMD, glaucoma, RP…" autocomplete="off" aria-controls="cond-list" aria-label="Search eye conditions" style="background:#fff;color:#000;font-size:1rem;border:2px solid var(--border);border-radius:50px;padding:14px 20px;flex:1;min-width:0;box-shadow:0 1px 4px rgba(0,0,0,0.06)">
+          <button onclick="filterConds(document.getElementById('csearch').value); document.getElementById('csearch').blur();" aria-label="Search conditions" style="background:var(--yellow);color:#000;border:none;border-radius:50px;padding:14px 22px;font-family:var(--font);font-size:1rem;font-weight:900;cursor:pointer;flex-shrink:0;min-height:50px">🔍 Search</button>
         </div>
         <p id="cond-hint" aria-live="polite" style="font-size:0.95rem;font-weight:700;color:var(--text2);margin:4px 0 0;line-height:1.5">Start typing to find your condition</p>
         <div class="cond-list" id="cond-list" role="list" style="display:none;max-height:60vh;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;margin-top:6px;border-radius:12px;background:#fff">
@@ -8697,7 +8697,7 @@ function filterConds(q) {
   if (!q) {
     list.style.display = 'none';
     list.innerHTML = '';
-    if (hint) { hint.style.display = 'block'; hint.innerHTML = 'Start typing to find your condition. <strong>17 conditions</strong> covered.'; }
+    if (hint) { hint.style.display = 'block'; hint.innerHTML = 'Type your condition then tap <strong>Search</strong> (or press Enter). <strong>17 conditions</strong> covered.'; }
     return;
   }
 
@@ -8736,23 +8736,10 @@ function filterConds(q) {
 
   if (hint) hint.style.display = 'none';  // hide hint, results appear directly
 
-  // Render results as anchor tags - most reliable tap target on mobile, all text sizes
+  // Render results as buttons - keyboard already dismissed, simple click works fine
   list.innerHTML = matches.map(function(c) {
-    return '<div role="listitem" class="cond-item"><a class="cond-btn" href="#cond-' + c.key + '" data-key="' + c.key + '" role="button" aria-label="Open ' + c.name + ' information" style="text-decoration:none;display:flex"><span aria-hidden="true" style="flex-shrink:0">✶</span><span style="flex:1;min-width:0;overflow-wrap:break-word"> ' + c.name + '</span><span class="cond-arrow" aria-hidden="true" style="flex-shrink:0">›</span></a></div>';
+    return '<div role="listitem" class="cond-item"><button class="cond-btn" onclick="selectCondition(\'' + c.key + '\')" aria-label="Open ' + c.name + ' information"><span aria-hidden="true" style="flex-shrink:0">✶</span><span style="flex:1;min-width:0;overflow-wrap:break-word"> ' + c.name + '</span><span class="cond-arrow" aria-hidden="true" style="flex-shrink:0">›</span></button></div>';
   }).join('');
-
-  // Single click handler via delegation
-  if (!list._tapHandlerAttached) {
-    list._tapHandlerAttached = true;
-    list.addEventListener('click', function(e) {
-      var a = e.target.closest && e.target.closest('a.cond-btn[data-key]');
-      if (!a) return;
-      e.preventDefault();
-      var sb = document.getElementById('csearch');
-      if (sb) sb.blur();
-      selectCondition(a.getAttribute('data-key'));
-    });
-  }
 
   list.style.display = '';
 }
@@ -8826,10 +8813,24 @@ var searchBox = document.getElementById('csearch');
 
 if (searchBox) {
 
-  ['input','keyup','change','search'].forEach(ev => {
+  // Only filter when user presses Enter or submits search (not on every keystroke)
+  searchBox.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      filterConds(this.value);
+      this.blur();  // dismiss keyboard so results are visible and tappable
+    }
+  });
 
-    searchBox.addEventListener(ev, function() { filterConds(this.value); });
+  // 'search' event fires on Enter or when user taps clear (X) button
+  searchBox.addEventListener('search', function() {
+    filterConds(this.value);
+    this.blur();
+  });
 
+  // Clear results when input is fully emptied
+  searchBox.addEventListener('input', function() {
+    if (!this.value.trim()) filterConds('');
   });
 
 }
