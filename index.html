@@ -8737,16 +8737,8 @@ function filterConds(q) {
   if (hint) hint.style.display = 'none';  // hide hint, results appear directly
 
   list.innerHTML = matches.map(function(c) {
-    return '<div role="listitem" class="cond-item"><button class="cond-btn" data-key="' + c.key + '" aria-label="Open ' + c.name + ' information" style="touch-action:manipulation"><span aria-hidden="true" style="flex-shrink:0">✶</span><span style="flex:1;min-width:0;overflow-wrap:break-word"> ' + c.name + '</span><span class="cond-arrow" aria-hidden="true" style="flex-shrink:0">›</span></button></div>';
+    return '<div role="listitem" class="cond-item"><button class="cond-btn" onclick="selectCondition(\'' + c.key + '\')" aria-label="Open ' + c.name + ' information"><span aria-hidden="true" style="flex-shrink:0">✶</span><span style="flex:1;min-width:0;overflow-wrap:break-word"> ' + c.name + '</span><span class="cond-arrow" aria-hidden="true" style="flex-shrink:0">›</span></button></div>';
   }).join('');
-
-  // Use click - works reliably at all text sizes and devices
-  list.querySelectorAll('.cond-btn[data-key]').forEach(function(btn) {
-    btn.addEventListener('click', function(e) {
-      e.preventDefault();
-      selectCondition(btn.getAttribute('data-key'));
-    });
-  });
 
   list.style.display = '';
 }
