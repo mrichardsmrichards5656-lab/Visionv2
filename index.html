@@ -8737,8 +8737,23 @@ function filterConds(q) {
   if (hint) hint.style.display = 'none';  // hide hint, results appear directly
 
   list.innerHTML = matches.map(function(c) {
-    return '<div role="listitem" class="cond-item"><button class="cond-btn" onclick="selectCondition(\'' + c.key + '\')" aria-label="Open ' + c.name + ' information"><span aria-hidden="true" style="flex-shrink:0">✶</span><span style="flex:1;min-width:0;overflow-wrap:break-word"> ' + c.name + '</span><span class="cond-arrow" aria-hidden="true" style="flex-shrink:0">›</span></button></div>';
+    return '<div role="listitem" class="cond-item"><button class="cond-btn" data-key="' + c.key + '" aria-label="Open ' + c.name + ' information"><span aria-hidden="true" style="flex-shrink:0">✶</span><span style="flex:1;min-width:0;overflow-wrap:break-word"> ' + c.name + '</span><span class="cond-arrow" aria-hidden="true" style="flex-shrink:0">›</span></button></div>';
   }).join('');
+
+  // Blur the search input the instant a button is touched, so the keyboard doesn't
+  // consume the first tap. Use pointerdown which fires before focus-loss / click.
+  list.querySelectorAll('.cond-btn[data-key]').forEach(function(btn) {
+    var navigated = false;
+    var go = function(e) {
+      if (navigated) return;
+      navigated = true;
+      var sb = document.getElementById('csearch');
+      if (sb) sb.blur();
+      selectCondition(btn.getAttribute('data-key'));
+    };
+    btn.addEventListener('pointerdown', go);
+    btn.addEventListener('click', go);  // keyboard activation fallback
+  });
 
   list.style.display = '';
 }
