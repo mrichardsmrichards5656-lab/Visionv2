@@ -7814,21 +7814,37 @@ function speakAccSection(accBody, btn) {
         document.querySelectorAll('.acc-listen.speaking').forEach(function(b) {
           b.classList.remove('speaking');
         });
-        // Get content: h2's next sibling elements until next h2
-        // Clone h2 and remove the listen button before reading its text
+
+        // Strategy: walk up from h2 to find a meaningful content container,
+        // then read everything in it. Falls back to siblings if no container found.
+        var textParts = [];
         var h2clone = h2.cloneNode(true);
         h2clone.querySelectorAll('button, .acc-listen').forEach(function(b){ b.remove(); });
-        var textParts = [h2clone.textContent.trim() + '. '];
+        textParts.push(h2clone.textContent.trim() + '. ');
+
+        // Try sibling approach first
+        var foundSiblingContent = false;
         var el = h2.nextElementSibling;
         var count = 0;
-        while (el && el.tagName !== 'H2' && count < 20) {
-          // Clone element and strip any buttons before reading text
+        while (el && el.tagName !== 'H2' && count < 30) {
           var elClone = el.cloneNode(true);
           elClone.querySelectorAll('button, .acc-listen, .sr-only').forEach(function(b){ b.remove(); });
           var elText = elClone.textContent.replace(/\s+/g, ' ').trim();
-          if (elText) textParts.push(elText);
+          if (elText) { textParts.push(elText); foundSiblingContent = true; }
           el = el.nextElementSibling;
           count++;
+        }
+
+        // If no siblings had content, walk up to find a parent box and read it
+        if (!foundSiblingContent) {
+          var box = h2.closest('[id], section, article');
+          if (box && box !== h2) {
+            var boxClone = box.cloneNode(true);
+            // Strip controls and the h2 we already read
+            boxClone.querySelectorAll('button, .acc-listen, .sr-only, h2').forEach(function(b){ b.remove(); });
+            var boxText = boxClone.textContent.replace(/\s+/g, ' ').trim();
+            if (boxText) textParts.push(boxText);
+          }
         }
         var text = textParts.join(' ').replace(/[▼▲←→✦›•]/g, '').replace(/[\u{1F000}-\u{1FFFF}]/gu, '').replace(/[\u{2600}-\u{27BF}]/gu, '').replace(/[\u{1F300}-\u{1F9FF}]/gu, '').replace(/\s+/g, ' ').trim();
         if (!text) return;
