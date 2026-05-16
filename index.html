@@ -1848,12 +1848,7 @@ body.focus-mode::after {
         </select>
       </div>
     </div>
-    <div style="margin-bottom:16px">
-      <label style="display:block;color:#ccc;font-size:0.875rem;margin-bottom:6px">Voice:</label>
-      <select id="tts-voice-sel" style="width:100%;height:44px;padding:0 10px;border-radius:8px;border:none;background:#333;color:#fff;font-size:0.9rem">
-        <option value="">Default English voice</option>
-      </select>
-    </div>
+    <input type="hidden" id="tts-voice-sel" value="">
     <div style="display:flex;gap:10px">
       <button id="tts-play-btn" onclick="ttsPlay()" style="flex:1;height:52px;background:#f5b800;color:#000;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer">▶ Play</button>
       <button id="tts-stop-btn" onclick="ttsStop()" style="height:52px;padding:0 20px;background:#333;color:#fff;border:none;border-radius:10px;font-size:1rem;cursor:pointer">⏹ Stop</button>
@@ -9305,16 +9300,7 @@ if ('serviceWorker' in navigator) {
     if (open) {
       var synth = window.speechSynthesis;
       if (synth) {
-        var loadV = function() {
-          var sel = document.getElementById('tts-voice-sel');
-          if (!sel) return;
-          var voices = synth.getVoices();
-          if (voices.length > 1) {
-            sel.innerHTML = '<option value="">Default English voice</option>';
-            voices.filter(function(v){ return v.lang.indexOf('en') === 0 || v.lang.indexOf('cy') === 0; })
-              .forEach(function(v) { var o = document.createElement('option'); o.value = v.name; o.textContent = v.name + ' (' + v.lang + ')'; sel.appendChild(o); });
-          }
-        };
+        var loadV = function() {};
 
   // Minimise panel when playing starts, re-expand when stopped
   window.ttsPanelExpand = function() {
