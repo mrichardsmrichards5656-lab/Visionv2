@@ -7706,7 +7706,7 @@ function speakAccSection(accBody, btn) {
   var synth = window.speechSynthesis;
   var clone = accBody.cloneNode(true);
   clone.querySelectorAll('[aria-hidden="true"], .trial-link, .share-btn, button, .acc-listen').forEach(function(j){ j.remove(); });
-  var text = (clone.innerText || clone.textContent || '').replace(/\s+/g, ' ').trim();
+  var text = (clone.innerText || clone.textContent || '').replace(/[\u{1F000}-\u{1FFFF}]/gu, '').replace(/[\u{2600}-\u{27BF}]/gu, '').replace(/[\u{1F300}-\u{1F9FF}]/gu, '').replace(/\s+/g, ' ').trim();
 
   // Expand abbreviations
   text = text.replace(/\bAMD\b/g, 'Age-related macular degeneration');
@@ -7787,7 +7787,7 @@ function speakAccSection(accBody, btn) {
           el = el.nextElementSibling;
           count++;
         }
-        var text = textParts.join(' ').replace(/[▼▲←→✦›•]/g, '').replace(/\s+/g, ' ').trim();
+        var text = textParts.join(' ').replace(/[▼▲←→✦›•]/g, '').replace(/[\u{1F000}-\u{1FFFF}]/gu, '').replace(/[\u{2600}-\u{27BF}]/gu, '').replace(/[\u{1F300}-\u{1F9FF}]/gu, '').replace(/\s+/g, ' ').trim();
         if (!text) return;
         if (text.length > 2000) text = text.slice(0, 2000);
         var utt = new SpeechSynthesisUtterance(text);
