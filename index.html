@@ -7772,13 +7772,18 @@ function speakAccSection(accBody, btn) {
           b.classList.remove('speaking');
         });
         // Get content: h2's next sibling elements until next h2
-        var textParts = [h2.textContent.trim() + '. '];
+        // Clone h2 and remove the listen button before reading its text
+        var h2clone = h2.cloneNode(true);
+        h2clone.querySelectorAll('button, .acc-listen').forEach(function(b){ b.remove(); });
+        var textParts = [h2clone.textContent.trim() + '. '];
         var el = h2.nextElementSibling;
         var count = 0;
         while (el && el.tagName !== 'H2' && count < 20) {
-          if (!el.querySelector('button') || el.tagName === 'P' || el.tagName === 'UL') {
-            textParts.push(el.textContent.replace(/\s+/g, ' ').trim());
-          }
+          // Clone element and strip any buttons before reading text
+          var elClone = el.cloneNode(true);
+          elClone.querySelectorAll('button, .acc-listen, .sr-only').forEach(function(b){ b.remove(); });
+          var elText = elClone.textContent.replace(/\s+/g, ' ').trim();
+          if (elText) textParts.push(elText);
           el = el.nextElementSibling;
           count++;
         }
