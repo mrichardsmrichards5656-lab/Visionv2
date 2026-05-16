@@ -8741,10 +8741,23 @@ function filterConds(q) {
   }).join('');
 
   // pointerdown fires before keyboard dismissal on Android — true single tap
+  // Also add click as fallback for large text / accessibility tools
   list.querySelectorAll('.cond-btn[data-key]').forEach(function(btn) {
+    var handled = false;
     btn.addEventListener('pointerdown', function(e) {
       e.preventDefault();
+      if (handled) return;
+      handled = true;
       selectCondition(btn.getAttribute('data-key'));
+      // reset after a moment so future taps work
+      setTimeout(function(){ handled = false; }, 500);
+    });
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      if (handled) return;
+      handled = true;
+      selectCondition(btn.getAttribute('data-key'));
+      setTimeout(function(){ handled = false; }, 500);
     });
   });
 
