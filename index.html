@@ -8736,24 +8736,26 @@ function filterConds(q) {
 
   if (hint) hint.style.display = 'none';  // hide hint, results appear directly
 
+  // Inner spans must NOT capture pointer events - tap should always hit the button
   list.innerHTML = matches.map(function(c) {
-    return '<div role="listitem" class="cond-item"><button class="cond-btn" data-key="' + c.key + '" aria-label="Open ' + c.name + ' information"><span aria-hidden="true" style="flex-shrink:0">✶</span><span style="flex:1;min-width:0;overflow-wrap:break-word"> ' + c.name + '</span><span class="cond-arrow" aria-hidden="true" style="flex-shrink:0">›</span></button></div>';
+    return '<div role="listitem" class="cond-item"><button class="cond-btn" data-key="' + c.key + '" aria-label="Open ' + c.name + ' information"><span aria-hidden="true" style="flex-shrink:0;pointer-events:none">✶</span><span style="flex:1;min-width:0;overflow-wrap:break-word;pointer-events:none"> ' + c.name + '</span><span class="cond-arrow" aria-hidden="true" style="flex-shrink:0;pointer-events:none">›</span></button></div>';
   }).join('');
 
-  // Blur the search input the instant a button is touched, so the keyboard doesn't
-  // consume the first tap. Use pointerdown which fires before focus-loss / click.
-  list.querySelectorAll('.cond-btn[data-key]').forEach(function(btn) {
-    var navigated = false;
-    var go = function(e) {
-      if (navigated) return;
-      navigated = true;
+  // Event delegation on the list - catches taps from anywhere in any button
+  if (!list._tapHandlerAttached) {
+    list._tapHandlerAttached = true;
+    var navigateFrom = function(target) {
+      var btn = target && target.closest ? target.closest('.cond-btn[data-key]') : null;
+      if (!btn) return false;
       var sb = document.getElementById('csearch');
       if (sb) sb.blur();
       selectCondition(btn.getAttribute('data-key'));
+      return true;
     };
-    btn.addEventListener('pointerdown', go);
-    btn.addEventListener('click', go);  // keyboard activation fallback
-  });
+    list.addEventListener('click', function(e) {
+      navigateFrom(e.target);
+    });
+  }
 
   list.style.display = '';
 }
