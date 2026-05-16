@@ -2417,11 +2417,14 @@ body.focus-mode::after {
 
         <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:4px;flex-wrap:wrap">
 
-          <div>
+          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
 
-            <span style="font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:0.12em;color:var(--yellow)">Just diagnosed?</span>
+            <div>
+              <span style="font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:0.12em;color:var(--yellow)">Just diagnosed?</span>
+              <h2 style="font-size:1.1rem;font-weight:900;color:var(--text);margin-top:4px;line-height:1.3" data-listen-added="1">Start here.</h2>
+            </div>
 
-            <h2 style="font-size:1.1rem;font-weight:900;color:var(--text);margin-top:4px;line-height:1.3">Start here.</h2>
+            <button class="acc-listen" onclick="(function(b){var s=window.speechSynthesis;if(!s)return;if(b.classList.contains('speaking')){s.cancel();b.classList.remove('speaking');return;}s.cancel();var box=document.getElementById('jd-box');if(!box)return;var c=box.cloneNode(true);c.querySelectorAll('button,.acc-listen,.sr-only').forEach(function(x){x.remove();});var t=(c.textContent||'').replace(/[\u{1F000}-\u{1FFFF}]/gu,'').replace(/[\u{2600}-\u{27BF}]/gu,'').replace(/[\u{1F300}-\u{1F9FF}]/gu,'').replace(/\s+/g,' ').trim();if(!t)return;if(t.length>2000)t=t.slice(0,2000);var u=new SpeechSynthesisUtterance(t);u.lang='en-GB';u.rate=parseFloat((document.getElementById('tts-speed')||{}).value||'0.85');u.onend=function(){b.classList.remove('speaking');};b.classList.add('speaking');s.speak(u);})(this)" aria-label="Listen to Just Diagnosed section" title="Listen to this section" style="margin-left:0">🔊</button>
 
           </div>
 
@@ -2746,7 +2749,7 @@ body.focus-mode::after {
 
       <button class="sidebar-link" onclick="showPage('benefits-calc')">💰 Benefits Calculator</button>
       <button class="sidebar-link" onclick="showPage('trials')">🔬 Clinical Trials</button>
-      <button class="sidebar-link" onclick="showPage('eclo')">??️ Find Your ECLO</button>
+      <button class="sidebar-link" onclick="showPage('eclo')">👁️ Find Your ECLO</button>
 
       <div class="sidebar-divider"></div>
 
