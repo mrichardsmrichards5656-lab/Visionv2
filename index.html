@@ -36,17 +36,17 @@
 
 :root {
 
-  --bg:     #faf7f2;
+  --bg:     #eef3f7;
 
-  --bg2:    #f0ebe1;
+  --bg2:    #e4ebf1;
 
   --card:   #ffffff;
 
-  --card2:  #f5f0e8;
+  --card2:  #f7f9fb;
 
-  --yellow: #b86d00;
+  --yellow: #a85d00;
 
-  --yellow2:#d4820a;
+  --yellow2:#c47408;
 
   --text:   #1a1a2e;
 
@@ -475,7 +475,7 @@ p, h1, h2, h3, h4, li, span, a, button { overflow-wrap: break-word; word-wrap: b
 
 }
 
-.hero h1 { font-size: clamp(1.9rem, 6vw, 2.8rem); font-weight: 900; line-height: 1.1; overflow-wrap: break-word; word-wrap: break-word; margin-bottom: 14px; color: var(--text); }
+.hero h1 { font-size: clamp(1.5rem, 5vw, 2.4rem); font-weight: 900; line-height: 1.15; overflow-wrap: normal; word-wrap: normal; margin-bottom: 14px; color: var(--text); }
 
 .hero-desc { font-size: 1.05rem; color: var(--text2); margin-bottom: 26px; line-height: 1.8; }
 
@@ -562,7 +562,7 @@ p, h1, h2, h3, h4, li, span, a, button { overflow-wrap: break-word; word-wrap: b
 
 ══════════════════════════════════════ */
 
-.cond-section { padding: 0 20px 48px; max-width: min(680px, 100%); margin: 0 auto; width: 100%; }
+.cond-section { padding: 0 20px 64px; max-width: min(680px, 100%); margin: 0 auto; width: 100%; }
 
 .section-label { font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text2); margin-bottom: 16px; display: block; }
 
@@ -584,9 +584,9 @@ p, h1, h2, h3, h4, li, span, a, button { overflow-wrap: break-word; word-wrap: b
 
   justify-content: space-between; gap: 8px; min-height: 48px;
 
-  line-height: 1.2; transition: background .1s;
+  line-height: 1.3; transition: background .1s;
 
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  white-space: normal; overflow: visible;
 
   touch-action: manipulation;
 
@@ -598,8 +598,9 @@ p, h1, h2, h3, h4, li, span, a, button { overflow-wrap: break-word; word-wrap: b
 
 .cond-btn:focus-visible{ outline: 3px solid var(--yellow); outline-offset: 3px; }
 
-.cond-arrow { font-size: 1.1rem; flex-shrink: 0; margin-left: auto; }
-.cond-btn > span[aria-hidden="true"]:first-child { flex-shrink: 0; width: 1.6em; text-align: center; }
+.cond-arrow { font-size: 1.1rem; flex-shrink: 0; margin-left: auto; color: var(--yellow); font-weight: 900; transition: transform .15s; }
+.cond-btn:hover .cond-arrow { transform: translateX(3px); }
+.cond-btn > span[aria-hidden="true"]:first-child { flex-shrink: 0; width: 1.6em; text-align: center; color: var(--yellow); font-size: 1.15rem; }
 .cond-btn { justify-content: flex-start; overflow-wrap: break-word; word-break: break-word; }
 
 
@@ -1735,7 +1736,14 @@ body.focus-mode::after {
 
 <a href="#main" class="skip" style="position:absolute;top:-999px;left:-999px;z-index:99999;background:var(--yellow);color:#000;padding:12px 24px;font-weight:800;border-radius:0 0 8px 8px;text-decoration:none;font-size:1rem" onfocus="this.style.top='0';this.style.left='50%';this.style.transform='translateX(-50%)'" onblur="this.style.top='-999px';this.style.left='-999px'">Skip to main content</a>
 
-
+<noscript>
+  <div style="background:#fff8e1;border:2px solid #b86d00;color:#1a1a2e;padding:20px;margin:0;text-align:center;font-family:Georgia,serif;font-size:1.1rem;line-height:1.6">
+    <strong style="display:block;font-size:1.2rem;margin-bottom:8px;color:#b86d00">JavaScript is required</strong>
+    Vision Hub UK needs JavaScript to display its accessibility features and condition information.<br>
+    Please enable JavaScript in your browser settings, then refresh this page.<br>
+    <span style="display:block;margin-top:10px;font-size:0.95rem;color:#4a4a6a">If you need help, ask someone to enable JavaScript for you, or visit <a href="https://www.rnib.org.uk" style="color:#b86d00;font-weight:700">rnib.org.uk</a> for sight loss support.</span>
+  </div>
+</noscript>
 
 <!-- ACCESSIBILITY BAR -->
 
@@ -1765,7 +1773,7 @@ body.focus-mode::after {
 <div class="a11y-bar-outer">
 <div class="a11y-bar" role="toolbar" aria-label="Accessibility controls">
 
-  <span class="site-name" onclick="showPage('home')" role="link" tabindex="0" aria-label="Vision Hub home" style="font-weight:900;color:var(--yellow);cursor:pointer;flex-shrink:0;white-space:nowrap;font-size:0.75rem">VH</span>
+  <span class="site-name" onclick="showPage('home')" role="link" tabindex="0" aria-label="Vision Hub home" style="cursor:pointer;flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px"><svg viewBox="0 0 32 32" width="18" height="18" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><ellipse cx="16" cy="16" rx="14" ry="9" fill="none" stroke="var(--yellow)" stroke-width="3"/><circle cx="16" cy="16" r="6" fill="var(--yellow)"/></svg></span>
 
   <div class="tb-divider"></div>
 
@@ -2262,57 +2270,92 @@ body.focus-mode::after {
 
     <div class="hero">
 
-      <div aria-hidden="true" style="text-align:center;margin-bottom:28px;opacity:0.85">
+      <div style="text-align:center;margin-bottom:24px">
 
-        <svg viewBox="0 0 320 180" width="100%" style="max-width:380px;display:inline-block" xmlns="http://www.w3.org/2000/svg">
+        <!-- Hero brand mark - stylised geometric eye logo -->
+        <svg viewBox="0 0 240 140" width="100%" style="max-width:280px;display:inline-block;margin-bottom:14px" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img">
+          <defs>
+            <linearGradient id="irisGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="var(--yellow)" stop-opacity="1"/>
+              <stop offset="100%" stop-color="var(--yellow)" stop-opacity="0.65"/>
+            </linearGradient>
+            <radialGradient id="irisCenter" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="var(--yellow)" stop-opacity="1"/>
+              <stop offset="60%" stop-color="var(--yellow)" stop-opacity="0.85"/>
+              <stop offset="100%" stop-color="var(--yellow)" stop-opacity="0.5"/>
+            </radialGradient>
+          </defs>
 
-          <circle cx="160" cy="90" r="85" fill="var(--yellow)" opacity="0.08"/>
+          <!-- soft glow backdrop -->
+          <circle cx="120" cy="70" r="62" fill="var(--yellow)" opacity="0.05"/>
 
-          <ellipse cx="160" cy="90" rx="110" ry="58" fill="none" stroke="var(--yellow)" stroke-width="3" opacity="0.3"/>
+          <!-- outer concentric rings (subtle, like a target/iris) -->
+          <circle cx="120" cy="70" r="55" fill="none" stroke="var(--yellow)" stroke-width="1" opacity="0.2"/>
+          <circle cx="120" cy="70" r="48" fill="none" stroke="var(--yellow)" stroke-width="1" opacity="0.3"/>
 
-          <path d="M50,90 Q100,30 160,30 Q220,30 270,90" fill="none" stroke="var(--yellow)" stroke-width="2.5" opacity="0.5" stroke-linecap="round"/>
+          <!-- main eye almond shape - bolder, more geometric -->
+          <path d="M40,70 Q80,18 120,18 Q160,18 200,70 Q160,122 120,122 Q80,122 40,70 Z" fill="var(--card)" stroke="var(--yellow)" stroke-width="4" stroke-linejoin="round"/>
 
-          <path d="M50,90 Q100,150 160,150 Q220,150 270,90" fill="none" stroke="var(--yellow)" stroke-width="2.5" opacity="0.5" stroke-linecap="round"/>
+          <!-- iris ring outer -->
+          <circle cx="120" cy="70" r="34" fill="none" stroke="var(--yellow)" stroke-width="2" opacity="0.4"/>
 
-          <circle cx="160" cy="90" r="38" fill="none" stroke="var(--yellow)" stroke-width="3" opacity="0.6"/>
+          <!-- iris filled with gradient -->
+          <circle cx="120" cy="70" r="28" fill="url(#irisCenter)"/>
 
-          <circle cx="160" cy="90" r="28" fill="none" stroke="var(--yellow)" stroke-width="1.5" opacity="0.4"/>
+          <!-- iris detail lines (radiating spokes - 8 of them) -->
+          <g stroke="var(--text)" stroke-width="1" opacity="0.15" stroke-linecap="round">
+            <line x1="120" y1="45" x2="120" y2="52"/>
+            <line x1="120" y1="88" x2="120" y2="95"/>
+            <line x1="95" y1="70" x2="102" y2="70"/>
+            <line x1="138" y1="70" x2="145" y2="70"/>
+            <line x1="102" y1="52" x2="107" y2="57"/>
+            <line x1="133" y1="83" x2="138" y2="88"/>
+            <line x1="102" y1="88" x2="107" y2="83"/>
+            <line x1="133" y1="57" x2="138" y2="52"/>
+          </g>
 
-          <circle cx="160" cy="90" r="18" fill="none" stroke="var(--yellow)" stroke-width="1.5" opacity="0.3"/>
+          <!-- pupil with subtle inner depth -->
+          <circle cx="120" cy="70" r="13" fill="var(--text)"/>
+          <circle cx="120" cy="70" r="11" fill="var(--text)" opacity="1"/>
 
-          <circle cx="160" cy="90" r="12" fill="var(--yellow)" opacity="0.7"/>
+          <!-- main bright highlight -->
+          <circle cx="125" cy="65" r="4" fill="#fff"/>
 
-          <circle cx="166" cy="84" r="4" fill="var(--card)" opacity="0.8"/>
+          <!-- secondary small highlight -->
+          <circle cx="130" cy="62" r="1.5" fill="#fff" opacity="0.8"/>
 
-          <line x1="160" y1="52" x2="160" y2="42" stroke="var(--yellow)" stroke-width="1.5" opacity="0.35" stroke-linecap="round"/>
-
-          <line x1="160" y1="128" x2="160" y2="138" stroke="var(--yellow)" stroke-width="1.5" opacity="0.35" stroke-linecap="round"/>
-
-          <line x1="122" y1="90" x2="112" y2="90" stroke="var(--yellow)" stroke-width="1.5" opacity="0.35" stroke-linecap="round"/>
-
-          <line x1="198" y1="90" x2="208" y2="90" stroke="var(--yellow)" stroke-width="1.5" opacity="0.35" stroke-linecap="round"/>
-
-          <circle cx="60" cy="45" r="3" fill="var(--yellow)" opacity="0.3"/>
-
-          <circle cx="275" cy="50" r="2" fill="var(--yellow)" opacity="0.25"/>
-
-          <circle cx="40" cy="120" r="2" fill="var(--yellow)" opacity="0.2"/>
-
-          <circle cx="290" cy="130" r="3" fill="var(--yellow)" opacity="0.25"/>
-
+          <!-- decorative orbiting dots -->
+          <circle cx="65" cy="45" r="2.5" fill="var(--yellow)" opacity="0.6"/>
+          <circle cx="175" cy="40" r="2" fill="var(--yellow)" opacity="0.5"/>
+          <circle cx="55" cy="100" r="1.8" fill="var(--yellow)" opacity="0.45"/>
+          <circle cx="190" cy="105" r="2.2" fill="var(--yellow)" opacity="0.55"/>
         </svg>
+
+        <!-- Vision Hub UK wordmark -->
+        <div style="font-size:2.2rem;font-weight:800;color:var(--text);letter-spacing:-0.025em;line-height:1.05;margin-bottom:8px">
+          Vision<span style="color:var(--yellow);font-weight:900">Hub</span><span style="font-size:1rem;font-weight:700;color:var(--text2);letter-spacing:0.08em;margin-left:6px;vertical-align:middle">UK</span>
+        </div>
+
+        <!-- Tagline with UK flag accent line -->
+        <div style="display:inline-flex;align-items:center;gap:10px;margin-top:4px">
+          <span style="display:inline-block;width:28px;height:3px;background:linear-gradient(to right,#c8102e 33%,#fff 33%,#fff 66%,#012169 66%);border-radius:2px"></span>
+          <span style="font-size:0.78rem;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:var(--text2)">A free UK resource</span>
+          <span style="display:inline-block;width:28px;height:3px;background:linear-gradient(to right,#012169 33%,#fff 33%,#fff 66%,#c8102e 66%);border-radius:2px"></span>
+        </div>
 
       </div>
 
 
 
-      <span class="hero-eyebrow">Free · Independent · UK</span>
-
       <h1>Everything you need,<br>in one place.</h1>
 
       <p class="hero-desc">Clear, accessible information for people living with sight conditions — and the people who support them.</p>
 
-      <p class="last-updated">Last updated: <time datetime="2026-05-15">May 2026</time> · Reviewed monthly · <button onclick="showPage('contact')" style="background:none;border:none;color:var(--yellow);font-family:var(--font);font-size:inherit;cursor:pointer;text-decoration:underline;padding:0">Contact us</button></p>
+      <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(26,122,60,0.08);border:1.5px solid rgba(26,122,60,0.25);border-radius:20px;padding:6px 14px;margin:8px 0 20px;font-size:0.75rem;max-width:100%;flex-wrap:wrap">
+        <span style="color:#1a7a3c;font-weight:900;font-size:0.9rem;flex-shrink:0" aria-hidden="true">✓</span>
+        <span style="color:var(--text);font-weight:700">May 2026 · Reviewed monthly</span>
+      </div>
+      <p class="last-updated" style="margin-top:0">Something not quite right? <button onclick="showPage('contact')" style="background:none;border:none;color:var(--yellow);font-family:var(--font);font-size:inherit;cursor:pointer;text-decoration:underline;padding:0;font-weight:700">Let us know.</button></p>
 
 
 
@@ -2355,14 +2398,14 @@ body.focus-mode::after {
     <section class="cond-section" aria-label="Conditions list">
 
       <!-- SEARCH CONDITIONS — PROMINENT FIRST -->
-      <div style="background:var(--yellow);border-radius:20px;padding:20px 20px 16px;margin-bottom:24px">
-        <p style="font-size:0.8rem;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;color:#000;margin:0 0 6px">Find your condition</p>
-        <p style="font-size:1rem;font-weight:700;color:#000;margin:0 0 12px;line-height:1.4">Search 17 eye conditions — get research, practical guides, benefits help &amp; support</p>
+      <div style="background:#fffbf0;border:3px solid var(--yellow);border-radius:20px;padding:20px 20px 16px;margin-bottom:36px;box-shadow:var(--shadow)">
+        <p style="font-size:0.8rem;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;color:var(--yellow);margin:0 0 6px">Find your condition</p>
+        <p style="font-size:1rem;font-weight:700;color:var(--text);margin:0 0 12px;line-height:1.4">Search 17 eye conditions — get research, practical guides, benefits help &amp; support</p>
         <div class="search-wrap" style="margin-bottom:8px;background:none">
-          <input type="search" id="csearch" placeholder="e.g. AMD, glaucoma, RP…" autocomplete="off" aria-controls="cond-list" aria-label="Search eye conditions" style="background:#fff;color:#000;font-size:1rem;border:none;border-radius:50px;padding:14px 48px 14px 20px;width:100%;box-shadow:0 2px 8px rgba(0,0,0,0.15)">
-          <span class="search-icon" aria-hidden="true" style="color:#555">🔍</span>
+          <input type="search" id="csearch" placeholder="e.g. AMD, glaucoma, RP…" autocomplete="off" aria-controls="cond-list" aria-label="Search eye conditions" style="background:#fff;color:#000;font-size:1rem;border:2px solid var(--border);border-radius:50px;padding:14px 48px 14px 20px;width:100%;box-shadow:0 1px 4px rgba(0,0,0,0.06)">
+          <span class="search-icon" aria-hidden="true" style="color:var(--yellow)">🔍</span>
         </div>
-        <p id="cond-hint" aria-live="polite" style="font-size:0.95rem;font-weight:700;color:#000;margin:4px 0 0;line-height:1.5">Start typing to find your condition</p>
+        <p id="cond-hint" aria-live="polite" style="font-size:0.95rem;font-weight:700;color:var(--text2);margin:4px 0 0;line-height:1.5">Start typing to find your condition</p>
         <div class="cond-list" id="cond-list" role="list" style="display:none;max-height:50vh;overflow-y:auto;-webkit-overflow-scrolling:touch;margin-top:6px;border-radius:12px;overflow:hidden;background:#fff">
         </div>
       </div>
@@ -2370,7 +2413,7 @@ body.focus-mode::after {
       <!-- JUST DIAGNOSED -->
       <!-- JUST DIAGNOSED -->
 
-      <div id="jd-box" style="background:var(--card);border:2px solid var(--border);border-radius:16px;padding:22px;margin-bottom:24px;box-shadow:var(--shadow)">
+      <div id="jd-box" style="background:var(--card);border:2px solid var(--yellow);border-radius:16px;padding:22px;margin-bottom:36px;box-shadow:var(--shadow)">
 
         <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:4px;flex-wrap:wrap">
 
@@ -8694,7 +8737,7 @@ function filterConds(q) {
   if (hint) hint.style.display = 'none';  // hide hint, results appear directly
 
   list.innerHTML = matches.map(function(c) {
-    return '<div role="listitem" class="cond-item"><button class="cond-btn" data-key="' + c.key + '" aria-label="Open ' + c.name + ' information" style="touch-action:manipulation"><span aria-hidden="true" style="flex-shrink:0">✶</span><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0"> ' + c.name + '</span><span class="cond-arrow" aria-hidden="true" style="flex-shrink:0">›</span></button></div>';
+    return '<div role="listitem" class="cond-item"><button class="cond-btn" data-key="' + c.key + '" aria-label="Open ' + c.name + ' information" style="touch-action:manipulation"><span aria-hidden="true" style="flex-shrink:0">✶</span><span style="flex:1;min-width:0;overflow-wrap:break-word"> ' + c.name + '</span><span class="cond-arrow" aria-hidden="true" style="flex-shrink:0">›</span></button></div>';
   }).join('');
 
   // pointerdown fires before keyboard dismissal on Android — true single tap
@@ -9059,7 +9102,6 @@ if (_siteName) {
   // ══ TEXT TO SPEECH ══
   var _ttsActive = false;
   var _ttsClosed = false;
-  var _stickyActivePage = 'home';
   var _ttsEl = null;      // current element being spoken
   var _ttsParas = [];     // array of {el, text} paragraph objects
   var _ttsParaIdx = 0;
@@ -9593,6 +9635,7 @@ function showTrialsForCondition(key) {
   // ══ STICKY PAGE TITLE ══
   var _stickyPage = '';
   var _stickyBack = null;
+  var _stickyActivePage = 'home';
   window.stickyBack = function() {
     if (_stickyBack) _stickyBack();
     else showPage('home');
