@@ -2406,7 +2406,7 @@ body.focus-mode::after {
           <span class="search-icon" aria-hidden="true" style="color:var(--yellow)">🔍</span>
         </div>
         <p id="cond-hint" aria-live="polite" style="font-size:0.95rem;font-weight:700;color:var(--text2);margin:4px 0 0;line-height:1.5">Start typing to find your condition</p>
-        <div class="cond-list" id="cond-list" role="list" style="display:none;max-height:50vh;overflow-y:auto;-webkit-overflow-scrolling:touch;margin-top:6px;border-radius:12px;overflow:hidden;background:#fff">
+        <div class="cond-list" id="cond-list" role="list" style="display:none;max-height:60vh;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;margin-top:6px;border-radius:12px;background:#fff">
         </div>
       </div>
 
@@ -8740,24 +8740,11 @@ function filterConds(q) {
     return '<div role="listitem" class="cond-item"><button class="cond-btn" data-key="' + c.key + '" aria-label="Open ' + c.name + ' information" style="touch-action:manipulation"><span aria-hidden="true" style="flex-shrink:0">✶</span><span style="flex:1;min-width:0;overflow-wrap:break-word"> ' + c.name + '</span><span class="cond-arrow" aria-hidden="true" style="flex-shrink:0">›</span></button></div>';
   }).join('');
 
-  // pointerdown fires before keyboard dismissal on Android — true single tap
-  // Also add click as fallback for large text / accessibility tools
+  // Use click - works reliably at all text sizes and devices
   list.querySelectorAll('.cond-btn[data-key]').forEach(function(btn) {
-    var handled = false;
-    btn.addEventListener('pointerdown', function(e) {
-      e.preventDefault();
-      if (handled) return;
-      handled = true;
-      selectCondition(btn.getAttribute('data-key'));
-      // reset after a moment so future taps work
-      setTimeout(function(){ handled = false; }, 500);
-    });
     btn.addEventListener('click', function(e) {
       e.preventDefault();
-      if (handled) return;
-      handled = true;
       selectCondition(btn.getAttribute('data-key'));
-      setTimeout(function(){ handled = false; }, 500);
     });
   });
 
