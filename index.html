@@ -126,13 +126,31 @@ body.hc {
 
 body.yb {
 
-  --bg:#ffeb00; --bg2:#fff04d; --card:#fff04d; --card2:#fff366;
+  --bg:#ffeb00; --bg2:#ffe533; --card:#fff7b3; --card2:#fff099;
 
-  --text:#000; --text2:#1a1a1a; --border:rgba(0,0,0,0.35);
+  --text:#000; --text2:#1a1a1a; --border:rgba(0,0,0,0.45);
 
-  --yellow:#000; --yellow2:#1a1a1a; --shadow:none;
+  --yellow:#cc8800; --yellow2:#b87a00; --shadow:none;
 
 }
+
+/* Black/Yellow theme: --yellow is a deep amber so it stands out as an accent on the 
+   bright yellow page. Text on amber accents stays black (high contrast). */
+body.yb .acc-num,
+body.yb .nc-num { color: #000 !important; background: #cc8800 !important; }
+body.yb .cond-helpline-btn { background: #cc8800 !important; color: #000 !important; }
+body.yb .cond-helpline-btn * { color: #000 !important; }
+body.yb .back-top { color: #000 !important; }
+body.yb .ab.on { color: #000 !important; }
+body.yb .rtag { color: #000 !important; }
+
+/* Sticky home button (hardcoded black background): make text bright yellow for contrast */
+body.yb #sticky-home-btn { background: #000 !important; color: #ffeb00 !important; }
+
+/* Search/CTA buttons that use yellow background — they're already amber on yellow now,
+   black text reads fine */
+body.yb [style*="background:var(--yellow)"],
+body.yb [style*="background: var(--yellow)"] { color: #000 !important; }
 
 
 body.bb {
@@ -741,9 +759,11 @@ body.dark .rtag.drug  { background: var(--purple); color: #000; }
 
 body.dark .rtag.tech  { background: var(--red);    color: #000; }
 
-body.hc .rtag.gene, body.hc .rtag.stem, body.hc .rtag.trial, body.hc .rtag.drug, body.hc .rtag.tech { background: var(--yellow); color: #000; }
+body.hc .rtag.gene, body.hc .rtag.stem, body.hc .rtag.trial, body.hc .rtag.drug, body.hc .rtag.tech { background: transparent; color: #fff; border: 2px solid #fff; }
 
-body.yb .rtag.gene, body.yb .rtag.stem, body.yb .rtag.trial, body.yb .rtag.drug, body.yb .rtag.tech { background: #ff0; color: #000; }
+body.bb .rtag.gene, body.bb .rtag.stem, body.bb .rtag.trial, body.bb .rtag.drug, body.bb .rtag.tech { background: transparent; color: #7ec8ff; border: 2px solid #7ec8ff; }
+
+body.yb .rtag.gene, body.yb .rtag.stem, body.yb .rtag.trial, body.yb .rtag.drug, body.yb .rtag.tech { background: #a86d00; color: #fff; }
 
 
 
@@ -1217,11 +1237,11 @@ body.dark .news-tag.general  { background: var(--yellow); color: #000; }
 
 body.hc .news-tag.research, body.hc .news-tag.benefits,
 
-body.hc .news-tag.tech, body.hc .news-tag.general { background: var(--yellow); color: #000; }
+body.hc .news-tag.tech, body.hc .news-tag.general { background: transparent; color: #fff; border: 2px solid #fff; }
 
 body.yb .news-tag.research, body.yb .news-tag.benefits,
 
-body.yb .news-tag.tech, body.yb .news-tag.general { background: #ff0; color: #000; }
+body.yb .news-tag.tech, body.yb .news-tag.general { background: #a86d00; color: #fff; }
 
 .news-text { font-size: 0.9rem; color: var(--text2); line-height: 1.6; }
 
