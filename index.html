@@ -126,11 +126,11 @@ body.hc {
 
 body.yb {
 
-  --bg:#000; --bg2:#000; --card:#111100; --card2:#1a1a00;
+  --bg:#ffeb00; --bg2:#fff04d; --card:#fff04d; --card2:#fff366;
 
-  --text:#ff0; --text2:#cc0; --border:rgba(255,255,0,0.35);
+  --text:#000; --text2:#1a1a1a; --border:rgba(0,0,0,0.35);
 
-  --yellow:#ff0; --yellow2:#ff0; --shadow:none;
+  --yellow:#000; --yellow2:#1a1a1a; --shadow:none;
 
 }
 
@@ -143,13 +143,13 @@ body.bb {
 
 body.ll {
 
-  --bg:#1a1a1a; --bg2:#222222; --card:#2a2a2a; --card2:#333333;
+  --bg:#2b1f15; --bg2:#3a2a1c; --card:#3d2d20; --card2:#4a3729;
 
-  --text:#f0e6d3; --text2:#c4b49a; --border:rgba(255,255,255,0.12);
+  --text:#f4e4cc; --text2:#d4b896; --border:rgba(244,228,204,0.15);
 
-  --yellow:#e8a020; --yellow2:#f0b030;
+  --yellow:#ffb84d; --yellow2:#ffc466;
 
-  --green:#5dbf7a; --blue:#5aafe0; --purple:#b07ae8; --red:#e87070;
+  --green:#7dbf85; --blue:#7eb8d0; --purple:#c89ad8; --red:#e89090;
 
   --shadow:0 2px 12px rgba(0,0,0,0.4);
 
@@ -426,6 +426,22 @@ p, h1, h2, h3, h4, li, span, a, button { overflow-wrap: break-word; word-wrap: b
 .ab-l  { font-size: 16px; }
 
 .ab-xl { font-size: 19px; }
+
+.theme-input {
+  background: #fff;
+  color: #000;
+}
+body.dark .theme-input { background: #2a2a2a; color: #fff; }
+body.dark .theme-input::placeholder { color: #aaa; }
+body.ll .theme-input { background: #3d2d20; color: #f4e4cc; }
+body.ll .theme-input::placeholder { color: #d4b896; }
+body.hc .theme-input { background: #000; color: #fff; border-color: #fff !important; }
+body.hc .theme-input::placeholder { color: #ddd; }
+body.yb .theme-input { background: #fff; color: #000; border-color: #000 !important; }
+body.yb .theme-input::placeholder { color: #555; }
+body.bb .theme-input { background: #000; color: #7ec8ff; border-color: #7ec8ff !important; }
+body.bb .theme-input::placeholder { color: #5aa8e8; }
+body.lb .theme-input { background: #fff; color: #000; }
 
 .theme-select {
 
@@ -1818,11 +1834,11 @@ body.focus-mode::after {
 
   <select id="col-select" onchange="setColour(this.value)" aria-label="Colour theme" class="tb-select" title="Colour theme">
     <option value="">☀️ Light</option>
-    <option value="lb">💙 Blue</option>
+    <option value="lb">💙 Blue/Black</option>
     <option value="dark">🌙 Dark</option>
-    <option value="ll">👁️ Lo-Lt</option>
-    <option value="hc">⬛ Hi-Con</option>
-    <option value="yb">🟡 Yel</option>
+    <option value="ll">👁️ Low Light</option>
+    <option value="hc">⬛ Black/White</option>
+    <option value="yb">🟨 Black/Yellow</option>
   </select>
 
 </div>
@@ -2065,7 +2081,7 @@ body.focus-mode::after {
         <p style="font-size:1rem;font-weight:800;color:var(--text);margin:0 0 14px;line-height:1.4">Chwiliwch drwy 17 cyflwr llygad — cael ymchwil, canllawiau ymarferol, cymorth budd-daliadau a chefnogaeth</p>
 
         <div style="margin-bottom:8px">
-          <input type="search" id="search-cy" placeholder="e.e. AMD, glawcoma, RP…" autocomplete="off" aria-controls="cond-list-cy" aria-label="Chwilio am gyflyrau llygad" style="background:#fff;color:#000;font-size:1rem;border:2px solid var(--border);border-radius:50px;padding:14px 20px;width:100%;box-sizing:border-box;box-shadow:0 1px 4px rgba(0,0,0,0.06);margin-bottom:10px">
+          <input type="search" id="search-cy" placeholder="e.e. AMD, glawcoma, RP…" autocomplete="off" aria-controls="cond-list-cy" aria-label="Chwilio am gyflyrau llygad" class="theme-input" style="font-size:1rem;border:2px solid var(--border);border-radius:50px;padding:14px 20px;width:100%;box-sizing:border-box;box-shadow:0 1px 4px rgba(0,0,0,0.06);margin-bottom:10px">
 
           <button onclick="doSearch(document.getElementById('search-cy').value); document.getElementById('search-cy').blur();" aria-label="Chwilio am gyflyrau" style="background:var(--yellow);color:#000;border:none;border-radius:50px;padding:14px 24px;font-family:var(--font);font-size:1rem;font-weight:900;cursor:pointer;width:100%;min-height:50px">🔍 Chwilio</button>
         </div>
@@ -2449,11 +2465,11 @@ body.focus-mode::after {
     <section class="cond-section" aria-label="Conditions list">
 
       <!-- SEARCH CONDITIONS — PROMINENT FIRST -->
-      <div style="background:#fffbf0;border:3px solid var(--yellow);border-radius:20px;padding:20px 20px 16px;margin-bottom:36px;box-shadow:var(--shadow)">
+      <div style="background:var(--card);border:3px solid var(--yellow);border-radius:20px;padding:20px 20px 16px;margin-bottom:36px;box-shadow:var(--shadow)">
         <p style="font-size:0.8rem;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;color:var(--yellow);margin:0 0 6px">Find your condition</p>
         <p style="font-size:1rem;font-weight:700;color:var(--text);margin:0 0 12px;line-height:1.4">Search 17 eye conditions — get research, practical guides, benefits help &amp; support</p>
         <div style="margin-bottom:8px">
-          <input type="search" id="csearch" placeholder="e.g. AMD, glaucoma, RP…" autocomplete="off" aria-controls="cond-list" aria-label="Search eye conditions" style="background:#fff;color:#000;font-size:1rem;border:2px solid var(--border);border-radius:50px;padding:14px 20px;width:100%;box-sizing:border-box;box-shadow:0 1px 4px rgba(0,0,0,0.06);margin-bottom:10px">
+          <input type="search" id="csearch" placeholder="e.g. AMD, glaucoma, RP…" autocomplete="off" aria-controls="cond-list" aria-label="Search eye conditions" class="theme-input" style="font-size:1rem;border:2px solid var(--border);border-radius:50px;padding:14px 20px;width:100%;box-sizing:border-box;box-shadow:0 1px 4px rgba(0,0,0,0.06);margin-bottom:10px">
           <button onclick="filterConds(document.getElementById('csearch').value); document.getElementById('csearch').blur();" aria-label="Search conditions" style="background:var(--yellow);color:#000;border:none;border-radius:50px;padding:14px 24px;font-family:var(--font);font-size:1rem;font-weight:900;cursor:pointer;width:100%;min-height:50px">🔍 Search</button>
         </div>
         <p id="cond-hint" aria-live="polite" style="font-size:0.95rem;font-weight:700;color:var(--text2);margin:4px 0 0;line-height:1.5">Type your condition then tap Search (or press Enter)</p>
