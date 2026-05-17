@@ -2072,6 +2072,9 @@ body.focus-mode::after {
 
         <p id="cond-hint-cy" aria-live="polite" style="font-size:0.95rem;font-weight:700;color:var(--text2);margin:4px 0 0;line-height:1.5">Teipiwch eich cyflwr yna tapiwch <strong>Chwilio</strong> (neu pwyswch Enter). <strong>17 cyflwr</strong>.</p>
 
+        <!-- Search results display inside card (populated by doSearch) -->
+        <div id="search-results-cy" role="list" aria-label="Canlyniadau chwilio" style="display:none;margin-top:12px;max-height:50vh;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;border-radius:12px;background:#fff;border:1px solid var(--border)"></div>
+
       </div>
 
 
@@ -8798,26 +8801,41 @@ function fuzzyMatch(query, target) {
 
 function doSearch(q) {
   var list = document.getElementById('cond-list-cy');
+  var resultsBox = document.getElementById('search-results-cy');
   var hint = document.getElementById('cond-hint-cy');
   if (!list) return;
   q = (q || '').trim();
   if (!q) {
     list.style.display = 'none';
+    if (resultsBox) { resultsBox.style.display = 'none'; resultsBox.innerHTML = ''; }
     if (hint) hint.textContent = '';
+    // Reset full list visibility (show all items)
+    list.querySelectorAll('.cond-item').forEach(function(item) { item.style.display = ''; });
     return;
   }
   var ql = q.toLowerCase();
   var items = list.querySelectorAll('.cond-item');
-  var shown = 0;
+  var matched = [];
   items.forEach(function(item) {
     var btn = item.querySelector('.cond-btn');
     var text = btn ? btn.textContent.toLowerCase() : '';
     var match = text.indexOf(ql) !== -1 || fuzzyMatch(ql, text);
-    item.style.display = match ? '' : 'none';
-    if (match) shown++;
+    if (match) matched.push(item);
   });
-  list.style.display = shown > 0 ? '' : 'none';
-  if (hint) hint.textContent = shown > 0 ? shown + ' cyflwr wedi\'i ddarganfod' : 'Dim cyflyrau wedi\'u darganfod ar gyfer "' + q + '"';
+
+  // Populate in-card results box with clones of matched items
+  if (resultsBox) {
+    resultsBox.innerHTML = '';
+    matched.forEach(function(item) {
+      resultsBox.appendChild(item.cloneNode(true));
+    });
+    resultsBox.style.display = matched.length > 0 ? '' : 'none';
+  }
+
+  // Hide the full list while a search is active (avoids duplicate display below)
+  list.style.display = 'none';
+
+  if (hint) hint.textContent = matched.length > 0 ? matched.length + ' cyflwr wedi\'i ddarganfod' : 'Dim cyflyrau wedi\'u darganfod ar gyfer "' + q + '"';
 }
 
 function filterConds(q) {
