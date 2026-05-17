@@ -126,38 +126,57 @@ body.hc {
 
 body.yb {
 
-  --bg:#ffeb00; --bg2:#ffe533; --card:#fff7b3; --card2:#fff099;
+  --bg:#ffeb00; --bg2:#ffd800; --card:#fff599; --card2:#ffe066;
 
-  --text:#000; --text2:#1a1a1a; --border:rgba(0,0,0,0.45);
+  --text:#000; --text2:#1a1a1a; --border:#000;
 
-  --yellow:#cc8800; --yellow2:#b87a00; --shadow:none;
+  --yellow:#000; --yellow2:#1a1a1a; --shadow:none;
 
 }
 
 /* Black/Yellow theme: --yellow is a deep amber so it stands out as an accent on the 
    bright yellow page. Text on amber accents stays black (high contrast). */
 body.yb .acc-num,
-body.yb .nc-num { color: #000 !important; background: #cc8800 !important; }
-body.yb .cond-helpline-btn { background: #cc8800 !important; color: #000 !important; }
+body.yb .nc-num { color: #fff !important; background: #000 !important; }
+
+/* Black/White theme: numbered circles need to be visible on black page */
+body.hc .nc-num { background: #000 !important; color: #fff !important; border: 3px solid #fff !important; }
+body.hc .acc-num { background: #000 !important; color: #fff !important; border: 3px solid #fff !important; }
+
+/* Black/White theme: yellow-background buttons (like "Questions to ask doctor") need to be visible
+   When --yellow is #fff, the button background becomes white. Override to black with white border. */
+body.hc [style*="background:var(--yellow)"],
+body.hc [style*="background: var(--yellow)"] { 
+  background: #000 !important; 
+  color: #fff !important; 
+  border: 3px solid #fff !important; 
+}
+body.yb .cond-helpline-btn { background: #fff599 !important; color: #000 !important; border: 3px solid #000 !important; }
 body.yb .cond-helpline-btn * { color: #000 !important; }
-body.yb .back-top { color: #000 !important; }
-body.yb .ab.on { color: #000 !important; }
-body.yb .rtag { color: #000 !important; }
+body.yb .back-top { color: #fff !important; }
+body.yb .ab.on { color: #fff !important; }
+/* Pressed toolbar buttons in Black/Yellow - need white text since var(--yellow) is black */
+body.yb .tb-btn[aria-pressed="true"] { color: #000 !important; background: #ffe066 !important; border: 3px solid #000 !important; }
+body.yb .tb-btn[aria-pressed="true"] .tb-icon,
+body.yb .tb-btn[aria-pressed="true"] .tb-label { color: #000 !important; }
+
 
 /* Sticky home button (hardcoded black background): make text bright yellow for contrast */
 body.yb #sticky-home-btn { background: #000 !important; color: #ffeb00 !important; }
 
-/* Search/CTA buttons that use yellow background — they're already amber on yellow now,
-   black text reads fine */
-body.yb [style*="background:var(--yellow)"],
-body.yb [style*="background: var(--yellow)"] { color: #000 !important; }
+/* Sticky title bar uses var(--yellow) as background which is black in yb theme.
+   Force white text on the bar and back button. */
+body.yb #sticky-title { color: #fff !important; }
+body.yb #sticky-title-back { color: #fff !important; border-color: #fff !important; }
+
+/* Black/Yellow: --yellow is black. All elements using var(--yellow) as background
+   become black, so force WHITE text for readability. */
+body.yb [style*="background:var(--yellow)"]:not(.cond-helpline-btn),
+body.yb [style*="background: var(--yellow)"]:not(.cond-helpline-btn) { color: #fff !important; }
+body.yb [style*="background:var(--yellow)"]:not(.cond-helpline-btn) *,
+body.yb [style*="background: var(--yellow)"]:not(.cond-helpline-btn) * { color: #fff !important; }
 
 
-body.bb {
-  --bg:#000; --bg2:#000; --card:#0a1228; --card2:#0f1a3a;
-  --text:#7ec8ff; --text2:#5aa8e8; --border:rgba(126,200,255,0.35);
-  --yellow:#7ec8ff; --yellow2:#a8d8ff; --shadow:none;
-}
 
 body.ll {
 
@@ -460,8 +479,6 @@ body.hc .theme-input { background: #000 !important; color: #fff !important; bord
 body.hc .theme-input::placeholder { color: #ddd; }
 body.yb .theme-input { background: #fff599 !important; color: #000 !important; border: 4px solid #000 !important; }
 body.yb .theme-input::placeholder { color: #555; }
-body.bb .theme-input { background: #000 !important; color: #7ec8ff !important; border: 4px solid #7ec8ff !important; }
-body.bb .theme-input::placeholder { color: #5aa8e8; }
 
 
 .theme-select {
@@ -764,9 +781,8 @@ body.dark .rtag.tech  { background: var(--red);    color: #000; }
 
 body.hc .rtag.gene, body.hc .rtag.stem, body.hc .rtag.trial, body.hc .rtag.drug, body.hc .rtag.tech { background: transparent; color: #fff; border: 2px solid #fff; }
 
-body.bb .rtag.gene, body.bb .rtag.stem, body.bb .rtag.trial, body.bb .rtag.drug, body.bb .rtag.tech { background: transparent; color: #7ec8ff; border: 2px solid #7ec8ff; }
 
-body.yb .rtag.gene, body.yb .rtag.stem, body.yb .rtag.trial, body.yb .rtag.drug, body.yb .rtag.tech { background: #a86d00; color: #fff; }
+body.yb .rtag.gene, body.yb .rtag.stem, body.yb .rtag.trial, body.yb .rtag.drug, body.yb .rtag.tech { background: #000; color: #fff; }
 
 
 
@@ -1244,7 +1260,7 @@ body.hc .news-tag.tech, body.hc .news-tag.general { background: transparent; col
 
 body.yb .news-tag.research, body.yb .news-tag.benefits,
 
-body.yb .news-tag.tech, body.yb .news-tag.general { background: #a86d00; color: #fff; }
+body.yb .news-tag.tech, body.yb .news-tag.general { background: #000; color: #fff; }
 
 .news-text { font-size: 0.9rem; color: var(--text2); line-height: 1.6; }
 
@@ -1602,7 +1618,6 @@ body.reading-ruler .reading-ruler-bar{display:block}
 }
 /* Stronger focus ring across every theme */
 *:focus-visible{outline:3px solid var(--yellow)!important;outline-offset:3px!important;border-radius:4px}
-body.hc *:focus-visible,body.yb *:focus-visible,body.bb *:focus-visible{outline-color:#fff!important}
 
 
 /* ══ BLUE/BLACK THEME (lb) ══ */
@@ -1621,6 +1636,32 @@ body.lb .ic, body.lb .nc, body.lb .rc, body.lb .tc, body.lb .wb, body.lb .sc { b
 body.lb .cond-item { background: #d8eef8 !important; }
 body.lb .news-box { background: #d8eef8 !important; border-color: rgba(0,100,180,0.3) !important; }
 body.lb .cond-btn { background: #d8eef8 !important; color: #000 !important; }
+body.lb .cond-list, body.lb #search-results-cy { background: #d8eef8 !important; border: 2px solid #003a80 !important; }
+body.lb .nc-num { background: #003a80 !important; color: #fff !important; }
+body.lb .tb-lang { border-color: #003a80 !important; color: #003a80 !important; background: #d8eef8 !important; }
+body.lb .tb-lang[aria-pressed=true] { background: #003a80 !important; color: #fff !important; }
+body.lb .rtag.gene, body.lb .rtag.stem, body.lb .rtag.trial, body.lb .rtag.drug, body.lb .rtag.tech { background: #003a80 !important; color: #fff !important; }
+
+/* Search results dropdowns and condition buttons - theme-aware */
+body.hc .cond-list, body.hc #search-results-cy { background: #000 !important; border: 2px solid #fff !important; }
+body.hc .cond-btn { background: #000 !important; color: #fff !important; border-bottom-color: #fff !important; }
+body.hc .cond-btn:active { background: #333 !important; }
+body.hc .cond-btn > span[aria-hidden="true"]:first-child { color: #fff !important; }
+body.hc .cond-arrow { color: #fff !important; }
+
+body.dark .cond-list, body.dark #search-results-cy { background: var(--card) !important; border: 2px solid var(--border) !important; }
+body.dark .cond-btn { background: var(--card) !important; color: var(--text) !important; border-bottom-color: var(--border) !important; }
+
+body.ll .cond-list, body.ll #search-results-cy { background: var(--card) !important; border: 2px solid var(--border) !important; }
+body.ll .cond-btn { background: var(--card) !important; color: var(--text) !important; border-bottom-color: var(--border) !important; }
+body.ll .rtag.gene, body.ll .rtag.stem, body.ll .rtag.trial, body.ll .rtag.drug, body.ll .rtag.tech { background: var(--yellow); color: #000; }
+body.ll .news-tag.research, body.ll .news-tag.benefits, body.ll .news-tag.tech, body.ll .news-tag.general { background: var(--yellow); color: #000; }
+
+body.yb .cond-list, body.yb #search-results-cy { background: #fff599 !important; border: 2px solid #000 !important; }
+body.yb .cond-btn { background: #fff599 !important; color: #000 !important; border-bottom-color: rgba(0,0,0,0.3) !important; }
+body.yb .cond-btn > span[aria-hidden="true"]:first-child { color: #000 !important; }
+body.yb .cond-arrow { color: #000 !important; }
+
 body.lb .news-tag.research { background: #b0ddf0 !important; color: #003a5c !important; }
 body.lb .news-tag.benefits { background: #b0d5f0 !important; color: #003060 !important; }
 body.lb .news-tag.tech { background: #d0d8f5 !important; color: #002080 !important; }
@@ -1735,10 +1776,9 @@ body.lb [style*="background: var(--yellow)"] { background: #a8d5ea !important; c
 /* Search button - theme-specific styling so it's always prominent and readable */
 body.lb .search-go-btn { background: #003a80 !important; color: #fff !important; }
 body.hc .search-go-btn { background: #000 !important; color: #fff !important; border: 4px solid #fff !important; }
-body.yb .search-go-btn { background: #a86d00 !important; color: #fff !important; }
+body.yb .search-go-btn { background: #000 !important; color: #fff !important; }
 body.dark .search-go-btn { background: var(--yellow) !important; color: #000 !important; }
 body.ll .search-go-btn { background: #ffb84d !important; color: #000 !important; }
-body.bb .search-go-btn { background: #7ec8ff !important; color: #000 !important; }
 body.lb .acc-num { background: #a8d5ea !important; color: #000 !important; }
 body.lb .back-top { background: #003a80 !important; color: #fff !important; }
 body.lb .cond-hero-eyebrow { color: #000 !important; }
@@ -1848,10 +1888,8 @@ body.focus-mode::after {
 /* Welsh CY button — adapt to high-contrast themes */
 body.hc .tb-lang { border-color: #fff !important; color: #fff !important; background: #000 !important; }
 body.hc .tb-lang[aria-pressed=true] { background: #fff !important; color: #000 !important; }
-body.yb .tb-lang { border-color: #a86d00 !important; color: #a86d00 !important; background: #fff599 !important; }
-body.yb .tb-lang[aria-pressed=true] { background: #a86d00 !important; color: #fff !important; }
-body.bb .tb-lang { border-color: #7ec8ff !important; color: #7ec8ff !important; background: #000 !important; }
-body.bb .tb-lang[aria-pressed=true] { background: #7ec8ff !important; color: #000 !important; }
+body.yb .tb-lang { border-color: #000 !important; color: #000 !important; background: #fff599 !important; }
+body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !important; }
 .tb-divider{width:1px;height:36px;background:var(--border);flex-shrink:0;}
 </style>
 
