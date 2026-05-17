@@ -2096,21 +2096,19 @@ body.focus-mode::after {
 
       <!-- Chwilio -->
 
-      <div class="search-wrap" style="margin-bottom:20px">
+      <div style="background:var(--card);border:2px solid var(--yellow);border-radius:16px;padding:20px;margin-bottom:20px;box-shadow:var(--shadow)">
 
-        <label class="search-label" for="search-cy">Eich cyflwr</label>
+        <span style="font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:0.12em;color:var(--yellow);display:block;margin-bottom:6px">Dod o hyd i'ch cyflwr</span>
 
-        <div class="search-row">
+        <p style="font-size:1rem;font-weight:800;color:var(--text);margin:0 0 14px;line-height:1.4">Chwiliwch drwy 17 cyflwr llygad — cael ymchwil, canllawiau ymarferol, cymorth budd-daliadau a chefnogaeth</p>
 
-          <input class="search-input" id="search-cy" type="search" placeholder="Chwilio am gyflyrau..." autocomplete="off" oninput="doSearch(this.value)" aria-label="Chwilio am gyflyrau">
+        <div style="margin-bottom:8px">
+          <input type="search" id="search-cy" placeholder="e.e. AMD, glawcoma, RP…" autocomplete="off" aria-controls="cond-list-cy" aria-label="Chwilio am gyflyrau llygad" style="background:#fff;color:#000;font-size:1rem;border:2px solid var(--border);border-radius:50px;padding:14px 20px;width:100%;box-sizing:border-box;box-shadow:0 1px 4px rgba(0,0,0,0.06);margin-bottom:10px">
 
-          <span class="search-icon" aria-hidden="true">🔍</span>
-
+          <button onclick="doSearch(document.getElementById('search-cy').value); document.getElementById('search-cy').blur();" aria-label="Chwilio am gyflyrau" style="background:var(--yellow);color:#000;border:none;border-radius:50px;padding:14px 24px;font-family:var(--font);font-size:1rem;font-weight:900;cursor:pointer;width:100%;min-height:50px">🔍 Chwilio</button>
         </div>
 
-        <div id="search-results-cy" class="search-results" role="listbox" aria-label="Canlyniadau chwilio"></div>
-
-        <p id="cond-hint-cy" aria-live="polite" style="font-size:0.875rem;color:var(--text2);margin:8px 0 4px;line-height:1.5"></p>
+        <p id="cond-hint-cy" aria-live="polite" style="font-size:0.95rem;font-weight:700;color:var(--text2);margin:4px 0 0;line-height:1.5">Teipiwch eich cyflwr yna tapiwch <strong>Chwilio</strong> (neu pwyswch Enter). <strong>17 cyflwr</strong>.</p>
 
       </div>
 
@@ -8940,6 +8938,22 @@ function filterConds(q) {
 /* ─────────────── SEARCH LISTENER ─────────────── */
 
 var searchBox = document.getElementById('csearch');
+var searchBoxCy = document.getElementById('search-cy');
+
+if (searchBoxCy) {
+  // Welsh search: Enter triggers search
+  searchBoxCy.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      doSearch(this.value);
+      this.blur();
+    }
+  });
+  // Clear results when input is fully emptied
+  searchBoxCy.addEventListener('input', function() {
+    if (!this.value.trim()) doSearch('');
+  });
+}
 
 if (searchBox) {
 
