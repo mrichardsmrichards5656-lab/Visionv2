@@ -8,7 +8,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="description" content="Vision Hub UK — Free UK resource for people living with sight conditions. Information on Stargardt, AMD, Glaucoma, Retinitis Pigmentosa and more. Benefits, assistive technology, research and support.">
+<meta name="description" content="Sight Atlas UK — Free UK resource for people living with sight conditions. Information on Stargardt, AMD, Glaucoma, Retinitis Pigmentosa and more. Benefits, assistive technology, research and support.">
 
 <meta name="theme-color" content="#f5b800">
 
@@ -16,9 +16,39 @@
 
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-<meta name="apple-mobile-web-app-title" content="Vision Hub">
+<meta name="apple-mobile-web-app-title" content="Sight Atlas">
 
-<title>Vision Hub — Your Complete UK Sight Loss Resource</title>
+<!-- Open Graph (Facebook, WhatsApp, Slack, etc.) -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Sight Atlas UK — Free Sight Loss Resource">
+<meta property="og:description" content="Free UK resource for people living with sight conditions. Clear information on 17 eye conditions, benefits help, assistive technology, and current research.">
+<meta property="og:site_name" content="Sight Atlas UK">
+<meta property="og:locale" content="en_GB">
+<meta property="og:locale:alternate" content="cy_GB">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sight Atlas UK — Free Sight Loss Resource">
+<meta name="twitter:description" content="Free UK resource for people living with sight conditions. 17 conditions covered with benefits help, assistive tech, and current research.">
+
+<!-- Structured data for search engines -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalWebPage",
+  "name": "Sight Atlas UK",
+  "description": "Free UK resource for people living with sight conditions. Information on 17 eye conditions including Stargardt disease, AMD, glaucoma, retinitis pigmentosa, and more. Covers benefits, assistive technology, and current research.",
+  "inLanguage": ["en-GB", "cy-GB"],
+  "audience": {
+    "@type": "PeopleAudience",
+    "audienceType": "People living with sight loss and their families"
+  },
+  "lastReviewed": "2026-05-15",
+  "specialty": "Ophthalmology"
+}
+</script>
+
+<title>Sight Atlas UK — Your Complete UK Sight Loss Resource</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 
@@ -1477,7 +1507,7 @@ footer { background: var(--bg2); border-top: 3px solid var(--yellow); padding: 3
 
   .cond-page-inner::before {
 
-    content: "Vision Hub — visionhubuk.co.uk — Free UK Sight Loss Resource";
+    content: "Sight Atlas UK — sightatlas.co.uk — Free UK Sight Loss Resource";
 
     display: block; font-size: 8pt; color: #666;
 
@@ -1739,9 +1769,9 @@ body.focus-mode::after {
 <noscript>
   <div style="background:#fff8e1;border:2px solid #b86d00;color:#1a1a2e;padding:20px;margin:0;text-align:center;font-family:Georgia,serif;font-size:1.1rem;line-height:1.6">
     <strong style="display:block;font-size:1.2rem;margin-bottom:8px;color:#b86d00">JavaScript is required</strong>
-    Vision Hub UK needs JavaScript to display its accessibility features and condition information.<br>
+    Sight Atlas UK needs JavaScript to display its accessibility features and condition information.<br>
     Please enable JavaScript in your browser settings, then refresh this page.<br>
-    <span style="display:block;margin-top:10px;font-size:0.95rem;color:#4a4a6a">If you need help, ask someone to enable JavaScript for you, or visit <a href="https://www.rnib.org.uk" style="color:#b86d00;font-weight:700">rnib.org.uk</a> for sight loss support.</span>
+    <span style="display:block;margin-top:10px;font-size:0.95rem;color:#4a4a6a">If you need help, ask someone to enable JavaScript for you, or visit <a href="https://www.rnib.org.uk" target="_blank" rel="noopener" style="color:#b86d00;font-weight:700">rnib.org.uk</a> for sight loss support.</span>
   </div>
 </noscript>
 
@@ -1773,7 +1803,7 @@ body.focus-mode::after {
 <div class="a11y-bar-outer">
 <div class="a11y-bar" role="toolbar" aria-label="Accessibility controls">
 
-  <span class="site-name" onclick="showPage('home')" role="link" tabindex="0" aria-label="Vision Hub home" style="cursor:pointer;flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px"><svg viewBox="0 0 32 32" width="18" height="18" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><ellipse cx="16" cy="16" rx="14" ry="9" fill="none" stroke="var(--yellow)" stroke-width="3"/><circle cx="16" cy="16" r="6" fill="var(--yellow)"/></svg></span>
+  <span class="site-name" onclick="showPage('home')" role="link" tabindex="0" aria-label="Sight Atlas home" style="cursor:pointer;flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px"><svg viewBox="0 0 32 32" width="18" height="18" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><ellipse cx="16" cy="16" rx="14" ry="9" fill="none" stroke="var(--yellow)" stroke-width="3"/><circle cx="16" cy="16" r="6" fill="var(--yellow)"/></svg></span>
 
   <div class="tb-divider"></div>
 
@@ -1875,7 +1905,7 @@ body.focus-mode::after {
 
 <div id="ios-banner" style="display:none;background:var(--yellow);color:#000;padding:12px 16px;text-align:center;font-family:var(--font);font-size:0.88rem;font-weight:700;line-height:1.6;position:relative">
 
-  📱 <strong>iPhone users:</strong> Tap the Share button <span style="font-size:1.1rem">⎙</span> then "Add to Home Screen" to install Vision Hub as a free app.
+  📱 <strong>iPhone users:</strong> Tap the Share button <span style="font-size:1.1rem">⎙</span> then "Add to Home Screen" to install Sight Atlas as a free app.
 
   <button onclick="document.getElementById('ios-banner').style.display='none';localStorage.setItem('ios-banner-dismissed','1')"
 
@@ -1902,11 +1932,27 @@ body.focus-mode::after {
 
 <!-- Welsh notice banner -->
 
-<div id="welsh-notice" style="display:none;background:#00b140;color:#fff;padding:12px 20px;font-size:0.85rem;font-weight:600;text-align:center;line-height:1.6">
+<div id="welsh-notice" style="display:none;background:#00b140;color:#fff;padding:14px 20px;font-size:0.85rem;font-weight:600;text-align:center;line-height:1.6">
 
-  🏴󠁧󠁢󠁷󠁬󠁳󠁥󠁳󠁿 <strong>Cymraeg</strong> — Mae'r hafan, geirfa, cymorth lleol, iechyd llygaid, cyflogaeth, tudalennau rhieni, a gwybodaeth 'Am y Cyflwr' ar gyfer yr holl 17 cyflwr ar gael yn Gymraeg. Mae'r ymchwil a'r canllawiau manwl yn Saesneg ar hyn o bryd.
+  <div style="max-width:680px;margin:0 auto">
 
-  <br><span style="font-size:0.75rem;opacity:0.9">Home, glossary, local support, eye health, employment, parents pages, and 'About' condition information for all 17 conditions available in Welsh. Research and detailed guides currently in English.</span>
+    🏴󠁧󠁢󠁷󠁬󠁳󠁥󠁳󠁿 <strong>Cymraeg — Cyfieithiad cyfyngedig</strong>
+    <br>
+    <span style="font-weight:500">Mae cyfieithiad Cymraeg ar gael ar gyfer yr hafan, geirfa, cymorth lleol, iechyd llygaid, cyflogaeth, tudalennau rhieni, a gwybodaeth ‘Am y Cyflwr’. Mae’r ymchwil glinigol manwl, cyfrifianellau budd-daliadau, a chanllawiau ymarferol yn Saesneg ar hyn o bryd.</span>
+
+    <br><br>
+
+    <strong>Pwysig:</strong> Os ydych yn ansicr am unrhyw gyfieithiad meddygol, defnyddiwch y fersiwn Saesneg neu siaradwch â’ch offthalmolegydd.
+
+    <br><br>
+
+    <button onclick="toggleWelsh()" style="background:#fff;color:#00b140;border:2px solid #fff;border-radius:50px;padding:10px 20px;font-family:var(--font);font-size:0.9rem;font-weight:900;cursor:pointer;min-height:42px">🇬🇧 Newid i Saesneg / Switch to English</button>
+
+    <div style="margin-top:10px;font-size:0.72rem;opacity:0.9;font-weight:500">
+      <span lang="en">Welsh translation is partial. Home, glossary, local support, eye health, employment, parents pages, and condition overviews are available in Welsh. Clinical research, benefits calculators, and detailed guides remain in English. For medical accuracy, use the English version or speak to your ophthalmologist.</span>
+    </div>
+
+  </div>
 
 </div>
 
@@ -1914,7 +1960,7 @@ body.focus-mode::after {
 
 <!-- Welsh home page -->
 
-<div id="page-home-welsh" class="welsh-page" style="display:none">
+<div id="page-home-welsh" class="welsh-page" lang="cy" style="display:none">
 
   <main>
 
@@ -2185,7 +2231,7 @@ body.focus-mode::after {
 
     <aside class="desktop-sidebar" aria-label="Site navigation">
 
-      <span class="sidebar-logo">◈ Vision Hub</span>
+      <span class="sidebar-logo">◈ Sight Atlas</span>
 
       <span class="sidebar-tagline">Free UK sight loss resource</span>
 
@@ -2331,9 +2377,9 @@ body.focus-mode::after {
           <circle cx="190" cy="105" r="2.2" fill="var(--yellow)" opacity="0.55"/>
         </svg>
 
-        <!-- Vision Hub UK wordmark -->
+        <!-- Sight Atlas UK wordmark -->
         <div style="font-size:2.2rem;font-weight:800;color:var(--text);letter-spacing:-0.025em;line-height:1.05;margin-bottom:8px">
-          Vision<span style="color:var(--yellow);font-weight:900">Hub</span><span style="font-size:1rem;font-weight:700;color:var(--text2);letter-spacing:0.08em;margin-left:6px;vertical-align:middle">UK</span>
+          Sight<span style="color:var(--yellow);font-weight:900">Atlas</span><span style="font-size:1rem;font-weight:700;color:var(--text2);letter-spacing:0.08em;margin-left:6px;vertical-align:middle">UK</span>
         </div>
 
         <!-- Tagline with UK flag accent line -->
@@ -2405,7 +2451,7 @@ body.focus-mode::after {
           <input type="search" id="csearch" placeholder="e.g. AMD, glaucoma, RP…" autocomplete="off" aria-controls="cond-list" aria-label="Search eye conditions" style="background:#fff;color:#000;font-size:1rem;border:2px solid var(--border);border-radius:50px;padding:14px 20px;width:100%;box-sizing:border-box;box-shadow:0 1px 4px rgba(0,0,0,0.06);margin-bottom:10px">
           <button onclick="filterConds(document.getElementById('csearch').value); document.getElementById('csearch').blur();" aria-label="Search conditions" style="background:var(--yellow);color:#000;border:none;border-radius:50px;padding:14px 24px;font-family:var(--font);font-size:1rem;font-weight:900;cursor:pointer;width:100%;min-height:50px">🔍 Search</button>
         </div>
-        <p id="cond-hint" aria-live="polite" style="font-size:0.95rem;font-weight:700;color:var(--text2);margin:4px 0 0;line-height:1.5">Start typing to find your condition</p>
+        <p id="cond-hint" aria-live="polite" style="font-size:0.95rem;font-weight:700;color:var(--text2);margin:4px 0 0;line-height:1.5">Type your condition then tap Search (or press Enter)</p>
         <div class="cond-list" id="cond-list" role="list" style="display:none;max-height:60vh;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;margin-top:6px;border-radius:12px;background:#fff">
         </div>
       </div>
@@ -2685,7 +2731,7 @@ body.focus-mode::after {
 
     <aside class="desktop-sidebar" aria-label="Site navigation">
 
-      <span class="sidebar-logo">◈ Vision Hub</span>
+      <span class="sidebar-logo">◈ Sight Atlas</span>
 
       <span class="sidebar-tagline">Free UK sight loss resource</span>
 
@@ -3590,7 +3636,7 @@ body.focus-mode::after {
 
 ══════════════════════════════════════ -->
 
-<div id="page-contact" class="page" role="main" aria-label="Contact Vision Hub">
+<div id="page-contact" class="page" role="main" aria-label="Contact Sight Atlas">
 
   <div class="legal-wrap">
 
@@ -3606,7 +3652,7 @@ body.focus-mode::after {
 
       <h2>Send us a message</h2>
 
-      <p class="cf-desc">Your message goes directly to the Vision Hub team. We never share your details with third parties.</p>
+      <p class="cf-desc">Your message goes directly to the Sight Atlas team. We never share your details with third parties.</p>
 
       <div id="cf-form">
 
@@ -3710,9 +3756,9 @@ body.focus-mode::after {
 
     <p class="legal-updated">Last updated: <time datetime="2026-05-15">May 2026</time></p>
 
-    <div class="wb"><strong>Plain English summary:</strong> Vision Hub does not sell your data. We do not collect personal information unless you choose to contact us. We do not use advertising trackers.</div>
+    <div class="wb"><strong>Plain English summary:</strong> Sight Atlas does not sell your data. We do not collect personal information unless you choose to contact us. We do not use advertising trackers.</div>
 
-    <div class="lc"><h2>👤 Who we are</h2><p>Vision Hub is a free, independent UK resource for people living with partial sight and sight loss. Contact us via the <button onclick="showPage('contact')" style="background:none;border:none;color:var(--yellow);font-family:var(--font);font-size:inherit;font-weight:700;cursor:pointer;text-decoration:underline;padding:0">contact form</button>.</p></div>
+    <div class="lc"><h2>👤 Who we are</h2><p>Sight Atlas is a free, independent UK resource for people living with partial sight and sight loss. Contact us via the <button onclick="showPage('contact')" style="background:none;border:none;color:var(--yellow);font-family:var(--font);font-size:inherit;font-weight:700;cursor:pointer;text-decoration:underline;padding:0">contact form</button>.</p></div>
 
     <div class="lc"><h2>📋 What information we collect</h2><p>We collect the minimum needed:</p><ul><li><strong>Contact form submissions:</strong> Name, email, and message — used only to reply to you.</li><li><strong>Accessibility preferences:</strong> Stored in your browser's local storage only. Never leaves your device.</li><li><strong>Feedback votes:</strong> Stored locally in your browser only.</li></ul></div>
 
@@ -3748,7 +3794,7 @@ body.focus-mode::after {
 
     <p class="legal-updated">Last updated: <time datetime="2026-05-15">May 2026</time></p>
 
-    <div class="wb"><strong>Our commitment:</strong> Vision Hub exists to serve people living with sight loss. Accessibility is not an afterthought — it is the core purpose of this website.</div>
+    <div class="wb"><strong>Our commitment:</strong> Sight Atlas exists to serve people living with sight loss. Accessibility is not an afterthought — it is the core purpose of this website.</div>
 
     <div class="lc"><h2>Conformance status</h2><p>We aim to meet <strong>WCAG 2.1 Level AA</strong>. We believe this website is <strong>substantially conformant</strong>.</p></div>
 
@@ -4920,7 +4966,7 @@ body.focus-mode::after {
       <button class="cf-submit" type="button" onclick="generateAISLetter()">Generate letter</button>
       <div id="ais-output" style="margin-top:18px;display:none">
         <h3>Your letter (copy &amp; send to GP and hospital)</h3>
-        <textarea id="ais-letter-text" rows="14" style="width:100%;font-family:var(--font);padding:14px;border-radius:10px;border:2px solid var(--border);background:var(--card)"></textarea>
+        <textarea id="ais-letter-text" rows="14" aria-label="Generated AIS letter — copy and send to GP and hospital" style="width:100%;font-family:var(--font);padding:14px;border-radius:10px;border:2px solid var(--border);background:var(--card)"></textarea>
         <button class="cf-submit" type="button" onclick="copyAISLetter()" style="margin-top:10px">📋 Copy to clipboard</button>
       </div>
     </div>
@@ -4946,7 +4992,7 @@ body.focus-mode::after {
       <li><strong>Disney+:</strong> Audio menu → English Audio Description.</li>
       <li><strong>Sky / NOW:</strong> Press Help on the remote → Accessibility → Audio Description.</li>
       <li><strong>Apple TV+ / Prime Video:</strong> Audio menu during playback.</li>
-      <li><strong>Cinemas:</strong> Most chains lend AD headsets at the box office — ask. Use the <a href="https://www.yourlocalcinema.com" rel="noopener">Your Local Cinema</a> site to find AD-compatible screenings.</li>
+      <li><strong>Cinemas:</strong> Most chains lend AD headsets at the box office — ask. Use the <a href="https://www.yourlocalcinema.com" target="_blank" rel="noopener">Your Local Cinema</a> site to find AD-compatible screenings.</li>
     </ul>
 
     <h2 id="apps">Sighted-help apps (all free)</h2>
@@ -4989,7 +5035,7 @@ body.focus-mode::after {
 
 
 
-    <div class="wb"><strong>Important:</strong> Vision Hub provides information for guidance only. It is not a substitute for professional medical advice. Always discuss your condition, treatment options, and any research with your own ophthalmologist or specialist.</div>
+    <div class="wb"><strong>Important:</strong> Sight Atlas provides information for guidance only. It is not a substitute for professional medical advice. Always discuss your condition, treatment options, and any research with your own ophthalmologist or specialist.</div>
 
 
 
@@ -4997,7 +5043,7 @@ body.focus-mode::after {
 
       <h2>📋 Who writes the content</h2>
 
-      <p>Vision Hub was created by a parent of a child with Stargardt disease. Content is researched and written by the Vision Hub team using the sources listed below. We are not medical professionals.</p>
+      <p>Sight Atlas was created by a parent of a child with Stargardt disease. Content is researched and written by the Sight Atlas team using the sources listed below. We are not medical professionals.</p>
 
       <p style="margin-top:10px">We aim to have condition pages reviewed by a qualified clinical professional. If you are a specialist nurse, ophthalmologist, or optometrist willing to review content, please <button onclick="showPage('contact')" style="background:none;border:none;color:var(--yellow);font-family:var(--font);font-size:inherit;font-weight:700;cursor:pointer;text-decoration:underline;padding:0">get in touch</button>.</p>
 
@@ -5057,11 +5103,11 @@ body.focus-mode::after {
 
       <h2>⚠️ Medical disclaimer</h2>
 
-      <p>The information on Vision Hub is provided for general information and guidance only. It does not constitute medical advice and should not be used as a substitute for professional medical advice, diagnosis, or treatment.</p>
+      <p>The information on Sight Atlas is provided for general information and guidance only. It does not constitute medical advice and should not be used as a substitute for professional medical advice, diagnosis, or treatment.</p>
 
       <p style="margin-top:10px">Always seek the advice of your ophthalmologist, GP, or other qualified health provider with any questions you may have regarding your condition or its treatment. Never disregard professional medical advice or delay seeking it because of something you have read on this website.</p>
 
-      <p style="margin-top:10px">Vision Hub is not responsible for the content of external websites linked from this site.</p>
+      <p style="margin-top:10px">Sight Atlas is not responsible for the content of external websites linked from this site.</p>
 
     </div>
 
@@ -5157,7 +5203,7 @@ body.focus-mode::after {
 
   </div>
 
-  <div class="wb"><strong>Note:</strong> External links. Vision Hub is not responsible for their content. Always discuss medical information with your ophthalmologist.</div>
+  <div class="wb"><strong>Note:</strong> External links. Sight Atlas is not responsible for their content. Always discuss medical information with your ophthalmologist.</div>
 
 </section>
 
@@ -5341,7 +5387,7 @@ body.focus-mode::after {
 
   <div class="footer-inner">
 
-    <div class="footer-logo">◈ Vision Hub</div>
+    <div class="footer-logo">◈ Sight Atlas</div>
 
     <p class="footer-desc">A free, independent UK resource for people living with partial sight and sight loss.</p>
 
@@ -5383,7 +5429,7 @@ body.focus-mode::after {
 
     <div class="footer-bottom">
 
-      © 2026 Vision Hub &nbsp;·&nbsp; <strong>Not a medical provider</strong> &nbsp;·&nbsp; Information is for guidance only — always consult your ophthalmologist &nbsp;·&nbsp; Content reviewed May 2026 &nbsp;·&nbsp;
+      © 2026 Sight Atlas UK &nbsp;·&nbsp; <strong>Not a medical provider</strong> &nbsp;·&nbsp; Information is for guidance only — always consult your ophthalmologist &nbsp;·&nbsp; Content reviewed May 2026 &nbsp;·&nbsp;
 
       <a onclick="showPage('livingwell')" role="button" tabindex="0">Everyday Guide</a> &nbsp;·&nbsp;
 
@@ -7976,7 +8022,26 @@ function showWelshPage(name) {
 
       welshEl.style.display = '';
 
-      window.scrollTo({ top: 0, behavior: 'instant' });
+      // Hide video resources (only meant to show on home)
+      var videoWrapW = document.getElementById('video-resources-wrap');
+      if (videoWrapW) videoWrapW.style.display = 'none';
+
+      // Hide news box if present (home-only content)
+      var newsW = document.querySelector('.news-box');
+      if (newsW) newsW.style.display = 'none';
+
+      // Hide footer while on a Welsh sub-page (Welsh pages physically come after footer
+      // in the DOM, so showing the footer would make the page look broken)
+      var ftW = document.querySelector('footer');
+      if (ftW) ftW.style.display = 'none';
+
+      // Welsh sub-pages live after the footer in the DOM, so scroll to the element
+      // directly rather than to top of document
+      setTimeout(function() {
+        var rect = welshEl.getBoundingClientRect();
+        var top = rect.top + window.pageYOffset - 80; // 80px offset for sticky top bar
+        window.scrollTo({ top: top, behavior: 'instant' });
+      }, 0);
 
       return;
 
@@ -8050,6 +8115,10 @@ function toggleWelsh() {
 
     }
 
+    // Hide English-only video resources when in Welsh mode
+    var vrW = document.getElementById('video-resources-wrap');
+    if (vrW) vrW.style.display = 'none';
+
   } else {
 
     // Switch back to English home
@@ -8063,6 +8132,16 @@ function toggleWelsh() {
       engHome.classList.add('active');
 
     }
+
+    // Show video resources again on English home
+    var vrE = document.getElementById('video-resources-wrap');
+    if (vrE) vrE.style.display = '';
+
+    // Restore news box and footer (in case hidden by Welsh sub-page nav)
+    var newsE = document.querySelector('.news-box');
+    if (newsE) newsE.style.display = '';
+    var ftE = document.querySelector('footer');
+    if (ftE) ftE.style.display = '';
 
   }
 
@@ -8155,16 +8234,35 @@ function showPage(name) {
   };
   srAnnounce('Navigated to: ' + (_srPageNames[name] || name));
 
+  // Update document.title so screen readers announce the new page
+  var _pageTitle = _srPageNames[name] || name;
+  document.title = _pageTitle + ' — Sight Atlas UK';
+
+  // Move keyboard focus to the new page's h1 so screen readers start reading there
+  setTimeout(function() {
+    var _target = document.querySelector('.page.active h1');
+    if (_target) {
+      // Make h1 focusable temporarily so screen reader can land on it
+      _target.setAttribute('tabindex', '-1');
+      _target.focus({preventScroll: false});
+      // Remove tabindex after blur so it's not in normal tab order
+      _target.addEventListener('blur', function _b(){
+        _target.removeAttribute('tabindex');
+        _target.removeEventListener('blur', _b);
+      });
+    }
+  }, 150);
+
   // Update sticky title for zoomed users
   var _pageNames = {
-    home:'Vision Hub', livingwell:'Everyday Guide', glossary:'Glossary',
+    home:'Sight Atlas', livingwell:'Everyday Guide', glossary:'Glossary',
     eyehealth:'Eye Health Basics', employment:'Employment', questions:'Questions to Ask',
     localsupport:'Local Support', children:'For Parents', contact:'Contact Us',
     help:'Help & Support', 'benefits-calc':'Benefits Calculator',
     trials:'Clinical Trials', eclo:'Find Your ECLO', privacy:'Privacy Policy',
     disclaimer:'How We Write Our Content', a11y:'Accessibility'
   };
-  updateStickyTitle(_pageNames[name] || 'Vision Hub', name !== 'home' ? function(){ showPage('home'); } : null);
+  updateStickyTitle(_pageNames[name] || 'Sight Atlas', name !== 'home' ? function(){ showPage('home'); } : null);
 
   // If Welsh active and going home, show Welsh home
 
@@ -8181,6 +8279,12 @@ function showPage(name) {
     var videoWrap = document.getElementById('video-resources-wrap');
 
     if (videoWrap) videoWrap.style.display = 'none';
+
+    // Restore news box and footer when returning to Welsh home
+    var newsH = document.querySelector('.news-box');
+    if (newsH) newsH.style.display = '';
+    var ftH = document.querySelector('footer');
+    if (ftH) ftH.style.display = '';
 
     window.scrollTo({ top: 0, behavior: 'instant' });
 
@@ -8203,6 +8307,10 @@ function showPage(name) {
   var target = document.getElementById('page-' + name);
 
   if (target) target.classList.add('active');
+
+  // Ensure footer is visible on English pages (may have been hidden by Welsh sub-page)
+  var ftMain = document.querySelector('footer');
+  if (ftMain) ftMain.style.display = '';
 
 
 
@@ -8253,7 +8361,7 @@ function selectCondition(key) {
   var l = document.getElementById('cond-list');
   if (l) l.style.display = 'none';
   var h = document.getElementById('cond-hint');
-  if (h) { h.style.display = 'block'; h.innerHTML = 'Start typing to find your condition. <strong>17 conditions</strong> covered.'; }
+  if (h) { h.style.display = 'block'; h.innerHTML = 'Type your condition then tap <strong>Search</strong> (or press Enter). <strong>17 conditions</strong> covered.'; }
   showCondition(key);
 }
 
@@ -8428,7 +8536,7 @@ function submitContactForm() {
 
   var mailtoUrl = 'mailto:' + recipient
 
-    + '?subject=' + encodeURIComponent('[Vision Hub] ' + subject.options[subject.selectedIndex].text + ' — from ' + name)
+    + '?subject=' + encodeURIComponent('[Sight Atlas] ' + subject.options[subject.selectedIndex].text + ' — from ' + name)
 
     + '&body=' + encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\n' + message);
 
@@ -8451,6 +8559,9 @@ function showCfError(msg) {
   el.textContent = '⚠️ ' + msg;
 
   el.style.display = 'block';
+
+  // Also announce assertively so screen readers interrupt immediately
+  if (window.srAnnounce) srAnnounce(msg, true);
 
 }
 
@@ -8515,7 +8626,7 @@ function sharePage() {
 
   if (navigator.share) {
 
-    navigator.share({ title: 'Vision Hub — UK Sight Loss Resource', url: window.location.href });
+    navigator.share({ title: 'Sight Atlas UK — Sight Loss Resource', url: window.location.href });
 
   } else { copyLink(); }
 
@@ -8537,7 +8648,7 @@ function shareCondition(name) {
 
   if (navigator.share) {
 
-    navigator.share({ title: name + ' — Vision Hub', url: window.location.href });
+    navigator.share({ title: name + ' — Sight Atlas', url: window.location.href });
 
   } else { copyLink(); }
 
@@ -9398,10 +9509,19 @@ if (_siteName) {
 
 
 function generateAISLetter(){
-  var name = (document.getElementById('ais-name')||{}).value || '[your name]';
-  var dob  = (document.getElementById('ais-dob')||{}).value  || '[date of birth]';
-  var nhs  = (document.getElementById('ais-nhs')||{}).value  || '[NHS number]';
-  var fmt  = (document.getElementById('ais-format')||{}).value || '';
+  var nameVal = (document.getElementById('ais-name')||{}).value || '';
+  var fmtVal  = (document.getElementById('ais-format')||{}).value || '';
+  // Announce missing critical info before generating (helps screen reader users)
+  if (!nameVal.trim() && window.srAnnounce) {
+    srAnnounce('Notice: your name field is empty. The letter will include [your name] as a placeholder.', true);
+  }
+  if (!fmtVal && window.srAnnounce) {
+    srAnnounce('Notice: no preferred format selected. Please choose your preferred format from the dropdown.', true);
+  }
+  var name = nameVal || '[your name]';
+  var dob  = (document.getElementById('ais-dob')||{}).value || '[date of birth]';
+  var nhs  = (document.getElementById('ais-nhs')||{}).value || '[NHS number]';
+  var fmt  = fmtVal;
   var extra= (document.getElementById('ais-extra')||{}).value || '';
   var today= new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
   var t = ''
@@ -9744,7 +9864,7 @@ function showTrialsForCondition(key) {
 
 <!-- WELSH GLOSSARY -->
 
-<div id="page-glossary-welsh" class="welsh-page" style="display:none">
+<div id="page-glossary-welsh" class="welsh-page" lang="cy" style="display:none">
 
   <div class="legal-wrap">
 
@@ -9856,7 +9976,7 @@ function showTrialsForCondition(key) {
 
 <!-- WELSH EYE HEALTH BASICS -->
 
-<div id="page-eyehealth-welsh" class="welsh-page" style="display:none">
+<div id="page-eyehealth-welsh" class="welsh-page" lang="cy" style="display:none">
 
   <div class="legal-wrap">
 
@@ -9952,7 +10072,7 @@ function showTrialsForCondition(key) {
 
 <!-- WELSH FOR PARENTS -->
 
-<div id="page-children-welsh" class="welsh-page" style="display:none">
+<div id="page-children-welsh" class="welsh-page" lang="cy" style="display:none">
 
   <div class="legal-wrap">
 
@@ -10052,7 +10172,7 @@ function showTrialsForCondition(key) {
 
 <!-- WELSH CONTACT -->
 
-<div id="page-contact-welsh" class="welsh-page" style="display:none">
+<div id="page-contact-welsh" class="welsh-page" lang="cy" style="display:none">
 
   <div class="legal-wrap">
 
@@ -10070,7 +10190,7 @@ function showTrialsForCondition(key) {
 
       <h2>✉️ Anfonwch Neges</h2>
 
-      <p>E-bostiwch ni yn: <a href="mailto:hello@visionhubuk.co.uk" style="color:var(--yellow);font-weight:700">hello@visionhubuk.co.uk</a></p>
+      <p>E-bostiwch ni yn: <a href="mailto:hello@sightatlas.co.uk" style="color:var(--yellow);font-weight:700">hello@sightatlas.co.uk</a></p>
 
       <p style="margin-top:10px">Fel arfer byddwn yn ymateb o fewn 3-5 diwrnod gwaith.</p>
 
@@ -10110,7 +10230,7 @@ function showTrialsForCondition(key) {
 
 <!-- WELSH EMPLOYMENT PAGE -->
 
-<div id="page-employment-welsh" class="welsh-page" style="display:none">
+<div id="page-employment-welsh" class="welsh-page" lang="cy" style="display:none">
 
   <div class="legal-wrap">
 
@@ -10184,7 +10304,7 @@ function showTrialsForCondition(key) {
 
 <!-- WELSH DISCLAIMER PAGE -->
 
-<div id="page-disclaimer-welsh" class="welsh-page" style="display:none">
+<div id="page-disclaimer-welsh" class="welsh-page" lang="cy" style="display:none">
 
   <div class="legal-wrap">
 
@@ -10272,7 +10392,7 @@ function showTrialsForCondition(key) {
 
 <!-- WELSH LOCAL SUPPORT PAGE -->
 
-<div id="page-localsupport-welsh" class="welsh-page" style="display:none">
+<div id="page-localsupport-welsh" class="welsh-page" lang="cy" style="display:none">
 
   <div class="legal-wrap">
 
@@ -10352,7 +10472,7 @@ function showTrialsForCondition(key) {
 
 <!-- WELSH QUESTIONS TO ASK PAGE -->
 
-<div id="page-questions-welsh" class="welsh-page" style="display:none">
+<div id="page-questions-welsh" class="welsh-page" lang="cy" style="display:none">
 
   <div class="legal-wrap">
 
