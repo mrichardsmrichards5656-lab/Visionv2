@@ -448,18 +448,21 @@ p, h1, h2, h3, h4, li, span, a, button { overflow-wrap: break-word; word-wrap: b
 .theme-input {
   background: #fff;
   color: #000;
+  border-width: 4px !important;
 }
-body.dark .theme-input { background: #2a2a2a; color: #fff; }
+body.lb .theme-input { background: #d0e8f4 !important; color: #000 !important; border: 4px solid #003a80 !important; }
+body.lb .theme-input::placeholder { color: #1a3a5a; }
+body.dark .theme-input { background: #2a2a2a !important; color: #fff !important; border: 4px solid #fff !important; }
 body.dark .theme-input::placeholder { color: #aaa; }
-body.ll .theme-input { background: #3d2d20; color: #f4e4cc; }
+body.ll .theme-input { background: #3d2d20 !important; color: #f4e4cc !important; border: 4px solid #f4e4cc !important; }
 body.ll .theme-input::placeholder { color: #d4b896; }
-body.hc .theme-input { background: #000; color: #fff; border-color: #fff !important; }
+body.hc .theme-input { background: #000 !important; color: #fff !important; border: 4px solid #fff !important; }
 body.hc .theme-input::placeholder { color: #ddd; }
-body.yb .theme-input { background: #fff; color: #000; border-color: #000 !important; }
+body.yb .theme-input { background: #fff599 !important; color: #000 !important; border: 4px solid #000 !important; }
 body.yb .theme-input::placeholder { color: #555; }
-body.bb .theme-input { background: #000; color: #7ec8ff; border-color: #7ec8ff !important; }
+body.bb .theme-input { background: #000 !important; color: #7ec8ff !important; border: 4px solid #7ec8ff !important; }
 body.bb .theme-input::placeholder { color: #5aa8e8; }
-body.lb .theme-input { background: #fff; color: #000; }
+
 
 .theme-select {
 
@@ -1728,6 +1731,14 @@ body.lb .lc h2 { color: #000 !important; }
 body.lb .cf-submit { background: #d4ecf7 !important; color: #000 !important; border-color: rgba(0,100,180,0.4) !important; }
 body.lb [style*="background:var(--yellow)"] { background: #a8d5ea !important; color: #000 !important; }
 body.lb [style*="background: var(--yellow)"] { background: #a8d5ea !important; color: #000 !important; }
+
+/* Search button - theme-specific styling so it's always prominent and readable */
+body.lb .search-go-btn { background: #003a80 !important; color: #fff !important; }
+body.hc .search-go-btn { background: #000 !important; color: #fff !important; border: 4px solid #fff !important; }
+body.yb .search-go-btn { background: #a86d00 !important; color: #fff !important; }
+body.dark .search-go-btn { background: var(--yellow) !important; color: #000 !important; }
+body.ll .search-go-btn { background: #ffb84d !important; color: #000 !important; }
+body.bb .search-go-btn { background: #7ec8ff !important; color: #000 !important; }
 body.lb .acc-num { background: #a8d5ea !important; color: #000 !important; }
 body.lb .back-top { background: #003a80 !important; color: #fff !important; }
 body.lb .cond-hero-eyebrow { color: #000 !important; }
@@ -1833,6 +1844,14 @@ body.focus-mode::after {
 .tb-lang[aria-pressed=false]:not(:hover){background:var(--card2);color:#00b140;}
 .tb-lang .tb-icon{font-size:0.9rem;font-weight:900;}
 .tb-lang .tb-label{font-size:0.5rem;color:inherit;}
+
+/* Welsh CY button — adapt to high-contrast themes */
+body.hc .tb-lang { border-color: #fff !important; color: #fff !important; background: #000 !important; }
+body.hc .tb-lang[aria-pressed=true] { background: #fff !important; color: #000 !important; }
+body.yb .tb-lang { border-color: #a86d00 !important; color: #a86d00 !important; background: #fff599 !important; }
+body.yb .tb-lang[aria-pressed=true] { background: #a86d00 !important; color: #fff !important; }
+body.bb .tb-lang { border-color: #7ec8ff !important; color: #7ec8ff !important; background: #000 !important; }
+body.bb .tb-lang[aria-pressed=true] { background: #7ec8ff !important; color: #000 !important; }
 .tb-divider{width:1px;height:36px;background:var(--border);flex-shrink:0;}
 </style>
 
@@ -2103,7 +2122,7 @@ body.focus-mode::after {
         <div style="margin-bottom:8px">
           <input type="search" id="search-cy" placeholder="e.e. AMD, glawcoma, RP…" autocomplete="off" aria-controls="cond-list-cy" aria-label="Chwilio am gyflyrau llygad" class="theme-input" style="font-size:1rem;border:2px solid var(--border);border-radius:50px;padding:14px 20px;width:100%;box-sizing:border-box;box-shadow:0 1px 4px rgba(0,0,0,0.06);margin-bottom:10px">
 
-          <button onclick="doSearch(document.getElementById('search-cy').value); document.getElementById('search-cy').blur();" aria-label="Chwilio am gyflyrau" style="background:var(--yellow);color:#000;border:none;border-radius:50px;padding:14px 24px;font-family:var(--font);font-size:1rem;font-weight:900;cursor:pointer;width:100%;min-height:50px">🔍 Chwilio</button>
+          <button onclick="doSearch(document.getElementById('search-cy').value); document.getElementById('search-cy').blur();" aria-label="Chwilio am gyflyrau" class="search-go-btn" style="background:var(--yellow);color:#000;border:none;border-radius:50px;padding:14px 24px;font-family:var(--font);font-size:1rem;font-weight:900;cursor:pointer;width:100%;min-height:50px">🔍 Chwilio</button>
         </div>
 
         <p id="cond-hint-cy" aria-live="polite" style="font-size:0.95rem;font-weight:700;color:var(--text2);margin:4px 0 0;line-height:1.5">Teipiwch eich cyflwr yna tapiwch <strong>Chwilio</strong> (neu pwyswch Enter). <strong>17 cyflwr</strong>.</p>
@@ -2490,7 +2509,7 @@ body.focus-mode::after {
         <p style="font-size:1rem;font-weight:700;color:var(--text);margin:0 0 12px;line-height:1.4">Search 17 eye conditions — get research, practical guides, benefits help &amp; support</p>
         <div style="margin-bottom:8px">
           <input type="search" id="csearch" placeholder="e.g. AMD, glaucoma, RP…" autocomplete="off" aria-controls="cond-list" aria-label="Search eye conditions" class="theme-input" style="font-size:1rem;border:2px solid var(--border);border-radius:50px;padding:14px 20px;width:100%;box-sizing:border-box;box-shadow:0 1px 4px rgba(0,0,0,0.06);margin-bottom:10px">
-          <button onclick="filterConds(document.getElementById('csearch').value); document.getElementById('csearch').blur();" aria-label="Search conditions" style="background:var(--yellow);color:#000;border:none;border-radius:50px;padding:14px 24px;font-family:var(--font);font-size:1rem;font-weight:900;cursor:pointer;width:100%;min-height:50px">🔍 Search</button>
+          <button onclick="filterConds(document.getElementById('csearch').value); document.getElementById('csearch').blur();" aria-label="Search conditions" class="search-go-btn" style="background:var(--yellow);color:#000;border:none;border-radius:50px;padding:14px 24px;font-family:var(--font);font-size:1rem;font-weight:900;cursor:pointer;width:100%;min-height:50px">🔍 Search</button>
         </div>
         <p id="cond-hint" aria-live="polite" style="font-size:0.95rem;font-weight:700;color:var(--text2);margin:4px 0 0;line-height:1.5">Type your condition then tap Search (or press Enter)</p>
         <div class="cond-list" id="cond-list" role="list" style="display:none;max-height:60vh;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;margin-top:6px;border-radius:12px;background:#fff">
