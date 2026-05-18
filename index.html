@@ -5301,7 +5301,34 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
   </div>
 
-  <div class="wb"><strong>Note:</strong> External links. Sight Atlas is not responsible for their content. Always discuss medical information with your ophthalmologist.</div>
+  <!-- Home page footer: share + contact (above disclaimer, end of home page) -->
+  <div id="home-footer-cta" style="margin-top:36px;padding:24px 20px;background:var(--card);border-radius:16px;border:1px solid var(--border)" role="region" aria-label="Share and contact">
+
+    <h2 style="font-size:1.1rem;font-weight:900;color:var(--text);margin:0 0 6px;text-align:center">Help others find Sight Atlas UK</h2>
+
+    <p style="font-size:0.92rem;color:var(--text2);text-align:center;margin:0 0 18px;line-height:1.5">If this site helped you, please share it with anyone else who might need it.</p>
+
+    <div class="share-bar" style="justify-content:center;margin-bottom:20px">
+
+      <button class="share-btn" onclick="shareCondition('Sight Atlas UK')" aria-label="Share Sight Atlas UK">📤 Share</button>
+
+      <button class="share-btn" onclick="copyLink()" aria-label="Copy link to clipboard">🔗 Copy link</button>
+
+      <button class="share-btn" onclick="window.print()" aria-label="Print or save as PDF">🖨️ Print / Save PDF</button>
+
+    </div>
+
+    <div style="text-align:center;padding-top:16px;border-top:1px solid var(--border)">
+
+      <p style="font-size:0.92rem;color:var(--text2);margin:0 0 10px;line-height:1.5">Got a question, spotted something wrong, or want to suggest a resource?</p>
+
+      <button onclick="showPage('contact')" class="share-btn" style="background:var(--yellow);color:#000;border-color:var(--yellow);font-weight:900" aria-label="Contact us">✉️ Contact us</button>
+
+    </div>
+
+  </div>
+
+  <div class="wb" style="margin-top:24px"><strong>Note:</strong> External links. Sight Atlas is not responsible for their content. Always discuss medical information with your ophthalmologist.</div>
 
 </section>
 
@@ -5733,7 +5760,7 @@ amd:{
 
     {tag:"gene",label:"🔬 Pipeline",title:"4D-150 Gene Therapy — Wet AMD (Phase 3)",body:"Single injection delivering continuous anti-VEGF production — potentially replacing years of repeat injections. Phase 3 trials ongoing. Data readout expected 2027.",link:"https://www.modernretina.com/view/pipeline-update-catch-up-on-recent-updates-in-the-retina-pipeline"},
 
-    {tag:"gene",label:"?? Pipeline",title:"OCU-410 Gene Therapy — Geographic Atrophy",body:"Single subretinal injection targeting multiple disease pathways. Phase 1/2 data (Jan 2026) showed 46% slowing of lesion growth — among the best results seen for GA treatment.",link:"https://www.fightingblindness.org/news/age-related-macular-degeneration-research-advances-821"},
+    {tag:"gene",label:"🔬 Pipeline",title:"OCU-410 Gene Therapy — Geographic Atrophy",body:"Single subretinal injection targeting multiple disease pathways. Phase 1/2 data (Jan 2026) showed 46% slowing of lesion growth — among the best results seen for GA treatment.",link:"https://www.fightingblindness.org/news/age-related-macular-degeneration-research-advances-821"},
 
     {tag:"trial",label:"🌅 Horizon",title:"PRIMA Retinal Implant — Bionic Vision",body:"A tiny chip placed under the retina combined with specialist glasses. In a study of 38 people with geographic atrophy, over 80% reported clinically significant vision improvement — including reading letters they previously could not see.",link:"https://www.fightingblindness.org/news/age-related-macular-degeneration-research-advances-821"},
 
@@ -7739,7 +7766,7 @@ function renderCondition(key) {
 
       <button class="share-btn" onclick="copyLink()" aria-label="Copy link to clipboard">🔗 Copy link</button>
 
-      <a class="share-btn" href="https://wa.me/?text=Vision%20Hub%20-%20${encodeURIComponent(d.name)}%20information%3A%20" target="_blank" rel="noopener" aria-label="Share on WhatsApp">💬 WhatsApp</a>
+
 
     </div>
 
@@ -8123,6 +8150,10 @@ function showWelshPage(name) {
       // Hide video resources (only meant to show on home)
       var videoWrapW = document.getElementById('video-resources-wrap');
       if (videoWrapW) videoWrapW.style.display = 'none';
+    var hf_videoWrapW = document.getElementById('home-footer-cta');
+    if (hf_videoWrapW) hf_videoWrapW.style.display = 'none';
+      var homeFooterW = document.getElementById('home-footer-cta');
+      if (homeFooterW) homeFooterW.style.display = 'none';
 
       // Hide news box if present (home-only content)
       var newsW = document.querySelector('.news-box');
@@ -8216,6 +8247,8 @@ function toggleWelsh() {
     // Hide English-only video resources when in Welsh mode
     var vrW = document.getElementById('video-resources-wrap');
     if (vrW) vrW.style.display = 'none';
+    var hf_vrW = document.getElementById('home-footer-cta');
+    if (hf_vrW) hf_vrW.style.display = 'none';
 
   } else {
 
@@ -8234,6 +8267,8 @@ function toggleWelsh() {
     // Show video resources again on English home
     var vrE = document.getElementById('video-resources-wrap');
     if (vrE) vrE.style.display = '';
+    var hf_vrE = document.getElementById('home-footer-cta');
+    if (hf_vrE) hf_vrE.style.display = '';
 
     // Restore news box and footer (in case hidden by Welsh sub-page nav)
     var newsE = document.querySelector('.news-box');
@@ -8377,6 +8412,8 @@ function showPage(name) {
     var videoWrap = document.getElementById('video-resources-wrap');
 
     if (videoWrap) videoWrap.style.display = 'none';
+    var hf_videoWrap = document.getElementById('home-footer-cta');
+    if (hf_videoWrap) hf_videoWrap.style.display = 'none';
 
     // Restore news box and footer when returning to Welsh home
     var newsH = document.querySelector('.news-box');
@@ -8495,6 +8532,8 @@ function showCondition(key) {
   var videoWrap = document.getElementById('video-resources-wrap');
 
   if (videoWrap) videoWrap.style.display = 'none';
+    var hf_videoWrap = document.getElementById('home-footer-cta');
+    if (hf_videoWrap) hf_videoWrap.style.display = 'none';
 
 
 
@@ -8630,7 +8669,7 @@ function submitContactForm() {
 
   if (!message) { showCfError('Please enter your message.'); document.getElementById('cf-message').focus(); return; }
 
-  var recipient = atob('bXJpY2hhcmRzbXJpY2hhcmRzNTY1NkBnbWFpbC5jb20=');
+  var recipient = atob('c2lnaHRhdGxhc3VrQGdtYWlsLmNvbQ==');
 
   var mailtoUrl = 'mailto:' + recipient
 
@@ -10319,7 +10358,7 @@ function showTrialsForCondition(key) {
 
       <h2>✉️ Anfonwch Neges</h2>
 
-      <p>E-bostiwch ni yn: <a href="mailto:hello@sightatlas.co.uk" style="color:var(--yellow);font-weight:700">hello@sightatlas.co.uk</a></p>
+      <p>E-bostiwch ni yn: <a href="mailto:sightatlasuk@gmail.com" style="color:var(--yellow);font-weight:700">sightatlasuk@gmail.com</a></p>
 
       <p style="margin-top:10px">Fel arfer byddwn yn ymateb o fewn 3-5 diwrnod gwaith.</p>
 
