@@ -1838,9 +1838,8 @@ body.focus-mode::after {
   align-items: center;
   gap: 6px;
   border-top: 1px solid var(--border);
-}
-@media (min-width: 640px) {
-  .a11y-bar-row2 { display: none !important; }
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 </style>
@@ -2403,7 +2402,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
       <button class="sidebar-link" onclick="showPage('benefits-calc')">💰 Benefits Calculator</button>
       <button class="sidebar-link" onclick="showPage('trials')">🔬 Clinical Trials</button>
-      <button class="sidebar-link" onclick="showPage('eclo')">👁️ Find Your ECLO</button>
+      <button class="sidebar-link" onclick="showPage('eclo')">🏥 Eye Clinic Support</button>
 
       <div class="sidebar-divider"></div>
 
@@ -2515,7 +2514,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
             <span style="font-size:0.95rem;font-weight:700;color:var(--text)">💛 Why this site exists</span>
             <button class="acc-listen" onclick="listenToFounder(this)" aria-label="Listen to why this site was made" aria-pressed="false" title="Listen to this section" style="width:32px;height:32px;flex-shrink:0">🔊</button>
           </div>
-          <p style="font-size:0.9rem;color:var(--text2);line-height:1.6;margin:0 0 10px">When my daughter was diagnosed with Stargardts, I had so many questions. I couldn't find anywhere that had everything in one place.</p>
+          <p style="font-size:0.9rem;color:var(--text2);line-height:1.6;margin:0 0 10px">When my daughter was diagnosed with Stargardt's, I had so many questions. I couldn't find anywhere that had everything in one place.</p>
           <button id="founder-expand-btn" onclick="document.getElementById('founder-full').style.display='block';this.style.display='none'" style="background:none;border:none;color:var(--yellow);font-family:var(--font);font-size:0.875rem;font-weight:700;cursor:pointer;text-decoration:underline;padding:0;margin-bottom:4px">Read more ▼</button>
         </div>
         <div id="founder-full" style="display:none;padding:0 20px 20px">
@@ -2711,7 +2710,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
         <button onclick="showPage('eyehealth')" class="share-btn" style="font-size:0.78rem;padding:0 6px;min-height:42px;justify-content:center;border-radius:12px" aria-label="Open Eye Health Basics">👁️ Eye Health</button>
 
-        <button onclick="showPage('employment')" class="share-btn" style="font-size:0.78rem;padding:0 6px;min-height:42px;justify-content:center;border-radius:12px" aria-label="Open Employment guide">💼 Employment</button>
+        <button onclick="showPage('employment')" class="share-btn" style="font-size:0.78rem;padding:0 6px;min-height:42px;justify-content:center;border-radius:12px" aria-label="Open Work and Employment guide">💼 Work</button>
 
         <button onclick="showPage('children')" class="share-btn" style="font-size:0.78rem;padding:0 6px;min-height:42px;justify-content:center;border-radius:12px" aria-label="Open For Parents guide">👶 For Parents</button>
 
@@ -2720,7 +2719,11 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:20px" role="group" aria-label="More resources">
         <button onclick="showPage('benefits-calc')" class="share-btn" style="font-size:0.78rem;padding:0 6px;min-height:42px;justify-content:center;border-radius:12px" aria-label="Open Benefits Calculator">💰 Benefits Calc</button>
         <button onclick="showPage('trials')" class="share-btn" style="font-size:0.78rem;padding:0 6px;min-height:42px;justify-content:center;border-radius:12px" aria-label="Find Clinical Trials">🔬 Trials</button>
-        <button onclick="showPage('eclo')" class="share-btn" style="font-size:0.78rem;padding:0 6px;min-height:42px;justify-content:center;border-radius:12px" aria-label="Find Your ECLO">👁️ ECLO</button>
+        <button onclick="showPage('eclo')" class="share-btn" style="font-size:0.78rem;padding:0 6px;min-height:42px;justify-content:center;border-radius:12px" aria-label="Eye Clinic Support">🏥 Eye Clinic Support</button>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr;gap:8px;margin-bottom:0" role="group" aria-label="Help and support">
+        <button onclick="showPage('help')" class="share-btn" style="font-size:0.78rem;padding:0 6px;min-height:42px;justify-content:center;border-radius:12px" aria-label="Open Help and Emotional Support page">💬 Help &amp; Emotional Support</button>
       </div>
 
 
@@ -2731,9 +2734,9 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
     <!-- RECENT UPDATES — below conditions -->
 
-    <div style="max-width:min(680px,100%);margin:0 auto;padding:0 20px 48px">
+    <div style="max-width:min(680px,100%);margin:-40px auto 0;padding:0 20px 12px">
 
-      <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px;opacity:0.5" aria-hidden="true">
+      <div style="display:flex;align-items:center;gap:12px;margin:8px 0 16px;opacity:0.5" aria-hidden="true">
 
         <div style="flex:1;height:1px;background:var(--yellow)"></div>
 
@@ -2901,7 +2904,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
       <button class="sidebar-link" onclick="showPage('benefits-calc')">💰 Benefits Calculator</button>
       <button class="sidebar-link" onclick="showPage('trials')">🔬 Clinical Trials</button>
-      <button class="sidebar-link" onclick="showPage('eclo')">👁️ Find Your ECLO</button>
+      <button class="sidebar-link" onclick="showPage('eclo')">🏥 Eye Clinic Support</button>
 
       <div class="sidebar-divider"></div>
 
@@ -5249,7 +5252,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
 <!-- DECORATIVE DIVIDER -->
 
-<div aria-hidden="true" style="max-width:680px;margin:0 auto;padding:0 20px;text-align:center;opacity:0.4">
+<div aria-hidden="true" style="max-width:680px;margin:0 auto;padding:0 20px;text-align:center;opacity:0.4;line-height:0">
 
   <svg viewBox="0 0 400 40" width="100%" xmlns="http://www.w3.org/2000/svg">
 
@@ -5271,7 +5274,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
 <div id="video-resources-wrap">
 
-<section style="max-width:680px;margin:0 auto;padding:0 20px 48px" aria-labelledby="video-hd">
+<section style="max-width:680px;margin:0 auto;padding:16px 20px 48px" aria-labelledby="video-hd">
 
   <span class="section-label" id="video-hd">Video Resources</span>
 
@@ -8464,7 +8467,7 @@ function showPage(name) {
     questions:'Questions to Ask Your Doctor', localsupport:'Find Local Support',
     children:'For Parents', contact:'Contact Us', help:'Help and Support',
     'benefits-calc':'Benefits Calculator', trials:'Clinical Trials Finder',
-    eclo:'Find Your ECLO', privacy:'Privacy Policy',
+    eclo:'Eye Clinic Support', privacy:'Privacy Policy',
     disclaimer:'How We Write Our Content', a11y:'Accessibility Statement'
   };
   srAnnounce('Navigated to: ' + (_srPageNames[name] || name));
@@ -8494,7 +8497,7 @@ function showPage(name) {
     eyehealth:'Eye Health Basics', employment:'Employment', questions:'Questions to Ask',
     localsupport:'Local Support', children:'For Parents', contact:'Contact Us',
     help:'Help & Support', 'benefits-calc':'Benefits Calculator',
-    trials:'Clinical Trials', eclo:'Find Your ECLO', privacy:'Privacy Policy',
+    trials:'Clinical Trials', eclo:'Eye Clinic Support', privacy:'Privacy Policy',
     disclaimer:'How We Write Our Content', a11y:'Accessibility'
   };
   updateStickyTitle(_pageNames[name] || 'Sight Atlas', name !== 'home' ? function(){ showPage('home'); } : null);
