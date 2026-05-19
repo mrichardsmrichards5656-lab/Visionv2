@@ -1880,21 +1880,21 @@ body.focus-mode::after {
   display:inline-flex;flex-direction:column;align-items:center;justify-content:center;
   background:var(--card2);border:1.5px solid var(--border);border-radius:10px;
   cursor:pointer;font-family:var(--font);color:var(--text);gap:1px;
-  min-width:44px;min-height:50px;padding:4px 6px;flex-shrink:0;
+  min-width:44px;min-height:50px;padding:4px 4px;flex-shrink:0;
   transition:background .15s,border-color .15s;
 }
 .tb-btn:hover{background:var(--yellow);color:#000;border-color:var(--yellow);}
 .tb-btn:focus-visible{outline:3px solid var(--yellow);outline-offset:2px;}
-.tb-btn[aria-pressed="false"]{background:var(--card2) !important;color:var(--text) !important;border-color:var(--border) !important;}
+.tb-btn[aria-pressed="false"]{background:var(--card2) !important;color:#000 !important;border-color:var(--border) !important;}
 .tb-btn[aria-pressed="true"]{background:var(--yellow) !important;color:#000 !important;border-color:var(--yellow) !important;}
 .tb-icon{font-size:17px;line-height:1;font-weight:900;}
-.tb-label{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:0.04em;line-height:1;white-space:nowrap;}
+.tb-label{font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:0.03em;line-height:1;white-space:nowrap;color:#000;}
 .tb-select{height:50px;border-radius:10px;border:1.5px solid var(--border);background:var(--card2);color:var(--text);font-family:var(--font);font-size:11px;padding:0 2px;flex-shrink:0;cursor:pointer;max-width:80px;}
-.tb-lang{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;min-width:44px;min-height:50px;padding:4px 6px;border-radius:10px;border:2px solid #00b140;background:var(--card2);color:#00b140;font-family:var(--font);cursor:pointer;flex-shrink:0;gap:1px;}
-.tb-lang[aria-pressed=true]{background:#00b140;color:#fff;}
-.tb-lang[aria-pressed=false]:not(:hover){background:var(--card2);color:#00b140;}
+.tb-lang{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;min-width:44px;min-height:50px;padding:4px 6px;border-radius:10px;border:2px solid #006d27;background:var(--card2);color:#006d27;font-family:var(--font);cursor:pointer;flex-shrink:0;gap:1px;}
+.tb-lang[aria-pressed=true]{background:#006d27;color:#fff;}
+.tb-lang[aria-pressed=false]:not(:hover){background:var(--card2);color:#006d27;}
 .tb-lang .tb-icon{font-size:15px;font-weight:900;}
-.tb-lang .tb-label{font-size:8px;color:inherit;}
+.tb-lang .tb-label{font-size:9px;color:inherit;font-weight:900;}
 
 /* Welsh CY button — adapt to high-contrast themes */
 body.hc .tb-lang { border-color: #fff !important; color: #fff !important; background: #000 !important; }
@@ -1945,7 +1945,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 }
 </style>
 
-<div class="a11y-bar-outer">
+<div class="a11y-bar-outer" role="banner">
 <div class="a11y-bar" role="toolbar" aria-label="Accessibility controls">
 <div class="a11y-bar-inner">
 
@@ -2773,10 +2773,8 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
         <button onclick="showPage('eclo')" class="share-btn ql-btn" aria-label="Eye Clinic Support">🏥 Eye Clinic Support</button>
 
-      </div>
+        <button onclick="showPage('help')" class="share-btn ql-btn" aria-label="Open Help and Emotional Support page">💬 Emotional Support</button>
 
-      <div style="display:grid;grid-template-columns:1fr;gap:8px;margin:8px 0 0" role="group" aria-label="Help and support">
-        <button onclick="showPage('help')" class="share-btn ql-btn" aria-label="Open Help and Emotional Support page">💬 Help &amp; Emotional Support</button>
       </div>
 
 
