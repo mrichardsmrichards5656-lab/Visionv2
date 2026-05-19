@@ -386,6 +386,8 @@ p, h1, h2, h3, h4, li, span, a, button { overflow-wrap: break-word; word-wrap: b
 
   align-items: center;
 
+  justify-content: center;
+
   gap: 6px;
 
   flex-wrap: nowrap;
@@ -400,6 +402,14 @@ p, h1, h2, h3, h4, li, span, a, button { overflow-wrap: break-word; word-wrap: b
 
   min-height: 50px;
 
+}
+
+/* On wider screens, allow the bar to wrap so centering works */
+@media (min-width: 640px) {
+  .a11y-bar {
+    flex-wrap: wrap;
+    overflow-x: visible;
+  }
 }
 
 .a11y-bar::-webkit-scrollbar { display: none; }
@@ -1890,10 +1900,27 @@ body.hc .tb-lang[aria-pressed=true] { background: #fff !important; color: #000 !
 body.yb .tb-lang { border-color: #000 !important; color: #000 !important; background: #fff599 !important; }
 body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !important; }
 .tb-divider{width:1px;height:36px;background:var(--border);flex-shrink:0;}
+
+/* Inner wrapper to align row 1 and row 2 content on desktop */
+.a11y-bar-inner {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+}
+@media (min-width: 640px) {
+  .a11y-bar-inner {
+    max-width: 600px;
+    margin: 0 auto;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
 </style>
 
 <div class="a11y-bar-outer">
 <div class="a11y-bar" role="toolbar" aria-label="Accessibility controls">
+<div class="a11y-bar-inner">
 
   <span class="site-name" onclick="showPage('home')" role="link" tabindex="0" aria-label="Sight Atlas home" style="cursor:pointer;flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px"><svg viewBox="0 0 32 32" width="14" height="14" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><ellipse cx="16" cy="16" rx="14" ry="9" fill="none" stroke="var(--yellow)" stroke-width="3"/><circle cx="16" cy="16" r="6" fill="var(--yellow)"/></svg></span>
 
@@ -1918,9 +1945,11 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
   </select>
 
 </div>
+</div>
 
 <!-- Row 2: feature toggles (mobile only) -->
 <div class="a11y-bar-row2" role="toolbar" aria-label="Accessibility features">
+<div class="a11y-bar-inner">
 
   <button class="tb-btn" id="tts-toggle"     onclick="togglePageSpeech()"   aria-pressed="false" aria-label="Read page aloud"><span class="tb-icon">🔊</span><span class="tb-label">Listen</span></button>
   <button class="tb-btn" id="dys-toggle"     onclick="toggleDyslexic()"     aria-pressed="false" aria-label="Toggle dyslexia-friendly font"><span class="tb-icon" style="font-size:15px">Aa</span><span class="tb-label">Dyslexic</span></button>
@@ -1929,6 +1958,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
   <div class="tb-divider"></div>
   <button class="tb-lang" id="welsh-toggle"  onclick="toggleWelsh()"        aria-pressed="false" aria-label="Switch to Welsh / Newid i Gymraeg"><span class="tb-icon" id="welsh-icon" style="font-size:12px;font-weight:900">CY</span><span class="tb-label" id="welsh-label">Welsh</span></button>
 
+</div>
 </div>
 
 </div><!-- end a11y-bar-outer -->
@@ -1997,7 +2027,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
 <div id="ios-banner" style="display:none;background:var(--yellow);color:#000;padding:12px 16px;text-align:center;font-family:var(--font);font-size:0.88rem;font-weight:700;line-height:1.6;position:relative">
 
-  📱 <strong>iPhone users:</strong> Tap the Share button <span style="font-size:1.1rem">⎙</span> then "Add to Home Screen" to install Sight Atlas as a free app.
+  📱 <strong>iPhone users:</strong> Tap the Share button <span style="font-size:1.1rem">⎙</span> then "Add to Home Screen" for one-tap access from your home screen. No App Store needed.
 
   <button onclick="document.getElementById('ios-banner').style.display='none';localStorage.setItem('ios-banner-dismissed','1')"
 
@@ -5316,7 +5346,8 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
   <div id="home-footer-cta" style="margin-top:36px;padding:24px 20px;background:var(--card);border-radius:16px;border:1px solid var(--border)" role="region" aria-label="Share and contact">
 
     <div style="background:var(--card2);border:1px solid var(--yellow);border-radius:10px;padding:12px 16px;margin:0 0 20px;font-size:0.9rem;line-height:1.5;color:var(--text)">
-      <strong style="color:var(--yellow)">💡 Following a link?</strong> If you tap a link to another website, use your phone's <strong>back arrow</strong> to return to Sight Atlas.
+      <strong style="color:var(--yellow)">💡 About links to other websites</strong>
+      <p style="margin:8px 0 0">If you tap a link to another website, use your phone's <strong>back arrow</strong> to return to Sight Atlas. Sight Atlas is not responsible for content on external websites. Always discuss medical information with your ophthalmologist.</p>
     </div>
 
     <h2 style="font-size:1.1rem;font-weight:900;color:var(--text);margin:0 0 6px;text-align:center">Help others find Sight Atlas UK</h2>
@@ -5342,8 +5373,6 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
     </div>
 
   </div>
-
-  <div class="wb" style="margin-top:24px"><strong>Note:</strong> External links. Sight Atlas is not responsible for their content. Always discuss medical information with your ophthalmologist.</div>
 
 </section>
 
