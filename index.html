@@ -348,6 +348,8 @@ p, h1, h2, h3, h4, li, span, a, button { overflow-wrap: break-word; word-wrap: b
 
   .news-box, #video-resources-wrap section { max-width: 860px; margin-left: 0; }
 
+  .recent-updates-wrap { max-width: 860px !important; margin-left: 0 !important; padding-left: 36px !important; padding-right: 36px !important; }
+
 }
 
 
@@ -1901,6 +1903,31 @@ body.yb .tb-lang { border-color: #000 !important; color: #000 !important; backgr
 body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !important; }
 .tb-divider{width:1px;height:36px;background:var(--border);flex-shrink:0;}
 
+/* Quick links grid - clean uniform layout */
+.quick-links-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 0;
+}
+.ql-btn {
+  font-size: 0.78rem;
+  padding: 0 6px;
+  min-height: 42px;
+  justify-content: center;
+  border-radius: 12px;
+}
+@media (min-width: 640px) {
+  .quick-links-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .ql-btn {
+    font-size: 0.85rem;
+    padding: 0 10px;
+    min-height: 46px;
+  }
+}
+
 /* Inner wrapper to align row 1 and row 2 content on desktop */
 .a11y-bar-inner {
   display: flex;
@@ -2728,32 +2755,28 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
       <!-- USEFUL RESOURCES ROW -->
 
       <!-- QUICK LINKS -->
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px" role="group" aria-label="Useful resources">
+      <div class="quick-links-grid" role="group" aria-label="Quick links to useful resources">
 
-        <button onclick="showPage('glossary')" class="share-btn" style="font-size:0.82rem;padding:0 8px;min-height:42px;justify-content:center;border-radius:12px" aria-label="Open Glossary">📖 Glossary</button>
+        <button onclick="showPage('glossary')" class="share-btn ql-btn" aria-label="Open Glossary">📖 Glossary</button>
 
-        <button onclick="showPage('localsupport')" class="share-btn" style="font-size:0.82rem;padding:0 8px;min-height:42px;justify-content:center;border-radius:12px" aria-label="Open Local Support">📍 Local Support</button>
+        <button onclick="showPage('localsupport')" class="share-btn ql-btn" aria-label="Open Local Support">📍 Local Support</button>
+
+        <button onclick="showPage('eyehealth')" class="share-btn ql-btn" aria-label="Open Eye Health Basics">👁️ Eye Health</button>
+
+        <button onclick="showPage('employment')" class="share-btn ql-btn" aria-label="Open Work and Employment guide">💼 Work</button>
+
+        <button onclick="showPage('children')" class="share-btn ql-btn" aria-label="Open For Parents guide">👶 For Parents</button>
+
+        <button onclick="showPage('benefits-calc')" class="share-btn ql-btn" aria-label="Open Benefits Calculator">💰 Benefits Calc</button>
+
+        <button onclick="showPage('trials')" class="share-btn ql-btn" aria-label="Find Clinical Trials">🔬 Trials</button>
+
+        <button onclick="showPage('eclo')" class="share-btn ql-btn" aria-label="Eye Clinic Support">🏥 Eye Clinic Support</button>
 
       </div>
 
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(80px,1fr));gap:8px;margin-bottom:20px" role="group" aria-label="More resources">
-
-        <button onclick="showPage('eyehealth')" class="share-btn" style="font-size:0.78rem;padding:0 6px;min-height:42px;justify-content:center;border-radius:12px" aria-label="Open Eye Health Basics">👁️ Eye Health</button>
-
-        <button onclick="showPage('employment')" class="share-btn" style="font-size:0.78rem;padding:0 6px;min-height:42px;justify-content:center;border-radius:12px" aria-label="Open Work and Employment guide">💼 Work</button>
-
-        <button onclick="showPage('children')" class="share-btn" style="font-size:0.78rem;padding:0 6px;min-height:42px;justify-content:center;border-radius:12px" aria-label="Open For Parents guide">👶 For Parents</button>
-
-      </div>
-
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:20px" role="group" aria-label="More resources">
-        <button onclick="showPage('benefits-calc')" class="share-btn" style="font-size:0.78rem;padding:0 6px;min-height:42px;justify-content:center;border-radius:12px" aria-label="Open Benefits Calculator">💰 Benefits Calc</button>
-        <button onclick="showPage('trials')" class="share-btn" style="font-size:0.78rem;padding:0 6px;min-height:42px;justify-content:center;border-radius:12px" aria-label="Find Clinical Trials">🔬 Trials</button>
-        <button onclick="showPage('eclo')" class="share-btn" style="font-size:0.78rem;padding:0 6px;min-height:42px;justify-content:center;border-radius:12px" aria-label="Eye Clinic Support">🏥 Eye Clinic Support</button>
-      </div>
-
-      <div style="display:grid;grid-template-columns:1fr;gap:8px;margin-bottom:0" role="group" aria-label="Help and support">
-        <button onclick="showPage('help')" class="share-btn" style="font-size:0.78rem;padding:0 6px;min-height:42px;justify-content:center;border-radius:12px" aria-label="Open Help and Emotional Support page">💬 Help &amp; Emotional Support</button>
+      <div style="display:grid;grid-template-columns:1fr;gap:8px;margin:8px 0 0" role="group" aria-label="Help and support">
+        <button onclick="showPage('help')" class="share-btn ql-btn" aria-label="Open Help and Emotional Support page">💬 Help &amp; Emotional Support</button>
       </div>
 
 
@@ -2764,7 +2787,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
     <!-- RECENT UPDATES — below conditions -->
 
-    <div style="max-width:min(680px,100%);margin:-40px auto 0;padding:0 20px 12px">
+    <div class="recent-updates-wrap" style="max-width:min(680px,100%);margin:-40px auto 0;padding:0 20px 12px">
 
       <div style="display:flex;align-items:center;gap:12px;margin:8px 0 16px;opacity:0.5" aria-hidden="true">
 
