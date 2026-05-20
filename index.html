@@ -1890,6 +1890,17 @@ body.focus-mode::after {
 /* WCAG AA contrast fix: active accessibility-bar buttons need 4.5:1+ for black text.
    Default --yellow (#a85d00) is 4.23:1. Override with --yellow2 (#c47408) which is 5.85:1. */
 .tb-btn[aria-pressed="true"]{background:var(--yellow2) !important;border-color:var(--yellow2) !important;}
+/* WCAG AA contrast fix: any element using --yellow as background with black text
+   needs --yellow2 instead. --yellow (#9c5500) on black is 3.71:1 (fail);
+   --yellow2 (#c47408) on black is 5.85:1 (pass). Targets inline-styled buttons like
+   Search and Contact us, and any class rule using --yellow bg with black text. */
+[style*="background: var(--yellow)"][style*="rgb(0, 0, 0)"],
+[style*="background:var(--yellow)"][style*="rgb(0, 0, 0)"],
+[style*="background: var(--yellow)"][style*="#000"],
+[style*="background:var(--yellow)"][style*="#000"]{
+  background: var(--yellow2) !important;
+  border-color: var(--yellow2) !important;
+}
 .tb-icon{font-size:17px;line-height:1;font-weight:900;}
 .tb-label{font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:0.03em;line-height:1;white-space:nowrap;color:#000;}
 .tb-select{height:50px;border-radius:10px;border:1.5px solid var(--border);background:var(--card2);color:var(--text);font-family:var(--font);font-size:11px;padding:0 2px;flex-shrink:0;cursor:pointer;max-width:80px;}
@@ -2221,7 +2232,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
         <div style="margin-bottom:8px">
           <input type="search" id="search-cy" placeholder="e.e. AMD, glawcoma, RP…" autocomplete="off" aria-controls="cond-list-cy" aria-label="Chwilio am gyflyrau llygad" class="theme-input" style="font-size:1rem;border:2px solid var(--border);border-radius:50px;padding:14px 20px;width:100%;box-sizing:border-box;box-shadow:0 1px 4px rgba(0,0,0,0.06);margin-bottom:10px">
 
-          <button onclick="doSearch(document.getElementById('search-cy').value); document.getElementById('search-cy').blur();" aria-label="Chwilio am gyflyrau" class="search-go-btn" style="background:var(--yellow);color:#000;border:none;border-radius:50px;padding:14px 24px;font-family:var(--font);font-size:1rem;font-weight:900;cursor:pointer;width:100%;min-height:50px">🔍 Chwilio</button>
+          <button onclick="doSearch(document.getElementById('search-cy').value); document.getElementById('search-cy').blur();" aria-label="Chwilio am gyflyrau" class="search-go-btn" style="background:var(--yellow2);color:#000;border:none;border-radius:50px;padding:14px 24px;font-family:var(--font);font-size:1rem;font-weight:900;cursor:pointer;width:100%;min-height:50px">🔍 Chwilio</button>
         </div>
 
         <p id="cond-hint-cy" aria-live="polite" style="font-size:0.95rem;font-weight:700;color:var(--text2);margin:4px 0 0;line-height:1.5">Teipiwch eich cyflwr yna tapiwch <strong>Chwilio</strong> (neu pwyswch Enter). <strong>18 cyflwr</strong>.</p>
@@ -2612,7 +2623,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
         <p style="font-size:1rem;font-weight:700;color:var(--text);margin:0 0 12px;line-height:1.4">Search 18 eye conditions — get research, practical guides, benefits help &amp; support</p>
         <div style="margin-bottom:8px">
           <input type="search" id="csearch" placeholder="e.g. AMD, glaucoma, RP…" autocomplete="off" aria-controls="cond-list" aria-label="Search eye conditions" class="theme-input" style="font-size:1rem;border:2px solid var(--border);border-radius:50px;padding:14px 20px;width:100%;box-sizing:border-box;box-shadow:0 1px 4px rgba(0,0,0,0.06);margin-bottom:10px">
-          <button onclick="filterConds(document.getElementById('csearch').value); document.getElementById('csearch').blur();" aria-label="Search conditions" class="search-go-btn" style="background:var(--yellow);color:#000;border:none;border-radius:50px;padding:14px 24px;font-family:var(--font);font-size:1rem;font-weight:900;cursor:pointer;width:100%;min-height:50px">🔍 Search</button>
+          <button onclick="filterConds(document.getElementById('csearch').value); document.getElementById('csearch').blur();" aria-label="Search conditions" class="search-go-btn" style="background:var(--yellow2);color:#000;border:none;border-radius:50px;padding:14px 24px;font-family:var(--font);font-size:1rem;font-weight:900;cursor:pointer;width:100%;min-height:50px">🔍 Search</button>
         </div>
         <p id="cond-hint" aria-live="polite" style="font-size:0.95rem;font-weight:700;color:var(--text2);margin:4px 0 0;line-height:1.5">Type your condition then tap Search (or press Enter)</p>
         <div class="cond-list" id="cond-list" role="list" style="display:none;max-height:60vh;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;margin-top:6px;border-radius:12px;background:#fff">
@@ -5392,7 +5403,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
       <p style="font-size:0.92rem;color:var(--text2);margin:0 0 10px;line-height:1.5">Got a question, spotted something wrong, or want to suggest a resource?</p>
 
-      <button onclick="showPage('contact')" class="share-btn" style="background:var(--yellow);color:#000;border-color:var(--yellow);font-weight:900" aria-label="Contact us">✉️ Contact us</button>
+      <button onclick="showPage('contact')" class="share-btn" style="background:var(--yellow2);color:#000;border-color:var(--yellow2);font-weight:900" aria-label="Contact us">✉️ Contact us</button>
 
     </div>
 
