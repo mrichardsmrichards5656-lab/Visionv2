@@ -1138,7 +1138,7 @@ body.welsh-active .trial-link::after { content: " (Saesneg yn unig)"; font-size:
 
   display: inline-flex; align-items: center; gap: 8px;
 
-  background: var(--yellow); color: #000;
+  background: var(--yellow2); color: #000;
 
   border: none; padding: 14px 32px; border-radius: 50px;
 
@@ -2007,7 +2007,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 <!-- STICKY PAGE TITLE (shows on scroll for zoomed users) -->
 <div id="sticky-title" role="navigation" aria-label="Page navigation">
   <button id="sticky-title-back" onclick="window.stickyBack && stickyBack()" aria-label="Go back" style="background:none;border:2px solid #000;border-radius:50px;color:#000;font-family:inherit;font-size:0.85rem;font-weight:800;cursor:pointer;padding:6px 14px;min-height:40px">← Back</button>
-  <button id="sticky-home-btn" onclick="showPage('home')" style="background:#000;border:none;color:var(--yellow);font-size:0.85rem;font-weight:800;cursor:pointer;padding:6px 14px;border-radius:50px;min-height:40px;font-family:inherit" aria-label="Go to home page">🏠 Home</button>
+  <button id="sticky-home-btn" onclick="showPage('home')" style="background:#000;border:none;color:var(--yellow2);font-size:0.85rem;font-weight:800;cursor:pointer;padding:6px 14px;border-radius:50px;min-height:40px;font-family:inherit" aria-label="Go to home page">🏠 Home</button>
 </div>
 
 <!-- TTS PANEL -->
@@ -2027,7 +2027,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
       <div>
-        <label style="display:block;color:#ccc;font-size:0.875rem;margin-bottom:6px">What to read:</label>
+        <label for="tts-section" style="display:block;color:#ccc;font-size:0.875rem;margin-bottom:6px">What to read:</label>
         <select id="tts-section" onchange="ttsHandleSectionChange(this.value)" style="width:100%;height:44px;padding:0 10px;border-radius:8px;border:none;background:#333;color:#fff;font-size:0.9rem">
           <option value="current">Current page</option>
           <option value="news">Recent Updates</option>
@@ -2040,7 +2040,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
         </select>
       </div>
       <div>
-        <label style="display:block;color:#ccc;font-size:0.875rem;margin-bottom:6px">Speed:</label>
+        <label for="tts-speed" style="display:block;color:#ccc;font-size:0.875rem;margin-bottom:6px">Speed:</label>
         <select id="tts-speed" style="width:100%;height:44px;padding:0 10px;border-radius:8px;border:none;background:#333;color:#fff;font-size:0.9rem">
           <option value="0.6">Slow</option>
           <option value="0.85" selected>Normal</option>
