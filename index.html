@@ -8327,6 +8327,19 @@ function showWelshPage(name) {
         window.scrollTo({ top: top, behavior: 'instant' });
       }, 0);
 
+      // Move keyboard focus to the new Welsh page's h1 so screen readers start reading there
+      setTimeout(function() {
+        var _target = welshEl.querySelector('h1');
+        if (_target) {
+          _target.setAttribute('tabindex', '-1');
+          _target.focus({preventScroll: true});
+          _target.addEventListener('blur', function _b(){
+            _target.removeAttribute('tabindex');
+            _target.removeEventListener('blur', _b);
+          });
+        }
+      }, 150);
+
       return;
 
     }
@@ -8707,6 +8720,21 @@ function showCondition(key) {
 
 
   window.scrollTo({ top: 0, behavior: 'instant' });
+
+
+
+  // Move keyboard focus to the new condition's h1 so screen readers start reading there
+  setTimeout(function() {
+    var _target = document.querySelector('#page-condition h1');
+    if (_target) {
+      _target.setAttribute('tabindex', '-1');
+      _target.focus({preventScroll: false});
+      _target.addEventListener('blur', function _b(){
+        _target.removeAttribute('tabindex');
+        _target.removeEventListener('blur', _b);
+      });
+    }
+  }, 150);
 
 
 
