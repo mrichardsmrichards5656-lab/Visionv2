@@ -1824,7 +1824,7 @@ body.focus-mode::after {
 /* ══ STICKY PAGE TITLE (for zoomed users) ══ */
 #sticky-title {
   position: fixed; top: 0; left: 0; right: 0; z-index: 9000;
-  background: var(--yellow); color: #000;
+  background: var(--yellow); color: #fff;
   padding: 6px 12px;
   display: none;
   align-items: center; justify-content: space-between;
@@ -1834,9 +1834,9 @@ body.focus-mode::after {
 }
 #sticky-title.vis { display: flex; }
 #sticky-title-back {
-  background: none; border: none; color: #000; font-family: var(--font);
+  background: none; border: 2px solid #fff; color: #fff; font-family: var(--font);
   font-size: 0.85rem; font-weight: 800; cursor: pointer;
-  padding: 4px 8px; min-height: 36px;
+  padding: 4px 8px; min-height: 36px; border-radius: 50px;
 }
 #sticky-title-name { flex: 1; text-align: center; font-size: 0.8rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
@@ -2006,7 +2006,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
 <!-- STICKY PAGE TITLE (shows on scroll for zoomed users) -->
 <div id="sticky-title" role="navigation" aria-label="Page navigation">
-  <button id="sticky-title-back" onclick="window.stickyBack && stickyBack()" aria-label="Go back" style="background:none;border:2px solid #000;border-radius:50px;color:#000;font-family:inherit;font-size:0.85rem;font-weight:800;cursor:pointer;padding:6px 14px;min-height:40px">← Back</button>
+  <button id="sticky-title-back" onclick="window.stickyBack && stickyBack()" aria-label="Go back" style="background:none;border:2px solid #fff;border-radius:50px;color:#fff;font-family:inherit;font-size:0.85rem;font-weight:800;cursor:pointer;padding:6px 14px;min-height:40px">← Back</button>
   <button id="sticky-home-btn" onclick="showPage('home')" style="background:#000;border:none;color:var(--yellow2);font-size:0.85rem;font-weight:800;cursor:pointer;padding:6px 14px;border-radius:50px;min-height:40px;font-family:inherit" aria-label="Go to home page">🏠 Home</button>
 </div>
 
