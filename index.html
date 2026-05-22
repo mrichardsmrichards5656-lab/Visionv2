@@ -18,11 +18,19 @@
 
 <meta name="apple-mobile-web-app-title" content="Sight Atlas">
 
+<!-- Canonical URL -->
+<link rel="canonical" href="https://sightatlasuk.co.uk/">
+
 <!-- Open Graph (Facebook, WhatsApp, Slack, etc.) -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Sight Atlas UK — Free Sight Loss Resource">
 <meta property="og:description" content="Free UK resource for people living with sight conditions. Clear information on 18 eye conditions, benefits help, assistive technology, and current research.">
 <meta property="og:site_name" content="Sight Atlas UK">
+<meta property="og:url" content="https://sightatlasuk.co.uk/">
+<meta property="og:image" content="https://sightatlasuk.co.uk/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Sight Atlas UK — Free UK resource for people living with sight loss">
 <meta property="og:locale" content="en_GB">
 <meta property="og:locale:alternate" content="cy_GB">
 
@@ -30,8 +38,8 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Sight Atlas UK — Free Sight Loss Resource">
 <meta name="twitter:description" content="Free UK resource for people living with sight conditions. 18 conditions covered with benefits help, assistive tech, and current research.">
-
-<!-- Structured data for search engines -->
+<meta name="twitter:image" content="https://sightatlasuk.co.uk/og-image.png">
+<meta name="twitter:image:alt" content="Sight Atlas UK — Free UK resource for people living with sight loss"><!-- Structured data for search engines -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -146,11 +154,15 @@ body.hc .acc-num { background: #000 !important; color: #fff !important; border: 
 /* Black/White theme: yellow-background buttons (like "Questions to ask doctor") need to be visible
    When --yellow is #fff, the button background becomes white. Override to black with white border. */
 body.hc [style*="background:var(--yellow)"],
-body.hc [style*="background: var(--yellow)"] { 
+body.hc [style*="background: var(--yellow)"],
+body.hc .trial-link,
+body.hc .cf-submit { 
   background: #000 !important; 
   color: #fff !important; 
   border: 3px solid #fff !important; 
 }
+body.hc .trial-link:hover,
+body.hc .cf-submit:hover { background: #1a1a1a !important; }
 body.yb .cond-helpline-btn { background: #fff599 !important; color: #000 !important; border: 3px solid #000 !important; }
 body.yb .cond-helpline-btn * { color: #000 !important; }
 body.yb .back-top { color: #fff !important; }
@@ -2618,7 +2630,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
     <section class="cond-section" aria-label="Conditions list">
 
       <!-- SEARCH CONDITIONS — PROMINENT FIRST -->
-      <div style="background:var(--card);border:3px solid var(--yellow);border-radius:20px;padding:20px 20px 16px;margin-bottom:36px;box-shadow:var(--shadow)">
+      <div style="background:var(--card);border:3px solid var(--yellow);border-radius:20px;padding:20px 20px 16px;margin-bottom:20px;box-shadow:var(--shadow)">
         <p style="font-size:0.8rem;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;color:var(--yellow);margin:0 0 6px">Find your condition</p>
         <p style="font-size:1rem;font-weight:700;color:var(--text);margin:0 0 12px;line-height:1.4">Search 18 eye conditions — get research, practical guides, benefits help &amp; support</p>
         <div style="margin-bottom:8px">
@@ -2627,6 +2639,18 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
         </div>
         <p id="cond-hint" aria-live="polite" style="font-size:0.95rem;font-weight:700;color:var(--text2);margin:4px 0 0;line-height:1.5">Type your condition then tap Search (or press Enter)</p>
         <div class="cond-list" id="cond-list" role="list" style="display:none;max-height:60vh;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;margin-top:6px;border-radius:12px;background:#fff">
+        </div>
+      </div>
+
+      <!-- SEARCH EVERYTHING ELSE - compact secondary search -->
+      <div style="background:var(--card);border:2px solid var(--yellow);border-radius:14px;padding:12px 14px;margin-bottom:36px;box-shadow:var(--shadow)">
+        <p style="font-size:0.78rem;font-weight:700;color:var(--text2);margin:0 0 8px;line-height:1.3">Or search topics (benefits, daily life, support...)</p>
+        <div style="display:flex;gap:8px;align-items:stretch">
+          <input type="search" id="tsearch" placeholder="e.g. blue badge, PIP, cooking…" autocomplete="off" aria-controls="topic-list" aria-label="Search topics across the site" class="theme-input" style="font-size:0.95rem;border:1.5px solid var(--border);border-radius:50px;padding:10px 16px;flex:1;min-width:0;box-sizing:border-box;min-height:44px">
+          <button onclick="filterTopics(document.getElementById('tsearch').value); document.getElementById('tsearch').blur();" aria-label="Search topics" style="background:var(--text);color:#fff;border:none;border-radius:50px;padding:10px 18px;font-family:var(--font);font-size:0.9rem;font-weight:800;cursor:pointer;min-height:44px;min-width:44px;flex-shrink:0">🔍</button>
+        </div>
+        <p id="topic-hint" aria-live="polite" style="font-size:0.8rem;color:var(--text2);margin:8px 0 0;line-height:1.4;display:none"></p>
+        <div class="cond-list" id="topic-list" role="list" style="display:none;max-height:60vh;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;margin-top:10px;border-radius:12px;background:#fff">
         </div>
       </div>
 
@@ -3826,7 +3850,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
       <h2>Send us a message</h2>
 
-      <p class="cf-desc">Your message goes directly to the Sight Atlas team. We never share your details with third parties.</p>
+      <p class="cf-desc">Your message comes directly to me. I never share your details with third parties.</p>
 
       <div id="cf-form">
 
@@ -3932,7 +3956,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
     <div class="wb"><strong>Plain English summary:</strong> Sight Atlas does not sell your data. We do not collect personal information unless you choose to contact us. We do not use advertising trackers.</div>
 
-    <div class="lc"><h2>👤 Who we are</h2><p>Sight Atlas is a free, independent UK resource for people living with partial sight and sight loss. Contact us via the <button onclick="showPage('contact')" style="background:none;border:none;color:var(--yellow);font-family:var(--font);font-size:inherit;font-weight:700;cursor:pointer;text-decoration:underline;padding:0">contact form</button>.</p></div>
+    <div class="lc"><h2>👤 Who I am</h2><p>Sight Atlas UK is a free, independent resource built and maintained by one parent following a child's Stargardt diagnosis. There is no team behind it — just me, researching what I wished had existed when we were first navigating this. Contact me via the <button onclick="showPage('contact')" style="background:none;border:none;color:var(--yellow);font-family:var(--font);font-size:inherit;font-weight:700;cursor:pointer;text-decoration:underline;padding:0">contact form</button>.</p></div>
 
     <div class="lc"><h2>📋 What information we collect</h2><p>We collect the minimum needed:</p><ul><li><strong>Contact form submissions:</strong> Name, email, and message — used only to reply to you.</li><li><strong>Accessibility preferences:</strong> Stored in your browser's local storage only. Never leaves your device.</li><li><strong>Feedback votes:</strong> Stored locally in your browser only.</li></ul></div>
 
@@ -3968,7 +3992,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
     <p class="legal-updated">Last updated: <time datetime="2026-05-15">May 2026</time></p>
 
-    <div class="wb"><strong>Our commitment:</strong> Sight Atlas exists to serve people living with sight loss. Accessibility is not an afterthought — it is the core purpose of this website.</div>
+    <div class="wb"><strong>My commitment:</strong> Sight Atlas UK exists to serve people living with sight loss. Accessibility is not an afterthought — it is the core purpose of this website.</div>
 
     <div class="lc"><h2>Conformance status</h2><p>We aim to meet <strong>WCAG 2.1 Level AA</strong>. We believe this website is <strong>substantially conformant</strong>.</p></div>
 
@@ -4470,7 +4494,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
     <div class="lc">
 
-      <h2>🛒 RNIB Shop — Specialist Equipment</h2>
+      <h2 id="rnib-shop">🛒 RNIB Shop — Specialist Equipment</h2>
 
       <p>The RNIB Shop is the UK's leading retailer of specialist equipment for people with sight loss — talking clocks, liquid level indicators, large print items, bump dots, magnifiers, kitchen aids, and much more.</p>
 
@@ -4484,7 +4508,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
     <div class="lc">
 
-      <h2>🎓 Henshaws Knowledge Village — Free Tech Training</h2>
+      <h2 id="henshaws">🎓 Henshaws Knowledge Village — Free Tech Training</h2>
 
       <p>Free video guides teaching people with sight loss how to use technology — iPhones, Android phones, screen readers, and accessibility features — in plain, practical language. The best free tech training resource in the UK for people with sight loss.</p>
 
@@ -4496,7 +4520,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
     <div class="lc">
 
-      <h2>📞 National Helplines</h2>
+      <h2 id="helplines">📞 National Helplines</h2>
 
       <p><strong>RNIB:</strong> <a href="tel:03031239999" style="color:var(--yellow);font-weight:700">0303 123 9999</a> — Monday to Friday, specialist advisors for all sight conditions.</p>
 
@@ -4514,7 +4538,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
     <div class="lc">
 
-      <h2>🏥 NHS Rehabilitation Services</h2>
+      <h2 id="rehab">🏥 NHS Rehabilitation Services</h2>
 
       <p>Local authorities across the UK are required to provide sight loss rehabilitation services — under the Care Act 2014 in England, the Social Services and Well-being Act 2014 in Wales, and equivalent legislation in Scotland and Northern Ireland. These are free and include:</p>
 
@@ -4540,7 +4564,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
     <div class="lc">
 
-      <h2>👁️ Low Vision Clinics</h2>
+      <h2 id="low-vision">👁️ Low Vision Clinics</h2>
 
       <p>Free NHS low vision clinics provide magnifiers, tinted lenses, and specialist equipment tailored to your vision. Available via referral from your ophthalmologist or GP. Ask specifically for a "low vision assessment" — many people don't know they are entitled to one.</p>
 
@@ -4550,7 +4574,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
     <div class="lc">
 
-      <h2>💛 Sight Loss Counselling</h2>
+      <h2 id="counselling">💛 Sight Loss Counselling</h2>
 
       <p>Being diagnosed with a sight condition — or supporting someone who has — takes a real emotional toll. Specialist sight loss counsellors understand the specific grief and challenges involved in a way that general counsellors may not.</p>
 
@@ -4598,7 +4622,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
     <div class="lc">
 
-      <h2>👁️ How the Eye Works</h2>
+      <h2 id="how-eye-works">👁️ How the Eye Works</h2>
 
       <p>The eye works like a camera. Light enters through the <strong>cornea</strong> (the clear front surface), passes through the <strong>lens</strong>, and is focused onto the <strong>retina</strong> at the back of the eye. The retina converts light into electrical signals that travel along the <strong>optic nerve</strong> to the brain, where they are interpreted as images.</p>
 
@@ -4660,7 +4684,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
     <div class="lc">
 
-      <h2>📊 Understanding Your Vision Test Results</h2>
+      <h2 id="acuity">📊 Understanding Your Vision Test Results</h2>
 
       <p><strong>Visual Acuity</strong> — measured as a fraction. 6/6 is normal. 6/60 means you see at 6 metres what someone with normal vision sees at 60 metres. The legal driving standard is approximately 6/12. Registration depends on both acuity and visual field — for sight impaired (partially sighted), criteria range from acuity of 3/60 to 6/60 with full field, up to 6/18 or better if combined with significant field loss. Severely sight impaired (blind) generally requires acuity below 3/60, or worse than 6/60 combined with field loss.</p>
 
@@ -4676,7 +4700,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
     <div class="lc">
 
-      <h2>🏥 Types of Eye Specialist</h2>
+      <h2 id="specialists">🏥 Types of Eye Specialist</h2>
 
       <p><strong>Optometrist</strong> — performs eye tests, prescribes glasses and contact lenses, and screens for eye conditions. Available at high street opticians. NHS eye tests are free for many groups.</p>
 
@@ -4730,7 +4754,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
     <div class="lc">
 
-      <h2>⚖️ Your Legal Rights</h2>
+      <h2 id="rights">⚖️ Your Legal Rights</h2>
 
       <p>The <strong>Equality Act 2010</strong> protects you from discrimination at work because of your sight condition. Your employer must make <strong>reasonable adjustments</strong> to remove disadvantages you face because of your condition. Refusing to make reasonable adjustments is unlawful disability discrimination.</p>
 
@@ -4744,7 +4768,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
     <div class="lc">
 
-      <h2>💷 Access to Work — Up to £69,260/year</h2>
+      <h2 id="atw">💷 Access to Work — Up to £69,260/year</h2>
 
       <p>Access to Work is a government grant that pays for equipment and support you need at work that your employer cannot reasonably fund. It is one of the most valuable and underused benefits available to people with sight loss.</p>
 
@@ -4776,7 +4800,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
     <div class="lc">
 
-      <h2>💻 Essential Workplace Technology</h2>
+      <h2 id="tech">💻 Essential Workplace Technology</h2>
 
       <p><strong>JAWS</strong> — the most widely used professional screen reader for Windows. Reads all on-screen content aloud. Around £900 but usually funded via Access to Work.</p>
 
@@ -4798,7 +4822,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
     <div class="lc">
 
-      <h2>🗣️ Telling Your Employer</h2>
+      <h2 id="disclose">🗣️ Telling Your Employer</h2>
 
       <p>You are not legally required to disclose a sight condition to your employer, but doing so enables you to request reasonable adjustments. Consider disclosing when:</p>
 
@@ -4952,7 +4976,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
     <div class="lc">
 
-      <h2>🏫 Education</h2>
+      <h2 id="ehc">🏫 Education</h2>
 
       <p>Your child is entitled to an <strong>Education, Health and Care (EHC) Plan</strong> — a legally binding document that sets out the specialist support your child must receive at school. This can fund a QTVI, specialist technology, braille resources, large print materials, and a teaching assistant.</p>
 
@@ -4986,7 +5010,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
     <div class="lc">
 
-      <h2>💰 Financial Support</h2>
+      <h2 id="dla">💰 Financial Support</h2>
 
       <p><strong>Disability Living Allowance (DLA)</strong> — for children under 16. Both Care and Mobility components may apply. Can be worth £600+ per month at higher rates. This is one of the most important financial supports available — do not delay applying.</p>
 
@@ -5105,7 +5129,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
       <li><strong>Your council contacts you within ~28 days</strong> to add you to the Sight Impaired Register and offer a Vision Rehabilitation Assessment.</li>
     </ol>
 
-    <h3>What registration unlocks (2026/27 figures)</h3>
+    <h3 id="registration-unlocks">What registration unlocks (2026/27 figures)</h3>
     <ul>
       <li><strong>Blind Person's Allowance:</strong> £3,250 added to your Personal Allowance (SSI only). Tell HMRC.</li>
       <li><strong>50% off TV Licence</strong> (SSI only) — apply via TV Licensing with your CVI.</li>
@@ -5217,7 +5241,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
       <h2>📋 Who writes the content</h2>
 
-      <p>Sight Atlas was created by a parent of a child with Stargardt disease. Content is researched and written by the Sight Atlas team using the sources listed below. We are not medical professionals.</p>
+      <p>Sight Atlas is built and maintained by a single parent of a child with Stargardt disease. Content is researched, written, and reviewed by me alone, drawing on the sources listed below. I am not a medical professional.</p>
 
       <p style="margin-top:10px">We aim to have condition pages reviewed by a qualified clinical professional. If you are a specialist nurse, ophthalmologist, or optometrist willing to review content, please <button onclick="showPage('contact')" style="background:none;border:none;color:var(--yellow);font-family:var(--font);font-size:inherit;font-weight:700;cursor:pointer;text-decoration:underline;padding:0">get in touch</button>.</p>
 
@@ -5265,7 +5289,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
       <h2>🔄 How often content is reviewed</h2>
 
-      <p>All content is reviewed monthly — in the first week of every month. The site footer shows when the site was last reviewed overall, and we are working on adding individual review dates to each condition page.</p>
+      <p>I review all content monthly — in the first week of every month. The site footer shows when the site was last reviewed overall, and I'm working on adding individual review dates to each condition page.</p>
 
       <p style="margin-top:10px">Research and clinical trial information changes rapidly in some conditions. We do our best to keep this current but strongly recommend checking directly with specialist charities and your clinical team for the most up-to-date trial information.</p>
 
@@ -5301,7 +5325,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
       <h2>✉️ Errors and corrections</h2>
 
-      <p>We take accuracy seriously. If you believe any information on this site is incorrect or out of date, please <button onclick="showPage('contact')" style="background:none;border:none;color:var(--yellow);font-family:var(--font);font-size:inherit;font-weight:700;cursor:pointer;text-decoration:underline;padding:0">contact us</button> and we will investigate and correct it promptly.</p>
+      <p>I take accuracy seriously. If you believe any information on this site is incorrect or out of date, please <button onclick="showPage('contact')" style="background:none;border:none;color:var(--yellow);font-family:var(--font);font-size:inherit;font-weight:700;cursor:pointer;text-decoration:underline;padding:0">contact me</button> and I will investigate and correct it promptly.</p>
 
     </div>
 
@@ -5544,8 +5568,8 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
       <div id="bc-q1" class="lc">
         <h2>Who is this for?</h2>
         <div style="display:flex;flex-direction:column;gap:10px;margin-top:12px">
-          <button class="cf-submit" style="background:var(--card2);color:var(--text);border:2px solid var(--border)" onclick="bcAnswer('who','adult')">Myself (adult aged 16–66)</button>
-          <button class="cf-submit" style="background:var(--card2);color:var(--text);border:2px solid var(--border)" onclick="bcAnswer('who','pension')">Myself (over state pension age)</button>
+          <button class="cf-submit" style="background:var(--card2);color:var(--text);border:2px solid var(--border)" onclick="bcAnswer('who','adult')">Myself (adult, under State Pension age)</button>
+          <button class="cf-submit" style="background:var(--card2);color:var(--text);border:2px solid var(--border)" onclick="bcAnswer('who','pension')">Myself (at or over State Pension age)</button>
           <button class="cf-submit" style="background:var(--card2);color:var(--text);border:2px solid var(--border)" onclick="bcAnswer('who','child')">My child (under 16)</button>
         </div>
       </div>
@@ -7515,7 +7539,7 @@ function fallback(key) {
 
     name,
 
-    what:`We are building the full resource hub for ${name}. Please use the support links below.`,
+    what:`I'm building the full resource hub for ${name}. Please use the support links below.`,
 
     howAffects:"Contact RNIB on 0303 123 9999 for condition-specific advice.",
 
@@ -8110,7 +8134,7 @@ function speakAccSection(accBody, btn) {
   btn.textContent = '⏹';
 
   var utter = new SpeechSynthesisUtterance(text);
-  utter.lang = 'en-GB';
+  utter.lang = (window._isWelsh ? 'cy-GB' : 'en-GB');
   utter.rate = parseFloat((document.getElementById('tts-speed') || {}).value || '0.85');
   utter.volume = 1;
 
@@ -8195,7 +8219,7 @@ function speakAccSection(accBody, btn) {
         if (!text) return;
         if (text.length > 2000) text = text.slice(0, 2000);
         var utt = new SpeechSynthesisUtterance(text);
-        utt.lang = 'en-GB';
+        utt.lang = (window._isWelsh ? 'cy-GB' : 'en-GB');
         utt.rate = parseFloat((document.getElementById('tts-speed') || {}).value || '0.85');
         utt.volume = 1;
         utt.onend = function() { btn.classList.remove('speaking'); btn.innerHTML = '🔊<span class="sr-only"> ' + h2.textContent.trim().slice(0, 30) + '</span>'; };
@@ -8651,15 +8675,25 @@ function showPage(name) {
 
   // Add RNIB helpline strip to legal pages
   setTimeout(function() {
-    var lw = document.querySelector('.page.active .legal-wrap');
-    if (lw && !lw.querySelector('.rnib-strip')) {
+    try {
+      var lw = document.querySelector('.page.active .legal-wrap');
+      if (!lw || lw.querySelector('.rnib-strip')) return;
       var strip = document.createElement('div');
       strip.className = 'rnib-strip';
       strip.style.cssText = 'background:var(--card);border:2px solid var(--yellow);border-radius:12px;padding:14px 18px;margin:24px 0 8px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap';
       strip.innerHTML = '<span style="font-size:0.88rem;color:var(--text2)"><strong style="color:var(--text)">Need help?</strong> RNIB helpline — specialists for all sight conditions</span><a href="tel:03031239999" style="background:var(--yellow);color:#000;font-family:var(--font);font-size:0.95rem;font-weight:900;padding:10px 20px;border-radius:50px;text-decoration:none;min-height:44px;display:inline-flex;align-items:center;white-space:nowrap">📞 0303 123 9999</a>';
-      var backs = lw.querySelectorAll('.back-btn');
-      var last = backs[backs.length - 1];
-      if (last) lw.insertBefore(strip, last);
+      // Find the last back-button that is a direct child of lw (insertBefore requires this)
+      var directBacks = Array.prototype.filter.call(lw.children, function(el){ return el.classList && el.classList.contains('back-btn'); });
+      var last = directBacks[directBacks.length - 1];
+      if (last) {
+        lw.insertBefore(strip, last);
+      } else {
+        // Fallback: append at end of lw
+        lw.appendChild(strip);
+      }
+    } catch (err) {
+      // Non-fatal — page should still render. Log quietly.
+      if (window.console && console.warn) console.warn('RNIB strip insert skipped:', err);
     }
   }, 50);
 
@@ -9229,6 +9263,265 @@ function filterConds(q) {
 }
 
 
+/* ─────────────── TOPIC SEARCH (everything except conditions) ─────────────── */
+
+// Topic index: each entry has a search blob (keywords + synonyms), page key, and a friendly label
+// Add more entries here as content grows.
+var TOPIC_INDEX = [
+  // BENEFITS & FINANCIAL SUPPORT
+  {label:"Blue Badge", page:"help#registration-unlocks", icon:"🅿️", section:"Benefits", keywords:"blue badge parking disabled badge cvi registration severely sight impaired car park parking permit"},
+  {label:"PIP form wording (sight loss)", page:"help#pip", icon:"💷", section:"Benefits", keywords:"pip personal independence payment disability benefit daily living mobility enhanced standard 114.60 80 dwp claim application form descriptor"},
+  {label:"Benefits Calculator (interactive quiz)", page:"benefits-calc", icon:"🧮", section:"Benefits", keywords:"benefits calculator quiz check entitlement what am i entitled to estimate pip dla attendance universal credit"},
+  {label:"DLA (Disability Living Allowance) — Children", page:"children#dla", icon:"👶", section:"Benefits", keywords:"dla disability living allowance children child kids care mobility component under 16"},
+  {label:"Carer's Allowance", page:"children#dla", icon:"💷", section:"Benefits", keywords:"carer carers allowance carer's 86.45 35 hours caring carer support"},
+  {label:"Blind Person's Tax Allowance", page:"help#registration-unlocks", icon:"💷", section:"Benefits", keywords:"blind person's allowance tax allowance hmrc 3250 personal allowance ssi severely sight impaired bpa"},
+  {label:"Free Bus Pass", page:"help#registration-unlocks", icon:"🚌", section:"Benefits", keywords:"free bus pass transport public transport cvi disabled bus pass concessionary travel"},
+  {label:"50% TV Licence Discount", page:"help#registration-unlocks", icon:"📺", section:"Benefits", keywords:"tv licence television discount blind half price 50% bbc"},
+  {label:"Council Tax Reduction", page:"help#registration-unlocks", icon:"💷", section:"Benefits", keywords:"council tax reduction discount disability cvi rebate disregard"},
+  {label:"Disabled Persons Railcard", page:"help#registration-unlocks", icon:"🚆", section:"Benefits", keywords:"railcard rail card disabled train discount third off trains"},
+  {label:"Free NHS Eye Tests & Prescriptions", page:"help#registration-unlocks", icon:"💊", section:"Benefits", keywords:"free nhs eye tests prescriptions glasses voucher diagnosed sight condition"},
+
+  // DRIVING & REGISTRATION
+  {label:"Driving & DVLA — Sight Loss Rules", page:"eyehealth#acuity", icon:"🚗", section:"Daily Life", keywords:"driving dvla licence inform tell give up car sight loss vision standard 6/12 cease"},
+  {label:"Registering as Sight Impaired or Blind", page:"help#cvi", icon:"📜", section:"Medical", keywords:"register registration sight impaired partially sighted severely blind ssi si council local authority cvi how"},
+
+  // EMPLOYMENT
+  {label:"Access to Work Grant", page:"employment#atw", icon:"💼", section:"Employment", keywords:"access to work grant workplace adjustments equipment 69260 dwp employment support job"},
+  {label:"Workplace Tech (JAWS, NVDA, ZoomText)", page:"employment#tech", icon:"💻", section:"Employment", keywords:"jaws nvda voiceover zoomtext screen reader software windows mac iphone narrator talkback assistive workplace"},
+  {label:"Equality Act & Reasonable Adjustments", page:"employment#rights", icon:"⚖️", section:"Employment", keywords:"employment rights equality act 2010 discrimination reasonable adjustments employer disability legal"},
+  {label:"Telling Your Employer About Sight Loss", page:"employment#disclose", icon:"💼", section:"Employment", keywords:"telling employer disclosing sight loss workplace disclosure work job"},
+
+  // CHILDREN & EDUCATION
+  {label:"EHC Plan (Education, Health and Care Plan)", page:"children#ehc", icon:"📋", section:"Children", keywords:"ehc plan education health care plan school sen special educational needs local authority 20 weeks ehcp"},
+  {label:"QTVI (Qualified Teacher of VI)", page:"children#ehc", icon:"🎓", section:"Children", keywords:"qtvi qualified teacher visual impairment vi specialist teacher school sensory support"},
+  {label:"School & Exam Support", page:"children#ehc", icon:"🏫", section:"Children", keywords:"school telling tell teacher classroom child nursery exams extra time access arrangements gcse a level"},
+  {label:"For Parents Guide", page:"children", icon:"👨‍👩‍👧", section:"Children", keywords:"for parents guide child diagnosed family parent mum dad newly diagnosed"},
+
+  // DAILY LIFE — EVERYDAY GUIDE (only entries with real content)
+  {label:"Cooking & Kitchen with Sight Loss", page:"livingwell$cooking", icon:"🍳", section:"Daily Life", keywords:"cooking kitchen food preparation safety hob oven talking scales liquid level indicator bump dots chopping induction microwave"},
+  {label:"Reading & Audiobooks", page:"livingwell$listening", icon:"📚", section:"Daily Life", keywords:"reading audiobooks audible calibre rnib talking books daisy libby audio books listening books bbc sounds"},
+  {label:"Travel — Trains, Buses & Navigation", page:"livingwell$travel", icon:"🚆", section:"Daily Life", keywords:"travel transport bus train taxi mobility passenger assist national rail journey soundscape navigation"},
+  {label:"Parenting With Sight Loss", page:"livingwell$parenting", icon:"👶", section:"Daily Life", keywords:"parenting parent with sight loss children baby toddler being a parent"},
+  {label:"Makeup, Shaving & Grooming", page:"livingwell$makeup", icon:"💄", section:"Daily Life", keywords:"makeup shaving grooming hair beauty cosmetics nail painting tactile"},
+  {label:"Mental Health & Wellbeing", page:"livingwell$mentalhealth", icon:"💛", section:"Daily Life", keywords:"mental health wellbeing depression anxiety stress sleep wellbeing low mood feelings grief"},
+  {label:"Sport & Fitness", page:"livingwell$sport", icon:"🏃", section:"Daily Life", keywords:"sport fitness running exercise guide running british blind sport athletics gym swimming"},
+  {label:"Work Tips for Sight Loss", page:"livingwell$work", icon:"💼", section:"Daily Life", keywords:"work everyday tips office colleagues meeting screen"},
+
+  // TECH & APPS (with real content)
+  {label:"Seeing AI, Be My Eyes & sighted-help apps", page:"help#apps", icon:"📱", section:"Tech", keywords:"seeing ai be my eyes app microsoft volunteer help describe ocr read text envision aira lookout"},
+  {label:"Audio Description (TV, streaming, cinema)", page:"help#ad", icon:"📺", section:"Tech", keywords:"audio description ad bbc iplayer itvx channel 4 netflix disney sky prime amazon cinema films movies"},
+
+  // EYE CARE & MEDICAL
+  {label:"Certificate of Visual Impairment (CVI)", page:"help#cvi", icon:"📜", section:"Medical", keywords:"cvi certificate of visual impairment consultant ophthalmologist registration ssi sight impaired blind register"},
+  {label:"ECLO (Eye Clinic Liaison Officer) — find yours", page:"eclo", icon:"🏥", section:"Medical", keywords:"eclo eye clinic liaison officer hospital support diagnosis"},
+  {label:"How the Eye Works", page:"eyehealth#how-eye-works", icon:"👁️", section:"Medical", keywords:"how eye works retina cornea lens macula fovea optic nerve photoreceptors rods cones anatomy"},
+  {label:"Visual Acuity & Vision Test Results", page:"eyehealth#acuity", icon:"📊", section:"Medical", keywords:"visual acuity 6/6 6/60 6/12 driving standard vision test results snellen chart"},
+  {label:"Eye Specialists (Ophthalmologist, Optometrist...)", page:"eyehealth#specialists", icon:"👨‍⚕️", section:"Medical", keywords:"ophthalmologist optometrist optician orthoptist eye doctor specialist difference between"},
+  {label:"Low Vision Clinics", page:"localsupport#low-vision", icon:"👁️", section:"Medical", keywords:"low vision clinic assessment magnifier nhs free referral"},
+  {label:"Vision Rehabilitation Specialist (VRS)", page:"localsupport#rehab", icon:"🤝", section:"Medical", keywords:"vrs vision rehabilitation specialist home visit training local authority habilitation cane orientation"},
+  {label:"Questions to Ask Your Doctor", page:"questions", icon:"❓", section:"Medical", keywords:"questions to ask doctor ophthalmologist appointment clinic consultation"},
+  {label:"Glossary of Medical Terms", page:"glossary", icon:"📖", section:"Medical", keywords:"glossary terms medical definitions dictionary meaning jargon abbreviations"},
+  {label:"Eye Health Basics", page:"eyehealth", icon:"👁️", section:"Medical", keywords:"eye health basics anatomy how eye works learn understand"},
+  {label:"Clinical Trials Finder", page:"trials", icon:"🔬", section:"Medical", keywords:"clinical trials research study nihr be part of research recruiting new treatment genetic testing"},
+  {label:"NHS Accessible Information Standard letter", page:"help#ais", icon:"📨", section:"Medical", keywords:"accessible information standard ais nhs gp letter large print braille email audio bsl format"},
+
+  // SUPPORT & ORGANISATIONS
+  {label:"RNIB Helpline (0303 123 9999)", page:"localsupport#helplines", icon:"📞", section:"Support", keywords:"rnib helpline royal national institute blind people 0303 123 9999 phone call"},
+  {label:"Macular Society", page:"localsupport#helplines", icon:"📞", section:"Support", keywords:"macular society 0300 3030 111 helpline amd stargardt nurse"},
+  {label:"Glaucoma UK", page:"localsupport#helplines", icon:"📞", section:"Support", keywords:"glaucoma uk helpline support charity"},
+  {label:"Retina UK", page:"localsupport#helplines", icon:"📞", section:"Support", keywords:"retina uk inherited retinal conditions rp stargardt lca achromatopsia"},
+  {label:"Esme's Umbrella (Charles Bonnet Syndrome)", page:"charlesbonnet", icon:"☂️", section:"Support", keywords:"esme's umbrella charles bonnet hallucinations cbs support"},
+  {label:"Local Support Near You", page:"localsupport", icon:"📍", section:"Support", keywords:"local support helplines find near me my area postcode where i live"},
+  {label:"RNIB Shop (specialist equipment)", page:"localsupport#rnib-shop", icon:"🛒", section:"Support", keywords:"rnib shop equipment specialist talking clock liquid level indicator bump dots magnifier products"},
+  {label:"Henshaws Knowledge Village", page:"localsupport#henshaws", icon:"🎓", section:"Support", keywords:"henshaws knowledge village free tech training videos"},
+  {label:"Counselling & Emotional Support", page:"localsupport#counselling", icon:"💛", section:"Support", keywords:"counselling counsellor emotional support mental health bacp therapy samaritans grief depression anxiety"},
+  {label:"Crisis Help (Samaritans, 116 123)", page:"help#emergency", icon:"🆘", section:"Support", keywords:"crisis samaritans 116 123 suicide help emergency distress mental health 999"},
+  {label:"Help & Emotional Support", page:"help", icon:"💛", section:"Support", keywords:"help emotional support feelings difficult coping mental health crisis worried scared upset"},
+
+  // EXTERNAL LINKS — where we don't have our own content
+  {label:"Guide Dogs UK (external)", page:"external:https://www.guidedogs.org.uk", icon:"🐕", section:"External", keywords:"guide dog guide dogs apply waiting list mobility companion training"},
+  {label:"Carers UK (external)", page:"external:https://www.carersuk.org", icon:"👥", section:"External", keywords:"carers uk caring loved one family member carer support unpaid carer"},
+  {label:"Citizens Advice (external)", page:"external:https://www.citizensadvice.org.uk", icon:"⚖️", section:"External", keywords:"citizens advice debt money universal credit pension credit help free legal"},
+  {label:"Age UK (external)", page:"external:https://www.ageuk.org.uk", icon:"👴", section:"External", keywords:"age uk older people attendance allowance pension credit support helpline"},
+
+  // ABOUT THE SITE
+  {label:"How We Write Our Content", page:"disclaimer", icon:"📝", section:"About", keywords:"how we write content sources medical references methodology review disclaimer"},
+  {label:"Privacy Policy", page:"privacy", icon:"🔒", section:"About", keywords:"privacy policy cookies tracking data gdpr"},
+  {label:"Accessibility Statement", page:"a11y", icon:"♿", section:"About", keywords:"accessibility statement wcag conformance contrast keyboard screen reader"},
+  {label:"Contact Us", page:"contact", icon:"✉️", section:"About", keywords:"contact us email message feedback get in touch suggestion report problem"}
+];
+
+function filterTopics(q) {
+  q = (q || '').trim();
+  var list = document.getElementById('topic-list');
+  var hint = document.getElementById('topic-hint');
+  if (!list) return;
+
+  if (!q) {
+    list.style.display = 'none';
+    list.innerHTML = '';
+    if (hint) { hint.style.display = 'none'; hint.innerHTML = ''; }
+    return;
+  }
+
+  var ql = q.toLowerCase();
+  var matches = TOPIC_INDEX.filter(function(t) {
+    var blob = (t.label + ' ' + t.keywords + ' ' + (t.section || '')).toLowerCase();
+    return blob.indexOf(ql) !== -1 || fuzzyMatch(ql, blob);
+  });
+
+  if (!matches.length) {
+    list.style.display = 'none';
+    list.innerHTML = '';
+    if (hint) { hint.style.display = 'block'; hint.textContent = 'No topics found for "' + q + '". Try the conditions search above, or contact us if it should be covered.'; }
+    return;
+  }
+
+  if (hint) hint.style.display = 'none';
+
+  // Page key → friendly destination name (for transparency)
+  var pageNames = {
+    'help': 'Help & Support page',
+    'children': 'For Parents page',
+    'employment': 'Employment page',
+    'livingwell': 'Everyday Guide',
+    'eyehealth': 'Eye Health Basics',
+    'localsupport': 'Local Support page',
+    'benefits-calc': 'Benefits Calculator',
+    'trials': 'Clinical Trials page',
+    'eclo': 'ECLO Finder',
+    'questions': 'Questions to Ask page',
+    'glossary': 'Glossary',
+    'contact': 'Contact page',
+    'privacy': 'Privacy page',
+    'a11y': 'Accessibility page',
+    'disclaimer': 'How We Write page',
+    'charlesbonnet': 'Charles Bonnet page'
+  };
+
+  // Render results with destination hint and proper escaping
+  function escAttr(s) { return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/'/g,'&#39;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  function escJs(s) { return String(s).replace(/\\/g,'\\\\').replace(/'/g,"\\'"); }
+
+  list.innerHTML = matches.map(function(t) {
+    var raw = t.page || '';
+    var isExternal = raw.indexOf('external:') === 0;
+    var basePage = raw.split('#')[0].split('$')[0];
+    var hasAnchor = !isExternal && raw.indexOf('#') !== -1;
+    var hasAccordion = !isExternal && raw.indexOf('$') !== -1;
+    var dest = pageNames[basePage] || basePage;
+    var destText;
+    if (isExternal) {
+      // Strip protocol for display
+      var displayUrl = raw.substring(9).replace(/^https?:\/\//, '').replace(/\/$/, '');
+      destText = 'Opens ' + displayUrl + ' in a new tab (external site)';
+    } else if (hasAnchor) destText = 'Jumps to this section on the ' + dest;
+    else if (hasAccordion) destText = 'Opens this topic in the ' + dest;
+    else destText = 'Opens the ' + dest;
+    var ariaLabel = escAttr(t.label + ' — ' + destText);
+    return '<div role="listitem" class="cond-item">' +
+      '<button class="cond-btn" onclick="selectTopic(\'' + escJs(t.page) + '\')" aria-label="' + ariaLabel + '" style="align-items:flex-start;padding-top:12px;padding-bottom:12px">' +
+        '<span aria-hidden="true" style="flex-shrink:0;margin-top:2px">' + (t.icon || '•') + '</span>' +
+        '<span style="flex:1;min-width:0;overflow-wrap:break-word;text-align:left">' +
+          '<span style="display:block;font-weight:700">' + escAttr(t.label) + (t.section ? ' <span style="font-size:0.75rem;font-weight:600;color:var(--text2);margin-left:4px">· ' + escAttr(t.section) + '</span>' : '') + '</span>' +
+          '<span style="display:block;font-size:0.78rem;font-weight:500;color:var(--text2);margin-top:3px" aria-hidden="true">' + (isExternal ? '↗ ' : ((hasAnchor || hasAccordion) ? '↪ ' : '→ ')) + destText + '</span>' +
+        '</span>' +
+      '</button>' +
+    '</div>';
+  }).join('');
+
+  list.style.display = '';
+}
+
+function selectTopic(target) {
+  // target formats supported:
+  //   "pageKey"                 — open page
+  //   "pageKey#anchor"          — open page, scroll to anchor
+  //   "pageKey$lwId"            — open page, expand accordion section
+  //   "pageKey$lwId#anchor"     — open page, expand accordion, then scroll
+  //   "external:URL"            — open external link in new tab
+  var input = document.getElementById('tsearch');
+  if (input) input.value = '';
+  var list = document.getElementById('topic-list');
+  if (list) { list.style.display = 'none'; list.innerHTML = ''; }
+  var hint = document.getElementById('topic-hint');
+  if (hint) { hint.style.display = 'none'; hint.innerHTML = ''; }
+
+  // Handle external links — open in new tab, leave site as-is
+  if (target && target.indexOf('external:') === 0) {
+    var url = target.substring(9);
+    try {
+      window.open(url, '_blank', 'noopener,noreferrer');
+    } catch (e) {
+      // Fallback: navigate in same tab
+      window.location.href = url;
+    }
+    return;
+  }
+
+  // Parse
+  var anchor = '';
+  if (target.indexOf('#') !== -1) {
+    var hashSplit = target.split('#');
+    target = hashSplit[0];
+    anchor = hashSplit[1];
+  }
+  var lwId = '';
+  if (target.indexOf('$') !== -1) {
+    var dollarSplit = target.split('$');
+    target = dollarSplit[0];
+    lwId = dollarSplit[1];
+  }
+  var pageKey = target;
+
+  // Navigate
+  showPage(pageKey);
+
+  // After page renders, perform any extra steps
+  setTimeout(function() {
+    try {
+      // 1. Expand accordion if needed
+      if (lwId) {
+        var sectionEl = document.getElementById('lw-' + lwId);
+        var cardBtn = document.querySelector('[onclick*="toggleLW(\'' + lwId + '\'"]');
+        if (sectionEl && cardBtn && !sectionEl.classList.contains('vis')) {
+          toggleLW(lwId, cardBtn);
+        }
+      }
+
+      // 2. Scroll + focus target
+      var focusTarget = null;
+      if (anchor) {
+        focusTarget = document.getElementById(anchor);
+      } else if (lwId) {
+        focusTarget = document.getElementById('lw-' + lwId);
+      }
+
+      if (focusTarget) {
+        var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        // Slight delay if accordion just opened to let animation start
+        setTimeout(function() {
+          try {
+            focusTarget.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
+          } catch (e) { focusTarget.scrollIntoView(); }
+          var hadTabindex = focusTarget.hasAttribute('tabindex');
+          if (!hadTabindex) focusTarget.setAttribute('tabindex', '-1');
+          try { focusTarget.focus({ preventScroll: true }); } catch (e) { focusTarget.focus(); }
+          if (!hadTabindex) {
+            focusTarget.addEventListener('blur', function once() {
+              focusTarget.removeAttribute('tabindex');
+              focusTarget.removeEventListener('blur', once);
+            });
+          }
+        }, lwId ? 200 : 0);
+      }
+    } catch (err) {
+      if (window.console && console.warn) console.warn('Topic navigation issue:', err);
+    }
+  }, 150);
+}
+
+
 
 /* ─────────────── RESTORE PREFS ─────────────── */
 
@@ -9333,6 +9626,24 @@ if (searchBox) {
     if (!this.value.trim()) filterConds('');
   });
 
+}
+
+var topicBox = document.getElementById('tsearch');
+if (topicBox) {
+  topicBox.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      filterTopics(this.value);
+      this.blur();
+    }
+  });
+  topicBox.addEventListener('search', function() {
+    filterTopics(this.value);
+    this.blur();
+  });
+  topicBox.addEventListener('input', function() {
+    if (!this.value.trim()) filterTopics('');
+  });
 }
 
 
@@ -9587,7 +9898,7 @@ if (_siteName) {
     sp.scrollIntoView({behavior:'smooth', block:'center'});
 
     _ttsUtter = new SpeechSynthesisUtterance(text);
-    _ttsUtter.lang = 'en-GB';
+    _ttsUtter.lang = (window._isWelsh ? 'cy-GB' : 'en-GB');
     _ttsUtter.rate = parseFloat((document.getElementById('tts-speed')||{}).value || '0.85');
     _ttsUtter.volume = 1;
 
@@ -9725,7 +10036,7 @@ if (_siteName) {
           return;
         }
         var utt = new SpeechSynthesisUtterance(sentences[sentIdx++]);
-        utt.lang = 'en-GB';
+        utt.lang = (window._isWelsh ? 'cy-GB' : 'en-GB');
         utt.rate = speed;
         utt.volume = 1;
         utt.pitch = 1;
@@ -9990,8 +10301,8 @@ function bcShowAdultResults() {
 }
 function bcShowPensionResults() {
   var cards = '';
-  cards += bcCard('Attendance Allowance', '&pound;73.90 or &pound;110.40/week', 'For over state pension age with care needs.', 'https://www.gov.uk/attendance-allowance', 'Apply at gov.uk');
-  cards += bcCard('Pension Credit', 'Tops up to &pound;218.15/week', 'Widely unclaimed. Unlocks free dental, rent help, Council Tax Reduction.', 'https://www.gov.uk/pension-credit', 'Check at gov.uk');
+  cards += bcCard('Attendance Allowance', '&pound;76.70 or &pound;114.60/week (2026/27)', 'For over state pension age with care needs.', 'https://www.gov.uk/attendance-allowance', 'Apply at gov.uk');
+  cards += bcCard('Pension Credit', 'Tops up to &pound;238/week (single, 2026/27)', 'Widely unclaimed. Unlocks free dental, rent help, Council Tax Reduction.', 'https://www.gov.uk/pension-credit', 'Check at gov.uk');
   cards += bcCard('CVI Benefits', 'Bus pass, Blue Badge, TV licence', 'Free from your ophthalmologist. Unlocks multiple benefits.', '', '');
   cards += '<div class="wb" style="margin-top:16px"><strong>Next step:</strong> Call Age UK on <a href="tel:08001696565" style="color:var(--yellow);font-weight:700">0800 169 6565</a> for a free benefits check.</div>';
   var r = document.getElementById('bc-results');
@@ -10214,7 +10525,7 @@ function showTrialsForCondition(key) {
     if (!text) return;
     btn.setAttribute('aria-pressed', 'true');
     var utt = new SpeechSynthesisUtterance(text);
-    utt.lang = 'en-GB'; utt.rate = 0.85;
+    utt.lang = (window._isWelsh ? 'cy-GB' : 'en-GB'); utt.rate = 0.85;
     utt.onend = function() { btn.setAttribute('aria-pressed', 'false'); };
     utt.onerror = function() { btn.setAttribute('aria-pressed', 'false'); };
     synth.speak(utt);
