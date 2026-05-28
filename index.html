@@ -24,7 +24,7 @@
 <!-- Open Graph (Facebook, WhatsApp, Slack, etc.) -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Sight Atlas UK — Free UK Resource for Sight Loss & Eye Conditions">
-<meta property="og:description" content="Free UK resource for people living with sight conditions. Clear information on 18 eye conditions, benefits help, assistive technology, and current research.">
+<meta property="og:description" content="Free UK resource for people living with sight conditions. Clear information on 20 eye conditions, benefits help, assistive technology, and current research.">
 <meta property="og:site_name" content="Sight Atlas UK">
 <meta property="og:url" content="https://sightatlasuk.co.uk/">
 <meta property="og:image" content="https://sightatlasuk.co.uk/og-image.png">
@@ -37,7 +37,7 @@
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Sight Atlas UK — Free UK Resource for Sight Loss & Eye Conditions">
-<meta name="twitter:description" content="Free UK resource for people living with sight conditions. 18 conditions covered with benefits help, assistive tech, and current research.">
+<meta name="twitter:description" content="Free UK resource for people living with sight conditions. 20 conditions covered with benefits help, assistive tech, and current research.">
 <meta name="twitter:image" content="https://sightatlasuk.co.uk/og-image.png">
 <meta name="twitter:image:alt" content="Sight Atlas UK — Free UK resource for people living with sight loss"><!-- Structured data for search engines -->
 <script type="application/ld+json">
@@ -45,7 +45,7 @@
   "@context": "https://schema.org",
   "@type": "MedicalWebPage",
   "name": "Sight Atlas UK",
-  "description": "Free UK resource for people living with sight conditions. Information on 18 eye conditions including Stargardt disease, AMD, glaucoma, retinitis pigmentosa, and more. Covers benefits, assistive technology, and current research.",
+  "description": "Free UK resource for people living with sight conditions. Information on 20 eye conditions including Stargardt disease, AMD, glaucoma, retinitis pigmentosa, and more. Covers benefits, assistive technology, and current research.",
   "inLanguage": ["en-GB", "cy-GB"],
   "audience": {
     "@type": "PeopleAudience",
@@ -136,7 +136,7 @@ body.dark {
 
   --bg:#0f1320; --bg2:#161c2e; --card:#1e2640; --card2:#242d4a;
 
-  --text:#ffffff; --text2:#9aa3bf; --border:rgba(255,255,255,0.30);
+  --text:#ffffff; --text2:#d6dae8; --border:rgba(255,255,255,0.30);
 
   --yellow:#f5b800; --yellow2:#ffc929;
 
@@ -187,6 +187,46 @@ body.hc .cf-submit {
 }
 body.hc .trial-link:hover,
 body.hc .cf-submit:hover { background: #1a1a1a !important; }
+/* B&W: pressed toolbar buttons need black text on white background (--yellow is #fff in hc) */
+body.hc .tb-btn[aria-pressed="true"] { background: #fff !important; color: #000 !important; border-color: #fff !important; }
+body.hc .tb-btn[aria-pressed="true"] .tb-icon,
+body.hc .tb-btn[aria-pressed="true"] .tb-label { color: #000 !important; }
+body.hc .tb-btn:hover { background: #fff !important; color: #000 !important; }
+body.hc .tb-btn:hover .tb-icon,
+body.hc .tb-btn:hover .tb-label { color: #000 !important; }
+/* B&W theme: remove all colour from the entire page. Catches emojis anywhere (in headings, badges, buttons) and any other coloured visual elements. */
+body.hc { filter: grayscale(100%) contrast(1.1); }
+/* But re-saturate the focus outline so keyboard users can still see it clearly */
+body.hc button:focus-visible,
+body.hc a:focus-visible,
+body.hc input:focus-visible,
+body.hc select:focus-visible,
+body.hc textarea:focus-visible { outline: 4px solid #fff !important; outline-offset: 3px; }
+/* B&W: research badges should be plain white-on-black, not coloured pills */
+body.hc .rtag { background: #fff !important; color: #000 !important; border: 2px solid #fff !important; }
+/* B&W: borders should be solid white, not 35% opacity grey */
+body.hc { --border: #fff; }
+/* Blue/Black: monochrome emojis for visual cohesion. Two-pronged approach: */
+/* 1. font-variant-emoji forces text-style (B&W) emoji presentation - native, no filter needed */
+body.lb { font-variant-emoji: text; }
+/* 2. Fallback for older browsers: grayscale filter on aria-hidden emoji-bearing spans */
+body.lb span[aria-hidden="true"]:not(.nc-num):not(.acc-num),
+body.lb .lw-card-icon { filter: grayscale(100%) contrast(1.2); }
+/* Blue/Black: sticky home button - black bg needs light blue text */
+body.lb #sticky-home-btn { background: #003a80 !important; color: #fff !important; }
+/* B&W: explicit white chevron SVG (currentColor doesn't reliably propagate into data URI SVGs) */
+body.hc .tb-select {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23ffffff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='4 6 8 10 12 6'/%3e%3c/svg%3e") !important;
+}
+/* Dark theme: white chevron */
+body.dark .tb-select { background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23ffffff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='4 6 8 10 12 6'/%3e%3c/svg%3e") !important; }
+/* Yellow/Black theme: black chevron */
+body.yb .tb-select { background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23000000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='4 6 8 10 12 6'/%3e%3c/svg%3e") !important; }
+/* Blue/Black theme: black chevron */
+body.lb .tb-select { background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23000000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='4 6 8 10 12 6'/%3e%3c/svg%3e") !important; }
+/* Low Light theme: cream chevron */
+body.ll .tb-select { background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23f4e4cc' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='4 6 8 10 12 6'/%3e%3c/svg%3e") !important; }
+
 body.yb .cond-helpline-btn { background: #fff599 !important; color: #000 !important; border: 3px solid #000 !important; }
 body.yb .cond-helpline-btn * { color: #000 !important; }
 body.yb .back-top { color: #fff !important; }
@@ -194,11 +234,16 @@ body.yb .ab.on { color: #fff !important; }
 /* Pressed toolbar buttons in Black/Yellow - need white text since var(--yellow) is black */
 body.yb .tb-btn { border: 2.5px solid #000 !important; }
 body.yb .tb-btn[aria-pressed="false"] { border: 2.5px solid #000 !important; }
-body.yb .tb-btn[aria-pressed="true"] { color: #000 !important; background: #ffe066 !important; border: 3px solid #000 !important; }
+body.yb .tb-btn[aria-pressed="true"] { color: #ffeb00 !important; background: #000 !important; border: 3px solid #000 !important; }
 body.yb .tb-select { border: 2.5px solid #000 !important; }
 body.yb .tb-lang { border-width: 2.5px !important; }
+/* Welsh button adapts to dark themes - the bright green is jarring in low-light themes */
+body.dark .tb-lang { border-color: var(--yellow) !important; color: var(--yellow) !important; background: var(--card2) !important; }
+body.dark .tb-lang[aria-pressed=true] { background: var(--yellow) !important; color: #000 !important; }
+body.ll .tb-lang { border-color: var(--yellow) !important; color: var(--yellow) !important; background: var(--card2) !important; }
+body.ll .tb-lang[aria-pressed=true] { background: var(--yellow) !important; color: #000 !important; }
 body.yb .tb-btn[aria-pressed="true"] .tb-icon,
-body.yb .tb-btn[aria-pressed="true"] .tb-label { color: #000 !important; }
+body.yb .tb-btn[aria-pressed="true"] .tb-label { color: #ffeb00 !important; }
 
 
 /* Sticky home button (hardcoded black background): make text bright yellow for contrast */
@@ -1706,7 +1751,7 @@ body.reading-ruler .reading-ruler-bar{display:block}
 
 
 /* ══ BLUE/BLACK THEME (lb) ══ */
-body.lb { background-color: #cce8f4 !important; color: #000 !important; --border: #003a80 !important; }
+body.lb { background-color: #cce8f4 !important; color: #000 !important; --border: #003a80 !important; --yellow: #003a80 !important; --yellow2: #0055a5 !important; }
 body.lb .a11y-bar { background: #a8d5ea !important; }
 body.lb .desktop-sidebar { background: #b8dff0 !important; }
 body.lb .cond-helpline-btn { background: #a8d5ea !important; color: #000 !important; }
@@ -1942,7 +1987,7 @@ body.focus-mode::after {
     <strong style="display:block;font-size:1.2rem;margin-bottom:8px;color:#b86d00">JavaScript is required</strong>
     Sight Atlas UK needs JavaScript to display its accessibility features and condition information.<br>
     Please enable JavaScript in your browser settings, then refresh this page.<br>
-    <span style="display:block;margin-top:10px;font-size:0.95rem;color:#4a4a6a">If you need help, ask someone to enable JavaScript for you, or visit <a href="https://www.rnib.org.uk" style="color:#b86d00;font-weight:700">rnib.org.uk</a> for sight loss support.</span>
+    <span style="display:block;margin-top:10px;font-size:0.95rem;color:#4a4a6a">If you need help, ask someone to enable JavaScript for you, or visit <a href="https://www.rnib.org.uk" aria-label="rnib.org.uk (opens external site)" rel="noopener noreferrer" style="color:#b86d00;font-weight:700">rnib.org.uk</a> for sight loss support.</span>
   </div>
 </noscript>
 
@@ -1960,7 +2005,7 @@ body.focus-mode::after {
 .jd-hover-btn:hover,.jd-hover-btn:focus-visible{border-color:var(--yellow) !important;color:var(--yellow) !important;}
 .tb-btn:focus-visible{outline:3px solid var(--yellow);outline-offset:2px;}
 .tb-select:focus-visible{outline:3px solid var(--yellow);outline-offset:0;}
-.tb-btn[aria-pressed="false"]{background:var(--card2) !important;color:#000 !important;border-color:var(--border) !important;}
+.tb-btn[aria-pressed="false"]{background:var(--card2) !important;color:var(--text) !important;border-color:var(--border) !important;}
 .tb-btn[aria-pressed="true"]{background:var(--yellow) !important;color:#000 !important;border-color:var(--yellow) !important;}
 /* WCAG AA contrast fix: active accessibility-bar buttons need 4.5:1+ for black text.
    Default --yellow (#a85d00) is 4.23:1. Override with --yellow2 (#c47408) which is 5.85:1. */
@@ -1978,7 +2023,7 @@ body.focus-mode::after {
 }
 .tb-icon{font-size:17px;line-height:1;font-weight:900;}
 .jd-hover-btn:hover,.jd-hover-btn:focus-visible{border-color:var(--yellow) !important;color:var(--yellow) !important;}
-.tb-label{font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:0.03em;line-height:1;white-space:nowrap;color:#000;}
+.tb-label{font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:0.03em;line-height:1;white-space:nowrap;color:var(--text);}
 .tb-select{height:50px;border-radius:10px;border:2px solid var(--border);background:var(--card2);color:var(--text);font-family:var(--font);font-size:13px;font-weight:800;padding:0 28px 0 10px;flex-shrink:0;cursor:pointer;width:95px;box-sizing:border-box;appearance:none;-webkit-appearance:none;-moz-appearance:none;text-overflow:ellipsis;background-image:url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='currentColor' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='4 6 8 10 12 6'/%3e%3c/svg%3e");background-repeat:no-repeat;background-position:right 8px center;background-size:14px;}
 .tb-lang{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;min-width:44px;min-height:50px;padding:4px 6px;border-radius:10px;border:2px solid #006d27;background:var(--card2);color:#006d27;font-family:var(--font);cursor:pointer;flex-shrink:0;gap:1px;}
 .tb-lang[aria-pressed=true]{background:#006d27;color:#fff;}
@@ -2002,16 +2047,33 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 /* Quick links grid - clean uniform layout */
 .quick-links-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  /* Always 3 columns - 9 buttons fits exactly 3x3 with no lonely button left over */
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 8px;
   margin-bottom: 0;
 }
 .ql-btn {
-  font-size: 0.78rem;
-  padding: 0 6px;
-  min-height: 42px;
+  font-size: 0.72rem;
+  padding: 8px 4px;
+  min-height: 48px;
   justify-content: center;
   border-radius: 12px;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  text-align: center;
+  hyphens: none;
+  line-height: 1.25;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+/* When user enlarges text via the size buttons, --scale grows. Hide the leading emoji at larger sizes so the label has room. The emojis are decorative aria-hidden anyway. */
+@media (max-width: 600px) {
+  .ql-btn span[aria-hidden="true"]:first-child {
+    font-size: 0.85em;
+  }
 }
 @media (min-width: 640px) {
   .quick-links-grid {
@@ -2260,6 +2322,8 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
       <button class="sidebar-link" onclick="showConditionWelsh('blepharitis')"><span aria-hidden="true">👁</span> Bleffaritis</button>
 
       <button class="sidebar-link" onclick="showConditionWelsh('pagets')"><span aria-hidden="true">🦴</span> Clefyd Paget (Golwg a Chlyw)</button>
+      <button class="sidebar-link" onclick="showConditionWelsh('microphthalmia')"><span aria-hidden="true">👁</span> Microffthalmia</button>
+      <button class="sidebar-link" onclick="showConditionWelsh('congenitalcataracts')"><span aria-hidden="true">👓</span> Cataractau Cynhenid</button>
 
       <div class="sidebar-divider"></div>
 
@@ -2413,6 +2477,8 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
         <div role="listitem" class="cond-item"><button class="cond-btn" onclick="_isWelsh ? showConditionWelsh('blepharitis') : showCondition('blepharitis')"><span aria-hidden="true">👁</span> Bleffaritis <span class="cond-arrow" aria-hidden="true">→</span></button></div>
 
         <div role="listitem" class="cond-item"><button class="cond-btn" onclick="_isWelsh ? showConditionWelsh('pagets') : showCondition('pagets')"><span aria-hidden="true">🦴</span> Clefyd Paget (Golwg a Chlyw) <span class="cond-arrow" aria-hidden="true">→</span></button></div>
+        <div role="listitem" class="cond-item"><button class="cond-btn" onclick="_isWelsh ? showConditionWelsh('microphthalmia') : showCondition('microphthalmia')"><span aria-hidden="true">👁</span> Microphthalmia <span class="cond-arrow" aria-hidden="true">→</span></button></div>
+        <div role="listitem" class="cond-item"><button class="cond-btn" onclick="_isWelsh ? showConditionWelsh('congenitalcataracts') : showCondition('congenitalcataracts')"><span aria-hidden="true">👓</span> Congenital Cataracts <span class="cond-arrow" aria-hidden="true">→</span></button></div>
 
       </div>
 
@@ -2534,6 +2600,8 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
       <button class="sidebar-link" onclick="showCondition('blepharitis')"><span aria-hidden="true">👁</span> Blepharitis</button>
 
       <button class="sidebar-link" onclick="showCondition('pagets')"><span aria-hidden="true">🦴</span> Paget's Disease (Sight &amp; Hearing)</button>
+      <button class="sidebar-link" onclick="showCondition('microphthalmia')"><span aria-hidden="true">👁</span> Microphthalmia</button>
+      <button class="sidebar-link" onclick="showCondition('congenitalcataracts')"><span aria-hidden="true">👓</span> Congenital Cataracts</button>
 
 
 
@@ -2708,7 +2776,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
       <!-- SEARCH CONDITIONS — PROMINENT FIRST -->
       <div style="background:var(--card);border:3px solid var(--yellow);border-radius:20px;padding:20px 20px 16px;margin-bottom:20px;box-shadow:var(--shadow)">
         <p style="font-size:0.8rem;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;color:var(--yellow);margin:0 0 6px">Find your condition</p>
-        <p style="font-size:1rem;font-weight:700;color:var(--text);margin:0 0 12px;line-height:1.4">Search 18 eye conditions — get research, practical guides, benefits help &amp; support</p>
+        <p style="font-size:1rem;font-weight:700;color:var(--text);margin:0 0 12px;line-height:1.4">Search 20 eye conditions — get research, practical guides, benefits help &amp; support</p>
         <div style="margin-bottom:8px">
           <input type="search" id="csearch" placeholder="e.g. AMD, glaucoma, RP…" autocomplete="off" aria-controls="cond-list" aria-label="Search eye conditions" class="theme-input" style="font-size:1rem;border:2px solid var(--border);border-radius:50px;padding:14px 20px;width:100%;box-sizing:border-box;box-shadow:0 1px 4px rgba(0,0,0,0.06);margin-bottom:10px">
           <button onclick="filterConds(document.getElementById('csearch').value); document.getElementById('csearch').blur();" aria-label="Search conditions" class="search-go-btn" style="background:var(--yellow2);color:#000;border:none;border-radius:50px;padding:14px 24px;font-family:var(--font);font-size:1rem;font-weight:900;cursor:pointer;width:100%;min-height:50px"><span aria-hidden="true">🔍</span> Search</button>
@@ -3042,6 +3110,8 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
       <button class="sidebar-link" onclick="showCondition('blepharitis')"><span aria-hidden="true">👁</span> Blepharitis</button>
 
       <button class="sidebar-link" onclick="showCondition('pagets')"><span aria-hidden="true">🦴</span> Paget's Disease (Sight &amp; Hearing)</button>
+      <button class="sidebar-link" onclick="showCondition('microphthalmia')"><span aria-hidden="true">👁</span> Microphthalmia</button>
+      <button class="sidebar-link" onclick="showCondition('congenitalcataracts')"><span aria-hidden="true">👓</span> Congenital Cataracts</button>
 
       <div class="sidebar-divider"></div>
 
@@ -3215,7 +3285,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
             <h3>RNIB and rehab support</h3>
 
-            <p>A Vision Rehabilitation Specialist (VRS) can visit your home and give personalised kitchen training — completely free. Ask your ophthalmologist or local authority sensory team for a referral. <a href="https://www.rnib.org.uk">rnib.org.uk <span aria-hidden="true">↗</span></a></p>
+            <p>A Vision Rehabilitation Specialist (VRS) can visit your home and give personalised kitchen training — completely free. Ask your ophthalmologist or local authority sensory team for a referral. <a href="https://www.rnib.org.uk" aria-label="rnib.org.uk (opens external site)" rel="noopener noreferrer">rnib.org.uk <span aria-hidden="true">↗</span></a></p>
 
           </div>
 
@@ -3300,7 +3370,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
             <h3>You are a good parent</h3>
 
-            <p>Sight loss does not determine the quality of your parenting. Research consistently shows that children of disabled parents develop exceptional empathy, independence, and resilience. RNIB has a dedicated parents' community and information at <a href="https://www.rnib.org.uk">rnib.org.uk <span aria-hidden="true">↗</span></a>. Look Up UK also provides peer support specifically for parents with sight loss.</p>
+            <p>Sight loss does not determine the quality of your parenting. Research consistently shows that children of disabled parents develop exceptional empathy, independence, and resilience. RNIB has a dedicated parents' community and information at <a href="https://www.rnib.org.uk" aria-label="rnib.org.uk (opens external site)" rel="noopener noreferrer">rnib.org.uk <span aria-hidden="true">↗</span></a>. Look Up UK also provides peer support specifically for parents with sight loss.</p>
 
           </div>
 
@@ -3310,7 +3380,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
             <h3>Practical help available</h3>
 
-            <p>Local authorities can provide a carer or support worker to assist with childcare tasks if needed — request a social care assessment. This is separate from any benefits you claim. <a href="https://www.sense.org.uk">Sense <span aria-hidden="true">↗</span></a> and RNIB both have family support services.</p>
+            <p>Local authorities can provide a carer or support worker to assist with childcare tasks if needed — request a social care assessment. This is separate from any benefits you claim. <a href="https://www.sense.org.uk" aria-label="Sense (opens external site)" rel="noopener noreferrer">Sense <span aria-hidden="true">↗</span></a> and RNIB both have family support services.</p>
 
           </div>
 
@@ -3353,7 +3423,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
             <h3>Guide running</h3>
 
-            <p>Guide running (running with a sighted guide connected by a tether or holding a rope) is one of the most popular sports for people with sight loss. <a href="https://www.uka.org.uk">UK Athletics <span aria-hidden="true">↗</span></a> has a guide runner network. The <strong>Blind Veterans UK</strong> and <strong>British Blind Sport</strong> can also match you with a local guide runner.</p>
+            <p>Guide running (running with a sighted guide connected by a tether or holding a rope) is one of the most popular sports for people with sight loss. <a href="https://www.uka.org.uk" aria-label="UK Athletics (opens external site)" rel="noopener noreferrer">UK Athletics <span aria-hidden="true">↗</span></a> has a guide runner network. The <strong>Blind Veterans UK</strong> and <strong>British Blind Sport</strong> can also match you with a local guide runner.</p>
 
           </div>
 
@@ -3365,7 +3435,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
             <ul>
 
-              <li><strong>Goalball</strong> — a team sport designed specifically for people with visual impairment. All players wear blackout masks. Hugely sociable and competitive. <a href="https://www.britishblindsport.org.uk">British Blind Sport <span aria-hidden="true">↗</span></a></li>
+              <li><strong>Goalball</strong> — a team sport designed specifically for people with visual impairment. All players wear blackout masks. Hugely sociable and competitive. <a href="https://www.britishblindsport.org.uk" aria-label="British Blind Sport (opens external site)" rel="noopener noreferrer">British Blind Sport <span aria-hidden="true">↗</span></a></li>
 
               <li><strong>Tandem cycling</strong> — cycling on a tandem bicycle with a sighted pilot. Active communities across the UK</li>
 
@@ -3405,7 +3475,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
             <h3>British Blind Sport</h3>
 
-            <p>The national organisation for sport for people with sight loss. Find local clubs, events, and activity programmes at <a href="https://www.britishblindsport.org.uk">britishblindsport.org.uk <span aria-hidden="true">↗</span></a>.</p>
+            <p>The national organisation for sport for people with sight loss. Find local clubs, events, and activity programmes at <a href="https://www.britishblindsport.org.uk" aria-label="britishblindsport.org.uk (opens external site)" rel="noopener noreferrer">britishblindsport.org.uk <span aria-hidden="true">↗</span></a>.</p>
 
           </div>
 
@@ -3553,7 +3623,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
             <h3>RNIB Talking Books — free</h3>
 
-            <p>RNIB's Talking Books service is completely free for anyone with a sight condition and offers over 40,000 titles available for download or by post. This is specifically designed for people with sight loss and should be the first service you sign up for. <a href="https://readingservices.rnib.org.uk/">Sign up at rnib.org.uk <span aria-hidden="true">↗</span></a></p>
+            <p>RNIB's Talking Books service is completely free for anyone with a sight condition and offers over 40,000 titles available for download or by post. This is specifically designed for people with sight loss and should be the first service you sign up for. <a href="https://readingservices.rnib.org.uk/" aria-label="Sign up at rnib.org.uk (opens external site)" rel="noopener noreferrer">Sign up at rnib.org.uk <span aria-hidden="true">↗</span></a></p>
 
           </div>
 
@@ -3563,7 +3633,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
             <h3>Calibre Audio Library</h3>
 
-            <p>Calibre is a UK lending library of over 20,000 audiobooks. Free for under-25s and those in full-time education; a subsidised membership of £30/year (or £3/month) applies for adults using digital streaming or download. The postal USB-stick service is free for everyone. <a href="https://www.calibreaudio.org.uk">calibreaudio.org.uk <span aria-hidden="true">↗</span></a></p>
+            <p>Calibre is a UK lending library of over 20,000 audiobooks. Free for under-25s and those in full-time education; a subsidised membership of £30/year (or £3/month) applies for adults using digital streaming or download. The postal USB-stick service is free for everyone. <a href="https://www.calibreaudio.org.uk" aria-label="calibreaudio.org.uk (opens external site)" rel="noopener noreferrer">calibreaudio.org.uk <span aria-hidden="true">↗</span></a></p>
 
           </div>
 
@@ -3573,7 +3643,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
             <h3>Libby / OverDrive — free with library card</h3>
 
-            <p>Download the free Libby app, connect your local library card, and access thousands of audiobooks and ebooks for free. Most UK councils are members. <a href="https://libbyapp.com">libbyapp.com <span aria-hidden="true">↗</span></a></p>
+            <p>Download the free Libby app, connect your local library card, and access thousands of audiobooks and ebooks for free. Most UK councils are members. <a href="https://libbyapp.com" aria-label="libbyapp.com (opens external site)" rel="noopener noreferrer">libbyapp.com <span aria-hidden="true">↗</span></a></p>
 
           </div>
 
@@ -3593,7 +3663,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
             <h3>Audible — the best-known paid service</h3>
 
-            <p>Audible (Amazon) has the largest library of commercial audiobooks and is fully accessible. It costs around £7.99/month with one credit per month, or individual titles can be purchased. A free trial is available. Note: RNIB Talking Books is free for anyone with sight loss — try that first before subscribing. <a href="https://www.audible.co.uk">audible.co.uk <span aria-hidden="true">↗</span></a></p>
+            <p>Audible (Amazon) has the largest library of commercial audiobooks and is fully accessible. It costs around £7.99/month with one credit per month, or individual titles can be purchased. A free trial is available. Note: RNIB Talking Books is free for anyone with sight loss — try that first before subscribing. <a href="https://www.audible.co.uk" aria-label="audible.co.uk (opens external site)" rel="noopener noreferrer">audible.co.uk <span aria-hidden="true">↗</span></a></p>
 
           </div>
 
@@ -3654,7 +3724,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
             <h3>Passenger Assist (trains)</h3>
 
-            <p>Passenger Assist is a free service allowing you to book assistance at train stations across the UK. You can book by phone or via the Passenger Assist app. Staff will meet you at the station, guide you to your platform, and ensure you board safely. Book at least 2 hours in advance where possible. <a href="https://www.nationalrail.co.uk/help-and-assistance/passenger-assist/">nationalrail.co.uk <span aria-hidden="true">↗</span></a></p>
+            <p>Passenger Assist is a free service allowing you to book assistance at train stations across the UK. You can book by phone or via the Passenger Assist app. Staff will meet you at the station, guide you to your platform, and ensure you board safely. Book at least 2 hours in advance where possible. <a href="https://www.nationalrail.co.uk/help-and-assistance/passenger-assist/" aria-label="nationalrail.co.uk (opens external site)" rel="noopener noreferrer">nationalrail.co.uk <span aria-hidden="true">↗</span></a></p>
 
           </div>
 
@@ -3694,7 +3764,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
             <h3>Orientation and mobility training</h3>
 
-            <p>Free specialist training to help you travel safely and independently is available via your local authority rehabilitation service. This includes long cane training and route learning. Ask your ophthalmologist or council sensory team for a referral. Guide Dogs UK also provides free travel training. <a href="https://www.guidedogs.org.uk">guidedogs.org.uk <span aria-hidden="true">↗</span></a></p>
+            <p>Free specialist training to help you travel safely and independently is available via your local authority rehabilitation service. This includes long cane training and route learning. Ask your ophthalmologist or council sensory team for a referral. Guide Dogs UK also provides free travel training. <a href="https://www.guidedogs.org.uk" aria-label="guidedogs.org.uk (opens external site)" rel="noopener noreferrer">guidedogs.org.uk <span aria-hidden="true">↗</span></a></p>
 
           </div>
 
@@ -3757,7 +3827,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
             <h3>Access to Work — up to £69,260/year</h3>
 
-            <p>Access to Work is a government grant that pays for equipment and support you need to do your job that your employer cannot reasonably fund. This covers screen readers (JAWS, ZoomText), magnifiers, support workers, and taxi fares to work. Apply at <a href="https://www.gov.uk/access-to-work">gov.uk/access-to-work <span aria-hidden="true">↗</span></a> — before buying anything privately.</p>
+            <p>Access to Work is a government grant that pays for equipment and support you need to do your job that your employer cannot reasonably fund. This covers screen readers (JAWS, ZoomText), magnifiers, support workers, and taxi fares to work. Apply at <a href="https://www.gov.uk/access-to-work" aria-label="gov.uk/access-to-work (opens external site)" rel="noopener noreferrer">gov.uk/access-to-work <span aria-hidden="true">↗</span></a> — before buying anything privately.</p>
 
           </div>
 
@@ -3789,7 +3859,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
             <h3>RNIB Employment Services</h3>
 
-            <p>RNIB's employment team provides free, confidential advice on disclosure, adjustments, redundancy, and career development. Call 0303 123 9999 or visit <a href="https://www.rnib.org.uk">rnib.org.uk <span aria-hidden="true">↗</span></a>.</p>
+            <p>RNIB's employment team provides free, confidential advice on disclosure, adjustments, redundancy, and career development. Call 0303 123 9999 or visit <a href="https://www.rnib.org.uk" aria-label="rnib.org.uk (opens external site)" rel="noopener noreferrer">rnib.org.uk <span aria-hidden="true">↗</span></a>.</p>
 
           </div>
 
@@ -3852,7 +3922,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
             <h3>RNIB Sight Loss Counselling</h3>
 
-            <p>RNIB provides free talking therapy sessions with counsellors who specialise in sight loss. This is different from general counselling — these therapists understand the specific emotional landscape. Call 0303 123 9999 to be referred. <a href="https://www.rnib.org.uk">rnib.org.uk <span aria-hidden="true">↗</span></a></p>
+            <p>RNIB provides free talking therapy sessions with counsellors who specialise in sight loss. This is different from general counselling — these therapists understand the specific emotional landscape. Call 0303 123 9999 to be referred. <a href="https://www.rnib.org.uk" aria-label="rnib.org.uk (opens external site)" rel="noopener noreferrer">rnib.org.uk <span aria-hidden="true">↗</span></a></p>
 
           </div>
 
@@ -4046,13 +4116,13 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
     <div class="lc"><h2>🍪 Cookies</h2><p>No advertising or tracking cookies. We use browser local storage for accessibility preferences only — stored on your device, not transmitted to us. We do not use Google Analytics or any third-party tracking.</p></div>
 
-    <div class="lc"><h2>🔗 Third-party links</h2><p>Links to RNIB, Macular Society, Glaucoma UK, NHS and others are subject to those sites' privacy policies. We load fonts from Google Fonts — see <a href="https://policies.google.com/privacy">Google's Privacy Policy</a>.</p></div>
+    <div class="lc"><h2>🔗 Third-party links</h2><p>Links to RNIB, Macular Society, Glaucoma UK, NHS and others are subject to those sites' privacy policies. We load fonts from Google Fonts — see <a href="https://policies.google.com/privacy" aria-label="Google's Privacy Policy (opens external site)" rel="noopener noreferrer">Google's Privacy Policy</a>.</p></div>
 
     <div class="lc"><h2>⚖️ Legal basis (UK GDPR)</h2><p>Contact form processing is based on <strong>legitimate interests</strong> — responding to enquiries. We do not process special category data.</p></div>
 
     <div class="lc"><h2>🗂️ Data retention</h2><p>Contact form correspondence is retained for up to 12 months then deleted.</p></div>
 
-    <div class="lc"><h2>🔒 Your rights</h2><p>Access, correction, deletion, and objection — use our <button onclick="showPage('contact')" style="background:none;border:none;color:var(--yellow);font-family:var(--font);font-size:inherit;font-weight:700;cursor:pointer;text-decoration:underline;padding:0">contact form</button>. Complaints to ICO: <a href="https://ico.org.uk">ico.org.uk</a> or 0303 123 1113.</p></div>
+    <div class="lc"><h2>🔒 Your rights</h2><p>Access, correction, deletion, and objection — use our <button onclick="showPage('contact')" style="background:none;border:none;color:var(--yellow);font-family:var(--font);font-size:inherit;font-weight:700;cursor:pointer;text-decoration:underline;padding:0">contact form</button>. Complaints to ICO: <a href="https://ico.org.uk" aria-label="ico.org.uk (opens external site)" rel="noopener noreferrer">ico.org.uk</a> or 0303 123 1113.</p></div>
 
     <button class="back-btn" onclick="showPage('home')" aria-label="Back to home"><span aria-hidden="true">←</span> Back to home</button>
 
@@ -4102,7 +4172,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
     <div class="lc"><h2>Reporting issues</h2><p>Use our <button onclick="showPage('contact')" style="background:none;border:none;color:var(--yellow);font-family:var(--font);font-size:inherit;font-weight:700;cursor:pointer;text-decoration:underline;padding:0">contact form</button>. We aim to respond within 5 working days.</p></div>
 
-    <div class="lc"><h2>Enforcement</h2><p>EASS: <a href="https://www.equalityadvisoryservice.com">equalityadvisoryservice.com</a> · 0808 800 0082</p></div>
+    <div class="lc"><h2>Enforcement</h2><p>EASS: <a href="https://www.equalityadvisoryservice.com" aria-label="equalityadvisoryservice.com (opens external site)" rel="noopener noreferrer">equalityadvisoryservice.com</a> · 0808 800 0082</p></div>
 
     <button class="back-btn" onclick="showPage('home')" aria-label="Back to home"><span aria-hidden="true">←</span> Back to home</button>
 
@@ -4568,7 +4638,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
       <p>RNIB's support finder lets you search by postcode for local sight loss groups, rehabilitation services, and specialist support in your area.</p>
 
-      <p style="margin-top:12px"><a href="https://www.rnib.org.uk/your-eyes/navigating-sight-loss/eye-care-services-and-roles/eye-care-liaison-officers-eclos/" style="color:var(--yellow);font-weight:700;font-size:1rem">Find support near you at rnib.org.uk <span aria-hidden="true">↗</span></a></p>
+      <p style="margin-top:12px"><a href="https://www.rnib.org.uk/your-eyes/navigating-sight-loss/eye-care-services-and-roles/eye-care-liaison-officers-eclos/" aria-label="Find support near you at rnib.org.uk (opens external site)" rel="noopener noreferrer" style="color:var(--yellow);font-weight:700;font-size:1rem">Find support near you at rnib.org.uk <span aria-hidden="true">↗</span></a></p>
 
       <p style="margin-top:12px;font-size:0.85rem;color:var(--text2)">This link goes to RNIB's website. If the link has moved, go to rnib.org.uk and search "find support near you".</p>
 
@@ -4584,7 +4654,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
       <p style="margin-top:10px">Everything is tried and tested by people with sight loss. If you need specialist daily living equipment, this is the place to start.</p>
 
-      <p style="margin-top:12px"><a href="https://shop.rnib.org.uk" style="color:var(--yellow);font-weight:700;font-size:1rem">Visit the RNIB Shop <span aria-hidden="true">↗</span></a></p>
+      <p style="margin-top:12px"><a href="https://shop.rnib.org.uk" aria-label="Visit the RNIB Shop (opens external site)" rel="noopener noreferrer" style="color:var(--yellow);font-weight:700;font-size:1rem">Visit the RNIB Shop <span aria-hidden="true">↗</span></a></p>
 
     </div>
 
@@ -4596,7 +4666,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
       <p>Free video guides teaching people with sight loss how to use technology — iPhones, Android phones, screen readers, and accessibility features — in plain, practical language. The best free tech training resource in the UK for people with sight loss.</p>
 
-      <p style="margin-top:12px"><a href="https://www.henshaws.org.uk/knowledge-village/" style="color:var(--yellow);font-weight:700;font-size:1rem">Visit Henshaws Knowledge Village <span aria-hidden="true">↗</span></a></p>
+      <p style="margin-top:12px"><a href="https://www.henshaws.org.uk/knowledge-village/" aria-label="Visit Henshaws Knowledge Village (opens external site)" rel="noopener noreferrer" style="color:var(--yellow);font-weight:700;font-size:1rem">Visit Henshaws Knowledge Village <span aria-hidden="true">↗</span></a></p>
 
     </div>
 
@@ -4615,6 +4685,37 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
       <p style="margin-top:10px"><strong>Retina UK:</strong> <a href="tel:03001114000" style="color:var(--yellow);font-weight:700">0300 111 4000</a> — support for inherited retinal conditions.</p>
 
       <p style="margin-top:10px"><strong>Sense (Deafblind):</strong> <a href="tel:03003309256" style="color:var(--yellow);font-weight:700">0300 330 9256</a> — support for people with combined sight and hearing loss.</p>
+
+    </div>
+
+
+
+    <div class="lc">
+
+      <h2 id="your-rights">⚖️ Your Rights Under the Equality Act 2010</h2>
+
+      <p>The <strong>Equality Act 2010</strong> (which replaced the older Disability Discrimination Act 1995) protects you from discrimination in many areas of life because of your sight condition. Sight loss that has a substantial, long-term impact on your daily life almost always counts as a disability under the Act.</p>
+
+      <p style="margin-top:14px"><strong>Areas the Equality Act protects you in:</strong></p>
+      <ul style="margin-top:8px">
+        <li><strong>Work and recruitment</strong> — reasonable adjustments by employers, protection from discriminatory hiring, dismissal, or pay (see the Work page for full detail)</li>
+        <li><strong>Goods and services</strong> — shops, banks, restaurants, gyms, hotels and other service providers must make reasonable adjustments (such as accepting guide dogs, providing accessible information, or staff assistance)</li>
+        <li><strong>Education</strong> — schools, colleges and universities must make reasonable adjustments and provide auxiliary aids; admissions cannot be refused because of disability</li>
+        <li><strong>Public services and councils</strong> — healthcare, social services, libraries, leisure centres and other public bodies must not discriminate and must make services accessible</li>
+        <li><strong>Transport</strong> — buses, trains, taxis and airlines must provide reasonable assistance; assistance dogs cannot be refused</li>
+        <li><strong>Housing</strong> — landlords cannot refuse to let to you because of disability and must consider reasonable adjustments to communal areas</li>
+        <li><strong>Associations and clubs</strong> — private clubs with 25+ members cannot discriminate against disabled members</li>
+      </ul>
+
+      <p style="margin-top:14px"><strong>The four main types of unlawful conduct:</strong></p>
+      <ul style="margin-top:8px">
+        <li><strong>Direct discrimination</strong> — being treated worse because of your sight condition</li>
+        <li><strong>Indirect discrimination</strong> — a rule or practice that puts disabled people at a disadvantage (such as a website that does not work with screen readers)</li>
+        <li><strong>Failure to make reasonable adjustments</strong> — not removing barriers that put you at a substantial disadvantage</li>
+        <li><strong>Harassment or victimisation</strong> — unwanted conduct related to disability, or being treated badly for raising a complaint</li>
+      </ul>
+
+      <p style="margin-top:14px"><strong>If you experience discrimination:</strong> the Equality Advisory and Support Service (EASS) gives free advice on 0808 800 0082. Citizens Advice and your local law centre can also help. There are strict time limits (usually 6 months) for taking legal action, so seek advice quickly.</p>
 
     </div>
 
@@ -4668,7 +4769,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
       <p style="margin-top:10px"><strong>Find an accredited counsellor near you</strong> — The British Association for Counselling and Psychotherapy (BACP) directory lets you search for accredited counsellors by location. Filter by "visual impairment" or "disability" to find specialists.</p>
 
-      <p style="margin-top:12px"><a href="https://www.bacp.co.uk/search/Therapists" style="color:var(--yellow);font-weight:700;font-size:1rem">Search the BACP counsellor directory <span aria-hidden="true">↗</span></a></p>
+      <p style="margin-top:12px"><a href="https://www.bacp.co.uk/search/Therapists" aria-label="Search the BACP counsellor directory (opens external site)" rel="noopener noreferrer" style="color:var(--yellow);font-weight:700;font-size:1rem">Search the BACP counsellor directory <span aria-hidden="true">↗</span></a></p>
 
       <p style="margin-top:10px"><strong>Samaritans</strong> — <a href="tel:116123" style="color:var(--yellow);font-weight:700">116 123</a> — free, 24 hours a day, 7 days a week. Always there if you need to talk.</p>
 
@@ -4838,13 +4939,15 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
     <div class="lc">
 
-      <h2 id="rights">⚖️ Your Legal Rights</h2>
+      <h2 id="rights">⚖️ Your Legal Rights at Work</h2>
 
       <p>The <strong>Equality Act 2010</strong> protects you from discrimination at work because of your sight condition. Your employer must make <strong>reasonable adjustments</strong> to remove disadvantages you face because of your condition. Refusing to make reasonable adjustments is unlawful disability discrimination.</p>
 
       <p style="margin-top:10px">Reasonable adjustments can include: screen magnification software, adjusted lighting, modified duties, remote working, flexible hours, a dedicated support worker, or changes to your workstation.</p>
 
       <p style="margin-top:10px">The duty applies from the point of application — you do not have to be employed before requesting adjustments.</p>
+
+      <p style="margin-top:14px"><em>The Equality Act protects you in many other areas too — services, transport, housing, education, healthcare. See the Everyday Guide page for full details.</em></p>
 
     </div>
 
@@ -4874,7 +4977,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
       </ul>
 
-      <p style="margin-top:12px"><strong>Apply before buying anything privately.</strong> Access to Work cannot reimburse purchases made before the application. Apply at <a href="https://www.gov.uk/access-to-work" style="color:var(--yellow);font-weight:700">gov.uk/access-to-work <span aria-hidden="true">↗</span></a></p>
+      <p style="margin-top:12px"><strong>Apply before buying anything privately.</strong> Access to Work cannot reimburse purchases made before the application. Apply at <a href="https://www.gov.uk/access-to-work" aria-label="gov.uk/access-to-work (opens external site)" rel="noopener noreferrer" style="color:var(--yellow);font-weight:700">gov.uk/access-to-work <span aria-hidden="true">↗</span></a></p>
 
       <p style="margin-top:10px"><strong>Be prepared for delays.</strong> Average processing time was 109 working days in November 2025 (NAO report, 2026) — up from 28 days in 2021-22. Apply as early as possible and chase regularly. If you have started work and equipment is delayed, you have the right to escalate via your case manager.</p>
 
@@ -4900,7 +5003,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
       <p style="margin-top:10px"><strong>OrCam MyEye</strong> — clips to glasses and reads documents, screens, and faces aloud. Useful in meetings and for reading printed materials.</p>
 
-      <p style="margin-top:12px"><strong>Need training on workplace technology?</strong> <a href="https://www.henshaws.org.uk/knowledge-village/" style="color:var(--yellow);font-weight:700">Henshaws Knowledge Village <span aria-hidden="true">↗</span></a> provides free video guides on using accessibility technology — including screen readers and phone accessibility — specifically for people with sight loss.</p>
+      <p style="margin-top:12px"><strong>Need training on workplace technology?</strong> <a href="https://www.henshaws.org.uk/knowledge-village/" aria-label="Henshaws Knowledge Village (opens external site)" rel="noopener noreferrer" style="color:var(--yellow);font-weight:700">Henshaws Knowledge Village <span aria-hidden="true">↗</span></a> provides free video guides on using accessibility technology — including screen readers and phone accessibility — specifically for people with sight loss.</p>
 
     </div>
 
@@ -5277,7 +5380,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
       <li><strong>Disney+:</strong> Audio menu → English Audio Description.</li>
       <li><strong>Sky / NOW:</strong> Press Help on the remote → Accessibility → Audio Description.</li>
       <li><strong>Apple TV+ / Prime Video:</strong> Audio menu during playback.</li>
-      <li><strong>Cinemas:</strong> Most chains lend AD headsets at the box office — ask. Use the <a href="https://www.yourlocalcinema.com">Your Local Cinema</a> site to find AD-compatible screenings.</li>
+      <li><strong>Cinemas:</strong> Most chains lend AD headsets at the box office — ask. Use the <a href="https://www.yourlocalcinema.com" aria-label="Your Local Cinema (opens external site)" rel="noopener noreferrer">Your Local Cinema</a> site to find AD-compatible screenings.</li>
     </ul>
 
     <h2 id="apps">Sighted-help apps (all free)</h2>
@@ -5402,7 +5505,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
       <h2>💷 Benefits information</h2>
 
-      <p>Benefit rates on this site are updated quarterly following the annual April uprating. They are provided for guidance only. Benefit rules and rates change — always verify current rates and eligibility at <a href="https://www.gov.uk" style="color:var(--yellow);font-weight:700">gov.uk <span aria-hidden="true">↗</span></a> or by calling the relevant benefit helpline.</p>
+      <p>Benefit rates on this site are updated quarterly following the annual April uprating. They are provided for guidance only. Benefit rules and rates change — always verify current rates and eligibility at <a href="https://www.gov.uk" aria-label="gov.uk (opens external site)" rel="noopener noreferrer" style="color:var(--yellow);font-weight:700">gov.uk <span aria-hidden="true">↗</span></a> or by calling the relevant benefit helpline.</p>
 
     </div>
 
@@ -5462,7 +5565,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
     <p style="color:var(--text2);font-size:0.9rem;margin-bottom:12px;line-height:1.7">Free video training specifically for people with sight loss — how to use an iPhone if you can't see the screen, Android accessibility, screen readers, and practical technology skills. The best free tech training resource in the UK for people with sight loss.</p>
 
-    <a href="https://www.henshaws.org.uk/knowledge-village/" style="color:var(--yellow);font-weight:700;font-size:0.95rem">Visit Henshaws Knowledge Village <span aria-hidden="true">↗</span></a>
+    <a href="https://www.henshaws.org.uk/knowledge-village/" aria-label="Visit Henshaws Knowledge Village (opens external site)" rel="noopener noreferrer" style="color:var(--yellow);font-weight:700;font-size:0.95rem">Visit Henshaws Knowledge Village <span aria-hidden="true">↗</span></a>
 
   </div>
 
@@ -5476,13 +5579,13 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
     <ul style="margin-top:12px">
 
-      <li style="margin-bottom:10px"><a href="https://www.youtube.com/c/theblindlife" style="color:var(--yellow);font-weight:700">The Blind Life <span aria-hidden="true">↗</span></a><span style="color:var(--text2);font-size:0.9rem;display:block">Run by Sam Seavy (Stargardt disease). Assistive tech, apps, and low vision tips.</span></li>
+      <li style="margin-bottom:10px"><a href="https://www.youtube.com/c/theblindlife" aria-label="The Blind Life (opens external site)" rel="noopener noreferrer" style="color:var(--yellow);font-weight:700">The Blind Life <span aria-hidden="true">↗</span></a><span style="color:var(--text2);font-size:0.9rem;display:block">Run by Sam Seavy (Stargardt disease). Assistive tech, apps, and low vision tips.</span></li>
 
-      <li style="margin-bottom:10px"><a href="https://www.youtube.com/@DoubleTapVideo" style="color:var(--yellow);font-weight:700">Double Tap <span aria-hidden="true">↗</span></a><span style="color:var(--text2);font-size:0.9rem;display:block">Weekly assistive technology show for blind and partially sighted people.</span></li>
+      <li style="margin-bottom:10px"><a href="https://www.youtube.com/@DoubleTapVideo" aria-label="Double Tap (opens external site)" rel="noopener noreferrer" style="color:var(--yellow);font-weight:700">Double Tap <span aria-hidden="true">↗</span></a><span style="color:var(--text2);font-size:0.9rem;display:block">Weekly assistive technology show for blind and partially sighted people.</span></li>
 
-      <li style="margin-bottom:10px"><a href="https://www.youtube.com/user/rnibuk" style="color:var(--yellow);font-weight:700">RNIB on YouTube <span aria-hidden="true">↗</span></a><span style="color:var(--text2);font-size:0.9rem;display:block">Phone accessibility, wearable tech, screen readers, and more.</span></li>
+      <li style="margin-bottom:10px"><a href="https://www.youtube.com/user/rnibuk" aria-label="RNIB on YouTube (opens external site)" rel="noopener noreferrer" style="color:var(--yellow);font-weight:700">RNIB on YouTube <span aria-hidden="true">↗</span></a><span style="color:var(--text2);font-size:0.9rem;display:block">Phone accessibility, wearable tech, screen readers, and more.</span></li>
 
-      <li><a href="https://www.youtube.com/watch?v=m184At7OkcA" style="color:var(--yellow);font-weight:700">Daily Living Skills Series <span aria-hidden="true">↗</span></a><span style="color:var(--text2);font-size:0.9rem;display:block">Practical everyday skills from a vision rehabilitation therapist.</span></li>
+      <li><a href="https://www.youtube.com/watch?v=m184At7OkcA" aria-label="Daily Living Skills Series (opens external site)" rel="noopener noreferrer" style="color:var(--yellow);font-weight:700">Daily Living Skills Series <span aria-hidden="true">↗</span></a><span style="color:var(--text2);font-size:0.9rem;display:block">Practical everyday skills from a vision rehabilitation therapist.</span></li>
 
     </ul>
 
@@ -5557,8 +5660,8 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
         <li><strong>Contact RNIB</strong> — call <a href="tel:03031239999" style="color:var(--yellow);font-weight:700">0303 123 9999</a>. RNIB funds ECLOs in many UK hospitals and can tell you whether yours has one.</li>
         <li><strong>Macular Society ECLO search</strong> — if you have a macular condition, the Macular Society funds dedicated ECLOs at many UK hospitals.</li>
       </ol>
-      <p style="margin-top:14px"><a href="https://www.macularsociety.org/about/media/news/2024/july/understanding-the-role-of-an-eclo/" style="color:var(--yellow);font-weight:700">Understanding the role of an ECLO (Macular Society) <span aria-hidden="true">↗</span></a></p>
-      <p style="margin-top:10px"><a href="https://www.rnib.org.uk/your-eyes/navigating-sight-loss/eye-care-services-and-roles/eye-care-liaison-officers-eclos/" style="color:var(--yellow);font-weight:700">RNIB living with sight loss <span aria-hidden="true">↗</span></a></p>
+      <p style="margin-top:14px"><a href="https://www.macularsociety.org/about/media/news/2024/july/understanding-the-role-of-an-eclo/" aria-label="Understanding the role of an ECLO (Macular Society) (opens external site)" rel="noopener noreferrer" style="color:var(--yellow);font-weight:700">Understanding the role of an ECLO (Macular Society) <span aria-hidden="true">↗</span></a></p>
+      <p style="margin-top:10px"><a href="https://www.rnib.org.uk/your-eyes/navigating-sight-loss/eye-care-services-and-roles/eye-care-liaison-officers-eclos/" aria-label="RNIB living with sight loss (opens external site)" rel="noopener noreferrer" style="color:var(--yellow);font-weight:700">RNIB living with sight loss <span aria-hidden="true">↗</span></a></p>
     </div>
 
     <div class="lc">
@@ -5629,7 +5732,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
     <div class="lc" style="margin-top:24px">
       <h2>🔍 Search all UK eye trials</h2>
       <p>NIHR's Be Part of Research covers all UK clinical trials. Search by your specific condition for the most current recruitment status.</p>
-      <p style="margin-top:12px"><a href="https://bepartofresearch.nihr.ac.uk/results/listing/?resultsfound=true&q=eye+vision&location=" style="color:var(--yellow);font-weight:700;font-size:1rem">Search NIHR Be Part of Research <span aria-hidden="true">↗</span></a></p>
+      <p style="margin-top:12px"><a href="https://bepartofresearch.nihr.ac.uk/results/listing/?resultsfound=true&q=eye+vision&location=" aria-label="Search NIHR Be Part of Research (opens external site)" rel="noopener noreferrer" style="color:var(--yellow);font-weight:700;font-size:1rem">Search NIHR Be Part of Research <span aria-hidden="true">↗</span></a></p>
     </div>
     <div class="lc">
       <h2>🧬 Genetic testing for trial eligibility</h2>
@@ -5710,19 +5813,19 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
       <div class="footer-links">
 
-        <a href="https://www.rnib.org.uk"          >RNIB</a>
+        <a href="https://www.rnib.org.uk" aria-label="RNIB (opens external site)" rel="noopener noreferrer"          >RNIB</a>
 
-        <a href="https://www.macularsociety.org"   >Macular Society</a>
+        <a href="https://www.macularsociety.org" aria-label="Macular Society (opens external site)" rel="noopener noreferrer"   >Macular Society</a>
 
-        <a href="https://glaucoma.uk/about-glaucoma/"              >Glaucoma UK</a>
+        <a href="https://glaucoma.uk/about-glaucoma/" aria-label="Glaucoma UK (opens external site)" rel="noopener noreferrer"              >Glaucoma UK</a>
 
-        <a href="https://retinauk.org.uk"     >Retina UK</a>
+        <a href="https://retinauk.org.uk" aria-label="Retina UK (opens external site)" rel="noopener noreferrer"     >Retina UK</a>
 
-        <a href="https://clinicaltrials.gov"       >Clinical Trials</a>
+        <a href="https://clinicaltrials.gov" aria-label="Clinical Trials (opens external site)" rel="noopener noreferrer"       >Clinical Trials</a>
 
-        <a href="https://www.gov.uk/pip/how-to-claim"           >PIP Benefits</a>
+        <a href="https://www.gov.uk/pip/how-to-claim" aria-label="PIP Benefits (opens external site)" rel="noopener noreferrer"           >PIP Benefits</a>
 
-        <a href="https://www.guidedogs.org.uk"     >Guide Dogs</a>
+        <a href="https://www.guidedogs.org.uk" aria-label="Guide Dogs (opens external site)" rel="noopener noreferrer"     >Guide Dogs</a>
 
         <a onclick="showPage('livingwell')" role="button" tabindex="0" style="cursor:pointer">Everyday Guide</a>
 
@@ -5814,17 +5917,17 @@ stargardts:{
 
   research:[
 
-    {tag:"trial",label:"🔬 Phase 3 Complete — Rolling NDA Submission",title:"Tinlarebant (Belite Bio) — FDA Rolling Submission in Progress",body:"Oral tablet taken daily. Slowed lesion growth by 35.7% in the Phase 3 DRAGON trial. Belite Bio began a rolling NDA submission to the FDA in April 2026, expected to complete in Q2 2026. FDA decision will follow review. Not yet approved or available. Could become the first oral treatment for Stargardt disease if approved.",link:"https://www.fightingblindness.org/news/stargardt-disease-research-advances-862"},
+    {tag:"trial",label:"🔬 Pipeline",title:"Tinlarebant (Belite Bio) — FDA Rolling Submission in Progress",body:"Oral tablet taken daily. Slowed lesion growth by 35.7% in the Phase 3 DRAGON trial in adolescents. Belite Bio began a rolling NDA submission to the FDA on 21 April 2026, expected to complete in Q2 2026. Regulatory applications also accepted in UK and China based on interim data. Granted FDA Breakthrough Therapy, Fast Track, and Rare Pediatric Disease designations. Not yet approved or available. Could become the first approved treatment for Stargardt disease worldwide.",link:"https://investors.belitebio.com/news-releases/news-release-details/belite-bio-initiates-rolling-submission-new-drug-application-us"},
 
-    {tag:"gene",label:"🔬 Pipeline — Phase 1/2",title:"SpliceBio SB-007 — ASTRA Trial",body:"Protein splicing therapy delivered by single subretinal injection. Now in dose-expansion phase (Jan 2026). One-time treatment designed to deliver a functional ABCA4 gene across all ABCA4 mutations. Raised $135M in 2025 to advance the programme.",link:"https://splice.bio/splicebio-initiates-dose-expansion-portion-of-phase-1-2-astra-for-sb-007/"},
+    {tag:"gene",label:"🔬 Pipeline",title:"SpliceBio SB-007 — ASTRA Trial",body:"Protein splicing therapy delivered by single subretinal injection. Now in dose-expansion phase (Jan 2026). One-time treatment designed to deliver a functional ABCA4 gene across all ABCA4 mutations. Raised $135M in 2025 to advance the programme.",link:"https://splice.bio/splicebio-initiates-dose-expansion-portion-of-phase-1-2-astra-for-sb-007/"},
 
-    {tag:"gene",label:"🔬 Pipeline — Phase 1/2",title:"AAVantgarde AAVB-039 — CELESTE Trial (UK Recruiting)",body:"Dual-vector AAV gene therapy cleared by the UK MHRA for clinical trial in Oct 2025. FDA Orphan Drug designation and Fast Track status. Recruiting in US and UK. Contact AAVantgarde directly to enquire about eligibility.",link:"https://www.aavantgarde.com/en/news/aavantgarde-announces-fda-orphan-drug-designation-and-uk-cta-approval-for-aavb-039-for-the-treatment-of-stargardt-disease/"},
+    {tag:"gene",label:"🔬 Pipeline",title:"AAVantgarde AAVB-039 — CELESTE Trial (UK Recruiting)",body:"Dual-vector AAV gene therapy cleared by the UK MHRA for clinical trial in Oct 2025. FDA Orphan Drug designation and Fast Track status. Recruiting in US and UK. Contact AAVantgarde directly to enquire about eligibility.",link:"https://www.aavantgarde.com/en/news/aavantgarde-announces-fda-orphan-drug-designation-and-uk-cta-approval-for-aavb-039-for-the-treatment-of-stargardt-disease/"},
 
-    {tag:"gene",label:"🔬 Pipeline — Phase 1/2",title:"Ascidian ACDN-01 — RNA Editing (Phase 1/2)",body:"A novel approach that rewrites RNA rather than editing DNA. Unlike gene replacement, it corrects the genetic message without permanent DNA changes. Phase 1/2 trial launched. Potentially applicable to patients with certain ABCA4 mutations.",link:"https://www.fightingblindness.org/news/stargardt-disease-research-advances-862"},
+    {tag:"gene",label:"🔬 Pipeline",title:"Ascidian ACDN-01 — STELLAR Trial (Phase 1/2)",body:"A novel approach that rewrites RNA rather than editing DNA. Unlike gene replacement, it corrects the genetic message without permanent DNA changes. The Phase 1/2 STELLAR trial completed adult dose escalation in May 2026 and has expanded to enrolling adolescents aged 12 and older. First-in-human safety data presented at the American Society of Gene & Cell Therapy meeting in May 2026. Potentially applicable to patients with a wide range of ABCA4 mutations.",link:"https://clinicaltrials.gov/study/NCT06467344"},
 
-    {tag:"trial",label:"🌅 Horizon — Phase 2/3",title:"Ocugen OCU410ST — GARDian3 Trial (Phase 2/3)",body:"AAV-based modifier gene therapy targeting multiple disease pathways simultaneously — potentially applicable to patients with a wider range of ABCA4 mutations than single-gene approaches.",link:"https://clinicaltrials.gov/study/NCT05956626"},
+    {tag:"trial",label:"🔬 Pipeline",title:"Ocugen OCU410ST — GARDian3 Trial (Phase 2/3 — Enrolment Complete)",body:"AAV-based modifier gene therapy targeting multiple disease pathways simultaneously — potentially applicable to patients with a wider range of ABCA4 mutations than single-gene approaches. Enrolment completed in April 2026 (63 participants in under 9 months). Interim 8-month data expected mid-2026; topline 1-year results expected Q2 2027; BLA filing targeted mid-2027. Positive Phase 1 GARDian1 results published in Nature Eye in January 2026.",link:"https://clinicaltrials.gov/study/NCT05956626"},
 
-    {tag:"stem",label:"🌅 Horizon",title:"Stem Cell RPE Replacement",body:"Several programmes replacing lost retinal pigment epithelium cells with lab-grown stem cell-derived cells. Phase 1/2 data shows long-term safety at 3 years and early vision improvements.",link:"https://www.macularsociety.org/research/"},
+    {tag:"stem",label:"🔬 Pipeline",title:"Stem Cell RPE Replacement",body:"Several programmes replacing lost retinal pigment epithelium cells with lab-grown stem cell-derived cells. Phase 1/2 data shows long-term safety at 3 years and early vision improvements.",link:"https://www.macularsociety.org/research/"},
 
     {tag:"trial",label:"🔗 Find UK Trials",title:"NIHR Be Part of Research — Stargardt",body:"The easiest way to find and register for UK clinical trials for Stargardt disease. Search specifically for your condition and location.",link:"https://bepartofresearch.nihr.ac.uk/results/listing/?resultsfound=true&q=Stargardt&location="}
 
@@ -5946,15 +6049,15 @@ amd:{
 
   research:[
 
-    {tag:"drug",label:"❌ Not Available in UK",title:"Pegcetacoplan (Syfovre) — Geographic Atrophy",body:"FDA-approved in the US (Feb 2023) as the first treatment for geographic atrophy. However, the UK's MHRA rejected the application in 2024-25, and the European Medicines Agency also issued a negative opinion. The NICE appraisal was suspended. Currently not available on the NHS or privately in the UK. Decisions cited the lack of demonstrated visual benefit despite slowing lesion growth.",link:"https://www.macularsociety.org/about/media/news/2025/february/syfovre-faqs-and-next-steps-for-dry-amd-and-geographic-atrophy-treatment/"},
+    {tag:"drug",label:"🌍 Available Abroad",title:"Pegcetacoplan (Syfovre) — Geographic Atrophy",body:"FDA-approved in the US (Feb 2023) as the first treatment for geographic atrophy. However, the UK's MHRA rejected the application in 2024-25, and the European Medicines Agency also issued a negative opinion. The NICE appraisal was suspended. Currently not available on the NHS or privately in the UK. Decisions cited the lack of demonstrated visual benefit despite slowing lesion growth.",link:"https://www.macularsociety.org/about/media/news/2025/february/syfovre-faqs-and-next-steps-for-dry-amd-and-geographic-atrophy-treatment/"},
 
-    {tag:"drug",label:"✅ NHS Approved",title:"Faricimab (Vabysmo) — Wet AMD",body:"Dual-pathway anti-VEGF injection targeting both VEGF and Ang-2. NICE approved. Fewer injections needed than older treatments — up to every 4 months for some patients.",link:"https://www.nice.org.uk/guidance/ta800"},
+    {tag:"drug",label:"✅ NHS Available",title:"Faricimab (Vabysmo) — Wet AMD",body:"Dual-pathway anti-VEGF injection targeting both VEGF and Ang-2. NICE approved. Fewer injections needed than older treatments — up to every 4 months for some patients.",link:"https://www.nice.org.uk/guidance/ta800"},
 
-    {tag:"gene",label:"🔬 Pipeline",title:"4D-150 Gene Therapy — Wet AMD (Phase 3)",body:"Single injection delivering continuous anti-VEGF production — potentially replacing years of repeat injections. Phase 3 trials ongoing. Data readout expected 2027.",link:"https://www.modernretina.com/view/pipeline-update-catch-up-on-recent-updates-in-the-retina-pipeline"},
+    {tag:"gene",label:"🔬 Pipeline",title:"4D-150 Gene Therapy — 4FRONT Phase 3 Trials",body:"Single injection delivering continuous anti-VEGF production — potentially replacing years of repeat injections. The 4FRONT-1 Phase 3 trial completed enrolment in February 2026 (~500 patients, ahead of schedule); topline data expected H1 2027. 4FRONT-2 (global) on track to complete enrolment H2 2026 with topline H2 2027.",link:"https://clinicaltrials.gov/study/NCT06864676"},
 
-    {tag:"gene",label:"🔬 Pipeline",title:"OCU-410 Gene Therapy — Geographic Atrophy",body:"Single subretinal injection targeting multiple disease pathways. Phase 1/2 data (Jan 2026) showed 46% slowing of lesion growth — among the best results seen for GA treatment.",link:"https://www.fightingblindness.org/news/age-related-macular-degeneration-research-advances-821"},
+    {tag:"gene",label:"🔬 Pipeline",title:"OCU410 (Ocugen) — ArMaDa Trial, Geographic Atrophy",body:"Single subretinal injection targeting multiple disease pathways via RORA gene. Full Phase 2 12-month data (March 2026) showed 31% reduction in lesion growth in the optimal dose group versus control, plus 27% slower ellipsoid zone loss. No drug-related serious adverse events to date. Ocugen plans to initiate Phase 3 in 2026.",link:"https://ir.ocugen.com/news-releases/news-release-details/ocugen-announces-positive-preliminary-phase-2-data-ocu410"},
 
-    {tag:"trial",label:"🌅 Horizon",title:"PRIMA Retinal Implant — Bionic Vision",body:"A tiny chip placed under the retina combined with specialist glasses. In a study of 38 people with geographic atrophy, over 80% reported clinically significant vision improvement — including reading letters they previously could not see.",link:"https://www.fightingblindness.org/news/age-related-macular-degeneration-research-advances-821"},
+    {tag:"trial",label:"🔬 Pipeline",title:"PRIMA Retinal Implant (Science Corp) — Bionic Vision",body:"A tiny chip placed under the retina combined with specialist glasses. The PRIMAvera trial in 38 people with geographic atrophy showed 81% had clinically meaningful improvement in visual acuity at 12 months — including reading letters they previously could not see. Results published in the New England Journal of Medicine (Oct 2025). Regulatory approval underway in Europe with expected market launch in 2026; FDA filing in progress.",link:"https://www.nejm.org/doi/full/10.1056/NEJMoa2501396"},
 
     {tag:"trial",label:"🔗 Find UK Trials",title:"NIHR Be Part of Research — AMD",body:"Find and register for UK clinical trials for AMD and geographic atrophy. Filtered search for your specific condition.",link:"https://bepartofresearch.nihr.ac.uk/results/listing/?resultsfound=true&q=macular+degeneration&location="}
 
@@ -6048,13 +6151,13 @@ glaucoma:{
 
   research:[
 
-    {tag:"drug",label:"✅ FDA Approved — Not Yet UK Available",title:"iDose TR (Travoprost) Implant",body:"A tiny implant placed inside the eye delivers continuous pressure-lowering medication for up to 3 years — eliminating daily eye drops. FDA approved December 2023. No MHRA or NICE approval announced for the UK as of 2026. Speak to your ophthalmologist if you have difficulty with eye drops — alternatives like SLT laser may be available.",link:"https://glaucoma.uk/about-glaucoma/treatment/"},
+    {tag:"drug",label:"🌍 Available Abroad",title:"iDose TR (Travoprost) Implant",body:"A tiny implant placed inside the eye delivers continuous pressure-lowering medication for up to 3 years — eliminating daily eye drops. FDA approved December 2023. No MHRA or NICE approval announced for the UK as of 2026. Speak to your ophthalmologist if you have difficulty with eye drops — alternatives like SLT laser may be available.",link:"https://glaucoma.uk/about-glaucoma/treatment/"},
 
-    {tag:"tech",label:"✅ In Use at Moorfields",title:"AI Progression Detection",body:"DeepMind and Moorfields Eye Hospital's AI can detect glaucoma progression on OCT scans years earlier than current clinical methods. Already being used at Moorfields and rolling out across NHS eye units.",link:"https://www.moorfields.nhs.uk/research-innovation"},
+    {tag:"tech",label:"🔬 Pipeline",title:"AI Progression Detection on OCT Scans",body:"Active research is developing AI models that detect glaucoma progression from OCT scans earlier than standard methods. Moorfields, UCL and international groups have published deep-learning approaches with high accuracy, but most are still in research or limited pilot use rather than full NHS deployment. Ask your eye clinic whether AI-assisted OCT analysis is being used.",link:"https://moorfieldsbrc.nihr.ac.uk/case-study/deepmind-research-report/"},
 
-    {tag:"gene",label:"🔬 Pipeline",title:"Neuroprotection Research",body:"Trials investigating whether drugs can protect optic nerve fibres from dying — going beyond just lowering pressure. This could preserve vision even when IOP control is incomplete. Several Phase 2 trials ongoing.",link:"https://glaucoma.uk/about-glaucoma/treatment/"},
+    {tag:"gene",label:"🔬 Pipeline",title:"Neuroprotection Research",body:"Trials investigating whether drugs can protect optic nerve fibres from dying — going beyond just lowering pressure. Active Phase 2 programmes include NT-501 (Neurotech, an implant releasing CNTF protein), BL1107 (Bausch + Lomb, alpha-2 agonist) and nicotinamide riboside oral supplementation. Larger results expected through 2026-27.",link:"https://www.reviewofophthalmology.com/article/the-2026-glaucoma-pipeline"},
 
-    {tag:"gene",label:"🌅 Horizon",title:"Gene Therapy for Glaucoma",body:"Early research into gene therapy approaches targeting the trabecular meshwork (the eye's drainage system) to permanently improve fluid drainage and reduce IOP without daily medication.",link:"https://glaucoma.uk/about-glaucoma/treatment/"},
+    {tag:"gene",label:"🌅 Horizon",title:"Gene Therapy for Glaucoma",body:"Early research into gene therapy approaches targeting the trabecular meshwork (the eye's drainage system) to permanently improve fluid drainage and reduce IOP without daily medication. A first-in-human CRISPR/Cas9 trial began in 2024 for the small group of patients with myocilin (MYOC) gene mutations — about 4% of adult open-angle glaucoma. Wider gene therapies remain at preclinical stage.",link:"https://clinicaltrials.gov/study/NCT06465537"},
 
     {tag:"trial",label:"🔗 Find UK Trials",title:"NIHR Be Part of Research — Glaucoma",body:"Find and register for UK clinical trials for glaucoma.",link:"https://bepartofresearch.nihr.ac.uk/results/listing/?resultsfound=true&q=glaucoma&location="}
 
@@ -6144,13 +6247,13 @@ rp:{
 
   research:[
 
-    {tag:"gene",label:"✅ NHS Approved",title:"Luxturna — RPE65 Mutations",body:"First gene therapy approved on the NHS for an inherited eye condition. A single subretinal injection in each eye. Available now at specialist centres for patients with biallelic RPE65 mutations. Life-changing results in eligible patients.",link:"https://www.nice.org.uk/guidance/hst11"},
+    {tag:"gene",label:"✅ NHS Available",title:"Luxturna — RPE65 Mutations",body:"First gene therapy approved on the NHS for an inherited eye condition. A single subretinal injection in each eye. Available now at specialist centres for patients with biallelic RPE65 mutations. Life-changing results in eligible patients.",link:"https://www.nice.org.uk/guidance/hst11"},
 
-    {tag:"gene",label:"🔬 Pipeline — Phase 2/3",title:"MeiraGTx RPGR Gene Therapy",body:"Phase 2/3 trial showing significant preservation of visual field in X-linked RP patients at 12-month follow-up. One of the most advanced RP gene therapy programmes. RPGR mutations are the most common cause of X-linked RP.",link:"https://retinauk.org.uk/medical-research/"},
+    {tag:"gene",label:"🔬 Pipeline",title:"Botaretigene Sparoparvovec (bota-vec) — RPGR Gene Therapy",body:"The Phase 3 LUMEOS trial (95 patients) did not meet its primary endpoint of vision-guided mobility (May 2025), but showed meaningful improvements in visual acuity and patient-reported outcomes. Johnson & Johnson returned rights to MeiraGTx in April 2026; MeiraGTx plans regulatory filings in the US, Europe and Japan based on the existing data, with potential commercial launch in 2027 if approved. For males with X-linked RP caused by RPGR mutations — the most common cause of X-linked RP.",link:"https://www.fightingblindness.org/news/retinitis-pigmentosa-research-advances-899"},
 
-    {tag:"trial",label:"🔬 Pipeline",title:"Optogenetics — Restoring Vision in End-Stage RP",body:"Delivers light-sensitive proteins to surviving retinal cells that have lost their natural photoreceptors. One landmark patient demonstrated partial vision restoration. GenSight, Nanoscope and others have active programmes. Could help people with advanced RP who are not eligible for gene therapy.",link:"https://retinauk.org.uk/medical-research/"},
+    {tag:"trial",label:"🔬 Pipeline",title:"Optogenetics — Restoring Vision in End-Stage RP",body:"Delivers light-sensitive proteins to surviving retinal cells that have lost their natural photoreceptors. Mutation-agnostic, so could help many RP types. Nanoscope MCO-010 (the most advanced programme) is in a rolling FDA Biologics License Application submission with full filing expected in the first half of 2026; three-year follow-up data presented at ARVO 2026 showed lasting improvements. GenSight GS030, Bionic Sight BS01 and others have ongoing Phase 1/2 trials. Could help people with advanced RP who are not eligible for gene therapy.",link:"https://www.fightingblindness.org/news/retinitis-pigmentosa-research-advances-899"},
 
-    {tag:"gene",label:"🌅 Horizon",title:"CRISPR Gene Editing for RP",body:"Early-stage CRISPR trials targeting specific RP mutations. Unlike gene replacement, CRISPR can correct the faulty gene in place. Very early stage but significant long-term potential.",link:"https://retinauk.org.uk/medical-research/"},
+    {tag:"gene",label:"🌅 Horizon",title:"CRISPR Gene Editing for RP",body:"Early-stage CRISPR trials targeting specific RP mutations. Unlike gene replacement, CRISPR can correct the faulty gene in place. The first-in-human CRISPR trial for RP (ZVS203e) is recruiting patients with RHO mutations (the most common cause of autosomal dominant RP) in a Phase 1/2 study. Significant long-term potential but very early stage.",link:"https://clinicaltrials.gov/study/NCT06952842"},
 
     {tag:"trial",label:"🔗 Find UK Trials",title:"NIHR Be Part of Research — Retinitis Pigmentosa",body:"Find and register for UK clinical trials for RP and inherited retinal conditions.",link:"https://bepartofresearch.nihr.ac.uk/results/listing/?resultsfound=true&q=retinitis+pigmentosa&location="}
 
@@ -6240,13 +6343,13 @@ diabetic:{
 
   research:[
 
-    {tag:"drug",label:"✅ NHS Approved",title:"Faricimab (Vabysmo) — Fewer Injections",body:"Dual-pathway injection approved by NICE for diabetic macular oedema. Targets both VEGF and Ang-2. Up to every 4 months for eligible patients — significantly fewer clinic visits than older treatments.",link:"https://www.nice.org.uk/guidance/ta799"},
+    {tag:"drug",label:"✅ NHS Available",title:"Faricimab (Vabysmo) — Fewer Injections",body:"Dual-pathway injection approved by NICE for diabetic macular oedema. Targets both VEGF and Ang-2. Up to every 4 months for eligible patients — significantly fewer clinic visits than older treatments.",link:"https://www.nice.org.uk/guidance/ta799"},
 
-    {tag:"drug",label:"✅ NHS Screening",title:"Annual Eye Screening — The Best Prevention",body:"NHS diabetic eye screening detects retinopathy before symptoms appear. This is the most effective intervention available — free for all people with diabetes. Never miss it.",link:"https://www.nhs.uk/conditions/diabetic-eye-screening/"},
+    {tag:"drug",label:"✅ NHS Available",title:"Annual Eye Screening — The Best Prevention",body:"NHS diabetic eye screening detects retinopathy before symptoms appear. This is the most effective intervention available — free for all people with diabetes. Never miss it.",link:"https://www.nhs.uk/conditions/diabetic-eye-screening/"},
 
     {tag:"trial",label:"🔬 Pipeline",title:"Annexin A5 (ANXV) — Phase 2 UK Trial",body:"A novel drug using a human protein to protect retinal cells from damage. UK MHRA approved Phase 2a trial. Targets cell protection and inflammation rather than blood vessel growth — a completely different approach.",link:"https://bepartofresearch.nihr.ac.uk/results/listing/?resultsfound=true&q=diabetic+retinopathy&location="},
 
-    {tag:"gene",label:"🌅 Horizon",title:"Gene Therapy for Diabetic Retinopathy",body:"Single-injection approaches delivering continuous anti-VEGF production are being developed for diabetic retinopathy — potentially replacing years of repeat injections. Phase 2 programmes ongoing.",link:"https://www.diabetes.org.uk/research"},
+    {tag:"gene",label:"🔬 Pipeline",title:"Gene Therapy for Diabetic Retinopathy",body:"Single-injection approaches delivering continuous anti-VEGF production are being developed for diabetic retinopathy — potentially replacing years of repeat injections. Phase 2 programmes ongoing.",link:"https://www.diabetes.org.uk/research"},
 
     {tag:"trial",label:"🔗 Find UK Trials",title:"NIHR Be Part of Research — Diabetic Retinopathy",body:"Find and register for UK clinical trials for diabetic retinopathy and diabetic macular oedema.",link:"https://bepartofresearch.nihr.ac.uk/results/listing/?resultsfound=true&q=diabetic+retinopathy&location="}
 
@@ -6332,13 +6435,13 @@ lca:{
 
   research:[
 
-    {tag:"gene",label:"✅ NHS Approved",title:"Luxturna — RPE65-LCA (Available Now)",body:"A single subretinal injection in each eye. Life-changing vision improvements in eligible patients. Available on the NHS at specialist centres. Getting a genetic diagnosis is essential — this treatment only works for RPE65 mutations.",link:"https://www.nice.org.uk/guidance/hst11"},
+    {tag:"gene",label:"✅ NHS Available",title:"Luxturna — RPE65-LCA (Available Now)",body:"A single subretinal injection in each eye. Life-changing vision improvements in eligible patients. Available on the NHS at specialist centres. Getting a genetic diagnosis is essential — this treatment only works for RPE65 mutations.",link:"https://www.nice.org.uk/guidance/hst11"},
 
-    {tag:"gene",label:"🔬 Pipeline — CRISPR",title:"EDIT-101 — CEP290 Gene Editing",body:"Uses CRISPR to correct the most common CEP290 mutation (which cannot be treated with Luxturna). Phase 1/2 results showed visual improvement in several participants. CEP290 is the most common LCA gene — this could help the largest group of LCA patients.",link:"https://retinauk.org.uk/medical-research/"},
+    {tag:"gene",label:"🔬 Pipeline",title:"EDIT-101 — CEP290 Gene Editing (Development Paused)",body:"Uses CRISPR to correct the most common CEP290 mutation (which cannot be treated with Luxturna). The Phase 1/2 BRILLIANCE trial showed proof of concept, with meaningful vision improvement seen mainly in patients with two copies of the IVS26 mutation. Editas Medicine paused enrolment in 2022 and is seeking a development partner to continue the programme. No active recruitment at this time.",link:"https://retinauk.org.uk/medical-research/"},
 
     {tag:"gene",label:"🔬 Pipeline",title:"GUCY2D Gene Therapy",body:"Multiple programmes from Spark Therapeutics and UCL investigating gene replacement for GUCY2D mutations — the second most common LCA gene. Early results are encouraging.",link:"https://retinauk.org.uk/medical-research/"},
 
-    {tag:"gene",label:"🌅 Horizon",title:"HG005 — Paediatric Gene Therapy Trial",body:"A Phase 1/2 trial specifically for children aged 6–17 with Stargardt/LCA. Started recruiting August 2025. Represents a growing focus on treating the youngest patients as early as possible.",link:"https://retinauk.org.uk/medical-research/"},
+    {tag:"gene",label:"🔬 Pipeline",title:"HG005 — Paediatric Gene Therapy Trial",body:"A Phase 1/2 trial specifically for children aged 6–17 with Stargardt/LCA. Started recruiting August 2025. Represents a growing focus on treating the youngest patients as early as possible.",link:"https://retinauk.org.uk/medical-research/"},
 
     {tag:"trial",label:"🔗 Find UK Trials",title:"NIHR Be Part of Research — LCA",body:"Find and register for UK clinical trials for Leber Congenital Amaurosis.",link:"https://bepartofresearch.nihr.ac.uk/results/listing/?resultsfound=true&q=leber+congenital+amaurosis&location="}
 
@@ -6458,7 +6561,7 @@ nystagmus:{
 
   research:[
 
-    {tag:"drug",label:"✅ Available",title:"Tenotomy (Anderson Procedure)",body:"A minor eye muscle surgery that shifts the null zone to a more central head position, reducing or eliminating the need for a head turn. Available at specialist centres in the UK. Ask your ophthalmologist whether you are a candidate.",link:"https://nystagmusnetwork.org"},
+    {tag:"drug",label:"✅ NHS Available",title:"Tenotomy (Anderson Procedure)",body:"A minor eye muscle surgery that shifts the null zone to a more central head position, reducing or eliminating the need for a head turn. Available at specialist centres in the UK. Ask your ophthalmologist whether you are a candidate.",link:"https://nystagmusnetwork.org"},
 
     {tag:"drug",label:"🔬 Pipeline",title:"Memantine Trials — NANOS Study",body:"Memantine (a drug used in dementia) has shown measurable reduction in nystagmus intensity and improvement in visual acuity in some trials. Newcastle University NANOS study produced encouraging data. Further trials are in planning.",link:"https://nystagmusnetwork.org"},
 
@@ -6574,9 +6677,9 @@ achromatopsia:{
 
   research:[
 
-    {tag:"gene",label:"🔬 Pipeline — Phase 1/2",title:"CNGB3 Gene Therapy (Most Common Form)",body:"Multiple Phase 1/2 trials have shown good safety data and early functional improvements in colour and light sensitivity. CNGB3 mutations cause around 50% of achromatopsia cases — this is the most important programme for the majority of people with the condition.",link:"https://retinauk.org.uk/medical-research/"},
+    {tag:"gene",label:"🔬 Pipeline",title:"CNGB3 Gene Therapy (Most Common Form)",body:"Multiple Phase 1/2 trials have shown good safety data and early functional improvements in colour and light sensitivity. CNGB3 mutations cause around 50% of achromatopsia cases — this is the most important programme for the majority of people with the condition.",link:"https://retinauk.org.uk/medical-research/"},
 
-    {tag:"gene",label:"🔬 Pipeline — Phase 1/2",title:"CNGA3 Gene Therapy",body:"Phase 1/2 trials for CNGA3 mutations (the second most common form) also showing promising safety and early efficacy signals. Separate programmes to CNGB3 — getting a genetic diagnosis determines which applies to you.",link:"https://retinauk.org.uk/medical-research/"},
+    {tag:"gene",label:"🔬 Pipeline",title:"CNGA3 Gene Therapy",body:"Phase 1/2 trials for CNGA3 mutations (the second most common form) also showing promising safety and early efficacy signals. Separate programmes to CNGB3 — getting a genetic diagnosis determines which applies to you.",link:"https://retinauk.org.uk/medical-research/"},
 
     {tag:"gene",label:"🌅 Horizon",title:"Cone Cell Regeneration",body:"Longer-term research into regenerating lost or non-functional cone cells using gene therapy combined with cellular approaches. Very early stage.",link:"https://retinauk.org.uk/medical-research/"},
 
@@ -6692,7 +6795,7 @@ usher:{
 
   research:[
 
-    {tag:"trial",label:"🔬 Pipeline — Phase 2/3 Recruiting",title:"Ultevursen (formerly QR-421a) — USH2A Antisense Therapy",body:"RNA antisense oligonucleotide targeting exon 13 mutations in USH2A. Originally developed by ProQR, now owned by Laboratoires Théa (since December 2023). The Phase 1b/2 Stellar trial showed encouraging visual stabilisation. A new Phase 2/3 trial called LUNA is now recruiting (started December 2024) with primary completion expected December 2027.",link:"https://retinauk.org.uk/medical-research/"},
+    {tag:"trial",label:"🔬 Pipeline",title:"Ultevursen (formerly QR-421a) — USH2A Antisense Therapy",body:"RNA antisense oligonucleotide targeting exon 13 mutations in USH2A. Originally developed by ProQR, now owned by Laboratoires Théa (since December 2023). The Phase 1b/2 Stellar trial showed encouraging visual stabilisation. A new Phase 2/3 trial called LUNA is now recruiting (started December 2024) with primary completion expected December 2027.",link:"https://retinauk.org.uk/medical-research/"},
 
     {tag:"gene",label:"🔬 Pipeline",title:"MYO7A Gene Therapy — Type 1 Usher",body:"Sensorion and others developing gene therapy for MYO7A, the most common Type 1 Usher gene. Phase 1/2 safety and early efficacy data are encouraging.",link:"https://retinauk.org.uk/medical-research/"},
 
@@ -6904,7 +7007,7 @@ cvi:{
 
   research:[
 
-    {tag:"trial",label:"✅ Evidence-Based",title:"Active Learning Interventions",body:"Structured programmes using the brain's plasticity (neuroplasticity) to maximise vision development. CVI Scotland's Little Bear Sees framework and similar approaches have strong evidence for improving visual function in children, particularly when started early.",link:"https://cviscotland.org"},
+    {tag:"trial",label:"✅ NHS Available",title:"Active Learning Interventions",body:"Structured programmes using the brain's plasticity (neuroplasticity) to maximise vision development. CVI Scotland's Little Bear Sees framework and similar approaches have strong evidence for improving visual function in children, particularly when started early.",link:"https://cviscotland.org"},
 
     {tag:"tech",label:"🔬 Pipeline",title:"AI-Assisted CVI Assessment Tools",body:"Research into AI-powered tools that can better characterise CVI severity and track progress over time. Current standard assessments vary widely — better tools would improve access to the right support.",link:"https://cviscotland.org"},
 
@@ -7024,7 +7127,7 @@ cone:{
 
   research:[
 
-    {tag:"gene",label:"🔬 Pipeline — Phase 2/3",title:"RPGR Gene Therapy — X-Linked Cone Dystrophy",body:"MeiraGTx Phase 2/3 trial showing significant preservation of visual function in patients with RPGR mutations. X-linked cone dystrophy is the most common form — this is the most advanced treatment programme.",link:"https://retinauk.org.uk/medical-research/"},
+    {tag:"gene",label:"🔬 Pipeline",title:"RPGR Gene Therapy — X-Linked Cone Dystrophy",body:"MeiraGTx Phase 2/3 trial showing significant preservation of visual function in patients with RPGR mutations. X-linked cone dystrophy is the most common form — this is the most advanced treatment programme.",link:"https://retinauk.org.uk/medical-research/"},
 
     {tag:"gene",label:"🔬 Pipeline",title:"CNGB3 / CNGA3 Gene Therapy",body:"Shared with achromatopsia, these mutations also cause cone dystrophy in some patients. Phase 1/2 trials ongoing. Genetic testing determines whether you carry these mutations.",link:"https://retinauk.org.uk/medical-research/"},
 
@@ -7124,7 +7227,7 @@ dmo:{
 
   research:[
 
-    {tag:"drug",label:"✅ NHS Approved",title:"Faricimab (Vabysmo) — Fewer Injections",body:"Dual-pathway injection. NICE approved for DMO. Up to every 4 months for some patients — far fewer clinic visits than older treatments.",link:"https://www.nice.org.uk/guidance/ta799"},
+    {tag:"drug",label:"✅ NHS Available",title:"Faricimab (Vabysmo) — Fewer Injections",body:"Dual-pathway injection. NICE approved for DMO. Up to every 4 months for some patients — far fewer clinic visits than older treatments.",link:"https://www.nice.org.uk/guidance/ta799"},
 
     {tag:"drug",label:"✅ NHS Available",title:"Aflibercept HD (Eylea HD)",body:"High-dose 8mg aflibercept formulation. NICE considered it clinically equivalent to standard-dose Eylea (TA346) and recommended for routine commissioning without a separate appraisal. Allows extended dosing intervals — fewer injections than standard-dose Eylea for many patients.",link:"https://www.nice.org.uk/guidance/topic-selection/gid-ta11133"},
 
@@ -7300,9 +7403,9 @@ charlesbonnet:{
 
     {tag:"trial",label:"🔬 Pipeline",title:"Non-Invasive Brain Stimulation",body:"UCL and other centres investigating transcranial magnetic stimulation (TMS) and similar non-invasive techniques to disrupt the hallucination-generating activity in the visual cortex. Early-stage but promising as a drug-free approach.",link:"https://www.charlesbonnetsyndrome.uk"},
 
-    {tag:"drug",label:"🔬 Pipeline — Emerging",title:"Low-Dose Ketamine",body:"Early research suggests low-dose ketamine may reduce CBS hallucinations in some patients by targeting NMDA receptors. Not yet a standard treatment but represents a potential pharmacological approach.",link:"https://www.charlesbonnetsyndrome.uk"},
+    {tag:"drug",label:"🔬 Pipeline",title:"Low-Dose Ketamine",body:"Early research suggests low-dose ketamine may reduce CBS hallucinations in some patients by targeting NMDA receptors. Not yet a standard treatment but represents a potential pharmacological approach.",link:"https://www.charlesbonnetsyndrome.uk"},
 
-    {tag:"trial",label:"✅ Evidence-Based",title:"Self-Management Strategies Work",body:"Eye movement techniques (rapid side-to-side movements), increasing light levels, and changing activity are proven to interrupt hallucinations in most people. Simply knowing what CBS is dramatically reduces distress — awareness is itself a treatment.",link:"https://www.charlesbonnetsyndrome.uk"},
+    {tag:"trial",label:"✅ NHS Available",title:"Self-Management Strategies Work",body:"Eye movement techniques (rapid side-to-side movements), increasing light levels, and changing activity are proven to interrupt hallucinations in most people. Simply knowing what CBS is dramatically reduces distress — awareness is itself a treatment.",link:"https://www.charlesbonnetsyndrome.uk"},
 
     {tag:"trial",label:"🔗 Find UK Trials",title:"NIHR Be Part of Research — Charles Bonnet",body:"Find and register for UK research studies on Charles Bonnet Syndrome.",link:"https://bepartofresearch.nihr.ac.uk/results/listing/?resultsfound=true&q=charles+bonnet&location="}
 
@@ -7384,7 +7487,7 @@ opticneuritis:{
 
   research:[
 
-    {tag:"drug",label:"✅ Standard Treatment",title:"IV Methylprednisolone — Speeds Recovery",body:"High-dose IV steroids speed recovery from acute optic neuritis but do not improve final vision outcome. Standard care in UK hospitals. The goal is returning to work and activity faster — not improving the ceiling of recovery.",link:"https://www.mssociety.org.uk/research"},
+    {tag:"drug",label:"✅ NHS Available",title:"IV Methylprednisolone — Speeds Recovery",body:"High-dose IV steroids speed recovery from acute optic neuritis but do not improve final vision outcome. Standard care in UK hospitals. The goal is returning to work and activity faster — not improving the ceiling of recovery.",link:"https://www.mssociety.org.uk/research"},
 
     {tag:"drug",label:"🔬 Pipeline",title:"Neuroprotection — Preventing Permanent Damage",body:"Trials are investigating whether neuroprotective drugs (including phenytoin and simvastatin) can protect optic nerve fibres during an acute attack — potentially improving long-term vision outcomes, not just speeding recovery. This is the key unanswered question in optic neuritis research.",link:"https://www.nihr.ac.uk"},
 
@@ -7470,11 +7573,11 @@ blepharitis:{
 
   research:[
 
-    {tag:"drug",label:"✅ Available Now",title:"Intense Pulsed Light (IPL) Therapy",body:"IPL therapy is showing excellent results for posterior blepharitis caused by meibomian gland dysfunction. Now available at specialist eye clinics in the UK. Multiple sessions needed — typically 4 treatments over 3 months. Not currently NHS-funded; private cost £300–600 per course.",link:"https://www.college-optometrists.org/clinical-guidance/clinical-management-guidelines/anterior-eye-conditions_optometric-management/blepharitis"},
+    {tag:"drug",label:"✅ NHS Available",title:"Intense Pulsed Light (IPL) Therapy",body:"IPL therapy is showing excellent results for posterior blepharitis caused by meibomian gland dysfunction. Now available at specialist eye clinics in the UK. Multiple sessions needed — typically 4 treatments over 3 months. Not currently NHS-funded; private cost £300–600 per course.",link:"https://www.college-optometrists.org/clinical-guidance/clinical-management-guidelines/anterior-eye-conditions_optometric-management/blepharitis"},
 
-    {tag:"drug",label:"🌍 FDA Approved — Not Yet UK Available",title:"Lotilaner (Xdemvy) — Demodex Treatment",body:"FDA approved July 2023 in the US for Demodex mite-associated blepharitis. Demodex is an increasingly recognised cause — more common than previously thought, accounting for up to 45% of blepharitis cases. No MHRA approval announced for the UK as of 2026. Daily lid hygiene remains the standard UK treatment.",link:"https://clinicaltrials.gov/search?cond=blepharitis+lotilaner"},
+    {tag:"drug",label:"🌍 Available Abroad",title:"Lotilaner (Xdemvy) — Demodex Treatment",body:"FDA approved July 2023 in the US for Demodex mite-associated blepharitis. Demodex is an increasingly recognised cause — more common than previously thought, accounting for up to 45% of blepharitis cases. No MHRA approval announced for the UK as of 2026. Daily lid hygiene remains the standard UK treatment.",link:"https://clinicaltrials.gov/search?cond=blepharitis+lotilaner"},
 
-    {tag:"drug",label:"✅ Evidence-Based",title:"Daily Lid Hygiene — The Most Important Treatment",body:"Warm compress + lid cleaning every day is proven to significantly reduce symptoms and is the foundation of all blepharitis management. Consistency matters more than any medication. A heated eye mask (Bruder, TheraEye) is significantly more effective than a flannel.",link:"https://www.college-optometrists.org"},
+    {tag:"drug",label:"✅ NHS Available",title:"Daily Lid Hygiene — The Most Important Treatment",body:"Warm compress + lid cleaning every day is proven to significantly reduce symptoms and is the foundation of all blepharitis management. Consistency matters more than any medication. A heated eye mask (Bruder, TheraEye) is significantly more effective than a flannel.",link:"https://www.college-optometrists.org"},
 
     {tag:"trial",label:"🔗 Find UK Trials",title:"NIHR Be Part of Research — Blepharitis",body:"Find and register for UK research studies on blepharitis and dry eye disease.",link:"https://bepartofresearch.nihr.ac.uk/results/listing/?resultsfound=true&q=blepharitis&location="}
 
@@ -7554,9 +7657,9 @@ pagets:{
 
   research:[
 
-    {tag:"drug",label:"✅ Available Now",title:"Bisphosphonates (Zoledronate, Risedronate)",body:"Modern bisphosphonates given as an infusion (zoledronate) or tablets (risedronate) are highly effective at slowing Paget's. Treatment reduces bone turnover and can prevent further skull involvement that might lead to nerve compression. Available on NHS for people meeting criteria.",link:"https://www.nice.org.uk/guidance/conditions-and-diseases/musculoskeletal-conditions/paget-s-disease-of-bone"},
+    {tag:"drug",label:"✅ NHS Available",title:"Bisphosphonates (Zoledronate, Risedronate)",body:"Modern bisphosphonates given as an infusion (zoledronate) or tablets (risedronate) are highly effective at slowing Paget's. Treatment reduces bone turnover and can prevent further skull involvement that might lead to nerve compression. Available on NHS for people meeting criteria.",link:"https://www.nice.org.uk/guidance/conditions-and-diseases/musculoskeletal-conditions/paget-s-disease-of-bone"},
 
-    {tag:"drug",label:"✅ Evidence-Based",title:"Regular Monitoring for Sensory Changes",body:"If skull bones are affected, annual hearing tests and eye examinations can catch nerve compression early. Early treatment can prevent further loss. Ask your specialist team to coordinate with audiology and ophthalmology.",link:"https://www.paget.org.uk"},
+    {tag:"drug",label:"✅ NHS Available",title:"Regular Monitoring for Sensory Changes",body:"If skull bones are affected, annual hearing tests and eye examinations can catch nerve compression early. Early treatment can prevent further loss. Ask your specialist team to coordinate with audiology and ophthalmology.",link:"https://www.paget.org.uk"},
 
     {tag:"trial",label:"🔗 Find UK Trials",title:"NIHR Be Part of Research — Paget's",body:"Search for current UK research studies on Paget's disease of bone and its complications.",link:"https://bepartofresearch.nihr.ac.uk/results/listing/?resultsfound=true&q=paget+disease&location="}
 
@@ -7610,6 +7713,190 @@ pagets:{
 
   ]
 
+},
+
+microphthalmia:{
+
+    helpline:{org:"MACS Helpline",number:"0800 169 8088",hours:"Mon–Fri 9am–5pm",link:"https://macs.org.uk"},
+
+  name:"Microphthalmia",
+
+  cy:{
+
+    name:"Microffthalmia",
+
+    what:"Mae microffthalmia yn gyflwr cynhenid (yn bresennol o enedigaeth) lle mae un neu ddau lygad yn datblygu'n llai na'r maint arferol yn ystod beichiogrwydd. Gall amrywio o lygad ychydig yn llai gyda golwg dda i lygad bach iawn heb fawr ddim golwg. Mae'n effeithio ar tua 8.6 ym mhob 100,000 o fabanod yn y DU (tua 53 o fabanod newydd y flwyddyn). Mae'n aml yn digwydd ochr yn ochr ag anophthalmia (dim llygad) neu coloboma (hollt yn y llygad) — cyflyrau a elwir gyda'i gilydd yn gyflyrau MACS.",
+
+    howAffects:"Mae'r effaith ar olwg yn dibynnu'n llwyr ar ba mor ddifrifol yw'r cyflwr. Gall rhai plant â microffthalmia ysgafn gael golwg ddefnyddiol, tra bod eraill yn ddall yn y llygad yr effeithir arno. Pan fo un llygad yn unig yn cael ei effeithio, gall y llygad arall ddatblygu golwg dda. Mae llawer o blant yn gwisgo prosthesis (llygad artiffisial acrylig) i helpu'r wyneb i dyfu'n normal ac am resymau cosmetig — caiff hwn ei ailfowldio bob ychydig fisoedd wrth i'r plentyn dyfu.",
+
+    diagnosis:"Caiff microffthalmia ei ddiagnosio fel arfer ar enedigaeth neu yn ystod archwiliad sgrinio newydd-anedig. Mae profion yn cynnwys: sgan uwchsain i fesur maint y llygad, profion electrodiagnostig i wirio a all y llygad weld, sganiau MRI neu CT i edrych ar strwythur y llygad a'r ymennydd, a phrawf gwaed genetig. Argymhellir i fabanod gael eu gweld gan offthalmolegydd cyn gynted â phosibl.",
+
+    whoAffects:"Mae microffthalmia yn bresennol o enedigaeth ac yn effeithio ar fechgyn a merched. Gall fod yn enetig (genynnau fel SOX2, OTX2, RAX, PAX6) neu'n gysylltiedig â ffactorau yn ystod beichiogrwydd. Mae'n aml yn digwydd ochr yn ochr â chyflyrau iechyd eraill. Nid oes triniaeth i adfer golwg ar hyn o bryd — mae rheolaeth yn canolbwyntio ar gadw unrhyw olwg sy'n bodoli a chefnogi datblygiad.",
+
+    researchSummary:"Nid oes triniaeth i adfer golwg ar gyfer microffthalmia eto. Mae ymchwil ym Moorfields (grŵp yr Athro Mariya Moosajee) wedi gwella cyfraddau darganfod achosion genetig o 8% i 33%, ac yn datblygu modelau organoid llygad 3D. Mae'r gwaith yn dal i fod ar gam cyn-glinigol. Cysylltwch â MACS am gefnogaeth."
+
+  },
+
+  what:"Microphthalmia is a congenital condition (present from birth) in which one or both eyes develop smaller than normal during pregnancy. It ranges from a slightly small eye with good vision to a very small eye with little or no sight. It affects around 8.6 per 100,000 infants in the UK (roughly 53 newly diagnosed babies per year). It often occurs alongside anophthalmia (absence of an eye) or coloboma (a cleft or gap in the eye) — together known as MACS conditions. Around 114 babies are born with a MACS condition in the UK each year.",
+
+  howAffects:"The impact on vision depends entirely on severity. Some children with mild microphthalmia have useful vision, while others are blind in the affected eye. When only one eye is affected, the other eye can often develop good vision. Many children wear a prosthesis (an acrylic artificial eye) over the affected eye to help the face grow normally and for cosmetic reasons — this is remoulded every few months as the child grows. Microphthalmia is frequently associated with other conditions, and some children have additional learning, developmental, or health needs.",
+
+  diagnosis:"Microphthalmia is usually diagnosed at birth or during newborn screening. A baby with suspected microphthalmia should be seen at an eye clinic as soon as possible. Tests may include: an ultrasound scan to measure the size of the eye, electrodiagnostic tests to check whether the eye can see, MRI or CT scans to look at the structure of the eye and brain, and a genetic blood test to see whether a change in genes caused the condition. Diagnosis often involves a multidisciplinary team because of associated conditions.",
+
+  whoAffects:"Microphthalmia is present from birth and affects boys and girls equally. Genetic causes include changes in genes such as SOX2, OTX2, RAX, PAX6 and CHX10. Potential environmental factors during pregnancy include gestational infections (such as rubella and toxoplasmosis), vitamin A deficiency, and exposure to alcohol or certain drugs. It often co-occurs with other developmental conditions. There is currently no treatment to restore vision — management focuses on preserving existing sight and supporting development.",
+
+  research:[
+
+    {tag:"trial",label:"🔬 Pipeline",title:"Genetic Diagnosis Research (Moorfields)",body:"Research led by Professor Mariya Moosajee at Moorfields and the NIHR Biomedical Research Centre has increased the rate of identifying genetic causes of microphthalmia from 8% to 33%, using data from the UK's 100,000 Genomes Project. Better genetic diagnosis improves counselling and is the foundation for future treatments.",link:"https://moorfieldseyecharity.org.uk/impact-stories/understanding-microphthalmia"},
+
+    {tag:"gene",label:"🌅 Horizon",title:"3D Eye Organoid Models",body:"Scientists are growing 3D models of the developing human eye using stem cell technology to understand how microphthalmia develops and to test potential treatments. This research also identified that the childhood cataract gene EPHA2 is involved in microphthalmia. Still at preclinical (laboratory) stage — no human trials yet.",link:"https://moorfieldseyecharity.org.uk/impact-stories/understanding-microphthalmia"},
+
+    {tag:"trial",label:"🔗 Find UK Trials",title:"NIHR Be Part of Research — Microphthalmia",body:"Find and register for UK research studies on microphthalmia and related conditions.",link:"https://bepartofresearch.nihr.ac.uk/results/listing/?resultsfound=true&q=microphthalmia&location="}
+
+  ],
+
+  guides:[
+
+    {n:1,title:"Contact MACS Early",body:"MACS (Microphthalmia, Anophthalmia & Coloboma Support) is the UK's only charity dedicated specifically to these conditions. They provide peer support, practical help, and family activity trips. Call 0800 169 8088 — connecting with other families early makes a real difference."},
+
+    {n:2,title:"See a Specialist Quickly",body:"A baby with microphthalmia should be seen by an ophthalmologist as soon as possible, ideally at a specialist centre such as Moorfields. Early assessment guides prosthesis fitting and protects any vision in the better eye."},
+
+    {n:3,title:"Protect the Better Eye",body:"If one eye is affected, protecting the sight in the other eye is vital. Ask about safety glasses for sport and play, and ensure regular monitoring of the unaffected eye."},
+
+    {n:4,title:"Prosthesis and Facial Growth",body:"A prosthesis (artificial eye or conformer) is often fitted to help the eye socket and face develop normally. It needs remoulding every few months as your child grows. This is managed by an ocularist working with the eye clinic."},
+
+    {n:5,title:"Genetic Counselling",body:"Ask for a referral for genetic testing and counselling. This helps identify the cause, understand the chance of it happening in future pregnancies, and may open doors to research studies."},
+
+    {n:6,title:"Educational Support",body:"Request a QTVI (Qualified Teacher of Visual Impairment) from your local authority. Children with microphthalmia may need support in school whether they have sight in one eye or significant vision loss."}
+
+  ],
+
+  tech:[
+
+    {cat:"Support",title:"MACS Family Support",body:"Peer support, family weekends, and activity trips designed for children with MACS conditions and their families.",price:"Free — 0800 169 8088"},
+
+    {cat:"Vision",title:"Low Vision Aids",body:"For children with some remaining vision, magnifiers, good lighting, and high-contrast materials can help. Your local low vision clinic can assess needs.",price:"Free on NHS / varies"},
+
+    {cat:"Prosthetics",title:"Artificial Eye (Prosthesis)",body:"A custom acrylic prosthesis made and fitted by an ocularist on the NHS, remoulded periodically as the child grows.",price:"Free on NHS"}
+
+  ],
+
+  support:[
+
+    {title:"MACS",body:"The UK's only charity dedicated to Microphthalmia, Anophthalmia and Coloboma. Peer support, practical help, and life-changing activity trips for over 3,500 people from 1,200 families.",link:"https://macs.org.uk"},
+
+    {title:"Moorfields Eye Hospital",body:"Leading UK specialist centre for microphthalmia, with a dedicated research programme. Ask your GP or local eye clinic for a referral.",link:"https://www.moorfields.nhs.uk"},
+
+    {title:"RNIB",body:"Helpline 0303 123 9999. Information, emotional support, and practical help for families of children with sight conditions.",link:"https://www.rnib.org.uk"}
+
+  ],
+
+  benefits:[
+
+    {n:1,title:"Disability Living Allowance (DLA)",body:"Children under 16 with microphthalmia are likely eligible for DLA. Call RNIB (0303 123 9999) for free help with the form. Apply early — the process takes time and backdating is not available."},
+
+    {n:2,title:"Certificate of Vision Impairment (CVI)",body:"If your child meets the criteria, ask the ophthalmologist about registering them as sight impaired or severely sight impaired. This unlocks practical support and benefits."},
+
+    {n:3,title:"Carer's Allowance",body:"If you provide significant care, you may be entitled to Carer's Allowance (£86.45/week from April 2026). Your child's DLA may also qualify the household for additional support."},
+
+    {n:4,title:"Special Educational Needs Support",body:"Your child may be entitled to an Education, Health and Care Plan (EHCP). Contact your local authority's SEND team and request a QTVI assessment."}
+
+  ]
+
+},
+
+congenitalcataracts:{
+
+    helpline:{org:"RNIB Helpline",number:"0303 123 9999",hours:"Mon–Fri 8am–8pm, Sat 9am–1pm",link:"https://www.rnib.org.uk"},
+
+  name:"Congenital Cataracts",
+
+  cy:{
+
+    name:"Cataractau Cynhenid",
+
+    what:"Mae cataract yn lens gymylog yn y llygad. Mae cataractau cynhenid yn bresennol o enedigaeth, tra bod cataractau datblygiadol yn ymddangos yn ystod plentyndod. Mae'r lens fel arfer yn glir ac yn helpu i ffocysu golau ar y retina — pan fydd yn gymylog, mae golwg yn cael ei rwystro. Mae'n effeithio ar tua 2.5 ym mhob 10,000 o fabanod dan flwydd oed yn y DU. Gall effeithio ar un llygad (unochrog) neu'r ddau lygad (dwyochrog).",
+
+    howAffects:"Mae cataractau dwys mewn babanod yn rhwystro datblygiad gweledol arferol. Os na chânt eu trin yn gynnar, gallant arwain at newidiadau parhaol yn rhan weledol yr ymennydd (amblyopia neu 'lygad diog'). Dyma pam mae llawdriniaeth gynnar mor bwysig. Gall cataractau ysgafn beidio ag effeithio ar olwg, a dim ond monitro y bydd eu hangen. Ar ôl llawdriniaeth, bydd angen sbectol neu lensys cyffwrdd ar y plentyn i ffocysu.",
+
+    diagnosis:"Caiff cataractau cynhenid eu canfod yn aml yn ystod archwiliad sgrinio newydd-anedig (NIPE) o fewn 72 awr o enedigaeth, neu yn yr archwiliad 6-8 wythnos. Mae'r prawf 'adlewyrchiad coch' yn allweddol. Os canfyddir cataract, dylai'r baban gael ei weld gan offthalmolegydd o fewn 2 wythnos. Mae profion pellach yn cynnwys archwiliad manwl o'r llygad a phrofion genetig.",
+
+    whoAffects:"Mae cataractau cynhenid yn effeithio ar fechgyn a merched. Gall achosion gynnwys: newid genetig a etifeddwyd, cyflyrau genetig eraill (fel syndrom Down), a heintiau yn ystod beichiogrwydd (fel rwbela). Mewn llawer o achosion, ni ellir canfod yr union achos. Mae cyfran fawr ag achos genetig.",
+
+    researchSummary:"Llawdriniaeth yw'r prif driniaeth ac mae'n effeithiol iawn pan gaiff ei gwneud yn gynnar. Mae ymchwil yn canolbwyntio ar amseru llawdriniaeth optimaidd, dewisiadau lens mewnblanedig, ac achosion genetig. Trafodwch gyda thîm offthalmoleg eich plentyn."
+
+  },
+
+  what:"A cataract is a clouding of the lens inside the eye. Congenital cataracts are present at birth, while developmental (or childhood) cataracts appear during childhood. The lens is normally clear and helps focus light onto the retina — when it becomes cloudy, vision is blocked. Congenital cataracts affect approximately 2.5 per 10,000 infants under one year of age in the UK. They can affect one eye (unilateral) or both eyes (bilateral). They are uncommon but regularly seen in UK paediatric ophthalmology clinics, and a large proportion have a genetic cause.",
+
+  howAffects:"Dense cataracts in babies prevent normal visual development. If not treated early, they can cause permanent changes in the visual part of the brain (amblyopia, or 'lazy eye'), leading to reduced vision even after the cataract is removed. This is why early surgery is so important — ideally before three months of age, or even younger for cataracts in one eye. Mild cataracts may not affect vision and only need monitoring with glasses. After surgery, children need glasses or contact lenses to focus, because the natural lens has been removed.",
+
+  diagnosis:"Congenital cataracts are often detected during the NHS newborn and infant physical examination (NIPE) within 72 hours of birth, or at the 6-8 week check. The 'red reflex' test is key — a cataract can stop the normal red reflection from the back of the eye. A baby who screens positive should be seen by an ophthalmologist within two weeks. Further tests include a detailed eye examination under anaesthetic and genetic testing, as a large proportion of cases are inherited.",
+
+  whoAffects:"Congenital cataracts affect boys and girls. Causes include: an inherited genetic change passed from a parent, other genetic conditions (such as Down's syndrome), and infections caught by the mother during pregnancy (such as rubella and chickenpox). In many cases the exact cause cannot be identified. Because a large proportion are genetic, genetic testing and counselling are often recommended, and some cases are associated with other health conditions.",
+
+  research:[
+
+    {tag:"trial",label:"✅ NHS Available",title:"Early Cataract Surgery",body:"Surgery to remove the cloudy lens is the established treatment and is highly effective when done early. For babies under one year, a lensectomy with posterior capsulotomy and anterior vitrectomy is typically performed. Unilateral cataracts are usually operated around six weeks of age, bilateral around ten weeks, to protect visual development.",link:"https://www.gosh.nhs.uk/conditions-and-treatments/conditions-we-treat/children-cataracts/"},
+
+    {tag:"trial",label:"✅ NHS Available",title:"Newborn Screening (NIPE)",body:"The UK National Screening Committee recommends all eligible newborns are offered eye screening within 72 hours of birth and again at 6-8 weeks. This early detection of congenital cataracts is critical — the earlier a dense cataract is found and removed, the better the visual outcome.",link:"https://www.gov.uk/topic/population-screening-programmes/newborn-infant-physical-examination"},
+
+    {tag:"trial",label:"🔬 Pipeline",title:"Intraocular Lens (IOL) Research",body:"Research continues into the best timing and method of implanting an artificial lens (IOL) in young children. The Infant Aphakia Treatment Study found contact lenses and primary lens implants gave similar vision outcomes at five years, helping surgeons tailor treatment to each child.",link:"https://www.nature.com/articles/s41433-020-1115-6"},
+
+    {tag:"gene",label:"🌅 Horizon",title:"Genetic Research",body:"A large proportion of congenital cataracts are genetic. Researchers are identifying the genes responsible (including EPHA2, which is also linked to microphthalmia), improving diagnosis and genetic counselling for families and laying groundwork for future therapies.",link:"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7784951/"},
+
+    {tag:"trial",label:"🔗 Find UK Trials",title:"NIHR Be Part of Research — Childhood Cataracts",body:"Find and register for UK research studies on congenital and childhood cataracts.",link:"https://bepartofresearch.nihr.ac.uk/results/listing/?resultsfound=true&q=congenital+cataract&location="}
+
+  ],
+
+  guides:[
+
+    {n:1,title:"Act Quickly on Diagnosis",body:"For dense cataracts, timing is critical. Surgery before three months of age gives the best chance of good vision. If your baby is diagnosed, make sure you understand the recommended timeline and keep every appointment."},
+
+    {n:2,title:"Understand Post-Surgery Care",body:"After cataract removal, your child will need glasses or contact lenses to focus, and often patching of the stronger eye to prevent amblyopia. Compliance with this is the single biggest factor in a good outcome — it is demanding but vital."},
+
+    {n:3,title:"Ask About Glaucoma Risk",body:"Children who have had cataract surgery have a lifelong increased risk of glaucoma (raised eye pressure). Make sure your child has regular monitoring, even into adulthood."},
+
+    {n:4,title:"Genetic Testing",body:"Ask for a referral for genetic testing and counselling. Many congenital cataracts are inherited, and understanding the cause helps with family planning and identifying any associated conditions."},
+
+    {n:5,title:"Educational Support",body:"Request a QTVI (Qualified Teacher of Visual Impairment) from your local authority. Even children with good outcomes after surgery may need some support, large print, or extra time."},
+
+    {n:6,title:"Emotional Support for Parents",body:"A diagnosis and early surgery for your baby is stressful. Lean on RNIB's helpline (0303 123 9999) and peer support groups — you are not alone, and outcomes for early-treated children are often very good."}
+
+  ],
+
+  tech:[
+
+    {cat:"Vision",title:"Contact Lenses for Infants",body:"Specialist contact lenses are often used after cataract surgery in babies, fitted and managed by the eye clinic. Staff will teach you how to insert and care for them.",price:"Free on NHS"},
+
+    {cat:"Vision",title:"Glasses",body:"Children who have had cataract surgery usually need glasses, sometimes bifocals, to focus at different distances. Free on the NHS for under-16s.",price:"Free on NHS (under 16)"},
+
+    {cat:"Support",title:"Patching Materials",body:"Eye patches to treat amblyopia (lazy eye) after surgery. Decorated patches can make this easier for young children to accept.",price:"Free on NHS / low cost"}
+
+  ],
+
+  support:[
+
+    {title:"RNIB",body:"Helpline 0303 123 9999. Information, emotional support, and practical help for families of children with congenital cataracts and other sight conditions.",link:"https://www.rnib.org.uk"},
+
+    {title:"Great Ormond Street Hospital",body:"Leading UK specialist centre for children's cataracts with detailed family information and expert surgical care.",link:"https://www.gosh.nhs.uk/conditions-and-treatments/conditions-we-treat/children-cataracts/"},
+
+    {title:"Look UK",body:"National charity supporting young people with visual impairment and their families, offering mentoring and peer support.",link:"https://www.look-uk.org"}
+
+  ],
+
+  benefits:[
+
+    {n:1,title:"Disability Living Allowance (DLA)",body:"Children under 16 with significant vision impairment from congenital cataracts may be eligible for DLA. Call RNIB (0303 123 9999) for free help with the form. Apply early — backdating is not available."},
+
+    {n:2,title:"Certificate of Vision Impairment (CVI)",body:"If your child's vision remains impaired, ask the ophthalmologist about registration as sight impaired or severely sight impaired, which unlocks further support."},
+
+    {n:3,title:"Free NHS Eye Care and Glasses",body:"All under-16s receive free NHS sight tests and optical vouchers for glasses or contact lenses. Children who have had cataract surgery need lifelong monitoring, which is free on the NHS."},
+
+    {n:4,title:"Education, Health and Care Plan (EHCP)",body:"Your child may be entitled to an EHCP for support in school. Contact your local authority's SEND team and request a QTVI assessment."}
+
+  ]
+
 }
 
 };
@@ -7634,7 +7921,7 @@ function fallback(key) {
 
     whoAffects:"See specialist charity links below.",
 
-    research:[{tag:"trial",label:"Find Trials",title:"Search ClinicalTrials.gov",body:"Search clinicaltrials.gov with your condition name and filter for UK locations.",link:"https://clinicaltrials.gov"}],
+    research:[{tag:"trial",label:"🔗 Find UK Trials",title:"Search ClinicalTrials.gov",body:"Search clinicaltrials.gov with your condition name and filter for UK locations.",link:"https://clinicaltrials.gov"}],
 
     guides:[{n:1,title:"Contact RNIB for Personalised Advice",body:"RNIB's helpline (0303 123 9999) provides free expert advice tailored to your specific condition."}],
 
@@ -7661,6 +7948,18 @@ function renderCondition(key) {
   const d = (_isWelsh && base.cy) ? Object.assign({}, base, base.cy) : base;
 
   const tc = {gene:"gene",stem:"stem",trial:"trial",drug:"drug",tech:"tech"};
+// Derive colour class from label text so users see consistent colours per label.
+// available = green, pipeline = yellow/amber, horizon = blue, warning = red, other = neutral
+function labelToClass(label) {
+  if (!label) return "trial";
+  var l = label.toLowerCase();
+  // Check "abroad" first so it does not match the "available" rule below
+  if (l.indexOf("abroad") !== -1 || l.indexOf("not available") !== -1) return "drug";
+  if (l.indexOf("nhs available") !== -1 || l.indexOf("nhs") !== -1) return "gene";
+  if (l.indexOf("horizon") !== -1) return "stem";
+  if (l.indexOf("pipeline") !== -1 || l.indexOf("phase") !== -1) return "trial";
+  return "trial";
+}
 
   return `
 
@@ -7772,11 +8071,13 @@ function renderCondition(key) {
 
         ${_isWelsh && d.cy && d.cy.researchSummary ? `<div class="wb" style="border-left:4px solid #00b140;margin-bottom:16px"><strong>🏴󠁧󠁢󠁷󠁬󠁳󠁥󠁳󠁿 Crynodeb Ymchwil:</strong> ${d.cy.researchSummary}</div>` : ''}
 
+        <div class="wb" style="border-left:4px solid #b86d00;margin-bottom:16px;background:rgba(184,109,0,0.08)"><strong>⚠️ Always check current status before acting.</strong> Research changes fast. Verify on <a href="https://www.clinicaltrials.gov" aria-label="ClinicalTrials.gov (opens external site)" rel="noopener noreferrer">ClinicalTrials.gov</a> and discuss with your ophthalmologist. <span style="opacity:0.75">Last reviewed May 2026.</span></div>
+
         ${d.research.map(r=>`
 
         <div class="rc">
 
-          <span class="rtag ${tc[r.tag]||'trial'}">${r.label}</span>
+          <span class="rtag ${labelToClass(r.label)}">${r.label}</span>
 
           <h3>${r.title}</h3><p>${r.body}</p>
 
@@ -7784,7 +8085,7 @@ function renderCondition(key) {
 
         </div>`).join('')}
 
-        <div class="wb"><strong>Labels explained:</strong> "Available now" means approved or in active use. "Pipeline" means in clinical trials. "Horizon" means early-stage research. Always discuss any research with your ophthalmologist before contacting a trial.</div>
+        <div class="wb"><strong>Labels explained:</strong> "NHS Available" means approved or in active use on the NHS. "Pipeline" means in clinical trials. "Horizon" means early-stage or preclinical research. "Available Abroad" means approved in another country but not yet on the NHS. "Find UK Trials" links you to the UK trials registry to search for current studies. Always discuss any research with your ophthalmologist before contacting a trial.</div>
 
       </div>
 
@@ -8058,9 +8359,9 @@ function renderCondition(key) {
 
       <span class="feedback-q">Was this page helpful?</span>
 
-      <button class="fb-btn" onclick="submitFeedback('${key}','yes',this)" aria-label="Yes helpful"><span aria-hidden="true">👍</span> Yes</button>
+      <button class="fb-btn" data-vote="yes" onclick="submitFeedback('${key}','yes',this)" aria-label="Yes, this page was helpful" aria-pressed="false"><span aria-hidden="true">👍</span> Yes</button>
 
-      <button class="fb-btn" onclick="submitFeedback('${key}','no',this)" aria-label="No not helpful"><span aria-hidden="true">👎</span> No</button>
+      <button class="fb-btn" data-vote="no" onclick="submitFeedback('${key}','no',this)" aria-label="No, this page was not helpful" aria-pressed="false"><span aria-hidden="true">👎</span> No</button>
 
       <button class="fb-btn" onclick="showPage('contact')" aria-label="Something is missing" style="font-size:0.82rem"><span aria-hidden="true">✉️</span> Something's missing</button>
 
@@ -8801,7 +9102,7 @@ function selectCondition(key) {
   var l = document.getElementById('cond-list');
   if (l) l.style.display = 'none';
   var h = document.getElementById('cond-hint');
-  if (h) { h.style.display = 'block'; h.innerHTML = 'Type your condition then tap <strong>Search</strong> (or press Enter). <strong>18 conditions</strong> covered.'; }
+  if (h) { h.style.display = 'block'; h.innerHTML = 'Type your condition then tap <strong>Search</strong> (or press Enter). <strong>20 conditions</strong> covered.'; }
   showCondition(key);
 }
 
@@ -9116,21 +9417,46 @@ function shareCondition(name) {
 /* ─────────────── FEEDBACK ─────────────── */
 
 var feedbackGiven = {};
+// Restore previous votes from localStorage on page load
+try {
+  var storedFb = JSON.parse(localStorage.getItem('vh-feedback') || '{}');
+  for (var k in storedFb) { if (storedFb[k] && storedFb[k].vote) feedbackGiven[k] = storedFb[k].vote; }
+} catch(e) {}
 
 function submitFeedback(key, vote, btn) {
-
-  if (feedbackGiven[key]) return;
-
+  // Allow changing mind - don't block re-clicks
+  var previousVote = feedbackGiven[key];
   feedbackGiven[key] = vote;
 
-  var bar = document.getElementById('fb-' + key);
+  // Persist vote to localStorage so it's not lost
+  try {
+    var stored = JSON.parse(localStorage.getItem('vh-feedback') || '{}');
+    stored[key] = { vote: vote, ts: Date.now() };
+    localStorage.setItem('vh-feedback', JSON.stringify(stored));
+  } catch(e) {}
 
+  var bar = document.getElementById('fb-' + key);
   var thanks = document.getElementById('fb-thanks-' + key);
 
-  if (bar) { var btns = bar.querySelectorAll('.fb-btn'); for (var i = 0; i < btns.length; i++) { btns[i].disabled = true; } btn.classList.add('voted'); }
+  if (bar) {
+    // Only update Yes/No buttons - leave 'Somethings missing' active
+    var yesNoButtons = bar.querySelectorAll('.fb-btn[data-vote]');
+    for (var i = 0; i < yesNoButtons.length; i++) {
+      yesNoButtons[i].classList.remove('voted');
+      yesNoButtons[i].setAttribute('aria-pressed', 'false');
+    }
+    btn.classList.add('voted');
+    btn.setAttribute('aria-pressed', 'true');
+  }
 
-  if (thanks) thanks.style.display = 'inline';
-
+  if (thanks) {
+    thanks.style.display = 'inline';
+    if (previousVote && previousVote !== vote) {
+      thanks.textContent = 'Thank you - vote updated!';
+    } else {
+      thanks.textContent = 'Thank you!';
+    }
+  }
 }
 
 
@@ -9301,7 +9627,7 @@ function filterConds(q) {
   if (!q) {
     list.style.display = 'none';
     list.innerHTML = '';
-    if (hint) { hint.style.display = 'block'; hint.innerHTML = 'Type your condition then tap <strong>Search</strong> (or press Enter). <strong>18 conditions</strong> covered.'; }
+    if (hint) { hint.style.display = 'block'; hint.innerHTML = 'Type your condition then tap <strong>Search</strong> (or press Enter). <strong>20 conditions</strong> covered.'; }
     return;
   }
 
@@ -9324,7 +9650,9 @@ function filterConds(q) {
     {key:'charlesbonnet',name:'Charles Bonnet Syndrome'},
     {key:'opticneuritis',name:'Optic Neuritis'},
     {key:'blepharitis',name:'Blepharitis'},
-    {key:'pagets',name:'Paget\'s Disease (Sight & Hearing)'}
+    {key:'pagets',name:'Paget\'s Disease (Sight & Hearing)'},
+    {key:'microphthalmia',name:'Microphthalmia'},
+    {key:'congenitalcataracts',name:'Congenital Cataracts'}
   ];
 
   var matches = allConds.filter(function(c) {
@@ -10452,7 +10780,7 @@ var TRIALS_DATA = {
   ],
   lca:[
     {tag:'NHS Approved',title:'Luxturna - RPE65-LCA',body:'Available at NHS specialist centres.',link:'https://www.nice.org.uk/guidance/hst11'},
-    {tag:'Phase 1/2',title:'EDIT-101 CRISPR - CEP290',body:'Most common LCA gene. Phase 1/2 results encouraging.',link:'https://retinauk.org.uk/medical-research/'},
+    {tag:'Paused',title:'EDIT-101 CRISPR - CEP290 (paused)',body:'Editas paused enrolment; seeking development partner.',link:'https://retinauk.org.uk/medical-research/'},
     {tag:'Find More',title:'NIHR Be Part of Research',body:'',link:'https://bepartofresearch.nihr.ac.uk/results/listing/?resultsfound=true&q=leber+congenital+amaurosis&location='}
   ],
   usher:[
@@ -11044,7 +11372,7 @@ function showTrialsForCondition(key) {
 
       <p style="margin-top:10px">Gall Mynediad i Waith ariannu: darllenwyr sgrin (JAWS, NVDA), meddalwedd chwyddo (ZoomText), arddangos Braille, cymorthwyr cymorth neu hyfforddwyr swyddi, costau tacsi i'r gwaith os na allwch ddefnyddio trafnidiaeth gyhoeddus.</p>
 
-      <p style="margin-top:12px"><strong>Gwnewch gais cyn prynu unrhyw beth yn breifat.</strong> Gwneud cais ar <a href="https://www.gov.uk/access-to-work" style="color:var(--yellow);font-weight:700">gov.uk/access-to-work <span aria-hidden="true">↗</span></a> (Saesneg yn unig)</p>
+      <p style="margin-top:12px"><strong>Gwnewch gais cyn prynu unrhyw beth yn breifat.</strong> Gwneud cais ar <a href="https://www.gov.uk/access-to-work" aria-label="gov.uk/access-to-work (opens external site)" rel="noopener noreferrer" style="color:var(--yellow);font-weight:700">gov.uk/access-to-work <span aria-hidden="true">↗</span></a> (Saesneg yn unig)</p>
 
     </div>
 
@@ -11192,7 +11520,7 @@ function showTrialsForCondition(key) {
 
       <p>Siop RNIB yw manwerthwr blaenllaw'r DU ar gyfer offer arbenigol i bobl â cholli golwg — clociau siarad, clorianau siarad, eitemau print mawr, a llawer mwy.</p>
 
-      <p style="margin-top:12px"><a href="https://shop.rnib.org.uk" style="color:var(--yellow);font-weight:700;font-size:1rem">Ewch i Siop RNIB <span aria-hidden="true">↗</span> (Saesneg yn unig)</a></p>
+      <p style="margin-top:12px"><a href="https://shop.rnib.org.uk" aria-label="Ewch i Siop RNIB  (Saesneg yn unig) (opens external site)" rel="noopener noreferrer" style="color:var(--yellow);font-weight:700;font-size:1rem">Ewch i Siop RNIB <span aria-hidden="true">↗</span> (Saesneg yn unig)</a></p>
 
     </div>
 
@@ -11202,7 +11530,7 @@ function showTrialsForCondition(key) {
 
       <p>Canllawiau fideo am ddim i ddysgu pobl â cholli golwg sut i ddefnyddio technoleg — ffonau iPhone, ffonau Android, darllenwyr sgrin, a nodweddion hygyrchedd. Yr adnodd hyfforddi technoleg am ddim gorau yn y DU ar gyfer pobl â cholli golwg.</p>
 
-      <p style="margin-top:12px"><a href="https://www.henshaws.org.uk/knowledge-village/" style="color:var(--yellow);font-weight:700;font-size:1rem">Ewch i Bentref Gwybodaeth Henshaws <span aria-hidden="true">↗</span> (Saesneg yn unig)</a></p>
+      <p style="margin-top:12px"><a href="https://www.henshaws.org.uk/knowledge-village/" aria-label="Ewch i Bentref Gwybodaeth Henshaws  (Saesneg yn unig) (opens external site)" rel="noopener noreferrer" style="color:var(--yellow);font-weight:700;font-size:1rem">Ewch i Bentref Gwybodaeth Henshaws <span aria-hidden="true">↗</span> (Saesneg yn unig)</a></p>
 
     </div>
 
@@ -11226,11 +11554,11 @@ function showTrialsForCondition(key) {
 
       <h2>🏴󠁧󠁢󠁷󠁬󠁳󠁿 Cymorth yng Nghymru</h2>
 
-      <p><strong>RNIB Cymru</strong> — yn darparu gwasanaethau cymorth penodol i Gymru gan gynnwys cyngor, eiriolaeth, a chymorth cyflogaeth. <a href="https://www.rnib.org.uk/cymru" style="color:var(--yellow);font-weight:700">rnib.org.uk/cymru <span aria-hidden="true">↗</span></a></p>
+      <p><strong>RNIB Cymru</strong> — yn darparu gwasanaethau cymorth penodol i Gymru gan gynnwys cyngor, eiriolaeth, a chymorth cyflogaeth. <a href="https://www.rnib.org.uk/cymru" aria-label="rnib.org.uk/cymru (opens external site)" rel="noopener noreferrer" style="color:var(--yellow);font-weight:700">rnib.org.uk/cymru <span aria-hidden="true">↗</span></a></p>
 
-      <p style="margin-top:10px"><strong>Gweld Cymru</strong> — prif elusen golwg Cymru. <a href="https://www.sightcymru.org.uk" style="color:var(--yellow);font-weight:700">sight.cymru <span aria-hidden="true">↗</span></a></p>
+      <p style="margin-top:10px"><strong>Gweld Cymru</strong> — prif elusen golwg Cymru. <a href="https://www.sightcymru.org.uk" aria-label="sight.cymru (opens external site)" rel="noopener noreferrer" style="color:var(--yellow);font-weight:700">sight.cymru <span aria-hidden="true">↗</span></a></p>
 
-      <p style="margin-top:10px"><strong>GIG 111 Cymru</strong> — ar gyfer cymorth iechyd nad yw'n argyfwng: <a href="https://111.wales.nhs.uk" style="color:var(--yellow);font-weight:700" class="no-en-label">111.wales.nhs.uk <span aria-hidden="true">↗</span></a></p>
+      <p style="margin-top:10px"><strong>GIG 111 Cymru</strong> — ar gyfer cymorth iechyd nad yw'n argyfwng: <a href="https://111.wales.nhs.uk" aria-label="111.wales.nhs.uk (opens external site)" rel="noopener noreferrer" style="color:var(--yellow);font-weight:700" class="no-en-label">111.wales.nhs.uk <span aria-hidden="true">↗</span></a></p>
 
     </div>
 
