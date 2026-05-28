@@ -158,7 +158,7 @@ body.hc {
 
 body.yb {
 
-  --bg:#ffeb00; --bg2:#ffd800; --card:#fff599; --card2:#ffe066;
+  --bg:#fcd901; --bg2:#fcd901; --card:#fcd901; --card2:#fcd901;
 
   --text:#000; --text2:#1a1a1a; --border:#000;
 
@@ -196,7 +196,6 @@ body.hc .tb-btn:hover .tb-icon,
 body.hc .tb-btn:hover .tb-label { color: #000 !important; }
 /* B&W theme: remove all colour from the entire page. Catches emojis anywhere (in headings, badges, buttons) and any other coloured visual elements. */
 body.hc { filter: grayscale(100%) contrast(1.1); }
-body.wb { filter: grayscale(100%); }
 /* But re-saturate the focus outline so keyboard users can still see it clearly */
 body.hc button:focus-visible,
 body.hc a:focus-visible,
@@ -228,14 +227,14 @@ body.lb .tb-select { background-image: url("data:image/svg+xml;charset=UTF-8,%3c
 /* Low Light theme: cream chevron */
 body.ll .tb-select { background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23f4e4cc' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='4 6 8 10 12 6'/%3e%3c/svg%3e") !important; }
 
-body.yb .cond-helpline-btn { background: #fff599 !important; color: #000 !important; border: 3px solid #000 !important; }
+body.yb .cond-helpline-btn { background: #fcd901 !important; color: #000 !important; border: 3px solid #000 !important; }
 body.yb .cond-helpline-btn * { color: #000 !important; }
 body.yb .back-top { color: #fff !important; }
 body.yb .ab.on { color: #fff !important; }
 /* Pressed toolbar buttons in Black/Yellow - need white text since var(--yellow) is black */
 body.yb .tb-btn { border: 2.5px solid #000 !important; }
 body.yb .tb-btn[aria-pressed="false"] { border: 2.5px solid #000 !important; }
-body.yb .tb-btn[aria-pressed="true"] { color: #ffeb00 !important; background: #000 !important; border: 3px solid #000 !important; }
+body.yb .tb-btn[aria-pressed="true"] { color: #fcd901 !important; background: #000 !important; border: 3px solid #000 !important; }
 body.yb .tb-select { border: 2.5px solid #000 !important; }
 body.yb .tb-lang { border-width: 2.5px !important; }
 /* Welsh button adapts to dark themes - the bright green is jarring in low-light themes */
@@ -244,11 +243,11 @@ body.dark .tb-lang[aria-pressed=true] { background: var(--yellow) !important; co
 body.ll .tb-lang { border-color: var(--yellow) !important; color: var(--yellow) !important; background: var(--card2) !important; }
 body.ll .tb-lang[aria-pressed=true] { background: var(--yellow) !important; color: #000 !important; }
 body.yb .tb-btn[aria-pressed="true"] .tb-icon,
-body.yb .tb-btn[aria-pressed="true"] .tb-label { color: #ffeb00 !important; }
+body.yb .tb-btn[aria-pressed="true"] .tb-label { color: #fcd901 !important; }
 
 
 /* Sticky home button (hardcoded black background): make text bright yellow for contrast */
-body.yb #sticky-home-btn { background: #000 !important; color: #ffeb00 !important; }
+body.yb #sticky-home-btn { background: #000 !important; color: #fcd901 !important; }
 
 /* Sticky title bar uses var(--yellow) as background which is black in yb theme.
    Force white text on the bar and back button. */
@@ -604,7 +603,7 @@ p, h1, h2, h3, h4, li, span, a, button { overflow-wrap: break-word; word-wrap: b
   color: #000;
   border-width: 4px !important;
 }
-body.lb .theme-input { background: #e3f1fb !important; color: #000 !important; border: 4px solid #003a80 !important; }
+body.lb .theme-input { background: #cce8f4 !important; color: #000 !important; border: 4px solid #003a80 !important; }
 body.lb .theme-input::placeholder { color: #1a3a5a; }
 body.dark .theme-input { background: #2a2a2a !important; color: #fff !important; border: 4px solid #fff !important; }
 body.dark .theme-input::placeholder { color: #aaa; }
@@ -612,7 +611,7 @@ body.ll .theme-input { background: #3d2d20 !important; color: #f4e4cc !important
 body.ll .theme-input::placeholder { color: #d4b896; }
 body.hc .theme-input { background: #000 !important; color: #fff !important; border: 4px solid #fff !important; }
 body.hc .theme-input::placeholder { color: #ddd; }
-body.yb .theme-input { background: #fff599 !important; color: #000 !important; border: 4px solid #000 !important; }
+body.yb .theme-input { background: #fcd901 !important; color: #000 !important; border: 4px solid #000 !important; }
 body.yb .theme-input::placeholder { color: #555; }
 
 
@@ -1760,57 +1759,30 @@ body.reading-ruler .reading-ruler-bar{display:block}
 
 
 /* ══ BLUE/BLACK THEME (lb) ══ */
-/* ── WHITE / BLACK theme (clean, RNIB-style: pure white bg, black text) ── */
-body.wb { background-color: #ffffff !important; color: #000000 !important; --bg: #ffffff; --bg2: #ffffff; --text: #000000; --text2: #000000; --border: #000000 !important; --card: #ffffff; --yellow: #000000 !important; --yellow2: #000000 !important; --green: #000000; --blue: #000000; --purple: #000000; --red: #000000; }
-body.wb .a11y-bar { background: #ffffff !important; border-bottom: 2px solid #000 !important; }
-body.wb .desktop-sidebar { background: #ffffff !important; }
-body.wb .desktop-main { background: #ffffff !important; }
-body.wb .hero { background: #ffffff !important; }
-body.wb .card, body.wb .founder-box { background: #ffffff !important; border-color: #000 !important; }
-body.wb .acc-item, body.wb .acc-body, body.wb .acc-btn { background: #ffffff !important; border-color: #000 !important; }
-body.wb .ic, body.wb .nc, body.wb .rc, body.wb .tc, body.wb .wb, body.wb .sc { background: #ffffff !important; border-color: #000 !important; }
-body.wb .cond-item, body.wb .cond-btn { background: #ffffff !important; color: #000 !important; border-color: #000 !important; }
-body.wb .cond-list, body.wb #search-results-cy { background: #ffffff !important; border: 2px solid #000 !important; }
-body.wb .news-box, body.wb .news-item { background: #ffffff !important; border-color: #000 !important; }
-body.wb #jd-box, body.wb #jd-steps, body.wb .jd-step, body.wb .video-card { background: #ffffff !important; border-color: #000 !important; }
-body.wb .legal-box, body.wb [class*="box"] { background: #ffffff !important; }
-body.wb .lc { background: #ffffff !important; border-color: #000 !important; color: #000 !important; }
-body.wb a { color: #000000 !important; text-decoration: underline !important; }
-body.wb .cond-helpline-btn { background: #ffffff !important; color: #000 !important; border-color: #000 !important; }
-body.wb .cond-helpline-btn * { color: #000 !important; }
-body.wb .acc-num, body.wb .nc-num { background: #000000 !important; color: #fff !important; }
-body.wb .tb-btn { border-color: #000 !important; color: #000 !important; background: #fff !important; }
-body.wb .tb-btn[aria-pressed="true"] { background: #000000 !important; color: #fff !important; border-color: #000000 !important; }
-body.wb .tb-select { border-color: #000 !important; color: #000 !important; background: #fff !important; }
-body.wb .tb-lang { border-color: #000 !important; color: #000 !important; background: #fff !important; }
-body.wb .tb-lang[aria-pressed="true"] { background: #000000 !important; color: #fff !important; }
-body.wb .search-go-btn { background: #000000 !important; color: #fff !important; }
-body.wb .back-top, body.wb #sticky-home-btn { background: #000000 !important; color: #fff !important; }
-body.wb .back-btn { border-color: #000 !important; color: #000 !important; }
-body.wb .rtag.gene, body.wb .rtag.stem, body.wb .rtag.trial, body.wb .rtag.drug, body.wb .rtag.tech { background: #000000 !important; color: #fff !important; }
-body.wb .news-tag.research, body.wb .news-tag.benefits, body.wb .news-tag.tech, body.wb .news-tag.general { background: #000000 !important; color: #fff !important; }
-body.wb [style*="background:var(--yellow)"], body.wb [style*="background: var(--yellow)"] { background: #000000 !important; color: #fff !important; }
-body.wb [style*="color:var(--yellow)"], body.wb [style*="color: var(--yellow)"] { color: #000000 !important; }
-body.wb [style*="linear-gradient(to right,#c8102e"], body.wb [style*="linear-gradient(to right,#012169"] { background: #000 !important; }
-body.lb { background-color: #cce8f4 !important; color: #000 !important; --bg: #cce8f4; --border: #003a80 !important; --yellow: #003a80 !important; --yellow2: #0055a5 !important; }
-body.lb .a11y-bar { background: #d6ebf7 !important; }
-body.lb .desktop-sidebar { background: #d6ebf7 !important; }
-body.lb .cond-helpline-btn { background: #d6ebf7 !important; color: #000 !important; }
+body.lb { background-color: #cce8f4 !important; color: #000 !important; --bg: #cce8f4; --bg2: #cce8f4; --border: #003a80 !important; --yellow: #003a80 !important; --yellow2: #003a80 !important; }
+body.lb .a11y-bar { background: #cce8f4 !important; }
+body.lb .desktop-sidebar { background: #cce8f4 !important; }
+body.lb .cond-helpline-btn { background: #cce8f4 !important; color: #000 !important; }
 body.lb .cond-helpline-btn * { color: #000 !important; }
 body.lb .desktop-main { background: #cce8f4 !important; }
 body.lb .hero { background: #cce8f4 !important; }
-body.lb .card, body.lb .founder-box { background: #e3f1fb !important; }
-body.lb .acc-item { background: #e3f1fb !important; border-color: rgba(0,100,180,0.3) !important; }
-body.lb .acc-body { background: #e3f1fb !important; }
-body.lb .acc-btn { background: #e3f1fb !important; }
-body.lb .ic, body.lb .nc, body.lb .rc, body.lb .tc, body.lb .wb, body.lb .sc { background: #d6ebf7 !important; border-color: rgba(0,100,180,0.3) !important; }
-body.lb .cond-item { background: #e3f1fb !important; }
-body.lb .news-box { background: #e3f1fb !important; border-color: rgba(0,100,180,0.3) !important; }
-body.lb .cond-btn { background: #e3f1fb !important; color: #000 !important; }
-body.lb .cond-list, body.lb #search-results-cy { background: #e3f1fb !important; border: 2px solid #003a80 !important; }
+body.lb .card, body.lb .founder-box { background: #cce8f4 !important; }
+body.lb .acc-item { background: #cce8f4 !important; border-color: rgba(0,58,128,0.3) !important; }
+body.lb .acc-body { background: #cce8f4 !important; }
+body.lb .acc-btn { background: #cce8f4 !important; }
+body.lb .ic, body.lb .nc, body.lb .rc, body.lb .tc, body.lb .wb, body.lb .sc { background: #cce8f4 !important; border-color: rgba(0,58,128,0.3) !important; }
+body.lb .cond-item { background: #cce8f4 !important; }
+body.lb .news-box { background: #cce8f4 !important; border-color: rgba(0,58,128,0.3) !important; }
+body.lb .cond-btn { background: #cce8f4 !important; color: #000 !important; }
+body.lb .cond-list, body.lb #search-results-cy { background: #cce8f4 !important; border: 2px solid #003a80 !important; }
 body.lb .nc-num { background: #003a80 !important; color: #fff !important; }
-body.lb .tb-lang { border-color: #003a80 !important; color: #003a80 !important; background: #e3f1fb !important; }
+body.lb .tb-lang { border-color: #003a80 !important; color: #003a80 !important; background: #cce8f4 !important; }
 body.lb .tb-lang[aria-pressed=true] { background: #003a80 !important; color: #fff !important; }
+/* Active size buttons: dark blue with WHITE text/icon (black on dark blue is only
+   1.9:1 and unreadable; white on #003a80 is 11:1). Critical for partial sight. */
+body.lb .tb-btn[aria-pressed="true"] { background: #003a80 !important; color: #fff !important; border-color: #003a80 !important; }
+body.lb .tb-btn[aria-pressed="true"] .tb-icon,
+body.lb .tb-btn[aria-pressed="true"] .tb-label { color: #fff !important; }
 body.lb .rtag.gene, body.lb .rtag.stem, body.lb .rtag.trial, body.lb .rtag.drug, body.lb .rtag.tech { background: #003a80 !important; color: #fff !important; }
 
 /* Search results dropdowns and condition buttons - theme-aware */
@@ -1835,14 +1807,19 @@ body.ll .news-tag.benefits { background: #90b0be; color: #000; }
 body.ll .news-tag.tech     { background: #c1a8ca; color: #000; }
 body.ll .news-tag.general  { background: #d7b075; color: #000; }
 
-body.yb .cond-list, body.yb #search-results-cy { background: #fff599 !important; border: 2px solid #000 !important; }
-body.yb .cond-btn { background: #fff599 !important; color: #000 !important; border-bottom-color: rgba(0,0,0,0.3) !important; }
+body.yb .cond-list, body.yb #search-results-cy { background: #fcd901 !important; border: 2px solid #000 !important; }
+body.yb .cond-btn { background: #fcd901 !important; color: #000 !important; border-bottom-color: rgba(0,0,0,0.3) !important; }
 body.yb .cond-btn > span[aria-hidden="true"]:first-child { color: #000 !important; }
 body.yb .cond-arrow { color: #000 !important; }
 
-body.lb .news-tag.research { background: #b0ddf0 !important; color: #003a5c !important; }
-body.lb .news-tag.benefits { background: #b0d5f0 !important; color: #003060 !important; }
-body.lb .news-tag.tech { background: #d0d8f5 !important; color: #002080 !important; }
+body.lb .news-tag.research { background: #cce8f4 !important; color: #003a80 !important; }
+body.lb .news-tag.benefits { background: #cce8f4 !important; color: #003a80 !important; }
+body.lb .news-tag.tech { background: #cce8f4 !important; color: #003a80 !important; }
+/* Reviewed badge: adopt theme accent instead of green so it matches the flat palette */
+body.lb .review-badge { background: #cce8f4 !important; border-color: rgba(0,58,128,0.4) !important; }
+body.lb .review-badge-tick { color: #003a80 !important; }
+body.yb .review-badge { background: #fcd901 !important; border-color: #000 !important; }
+body.yb .review-badge-tick { color: #000 !important; }
 
 
 /* ══ NARROW READING MODE ══ */
@@ -1867,27 +1844,27 @@ body.nr-active .desktop-main > *, body.narrow-reading .desktop-main > * { max-wi
 }
 .tts-sent.tts-active { background-color: #ffe066 !important; color: #000 !important; outline: 2px solid #f5b800; border-radius: 3px; }
 body.dark .tts-sent.tts-active, body.ll .tts-sent.tts-active { background-color: #b38000 !important; color: #fff !important; }
-body.lb .tts-sent.tts-active { background-color: #0055a5 !important; color: #fff !important; }
+body.lb .tts-sent.tts-active { background-color: #003a80 !important; color: #fff !important; }
 body.hc .tts-sent.tts-active { background-color: #fff !important; color: #000 !important; outline: 3px solid #fff; }
 
 
 /* Override inline background:var(--card) in lb theme */
 body.lb [style*="background:var(--card)"],
 body.lb [style*="background: var(--card)"] {
-  background-color: #e3f1fb !important;
+  background-color: #cce8f4 !important;
 }
 body.lb #jd-box,
 body.lb #jd-steps,
 body.lb .jd-step,
 body.lb .video-card,
 body.lb .news-item {
-  background: #e3f1fb !important;
-  border-color: rgba(0,100,180,0.25) !important;
+  background: #cce8f4 !important;
+  border-color: rgba(0,58,128,0.25) !important;
 }
 /* Welsh home condition items in lb */
 body.lb [role="list"] .cond-item,
 body.lb [role="listitem"] .cond-btn {
-  background: #e3f1fb !important;
+  background: #cce8f4 !important;
 }
 
 
@@ -1934,22 +1911,22 @@ body.lb .ic,
 body.lb .nc,
 body.lb .rc,
 body.lb .tc,
-body.lb .sc { background: #d6ebf7 !important; border-color: rgba(0,100,180,0.25) !important; }
+body.lb .sc { background: #cce8f4 !important; border-color: rgba(0,58,128,0.25) !important; }
 body.lb .legal-box,
-body.lb [class*="box"] { background: #e3f1fb !important; }
-body.lb .share-btn { background: #e3f1fb !important; }
-body.lb .fb-btn { background: #e3f1fb !important; }
-body.lb .cf-submit { background: #e3f1fb !important; color: #000 !important; border-color: rgba(0,100,180,0.4) !important; }
-body.lb .acc-item.open { border-color: #0055a5 !important; }
+body.lb [class*="box"] { background: #cce8f4 !important; }
+body.lb .share-btn { background: #cce8f4 !important; }
+body.lb .fb-btn { background: #cce8f4 !important; }
+body.lb .cf-submit { background: #cce8f4 !important; color: #000 !important; border-color: rgba(0,58,128,0.4) !important; }
+body.lb .acc-item.open { border-color: #003a80 !important; }
 body.lb .acc-arrow { color: #000 !important; }
 body.lb .acc-listen { border-color: rgba(0,58,128,0.4) !important; }
 /* Force any element with inline background:var(--card) */
-body.lb { --card: #e3f1fb; --card2: #c8e4f4; }
-body.lb .lc { background: #e3f1fb !important; border-color: rgba(0,100,180,0.25) !important; color: #000 !important; }
+body.lb { --card: #cce8f4; --card2: #cce8f4; }
+body.lb .lc { background: #cce8f4 !important; border-color: rgba(0,58,128,0.25) !important; color: #000 !important; }
 body.lb .lc h2 { color: #000 !important; }
-body.lb .cf-submit { background: #e3f1fb !important; color: #000 !important; border-color: rgba(0,100,180,0.4) !important; }
-body.lb [style*="background:var(--yellow)"] { background: #d6ebf7 !important; color: #000 !important; }
-body.lb [style*="background: var(--yellow)"] { background: #d6ebf7 !important; color: #000 !important; }
+body.lb .cf-submit { background: #cce8f4 !important; color: #000 !important; border-color: rgba(0,58,128,0.4) !important; }
+body.lb [style*="background:var(--yellow)"] { background: #cce8f4 !important; color: #000 !important; }
+body.lb [style*="background: var(--yellow)"] { background: #cce8f4 !important; color: #000 !important; }
 
 /* Search button - theme-specific styling so it's always prominent and readable */
 body.lb .search-go-btn { background: #003a80 !important; color: #fff !important; }
@@ -1957,7 +1934,7 @@ body.hc .search-go-btn { background: #000 !important; color: #fff !important; bo
 body.yb .search-go-btn { background: #000 !important; color: #fff !important; }
 body.dark .search-go-btn { background: #c6a12f !important; color: #000 !important; }
 body.ll .search-go-btn { background: #d7b075 !important; color: #000 !important; }
-body.lb .acc-num { background: #d6ebf7 !important; color: #000 !important; }
+body.lb .acc-num { background: #cce8f4 !important; color: #000 !important; }
 body.lb .back-top { background: #003a80 !important; color: #fff !important; }
 body.lb .cond-hero-eyebrow { color: #000 !important; }
 
@@ -2082,7 +2059,7 @@ body.focus-mode::after {
 /* Welsh CY button — adapt to high-contrast themes */
 body.hc .tb-lang { border-color: #fff !important; color: #fff !important; background: #000 !important; }
 body.hc .tb-lang[aria-pressed=true] { background: #fff !important; color: #000 !important; }
-body.yb .tb-lang { border-color: #000 !important; color: #000 !important; background: #fff599 !important; }
+body.yb .tb-lang { border-color: #000 !important; color: #000 !important; background: #fcd901 !important; }
 body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !important; }
 .tb-divider{width:1px;height:36px;background:var(--border);flex-shrink:0;}
 /* On mobile, hide the decorative eye-icon home button + its divider to free up row 1 space.
@@ -2090,6 +2067,22 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 @media (max-width: 639px) {
   .a11y-bar .site-name { display: none !important; }
   .a11y-bar-inner > .tb-divider:first-of-type { display: none !important; }
+  /* Reclaim a little horizontal space so the theme dropdown stays on row 1 with
+     the size buttons, and Welsh stays on row 2 with the feature buttons —
+     matching the intended two-row layout. All labels stay visible. */
+  .a11y-bar-inner { gap: 4px !important; padding-right: 8px !important; padding-left: 4px !important; }
+  .a11y-bar-row2 { gap: 4px !important; padding-left: 6px !important; padding-right: 6px !important; }
+  .a11y-bar-inner > [role="group"] { gap: 3px !important; }
+  .a11y-bar-inner .tb-btn,
+  .a11y-bar-row2 .tb-btn,
+  .a11y-bar-row2 .tb-lang { padding-left: 3px !important; padding-right: 3px !important; }
+  .a11y-bar-inner .tb-select {
+    width: 80px !important;
+    font-size: 12px !important;
+    padding-right: 20px !important;
+    padding-left: 7px !important;
+    background-position: right 6px center !important;
+  }
 }
 
 /* Quick links grid - clean uniform layout */
@@ -2134,6 +2127,9 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
   align-items: center;
   gap: 6px;
   width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+  row-gap: 6px;
 }
 @media (max-width: 639px) {
   .a11y-bar-inner {
@@ -2174,7 +2170,6 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
     <option value="dark">Dark</option>
     <option value="ll">Low Light</option>
     <option value="hc">Black/White</option>
-    <option value="wb">White/Black</option>
     <option value="yb">Yellow/Black</option>
   </select>
 
@@ -2770,8 +2765,8 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
       <p class="hero-desc">Clear, accessible information for people living with sight conditions, their family and friends, the people who support them — in fact, for anyone.</p>
 
-      <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(26,122,60,0.08);border:1.5px solid rgba(26,122,60,0.25);border-radius:20px;padding:6px 14px;margin:8px 0 20px;font-size:0.75rem;max-width:100%;flex-wrap:wrap">
-        <span style="color:#1a7a3c;font-weight:900;font-size:0.9rem;flex-shrink:0" aria-hidden="true">✓</span>
+      <div class="review-badge" style="display:inline-flex;align-items:center;gap:8px;background:rgba(26,122,60,0.08);border:1.5px solid rgba(26,122,60,0.25);border-radius:20px;padding:6px 14px;margin:8px 0 20px;font-size:0.75rem;max-width:100%;flex-wrap:wrap">
+        <span class="review-badge-tick" style="color:#1a7a3c;font-weight:900;font-size:0.9rem;flex-shrink:0" aria-hidden="true">✓</span>
         <span style="color:var(--text);font-weight:700">May 2026 · Reviewed monthly</span>
       </div>
       <p class="last-updated" style="margin-top:0">Something not quite right? <button onclick="showPage('contact')" style="background:none;border:none;color:var(--yellow);font-family:var(--font);font-size:inherit;cursor:pointer;text-decoration:underline;padding:0;font-weight:700">Let us know.</button></p>
@@ -4043,7 +4038,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
         <li><a href="https://www.gov.uk/rights-disabled-person" aria-label="Disabled people's rights on GOV.UK (opens external site)" rel="noopener noreferrer">GOV.UK — Disabled people's rights</a> — the official Government guide covering daily life, services, work, education and transport.</li>
         <li><a href="https://www.equalityadvisoryservice.com" aria-label="Equality Advisory and Support Service (opens external site)" rel="noopener noreferrer">Equality Advisory &amp; Support Service (EASS)</a> — free, confidential advice and help if you have been treated unfairly.</li>
         <li><a href="https://www.citizensadvice.org.uk/law-and-courts/discrimination/" aria-label="Citizens Advice discrimination guidance (opens external site)" rel="noopener noreferrer">Citizens Advice — Discrimination</a> — plain-English guidance on what counts as discrimination and what you can do.</li>
-        <li><a href="https://www.rnib.org.uk/living-with-sight-loss/your-rights/" aria-label="RNIB your rights (opens external site)" rel="noopener noreferrer">RNIB — Your rights</a> — sight-loss-specific advice on the Equality Act and reasonable adjustments.</li>
+        <li><a href="https://www.rnib.org.uk/living-with-sight-loss/equality-and-employment/the-equality-act-2010/" aria-label="RNIB Equality Act and your rights (opens external site)" rel="noopener noreferrer">RNIB — Your rights</a> — sight-loss-specific advice on the Equality Act and reasonable adjustments.</li>
       </ul>
 
     </div>
@@ -7457,9 +7452,9 @@ charlesbonnet:{
 
   research:[
 
-    {tag:"trial",label:"🔬 Pipeline",title:"Non-Invasive Brain Stimulation",body:"UCL and other centres investigating transcranial magnetic stimulation (TMS) and similar non-invasive techniques to disrupt the hallucination-generating activity in the visual cortex. Early-stage but promising as a drug-free approach.",link:"https://www.charlesbonnetsyndrome.uk"},
+    {tag:"trial",label:"🌅 Horizon",title:"Non-Invasive Brain Stimulation (Experimental)",body:"Researchers have tested brain stimulation techniques — transcranial magnetic stimulation (TMS) and transcranial direct current stimulation (tDCS) — aimed at calming over-active visual cortex. Evidence so far is limited to small studies and case reports with mixed results (some people improved, others did not, and one reported worsening after prolonged treatment). This is early experimental research, not an available treatment.",link:"https://www.charlesbonnetsyndrome.uk"},
 
-    {tag:"drug",label:"🔬 Pipeline",title:"Low-Dose Ketamine",body:"Early research suggests low-dose ketamine may reduce CBS hallucinations in some patients by targeting NMDA receptors. Not yet a standard treatment but represents a potential pharmacological approach.",link:"https://www.charlesbonnetsyndrome.uk"},
+    {tag:"drug",label:"✅ NHS Available",title:"Medication (Only If Hallucinations Are Intolerable)",body:"There is no CBS-specific drug. For most people self-management is enough. When hallucinations are truly distressing, doctors may try medicines borrowed from other conditions — such as gabapentin or clonazepam (which calm over-active visual cortex), or a low dose of an antipsychotic. Evidence comes from case reports and small studies, and these carry side effects, so they are used cautiously and only when needed. Discuss with your GP or ophthalmologist.",link:"https://www.charlesbonnetsyndrome.uk/managing-cbs"},
 
     {tag:"trial",label:"✅ NHS Available",title:"Self-Management Strategies Work",body:"Eye movement techniques (rapid side-to-side movements), increasing light levels, and changing activity are proven to interrupt hallucinations in most people. Simply knowing what CBS is dramatically reduces distress — awareness is itself a treatment.",link:"https://www.charlesbonnetsyndrome.uk"},
 
@@ -7545,7 +7540,7 @@ opticneuritis:{
 
     {tag:"drug",label:"✅ NHS Available",title:"IV Methylprednisolone — Speeds Recovery",body:"High-dose IV steroids speed recovery from acute optic neuritis but do not improve final vision outcome. Standard care in UK hospitals. The goal is returning to work and activity faster — not improving the ceiling of recovery.",link:"https://www.mssociety.org.uk/research"},
 
-    {tag:"drug",label:"🔬 Pipeline",title:"Neuroprotection — Preventing Permanent Damage",body:"Trials are investigating whether neuroprotective drugs (including phenytoin and simvastatin) can protect optic nerve fibres during an acute attack — potentially improving long-term vision outcomes, not just speeding recovery. This is the key unanswered question in optic neuritis research.",link:"https://www.nihr.ac.uk"},
+    {tag:"drug",label:"🔬 Pipeline",title:"Neuroprotection — Preventing Permanent Damage",body:"Researchers are testing whether drugs given during an acute attack can protect optic nerve fibres from permanent loss. A UK phase 2 trial of phenytoin (Lancet Neurology, 2016) found about a 30% reduction in nerve-fibre-layer loss versus placebo. Important caveat: this and similar trials (memantine, erythropoietin) protected the nerve's structure but have not yet been shown to improve actual vision — whether that translates into better eyesight is still the key unanswered question, and none is an approved treatment.",link:"https://pubmed.ncbi.nlm.nih.gov/26822749/"},
 
     {tag:"drug",label:"🔬 Pipeline",title:"MS Disease-Modifying Therapies",body:"For people who develop MS following optic neuritis, disease-modifying therapies (DMTs) significantly reduce the risk of further relapses and further optic nerve damage. Early treatment decisions after a first episode are important — discuss with your neurologist.",link:"https://www.mssociety.org.uk/research"},
 
@@ -7629,7 +7624,7 @@ blepharitis:{
 
   research:[
 
-    {tag:"drug",label:"✅ NHS Available",title:"Intense Pulsed Light (IPL) Therapy",body:"IPL therapy is showing excellent results for posterior blepharitis caused by meibomian gland dysfunction. Now available at specialist eye clinics in the UK. Multiple sessions needed — typically 4 treatments over 3 months. Not currently NHS-funded; private cost £300–600 per course.",link:"https://www.college-optometrists.org/clinical-guidance/clinical-management-guidelines/anterior-eye-conditions_optometric-management/blepharitis"},
+    {tag:"drug",label:"🌍 Available Privately",title:"Intense Pulsed Light (IPL) Therapy",body:"IPL therapy can help posterior blepharitis caused by meibomian gland dysfunction. Evidence shows it reduces dry-eye symptoms compared with no treatment, though its added benefit on top of standard lid hygiene is less certain. Available privately at specialist UK eye clinics — typically 4 sessions over 3 months. Not NHS-funded; private cost roughly £300–600 per course.",link:"https://www.college-optometrists.org/clinical-guidance/clinical-management-guidelines/anterior-eye-conditions_optometric-management/blepharitis"},
 
     {tag:"drug",label:"🌍 Available Abroad",title:"Lotilaner (Xdemvy) — Demodex Treatment",body:"FDA approved July 2023 in the US for Demodex mite-associated blepharitis. Demodex is an increasingly recognised cause — more common than previously thought, accounting for up to 45% of blepharitis cases. No MHRA approval announced for the UK as of 2026. Daily lid hygiene remains the standard UK treatment.",link:"https://clinicaltrials.gov/search?cond=blepharitis+lotilaner"},
 
@@ -7897,7 +7892,7 @@ congenitalcataracts:{
 
     {tag:"trial",label:"✅ NHS Available",title:"Newborn Screening (NIPE)",body:"The UK National Screening Committee recommends all eligible newborns are offered eye screening within 72 hours of birth and again at 6-8 weeks. This early detection of congenital cataracts is critical — the earlier a dense cataract is found and removed, the better the visual outcome.",link:"https://www.gov.uk/topic/population-screening-programmes/newborn-infant-physical-examination"},
 
-    {tag:"trial",label:"🔬 Pipeline",title:"Intraocular Lens (IOL) Research",body:"Research continues into the best timing and method of implanting an artificial lens (IOL) in young children. The Infant Aphakia Treatment Study found contact lenses and primary lens implants gave similar vision outcomes at five years, helping surgeons tailor treatment to each child.",link:"https://www.nature.com/articles/s41433-020-1115-6"},
+    {tag:"trial",label:"🔬 Pipeline",title:"Intraocular Lens (IOL) Research",body:"Research continues into the best timing and method of implanting an artificial lens (IOL) in young children. The Infant Aphakia Treatment Study (unilateral cataract) found contact lenses and primary lens implants gave similar vision at five years, but babies who received an implant needed significantly more additional eye operations — so for infants under one year, contact lenses are generally preferred. The findings help surgeons tailor treatment to each child.",link:"https://www.nature.com/articles/s41433-020-1115-6"},
 
     {tag:"gene",label:"🌅 Horizon",title:"Genetic Research",body:"A large proportion of congenital cataracts are genetic. Researchers are identifying the genes responsible (including EPHA2, which is also linked to microphthalmia), improving diagnosis and genetic counselling for families and laying groundwork for future therapies.",link:"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7784951/"},
 
@@ -8141,7 +8136,7 @@ function labelToClass(label) {
 
         </div>`).join('')}
 
-        <div class="wb"><strong>Labels explained:</strong> "NHS Available" means approved or in active use on the NHS. "Pipeline" means in clinical trials. "Horizon" means early-stage or preclinical research. "Available Abroad" means approved in another country but not yet on the NHS. "Find UK Trials" links you to the UK trials registry to search for current studies. Always discuss any research with your ophthalmologist before contacting a trial.</div>
+        <div class="wb"><strong>Labels explained:</strong> "NHS Available" means approved or in active use on the NHS. "Available Privately" means available in the UK privately (paid for) but not funded by the NHS. "Pipeline" means in clinical trials. "Horizon" means early-stage or preclinical research. "Available Abroad" means approved in another country but not yet on the NHS. "Find UK Trials" links you to the UK trials registry to search for current studies. Always discuss any research with your ophthalmologist before contacting a trial.</div>
 
       </div>
 
@@ -10049,6 +10044,8 @@ function selectTopic(target) {
 
     // Colour theme — default light
     var savedColour = localStorage.getItem('vh-colour') || '';
+    // White/Black theme was removed; map any stale saved preference to Light.
+    if (savedColour === 'wb') { savedColour = ''; try { localStorage.setItem('vh-colour', ''); } catch(e){} }
     if (savedColour) setColour(savedColour);
     var sel = document.getElementById('col-select');
     if (sel) sel.value = savedColour;
