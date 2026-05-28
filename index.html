@@ -196,6 +196,7 @@ body.hc .tb-btn:hover .tb-icon,
 body.hc .tb-btn:hover .tb-label { color: #000 !important; }
 /* B&W theme: remove all colour from the entire page. Catches emojis anywhere (in headings, badges, buttons) and any other coloured visual elements. */
 body.hc { filter: grayscale(100%) contrast(1.1); }
+body.wb { filter: grayscale(100%); }
 /* But re-saturate the focus outline so keyboard users can still see it clearly */
 body.hc button:focus-visible,
 body.hc a:focus-visible,
@@ -279,7 +280,7 @@ body.ll {
 
 
 
-html { font-size: calc(17px * var(--scale)); scroll-behavior: smooth; overflow-x: hidden; }
+html { font-size: calc(17px * var(--scale)); scroll-behavior: smooth; overflow-x: hidden; background: var(--bg); }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -526,6 +527,14 @@ p, h1, h2, h3, h4, li, span, a, button { overflow-wrap: break-word; word-wrap: b
     justify-content: center;
   }
 }
+/* On phones, wrap the toolbar to multiple rows so no buttons spill off-screen
+   (partially-sighted users may not discover horizontal scrolling) */
+.a11y-bar {
+  flex-wrap: wrap !important;
+  overflow-x: visible !important;
+  justify-content: center;
+  row-gap: 6px;
+}
 
 .a11y-bar::-webkit-scrollbar { display: none; }
 
@@ -595,7 +604,7 @@ p, h1, h2, h3, h4, li, span, a, button { overflow-wrap: break-word; word-wrap: b
   color: #000;
   border-width: 4px !important;
 }
-body.lb .theme-input { background: #d0e8f4 !important; color: #000 !important; border: 4px solid #003a80 !important; }
+body.lb .theme-input { background: #e3f1fb !important; color: #000 !important; border: 4px solid #003a80 !important; }
 body.lb .theme-input::placeholder { color: #1a3a5a; }
 body.dark .theme-input { background: #2a2a2a !important; color: #fff !important; border: 4px solid #fff !important; }
 body.dark .theme-input::placeholder { color: #aaa; }
@@ -1751,24 +1760,56 @@ body.reading-ruler .reading-ruler-bar{display:block}
 
 
 /* ══ BLUE/BLACK THEME (lb) ══ */
-body.lb { background-color: #cce8f4 !important; color: #000 !important; --border: #003a80 !important; --yellow: #003a80 !important; --yellow2: #0055a5 !important; }
-body.lb .a11y-bar { background: #a8d5ea !important; }
-body.lb .desktop-sidebar { background: #b8dff0 !important; }
-body.lb .cond-helpline-btn { background: #a8d5ea !important; color: #000 !important; }
+/* ── WHITE / BLACK theme (clean, RNIB-style: pure white bg, black text) ── */
+body.wb { background-color: #ffffff !important; color: #000000 !important; --bg: #ffffff; --bg2: #ffffff; --text: #000000; --text2: #000000; --border: #000000 !important; --card: #ffffff; --yellow: #000000 !important; --yellow2: #000000 !important; --green: #000000; --blue: #000000; --purple: #000000; --red: #000000; }
+body.wb .a11y-bar { background: #ffffff !important; border-bottom: 2px solid #000 !important; }
+body.wb .desktop-sidebar { background: #ffffff !important; }
+body.wb .desktop-main { background: #ffffff !important; }
+body.wb .hero { background: #ffffff !important; }
+body.wb .card, body.wb .founder-box { background: #ffffff !important; border-color: #000 !important; }
+body.wb .acc-item, body.wb .acc-body, body.wb .acc-btn { background: #ffffff !important; border-color: #000 !important; }
+body.wb .ic, body.wb .nc, body.wb .rc, body.wb .tc, body.wb .wb, body.wb .sc { background: #ffffff !important; border-color: #000 !important; }
+body.wb .cond-item, body.wb .cond-btn { background: #ffffff !important; color: #000 !important; border-color: #000 !important; }
+body.wb .cond-list, body.wb #search-results-cy { background: #ffffff !important; border: 2px solid #000 !important; }
+body.wb .news-box, body.wb .news-item { background: #ffffff !important; border-color: #000 !important; }
+body.wb #jd-box, body.wb #jd-steps, body.wb .jd-step, body.wb .video-card { background: #ffffff !important; border-color: #000 !important; }
+body.wb .legal-box, body.wb [class*="box"] { background: #ffffff !important; }
+body.wb .lc { background: #ffffff !important; border-color: #000 !important; color: #000 !important; }
+body.wb a { color: #000000 !important; text-decoration: underline !important; }
+body.wb .cond-helpline-btn { background: #ffffff !important; color: #000 !important; border-color: #000 !important; }
+body.wb .cond-helpline-btn * { color: #000 !important; }
+body.wb .acc-num, body.wb .nc-num { background: #000000 !important; color: #fff !important; }
+body.wb .tb-btn { border-color: #000 !important; color: #000 !important; background: #fff !important; }
+body.wb .tb-btn[aria-pressed="true"] { background: #000000 !important; color: #fff !important; border-color: #000000 !important; }
+body.wb .tb-select { border-color: #000 !important; color: #000 !important; background: #fff !important; }
+body.wb .tb-lang { border-color: #000 !important; color: #000 !important; background: #fff !important; }
+body.wb .tb-lang[aria-pressed="true"] { background: #000000 !important; color: #fff !important; }
+body.wb .search-go-btn { background: #000000 !important; color: #fff !important; }
+body.wb .back-top, body.wb #sticky-home-btn { background: #000000 !important; color: #fff !important; }
+body.wb .back-btn { border-color: #000 !important; color: #000 !important; }
+body.wb .rtag.gene, body.wb .rtag.stem, body.wb .rtag.trial, body.wb .rtag.drug, body.wb .rtag.tech { background: #000000 !important; color: #fff !important; }
+body.wb .news-tag.research, body.wb .news-tag.benefits, body.wb .news-tag.tech, body.wb .news-tag.general { background: #000000 !important; color: #fff !important; }
+body.wb [style*="background:var(--yellow)"], body.wb [style*="background: var(--yellow)"] { background: #000000 !important; color: #fff !important; }
+body.wb [style*="color:var(--yellow)"], body.wb [style*="color: var(--yellow)"] { color: #000000 !important; }
+body.wb [style*="linear-gradient(to right,#c8102e"], body.wb [style*="linear-gradient(to right,#012169"] { background: #000 !important; }
+body.lb { background-color: #cce8f4 !important; color: #000 !important; --bg: #cce8f4; --border: #003a80 !important; --yellow: #003a80 !important; --yellow2: #0055a5 !important; }
+body.lb .a11y-bar { background: #d6ebf7 !important; }
+body.lb .desktop-sidebar { background: #d6ebf7 !important; }
+body.lb .cond-helpline-btn { background: #d6ebf7 !important; color: #000 !important; }
 body.lb .cond-helpline-btn * { color: #000 !important; }
 body.lb .desktop-main { background: #cce8f4 !important; }
-body.lb .hero { background: #b8dff0 !important; }
-body.lb .card, body.lb .founder-box { background: #e0f2fb !important; }
-body.lb .acc-item { background: #d8eef8 !important; border-color: rgba(0,100,180,0.3) !important; }
-body.lb .acc-body { background: #d8eef8 !important; }
-body.lb .acc-btn { background: #d8eef8 !important; }
-body.lb .ic, body.lb .nc, body.lb .rc, body.lb .tc, body.lb .wb, body.lb .sc { background: #c5e5f5 !important; border-color: rgba(0,100,180,0.3) !important; }
-body.lb .cond-item { background: #d8eef8 !important; }
-body.lb .news-box { background: #d8eef8 !important; border-color: rgba(0,100,180,0.3) !important; }
-body.lb .cond-btn { background: #d8eef8 !important; color: #000 !important; }
-body.lb .cond-list, body.lb #search-results-cy { background: #d8eef8 !important; border: 2px solid #003a80 !important; }
+body.lb .hero { background: #cce8f4 !important; }
+body.lb .card, body.lb .founder-box { background: #e3f1fb !important; }
+body.lb .acc-item { background: #e3f1fb !important; border-color: rgba(0,100,180,0.3) !important; }
+body.lb .acc-body { background: #e3f1fb !important; }
+body.lb .acc-btn { background: #e3f1fb !important; }
+body.lb .ic, body.lb .nc, body.lb .rc, body.lb .tc, body.lb .wb, body.lb .sc { background: #d6ebf7 !important; border-color: rgba(0,100,180,0.3) !important; }
+body.lb .cond-item { background: #e3f1fb !important; }
+body.lb .news-box { background: #e3f1fb !important; border-color: rgba(0,100,180,0.3) !important; }
+body.lb .cond-btn { background: #e3f1fb !important; color: #000 !important; }
+body.lb .cond-list, body.lb #search-results-cy { background: #e3f1fb !important; border: 2px solid #003a80 !important; }
 body.lb .nc-num { background: #003a80 !important; color: #fff !important; }
-body.lb .tb-lang { border-color: #003a80 !important; color: #003a80 !important; background: #d8eef8 !important; }
+body.lb .tb-lang { border-color: #003a80 !important; color: #003a80 !important; background: #e3f1fb !important; }
 body.lb .tb-lang[aria-pressed=true] { background: #003a80 !important; color: #fff !important; }
 body.lb .rtag.gene, body.lb .rtag.stem, body.lb .rtag.trial, body.lb .rtag.drug, body.lb .rtag.tech { background: #003a80 !important; color: #fff !important; }
 
@@ -1833,20 +1874,20 @@ body.hc .tts-sent.tts-active { background-color: #fff !important; color: #000 !i
 /* Override inline background:var(--card) in lb theme */
 body.lb [style*="background:var(--card)"],
 body.lb [style*="background: var(--card)"] {
-  background-color: #d8eef8 !important;
+  background-color: #e3f1fb !important;
 }
 body.lb #jd-box,
 body.lb #jd-steps,
 body.lb .jd-step,
 body.lb .video-card,
 body.lb .news-item {
-  background: #d8eef8 !important;
+  background: #e3f1fb !important;
   border-color: rgba(0,100,180,0.25) !important;
 }
 /* Welsh home condition items in lb */
 body.lb [role="list"] .cond-item,
 body.lb [role="listitem"] .cond-btn {
-  background: #d8eef8 !important;
+  background: #e3f1fb !important;
 }
 
 
@@ -1893,22 +1934,22 @@ body.lb .ic,
 body.lb .nc,
 body.lb .rc,
 body.lb .tc,
-body.lb .sc { background: #c8e6f5 !important; border-color: rgba(0,100,180,0.25) !important; }
+body.lb .sc { background: #d6ebf7 !important; border-color: rgba(0,100,180,0.25) !important; }
 body.lb .legal-box,
-body.lb [class*="box"] { background: #d4ecf7 !important; }
-body.lb .share-btn { background: #d4ecf7 !important; }
-body.lb .fb-btn { background: #d4ecf7 !important; }
-body.lb .cf-submit { background: #d4ecf7 !important; color: #000 !important; border-color: rgba(0,100,180,0.4) !important; }
+body.lb [class*="box"] { background: #e3f1fb !important; }
+body.lb .share-btn { background: #e3f1fb !important; }
+body.lb .fb-btn { background: #e3f1fb !important; }
+body.lb .cf-submit { background: #e3f1fb !important; color: #000 !important; border-color: rgba(0,100,180,0.4) !important; }
 body.lb .acc-item.open { border-color: #0055a5 !important; }
 body.lb .acc-arrow { color: #000 !important; }
 body.lb .acc-listen { border-color: rgba(0,58,128,0.4) !important; }
 /* Force any element with inline background:var(--card) */
-body.lb { --card: #d8eef8; --card2: #c8e4f4; }
-body.lb .lc { background: #d8eef8 !important; border-color: rgba(0,100,180,0.25) !important; color: #000 !important; }
+body.lb { --card: #e3f1fb; --card2: #c8e4f4; }
+body.lb .lc { background: #e3f1fb !important; border-color: rgba(0,100,180,0.25) !important; color: #000 !important; }
 body.lb .lc h2 { color: #000 !important; }
-body.lb .cf-submit { background: #d4ecf7 !important; color: #000 !important; border-color: rgba(0,100,180,0.4) !important; }
-body.lb [style*="background:var(--yellow)"] { background: #a8d5ea !important; color: #000 !important; }
-body.lb [style*="background: var(--yellow)"] { background: #a8d5ea !important; color: #000 !important; }
+body.lb .cf-submit { background: #e3f1fb !important; color: #000 !important; border-color: rgba(0,100,180,0.4) !important; }
+body.lb [style*="background:var(--yellow)"] { background: #d6ebf7 !important; color: #000 !important; }
+body.lb [style*="background: var(--yellow)"] { background: #d6ebf7 !important; color: #000 !important; }
 
 /* Search button - theme-specific styling so it's always prominent and readable */
 body.lb .search-go-btn { background: #003a80 !important; color: #fff !important; }
@@ -1916,7 +1957,7 @@ body.hc .search-go-btn { background: #000 !important; color: #fff !important; bo
 body.yb .search-go-btn { background: #000 !important; color: #fff !important; }
 body.dark .search-go-btn { background: #c6a12f !important; color: #000 !important; }
 body.ll .search-go-btn { background: #d7b075 !important; color: #000 !important; }
-body.lb .acc-num { background: #a8d5ea !important; color: #000 !important; }
+body.lb .acc-num { background: #d6ebf7 !important; color: #000 !important; }
 body.lb .back-top { background: #003a80 !important; color: #fff !important; }
 body.lb .cond-hero-eyebrow { color: #000 !important; }
 
@@ -2060,6 +2101,8 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
   grid-template-columns: repeat(auto-fit, minmax(min(7.5em, 100%), 1fr));
   gap: 8px;
   margin-bottom: 0;
+  /* Centre the whole grid so a lonely tile on the last row sits in the middle, not the left */
+  justify-content: center;
 }
 .ql-btn {
   font-size: 0.72rem;
@@ -2130,7 +2173,8 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
     <option value="lb">Blue/Black</option>
     <option value="dark">Dark</option>
     <option value="ll">Low Light</option>
-    <option value="hc">B&amp;W</option>
+    <option value="hc">Black/White</option>
+    <option value="wb">White/Black</option>
     <option value="yb">Yellow/Black</option>
   </select>
 
@@ -2939,6 +2983,8 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
         <button onclick="showPage('glossary')" class="share-btn ql-btn" aria-label="Open Glossary"><span aria-hidden="true">📖</span> Glossary</button>
 
         <button onclick="showPage('localsupport')" class="share-btn ql-btn" aria-label="Open Local Support"><span aria-hidden="true">📍</span> Local Support</button>
+
+        <button onclick="showPage('livingwell')" class="share-btn ql-btn" aria-label="Open Everyday Guide for daily living"><span aria-hidden="true">🌟</span> Everyday Guide</button>
 
         <button onclick="showPage('eyehealth')" class="share-btn ql-btn" aria-label="Open Eye Health Basics"><span aria-hidden="true">👁️</span> Eye Health</button>
 
@@ -3965,6 +4011,44 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
     </div><!-- end lw-grid -->
 
+    <div class="lc">
+
+      <h2 id="your-rights">⚖️ Your Rights Under the Equality Act 2010</h2>
+
+      <p>The <strong>Equality Act 2010</strong> (which replaced the older Disability Discrimination Act 1995) protects you from discrimination in many areas of life because of your sight condition. Sight loss that has a substantial, long-term impact on your daily life almost always counts as a disability under the Act.</p>
+
+      <p style="margin-top:14px"><strong>Areas the Equality Act protects you in:</strong></p>
+      <ul style="margin-top:8px">
+        <li><strong>Work and recruitment</strong> — reasonable adjustments by employers, protection from discriminatory hiring, dismissal, or pay (see the Work page for full detail)</li>
+        <li><strong>Goods and services</strong> — shops, banks, restaurants, gyms, hotels and other service providers must make reasonable adjustments (such as accepting guide dogs, providing accessible information, or staff assistance)</li>
+        <li><strong>Education</strong> — schools, colleges and universities must make reasonable adjustments and provide auxiliary aids; admissions cannot be refused because of disability</li>
+        <li><strong>Public services and councils</strong> — healthcare, social services, libraries, leisure centres and other public bodies must not discriminate and must make services accessible</li>
+        <li><strong>Transport</strong> — buses, trains, taxis and airlines must provide reasonable assistance; assistance dogs cannot be refused</li>
+        <li><strong>Housing</strong> — landlords cannot refuse to let to you because of disability and must consider reasonable adjustments to communal areas</li>
+        <li><strong>Associations and clubs</strong> — private clubs with 25+ members cannot discriminate against disabled members</li>
+      </ul>
+
+      <p style="margin-top:14px"><strong>The four main types of unlawful conduct:</strong></p>
+      <ul style="margin-top:8px">
+        <li><strong>Direct discrimination</strong> — being treated worse because of your sight condition</li>
+        <li><strong>Indirect discrimination</strong> — a rule or practice that puts disabled people at a disadvantage (such as a website that does not work with screen readers)</li>
+        <li><strong>Failure to make reasonable adjustments</strong> — not removing barriers that put you at a substantial disadvantage</li>
+        <li><strong>Harassment or victimisation</strong> — unwanted conduct related to disability, or being treated badly for raising a complaint</li>
+      </ul>
+
+      <p style="margin-top:14px"><strong>If you experience discrimination:</strong> the Equality Advisory and Support Service (EASS) gives free advice on 0808 800 0082. Citizens Advice and your local law centre can also help. There are strict time limits (usually 6 months) for taking legal action, so seek advice quickly.</p>
+
+      <p style="margin-top:14px"><strong>Want to know more?</strong> These trusted sources go into much greater depth on your rights:</p>
+      <ul style="margin-top:8px">
+        <li><a href="https://www.gov.uk/rights-disabled-person" aria-label="Disabled people's rights on GOV.UK (opens external site)" rel="noopener noreferrer">GOV.UK — Disabled people's rights</a> — the official Government guide covering daily life, services, work, education and transport.</li>
+        <li><a href="https://www.equalityadvisoryservice.com" aria-label="Equality Advisory and Support Service (opens external site)" rel="noopener noreferrer">Equality Advisory &amp; Support Service (EASS)</a> — free, confidential advice and help if you have been treated unfairly.</li>
+        <li><a href="https://www.citizensadvice.org.uk/law-and-courts/discrimination/" aria-label="Citizens Advice discrimination guidance (opens external site)" rel="noopener noreferrer">Citizens Advice — Discrimination</a> — plain-English guidance on what counts as discrimination and what you can do.</li>
+        <li><a href="https://www.rnib.org.uk/living-with-sight-loss/your-rights/" aria-label="RNIB your rights (opens external site)" rel="noopener noreferrer">RNIB — Your rights</a> — sight-loss-specific advice on the Equality Act and reasonable adjustments.</li>
+      </ul>
+
+    </div>
+
+
 
 
     <div class="wb" style="margin-top:8px"><strong>Something missing?</strong> This guide grows based on what people tell us they need. <button onclick="showPage('contact')" style="background:none;border:none;color:var(--yellow);font-family:var(--font);font-size:inherit;font-weight:700;cursor:pointer;text-decoration:underline;padding:0">Suggest a topic <span aria-hidden="true">→</span></button></div>
@@ -4689,34 +4773,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
 
 
-    <div class="lc">
-
-      <h2 id="your-rights">⚖️ Your Rights Under the Equality Act 2010</h2>
-
-      <p>The <strong>Equality Act 2010</strong> (which replaced the older Disability Discrimination Act 1995) protects you from discrimination in many areas of life because of your sight condition. Sight loss that has a substantial, long-term impact on your daily life almost always counts as a disability under the Act.</p>
-
-      <p style="margin-top:14px"><strong>Areas the Equality Act protects you in:</strong></p>
-      <ul style="margin-top:8px">
-        <li><strong>Work and recruitment</strong> — reasonable adjustments by employers, protection from discriminatory hiring, dismissal, or pay (see the Work page for full detail)</li>
-        <li><strong>Goods and services</strong> — shops, banks, restaurants, gyms, hotels and other service providers must make reasonable adjustments (such as accepting guide dogs, providing accessible information, or staff assistance)</li>
-        <li><strong>Education</strong> — schools, colleges and universities must make reasonable adjustments and provide auxiliary aids; admissions cannot be refused because of disability</li>
-        <li><strong>Public services and councils</strong> — healthcare, social services, libraries, leisure centres and other public bodies must not discriminate and must make services accessible</li>
-        <li><strong>Transport</strong> — buses, trains, taxis and airlines must provide reasonable assistance; assistance dogs cannot be refused</li>
-        <li><strong>Housing</strong> — landlords cannot refuse to let to you because of disability and must consider reasonable adjustments to communal areas</li>
-        <li><strong>Associations and clubs</strong> — private clubs with 25+ members cannot discriminate against disabled members</li>
-      </ul>
-
-      <p style="margin-top:14px"><strong>The four main types of unlawful conduct:</strong></p>
-      <ul style="margin-top:8px">
-        <li><strong>Direct discrimination</strong> — being treated worse because of your sight condition</li>
-        <li><strong>Indirect discrimination</strong> — a rule or practice that puts disabled people at a disadvantage (such as a website that does not work with screen readers)</li>
-        <li><strong>Failure to make reasonable adjustments</strong> — not removing barriers that put you at a substantial disadvantage</li>
-        <li><strong>Harassment or victimisation</strong> — unwanted conduct related to disability, or being treated badly for raising a complaint</li>
-      </ul>
-
-      <p style="margin-top:14px"><strong>If you experience discrimination:</strong> the Equality Advisory and Support Service (EASS) gives free advice on 0808 800 0082. Citizens Advice and your local law centre can also help. There are strict time limits (usually 6 months) for taking legal action, so seek advice quickly.</p>
-
-    </div>
+    
 
 
 
@@ -6346,9 +6403,9 @@ diabetic:{
 
     {tag:"drug",label:"✅ NHS Available",title:"Annual Eye Screening — The Best Prevention",body:"NHS diabetic eye screening detects retinopathy before symptoms appear. This is the most effective intervention available — free for all people with diabetes. Never miss it.",link:"https://www.nhs.uk/conditions/diabetic-eye-screening/"},
 
-    {tag:"trial",label:"🔬 Pipeline",title:"Annexin A5 (ANXV) — Phase 2 UK Trial",body:"A novel drug using a human protein to protect retinal cells from damage. UK MHRA approved Phase 2a trial. Targets cell protection and inflammation rather than blood vessel growth — a completely different approach.",link:"https://bepartofresearch.nihr.ac.uk/results/listing/?resultsfound=true&q=diabetic+retinopathy&location="},
+    {tag:"trial",label:"🔬 Pipeline",title:"Annexin A5 (ANXV) — NEXUS Trial (London)",body:"A novel drug using a human protein (Annexin A5) to protect retinal cells from damage and reduce inflammation — a completely different approach to anti-VEGF injections. The Phase 2a NEXUS trial is recruiting at The Retina Clinic London (started November 2025). Early findings from the first patients (reported February-April 2026) showed no safety concerns; primary completion is expected around mid-2026.",link:"https://clinicaltrials.gov/study/NCT07259928"},
 
-    {tag:"gene",label:"🔬 Pipeline",title:"Gene Therapy for Diabetic Retinopathy",body:"Single-injection approaches delivering continuous anti-VEGF production are being developed for diabetic retinopathy — potentially replacing years of repeat injections. Phase 2 programmes ongoing.",link:"https://www.diabetes.org.uk/research"},
+    {tag:"gene",label:"🔬 Pipeline",title:"Gene Therapy for Diabetic Retinopathy",body:"Single-injection approaches delivering continuous anti-VEGF production are being developed — potentially replacing years of repeat injections. Leading programmes include ABBV-RGX-314 (sura-vec, in Phase 2/3 trials), 4D-150 (whose SPECTRA trial in diabetic macular oedema showed strong injection reduction) and ixo-vec. Most are in Phase 2-3 for diabetic eye disease, with regulatory submissions anticipated over the next few years.",link:"https://www.modernretina.com/view/pipeline-update-catch-up-on-recent-updates-in-the-retina-pipeline"},
 
     {tag:"trial",label:"🔗 Find UK Trials",title:"NIHR Be Part of Research — Diabetic Retinopathy",body:"Find and register for UK clinical trials for diabetic retinopathy and diabetic macular oedema.",link:"https://bepartofresearch.nihr.ac.uk/results/listing/?resultsfound=true&q=diabetic+retinopathy&location="}
 
@@ -6436,11 +6493,11 @@ lca:{
 
     {tag:"gene",label:"✅ NHS Available",title:"Luxturna — RPE65-LCA (Available Now)",body:"A single subretinal injection in each eye. Life-changing vision improvements in eligible patients. Available on the NHS at specialist centres. Getting a genetic diagnosis is essential — this treatment only works for RPE65 mutations.",link:"https://www.nice.org.uk/guidance/hst11"},
 
-    {tag:"gene",label:"🔬 Pipeline",title:"EDIT-101 — CEP290 Gene Editing (Development Paused)",body:"Uses CRISPR to correct the most common CEP290 mutation (which cannot be treated with Luxturna). The Phase 1/2 BRILLIANCE trial showed proof of concept, with meaningful vision improvement seen mainly in patients with two copies of the IVS26 mutation. Editas Medicine paused enrolment in 2022 and is seeking a development partner to continue the programme. No active recruitment at this time.",link:"https://retinauk.org.uk/medical-research/"},
+    {tag:"gene",label:"🔬 Pipeline",title:"EDIT-101 — CEP290 Gene Editing (Development Paused)",body:"Uses CRISPR to edit the most common CEP290 mutation (IVS26), which cannot be treated with Luxturna. The Phase 1/2 BRILLIANCE trial showed proof of concept — 3 of 14 treated patients had meaningful vision improvement, mainly those with two copies of the IVS26 mutation. Editas paused enrolment in 2022 and in 2023 stepped back from its inherited retinal disease programmes to focus elsewhere, seeking a partner to take EDIT-101 forward. No active recruitment at present.",link:"https://www.nei.nih.gov/about/news-and-events/news/participants-pioneering-crispr-gene-editing-trial-see-vision-improve"},
 
-    {tag:"gene",label:"🔬 Pipeline",title:"GUCY2D Gene Therapy",body:"Multiple programmes from Spark Therapeutics and UCL investigating gene replacement for GUCY2D mutations — the second most common LCA gene. Early results are encouraging.",link:"https://retinauk.org.uk/medical-research/"},
+    {tag:"gene",label:"🔬 Pipeline",title:"ATSN-101 — GUCY2D Gene Therapy (LCA1)",body:"Atsena Therapeutics' gene replacement therapy for LCA1, caused by GUCY2D mutations (around 20% of LCA cases). A completed Phase 1/2 trial showed clinically meaningful, durable vision gains — three-year data (ARVO 2026) reported roughly a 100-fold improvement in light sensitivity at the high dose, with no drug-related serious adverse events. A global pivotal Phase 3 trial is expected to begin in the second half of 2026.",link:"https://clinicaltrials.gov/study/NCT03920007"},
 
-    {tag:"gene",label:"🔬 Pipeline",title:"HG005 — Paediatric Gene Therapy Trial",body:"A Phase 1/2 trial specifically for children aged 6–17 with Stargardt/LCA. Started recruiting August 2025. Represents a growing focus on treating the youngest patients as early as possible.",link:"https://retinauk.org.uk/medical-research/"},
+    {tag:"gene",label:"🔬 Pipeline",title:"AAV-AIPL1 — UK Breakthrough for LCA4",body:"A landmark UK gene therapy for LCA4 (caused by AIPL1 mutations), developed at Moorfields, UCL and Great Ormond Street with MeiraGTx. All 11 children treated (aged 1-4, legally blind from birth) gained measurable vision after a single subretinal injection — results published in The Lancet (2025). Treatment must happen very early, before the retina degenerates. MeiraGTx (now partnered with Eli Lilly) plans to seek regulatory approval based on these results.",link:"https://www.ucl.ac.uk/news/2025/feb/genetic-therapy-gives-infants-life-changing-improvements-sight"},
 
     {tag:"trial",label:"🔗 Find UK Trials",title:"NIHR Be Part of Research — LCA",body:"Find and register for UK clinical trials for Leber Congenital Amaurosis.",link:"https://bepartofresearch.nihr.ac.uk/results/listing/?resultsfound=true&q=leber+congenital+amaurosis&location="}
 
@@ -6562,7 +6619,7 @@ nystagmus:{
 
     {tag:"drug",label:"✅ NHS Available",title:"Tenotomy (Anderson Procedure)",body:"A minor eye muscle surgery that shifts the null zone to a more central head position, reducing or eliminating the need for a head turn. Available at specialist centres in the UK. Ask your ophthalmologist whether you are a candidate.",link:"https://nystagmusnetwork.org"},
 
-    {tag:"drug",label:"🔬 Pipeline",title:"Memantine Trials — NANOS Study",body:"Memantine (a drug used in dementia) has shown measurable reduction in nystagmus intensity and improvement in visual acuity in some trials. Newcastle University NANOS study produced encouraging data. Further trials are in planning.",link:"https://nystagmusnetwork.org"},
+    {tag:"drug",label:"🔬 Pipeline",title:"Memantine and Gabapentin",body:"Two existing drugs — memantine (used in dementia) and gabapentin — have been shown in randomised trials to reduce nystagmus intensity and modestly improve visual acuity, in both congenital and acquired nystagmus. They are sometimes prescribed off-label by specialists. Effects vary between individuals and side effects can occur, so discuss carefully with your ophthalmologist or neurologist.",link:"https://nystagmusnetwork.org"},
 
     {tag:"gene",label:"🌅 Horizon",title:"Treating Underlying Causes",body:"For nystagmus caused by inherited conditions (albinism, achromatopsia, LCA), gene therapies targeting the underlying cause may secondarily reduce nystagmus severity. Early-stage research only.",link:"https://nystagmusnetwork.org"},
 
@@ -6676,9 +6733,9 @@ achromatopsia:{
 
   research:[
 
-    {tag:"gene",label:"🔬 Pipeline",title:"CNGB3 Gene Therapy (Most Common Form)",body:"Multiple Phase 1/2 trials have shown good safety data and early functional improvements in colour and light sensitivity. CNGB3 mutations cause around 50% of achromatopsia cases — this is the most important programme for the majority of people with the condition.",link:"https://retinauk.org.uk/medical-research/"},
+    {tag:"gene",label:"🔬 Pipeline",title:"CNGB3 Gene Therapy (Most Common Form)",body:"CNGB3 mutations cause around half of achromatopsia cases. Several Phase 1/2 trials (including UK programmes from MeiraGTx) have shown good safety and modest improvements in light sensitivity and some visual measures, mainly in the higher-dose groups. This is the more advanced of the achromatopsia gene therapy programmes. A genetic diagnosis confirming CNGB3 is needed for eligibility.",link:"https://retinauk.org.uk/medical-research/"},
 
-    {tag:"gene",label:"🔬 Pipeline",title:"CNGA3 Gene Therapy",body:"Phase 1/2 trials for CNGA3 mutations (the second most common form) also showing promising safety and early efficacy signals. Separate programmes to CNGB3 — getting a genetic diagnosis determines which applies to you.",link:"https://retinauk.org.uk/medical-research/"},
+    {tag:"gene",label:"🔬 Pipeline",title:"CNGA3 Gene Therapy",body:"CNGA3 mutations are the second most common cause of achromatopsia. Phase 1/2 trials have confirmed safety, but improvements in vision have so far been less consistent than for CNGB3 — one programme (AGTC-402) was discontinued after limited benefit, while UK academic and MeiraGTx work continues. Research is ongoing to understand and improve the response.",link:"https://retinauk.org.uk/medical-research/"},
 
     {tag:"gene",label:"🌅 Horizon",title:"Cone Cell Regeneration",body:"Longer-term research into regenerating lost or non-functional cone cells using gene therapy combined with cellular approaches. Very early stage.",link:"https://retinauk.org.uk/medical-research/"},
 
@@ -6794,9 +6851,9 @@ usher:{
 
   research:[
 
-    {tag:"trial",label:"🔬 Pipeline",title:"Ultevursen (formerly QR-421a) — USH2A Antisense Therapy",body:"RNA antisense oligonucleotide targeting exon 13 mutations in USH2A. Originally developed by ProQR, now owned by Laboratoires Théa (since December 2023). The Phase 1b/2 Stellar trial showed encouraging visual stabilisation. A new Phase 2/3 trial called LUNA is now recruiting (started December 2024) with primary completion expected December 2027.",link:"https://retinauk.org.uk/medical-research/"},
+    {tag:"trial",label:"🔬 Pipeline",title:"Ultevursen (QR-421a) — USH2A RNA Therapy",body:"An RNA antisense therapy targeting exon 13 mutations in the USH2A gene (the most common cause of Usher type 2). It skips the faulty exon to produce a shorter but functional usherin protein, given as an eye injection. Originally developed by ProQR, it is now being advanced by Sepul Bio (part of Laboratoires Théa) in the Phase 2b LUNA trial, which has dosed its first patients.",link:"https://clinicaltrials.gov/study/NCT06627179"},
 
-    {tag:"gene",label:"🔬 Pipeline",title:"MYO7A Gene Therapy — Type 1 Usher",body:"Sensorion and others developing gene therapy for MYO7A, the most common Type 1 Usher gene. Phase 1/2 safety and early efficacy data are encouraging.",link:"https://retinauk.org.uk/medical-research/"},
+    {tag:"gene",label:"🔬 Pipeline",title:"MYO7A Gene Therapy — Type 1 Usher",body:"MYO7A is the most common gene affected in Usher syndrome type 1. Because the gene is large, a dual-AAV approach is used to deliver it. AAVantgarde Bio's AAVB-081 (LUCE-1 trial) dosed its first patient in late 2024, with early safety reported as acceptable and an FDA Orphan Drug Designation granted. Still at Phase 1/2 stage.",link:"https://www.usher-syndrome.org/research/clinical-trials.html"},
 
     {tag:"gene",label:"🌅 Horizon",title:"Combined Hearing and Vision Treatment",body:"Long-term research into combined approaches addressing both the hearing loss and vision loss components of Usher syndrome simultaneously. Cochlear implants already help many with hearing — vision therapy is now catching up.",link:"https://www.sense.org.uk/information-and-advice/conditions/usher-syndrome/"},
 
@@ -6912,7 +6969,7 @@ albinism:{
 
   research:[
 
-    {tag:"drug",label:"🔬 Pipeline",title:"Levodopa for Foveal Development",body:"Studies investigating whether levodopa in early childhood can partially stimulate foveal development — potentially improving visual acuity in young children. Mixed early results; further trials in planning.",link:"https://www.albinism.org.uk"},
+    {tag:"drug",label:"🌅 Horizon",title:"Levodopa and Nitisinone Research",body:"Researchers have explored whether drugs can improve the underdeveloped fovea in albinism. A completed randomised trial of levodopa (L-DOPA) did not show a significant overall improvement in visual acuity, though a possible trend was seen in some younger children. Separately, the US National Eye Institute is studying nitisinone to boost melanin. Neither is an established treatment — this remains early research.",link:"https://www.nei.nih.gov/about/news-and-events/news/nitisinone-increases-melanin-people-albinism"},
 
     {tag:"gene",label:"🌅 Horizon",title:"OCA1 and OCA2 Gene Therapy",body:"Preclinical programmes developing gene replacement for OCA1 (most common form in UK) and OCA2. Early animal studies show promise. University of Manchester and international partners. Human trials likely 5–10 years away.",link:"https://www.albinism.org.uk"},
 
@@ -7126,7 +7183,7 @@ cone:{
 
   research:[
 
-    {tag:"gene",label:"🔬 Pipeline",title:"RPGR Gene Therapy — X-Linked Cone Dystrophy",body:"MeiraGTx Phase 2/3 trial showing significant preservation of visual function in patients with RPGR mutations. X-linked cone dystrophy is the most common form — this is the most advanced treatment programme.",link:"https://retinauk.org.uk/medical-research/"},
+    {tag:"gene",label:"🔬 Pipeline",title:"RPGR Gene Therapy — X-Linked Disease",body:"Gene therapy targeting RPGR mutations (which can cause X-linked cone/cone-rod dystrophy as well as retinitis pigmentosa). MeiraGTx's Phase 3 LUMEOS trial of its RPGR therapy (bota-vec) did not meet its primary endpoint in 2025, and partner Janssen returned the programme to MeiraGTx, which plans further analysis and a regulatory filing. Research into RPGR gene therapy continues. A genetic diagnosis is needed to know if you carry an RPGR mutation.",link:"https://retinauk.org.uk/medical-research/"},
 
     {tag:"gene",label:"🔬 Pipeline",title:"CNGB3 / CNGA3 Gene Therapy",body:"Shared with achromatopsia, these mutations also cause cone dystrophy in some patients. Phase 1/2 trials ongoing. Genetic testing determines whether you carry these mutations.",link:"https://retinauk.org.uk/medical-research/"},
 
@@ -9386,7 +9443,7 @@ function setSize(scale) {
 
 function setColour(mode) {
 
-  document.body.classList.remove('dark','ll','hc','yb','bb','lb');
+  document.body.classList.remove('dark','ll','hc','yb','bb','lb','wb');
   document.body.style.removeProperty('background-color');
   document.body.style.removeProperty('color');
 
@@ -9733,6 +9790,7 @@ var TOPIC_INDEX = [
   {label:"Access to Work Grant", page:"employment#atw", icon:"💼", section:"Employment", keywords:"access to work grant workplace adjustments equipment 69260 dwp employment support job"},
   {label:"Workplace Tech (JAWS, NVDA, ZoomText)", page:"employment#tech", icon:"💻", section:"Employment", keywords:"jaws nvda voiceover zoomtext screen reader software windows mac iphone narrator talkback assistive workplace"},
   {label:"Equality Act & Reasonable Adjustments", page:"employment#rights", icon:"⚖️", section:"Employment", keywords:"employment rights equality act 2010 discrimination reasonable adjustments employer disability legal"},
+  {label:"Your Rights Under the Equality Act 2010", page:"livingwell#your-rights", icon:"⚖️", section:"Everyday Guide", keywords:"equality act 2010 rights discrimination disability law legal reasonable adjustments services transport housing education healthcare EASS protected"},
   {label:"Telling Your Employer About Sight Loss", page:"employment#disclose", icon:"💼", section:"Employment", keywords:"telling employer disclosing sight loss workplace disclosure work job"},
 
   // CHILDREN & EDUCATION
