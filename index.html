@@ -895,15 +895,15 @@ body.yb .theme-input::placeholder { color: #555; }
 
 .rtag.tech  { background: #fee2e2; color: #991b1b; }
 
-body.dark .rtag.gene  { background: var(--green);  color: #000; }
+body.dark .rtag.gene  { background: #66c288;  color: #000; }
 
-body.dark .rtag.stem  { background: var(--blue);   color: #000; }
+body.dark .rtag.stem  { background: #5cafd4;   color: #000; }
 
-body.dark .rtag.trial { background: var(--yellow); color: #000; }
+body.dark .rtag.trial { background: #c6a12f; color: #000; }
 
-body.dark .rtag.drug  { background: var(--purple); color: #000; }
+body.dark .rtag.drug  { background: #c09be5; color: #000; }
 
-body.dark .rtag.tech  { background: var(--red);    color: #000; }
+body.dark .rtag.tech  { background: #de8b8b;    color: #000; }
 
 body.hc .rtag.gene, body.hc .rtag.stem, body.hc .rtag.trial, body.hc .rtag.drug, body.hc .rtag.tech { background: transparent; color: #fff; border: 2px solid #fff; }
 
@@ -1376,13 +1376,13 @@ body.welsh-active .trial-link::after { content: " (Saesneg yn unig)"; font-size:
 
 .news-tag.general  { background: #fef9c3; color: #854d0e; }
 
-body.dark .news-tag.research { background: var(--green);  color: #000; }
+body.dark .news-tag.research { background: #66c288;  color: #000; }
 
-body.dark .news-tag.benefits { background: var(--blue);   color: #000; }
+body.dark .news-tag.benefits { background: #5cafd4;   color: #000; }
 
-body.dark .news-tag.tech     { background: var(--purple); color: #000; }
+body.dark .news-tag.tech     { background: #c09be5; color: #000; }
 
-body.dark .news-tag.general  { background: var(--yellow); color: #000; }
+body.dark .news-tag.general  { background: #c6a12f; color: #000; }
 
 body.hc .news-tag.research, body.hc .news-tag.benefits,
 
@@ -1784,8 +1784,15 @@ body.dark .cond-btn { background: var(--card) !important; color: var(--text) !im
 
 body.ll .cond-list, body.ll #search-results-cy { background: var(--card) !important; border: 2px solid var(--border) !important; }
 body.ll .cond-btn { background: var(--card) !important; color: var(--text) !important; border-bottom-color: var(--border) !important; }
-body.ll .rtag.gene, body.ll .rtag.stem, body.ll .rtag.trial, body.ll .rtag.drug, body.ll .rtag.tech { background: var(--yellow); color: #000; }
-body.ll .news-tag.research, body.ll .news-tag.benefits, body.ll .news-tag.tech, body.ll .news-tag.general { background: var(--yellow); color: #000; }
+body.ll .rtag.gene  { background: #8cb090; color: #000; }
+body.ll .rtag.stem  { background: #90b0be; color: #000; }
+body.ll .rtag.trial { background: #d7b075; color: #000; }
+body.ll .rtag.drug  { background: #c1a8ca; color: #000; }
+body.ll .rtag.tech  { background: #d4a4a4; color: #000; }
+body.ll .news-tag.research { background: #8cb090; color: #000; }
+body.ll .news-tag.benefits { background: #90b0be; color: #000; }
+body.ll .news-tag.tech     { background: #c1a8ca; color: #000; }
+body.ll .news-tag.general  { background: #d7b075; color: #000; }
 
 body.yb .cond-list, body.yb #search-results-cy { background: #fff599 !important; border: 2px solid #000 !important; }
 body.yb .cond-btn { background: #fff599 !important; color: #000 !important; border-bottom-color: rgba(0,0,0,0.3) !important; }
@@ -1907,8 +1914,8 @@ body.lb [style*="background: var(--yellow)"] { background: #a8d5ea !important; c
 body.lb .search-go-btn { background: #003a80 !important; color: #fff !important; }
 body.hc .search-go-btn { background: #000 !important; color: #fff !important; border: 4px solid #fff !important; }
 body.yb .search-go-btn { background: #000 !important; color: #fff !important; }
-body.dark .search-go-btn { background: var(--yellow) !important; color: #000 !important; }
-body.ll .search-go-btn { background: #ffb84d !important; color: #000 !important; }
+body.dark .search-go-btn { background: #c6a12f !important; color: #000 !important; }
+body.ll .search-go-btn { background: #d7b075 !important; color: #000 !important; }
 body.lb .acc-num { background: #a8d5ea !important; color: #000 !important; }
 body.lb .back-top { background: #003a80 !important; color: #fff !important; }
 body.lb .cond-hero-eyebrow { color: #000 !important; }
@@ -2047,16 +2054,19 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 /* Quick links grid - clean uniform layout */
 .quick-links-grid {
   display: grid;
-  /* Always 3 columns - 9 buttons fits exactly 3x3 with no lonely button left over */
-  grid-template-columns: 1fr 1fr 1fr;
+  /* Columns sized in em units so they GROW with the text-size setting. */
+  /* At default text 3 fit across; as the user enlarges text the columns get wider */
+  /* and the grid auto-wraps to 2 then 1 column, so labels never overflow their tiles. */
+  grid-template-columns: repeat(auto-fit, minmax(min(7.5em, 100%), 1fr));
   gap: 8px;
   margin-bottom: 0;
 }
 .ql-btn {
   font-size: 0.72rem;
-  padding: 8px 4px;
+  padding: 8px 6px;
   min-height: 48px;
   justify-content: center;
+  align-items: center;
   border-radius: 12px;
   word-break: keep-all;
   overflow-wrap: break-word;
@@ -2064,27 +2074,16 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
   hyphens: none;
   line-height: 1.25;
   display: flex;
-  align-items: center;
-  gap: 3px;
+  gap: 4px;
   flex-direction: row;
   flex-wrap: wrap;
+  /* Never let a tile grow wider than the available column or push the grid sideways */
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
 }
-/* When user enlarges text via the size buttons, --scale grows. Hide the leading emoji at larger sizes so the label has room. The emojis are decorative aria-hidden anyway. */
-@media (max-width: 600px) {
-  .ql-btn span[aria-hidden="true"]:first-child {
-    font-size: 0.85em;
-  }
-}
-@media (min-width: 640px) {
-  .quick-links-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-  .ql-btn {
-    font-size: 0.85rem;
-    padding: 0 10px;
-    min-height: 46px;
-  }
-}
+/* The label text wrapper can shrink so long words wrap instead of overflowing */
+.ql-btn > * { min-width: 0; }
 
 /* Inner wrapper to align row 1 and row 2 content on desktop */
 .a11y-bar-inner {
@@ -8025,7 +8024,7 @@ function labelToClass(label) {
 
       <div style="display:flex;align-items:center;gap:8px"><button class="acc-btn" onclick="toggleAcc('about','${key}')" aria-expanded="false">
 
-        <span class="acc-left"><span class="acc-num">1</span><span class="acc-label">What is ${d.name}?</span></span>
+        <span class="acc-left"><span class="acc-num">1</span><span class="acc-label">${_isWelsh ? 'Beth yw' : 'What is'} ${d.name}?</span></span>
 
         
 
@@ -8037,15 +8036,15 @@ function labelToClass(label) {
 
       <div class="acc-body">
 
-        <h2 class="sr" id="about-heading-${key}">About ${d.name}</h2>
+        <h2 class="sr" id="about-heading-${key}">${_isWelsh ? 'Ynghylch' : 'About'} ${d.name}</h2>
 
         <div class="ic"><p>${d.what}</p></div>
 
-        <div class="ic"><span class="ic-icon" aria-hidden="true">👁️</span><h3>How It Affects Vision</h3><p>${d.howAffects}</p></div>
+        <div class="ic"><span class="ic-icon" aria-hidden="true">👁️</span><h3>${_isWelsh ? 'Sut Mae\'n Effeithio ar Olwg' : 'How It Affects Vision'}</h3><p>${d.howAffects}</p></div>
 
-        <div class="ic"><h3>Diagnosis</h3><p>${d.diagnosis}</p></div>
+        <div class="ic"><h3>${_isWelsh ? 'Diagnosis' : 'Diagnosis'}</h3><p>${d.diagnosis}</p></div>
 
-        <div class="ic"><h3>Who It Affects</h3><p>${d.whoAffects}</p></div>
+        <div class="ic"><h3>${_isWelsh ? 'Pwy Mae\'n Effeithio Arnynt' : 'Who It Affects'}</h3><p>${d.whoAffects}</p></div>
 
       </div>
 
@@ -8057,7 +8056,7 @@ function labelToClass(label) {
 
       <div style="display:flex;align-items:center;gap:8px"><button class="acc-btn" onclick="toggleAcc('research','${key}')" aria-expanded="false">
 
-        <span class="acc-left"><span class="acc-num">2</span><span class="acc-label">Latest Research &amp; Clinical Trials</span></span>
+        <span class="acc-left"><span class="acc-num">2</span><span class="acc-label">${_isWelsh ? 'Ymchwil Diweddaraf a Threialon Clinigol' : 'Latest Research &amp; Clinical Trials'}</span></span>
 
         
 
@@ -8097,7 +8096,7 @@ function labelToClass(label) {
 
       <div style="display:flex;align-items:center;gap:8px"><button class="acc-btn" onclick="toggleAcc('guides','${key}')" aria-expanded="false">
 
-        <span class="acc-left"><span class="acc-num">3</span><span class="acc-label">Practical How-To Guides</span></span>
+        <span class="acc-left"><span class="acc-num">3</span><span class="acc-label">${_isWelsh ? 'Canllawiau Ymarferol' : 'Practical How-To Guides'}</span></span>
 
         
 
@@ -8131,7 +8130,7 @@ function labelToClass(label) {
 
       <div style="display:flex;align-items:center;gap:8px"><button class="acc-btn" onclick="toggleAcc('tech','${key}')" aria-expanded="false">
 
-        <span class="acc-left"><span class="acc-num">4</span><span class="acc-label">Assistive Technology</span></span>
+        <span class="acc-left"><span class="acc-num">4</span><span class="acc-label">${_isWelsh ? 'Technoleg Gynorthwyol' : 'Assistive Technology'}</span></span>
 
         
 
@@ -8169,7 +8168,7 @@ function labelToClass(label) {
 
       <div style="display:flex;align-items:center;gap:8px"><button class="acc-btn" onclick="toggleAcc('support','${key}')" aria-expanded="false">
 
-        <span class="acc-left"><span class="acc-num">5</span><span class="acc-label">Support &amp; Community</span></span>
+        <span class="acc-left"><span class="acc-num">5</span><span class="acc-label">${_isWelsh ? 'Cefnogaeth a Chymuned' : 'Support &amp; Community'}</span></span>
 
         
 
@@ -8221,7 +8220,7 @@ function labelToClass(label) {
 
       <div style="display:flex;align-items:center;gap:8px"><button class="acc-btn" onclick="toggleAcc('benefits','${key}')" aria-expanded="false">
 
-        <span class="acc-left"><span class="acc-num">6</span><span class="acc-label">Benefits &amp; Financial Help</span></span>
+        <span class="acc-left"><span class="acc-num">6</span><span class="acc-label">${_isWelsh ? 'Budd-daliadau a Chymorth Ariannol' : 'Benefits &amp; Financial Help'}</span></span>
 
         
 
@@ -8786,11 +8785,38 @@ function showWelshPage(name) {
 
 var _isWelsh = false;
 
+var _currentCond = null;  // tracks which condition is being viewed (null = not on a condition page)
+
 
 
 function toggleWelsh() {
 
   _isWelsh = !_isWelsh;
+
+  // If currently viewing a condition, re-render it in the new language and stop
+  // (don't force the user back to the home page)
+  if (_currentCond) {
+    var _btn = document.getElementById('welsh-toggle');
+    if (_btn) {
+      _btn.classList.toggle('active', _isWelsh);
+      _btn.setAttribute('aria-pressed', _isWelsh ? 'true' : 'false');
+      _btn.setAttribute('aria-label', _isWelsh ? 'Newid i Saesneg' : 'Newid i Gymraeg');
+      var _wi = document.getElementById('welsh-icon');
+      var _wl = document.getElementById('welsh-label');
+      if (_wi) _wi.textContent = _isWelsh ? 'EN' : 'CY';
+      if (_wl) _wl.textContent = _isWelsh ? 'English' : 'Welsh';
+    }
+    document.documentElement.setAttribute('lang', _isWelsh ? 'cy-GB' : 'en-GB');
+    document.body.classList.toggle('welsh-active', _isWelsh);
+    try { localStorage.setItem('vh-lang', _isWelsh ? 'cy-GB' : 'en-GB'); } catch(e) {}
+    var _cc = document.getElementById('condition-content');
+    if (_cc) {
+      _cc.innerHTML = renderCondition(_currentCond);
+      setTimeout(function(){ addListenButtons(_cc); }, 200);
+    }
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    return;
+  }
 
   var btn = document.getElementById('welsh-toggle');
 
@@ -8951,6 +8977,8 @@ window.toggleNarrowReading = function() {
 
 function showPage(name) {
 
+  _currentCond = null;  // leaving any condition page
+
   // Announce to screen readers
   var _srPageNames = {
     home:'Home page', livingwell:'Everyday Guide', glossary:'Glossary',
@@ -9107,6 +9135,7 @@ function selectCondition(key) {
 }
 
 function showCondition(key) {
+  _currentCond = key;
   var d = DATA[key];
   if (d) {
     updateStickyTitle(d.name, function(){ showPage('home'); });
