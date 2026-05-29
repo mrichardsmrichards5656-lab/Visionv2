@@ -136,7 +136,7 @@ body.dark {
 
   --bg:#0f1320; --bg2:#161c2e; --card:#1e2640; --card2:#242d4a;
 
-  --text:#ffffff; --text2:#d6dae8; --border:rgba(255,255,255,0.30);
+  --text:#ffffff; --text2:#d6dae8; --border:rgba(255,255,255,0.40);
 
   --yellow:#f5b800; --yellow2:#ffc929;
 
@@ -194,8 +194,15 @@ body.hc .tb-btn[aria-pressed="true"] .tb-label { color: #000 !important; }
 body.hc .tb-btn:hover { background: #fff !important; color: #000 !important; }
 body.hc .tb-btn:hover .tb-icon,
 body.hc .tb-btn:hover .tb-label { color: #000 !important; }
-/* B&W theme: remove all colour from the entire page. Catches emojis anywhere (in headings, badges, buttons) and any other coloured visual elements. */
-body.hc { filter: grayscale(100%) contrast(1.1); }
+/* B&W theme: remove all colour from the page. NOTE: a filter on <body> breaks
+   position:fixed descendants (the scroll-to-top button and sticky Back/Home bar
+   disappear), so instead of filtering the whole body we (1) request text-style
+   monochrome emoji and (2) grayscale only the coloured leftovers — emoji spans,
+   images and SVGs — leaving fixed-position UI working. */
+body.hc { font-variant-emoji: text; }
+body.hc [aria-hidden="true"], body.hc img, body.hc svg, body.hc .lw-card-icon {
+  filter: grayscale(100%) contrast(1.1);
+}
 /* But re-saturate the focus outline so keyboard users can still see it clearly */
 body.hc button:focus-visible,
 body.hc a:focus-visible,
@@ -214,6 +221,14 @@ body.lb span[aria-hidden="true"]:not(.nc-num):not(.acc-num),
 body.lb .lw-card-icon { filter: grayscale(100%) contrast(1.2); }
 /* Blue/Black: sticky home button - black bg needs light blue text */
 body.lb #sticky-home-btn { background: #003a80 !important; color: #fff !important; }
+body.hc #sticky-home-btn { background: #fff !important; color: #000 !important; border: 2px solid #fff !important; }
+body.hc .back-top { background: #fff !important; color: #000 !important; border: 2px solid #fff !important; }
+/* The sticky scroll bar uses var(--yellow) for its background, which is #fff (white)
+   in the Black/White theme — making the white "Back"/"Home" buttons and white text
+   invisible on it. Force the bar black with white text and clearly outlined buttons. */
+body.hc #sticky-title { background: #000 !important; color: #fff !important; border-bottom: 2px solid #fff !important; }
+body.hc #sticky-title-name { color: #fff !important; }
+body.hc #sticky-title-back { background: #000 !important; color: #fff !important; border: 2px solid #fff !important; }
 /* B&W: explicit white chevron SVG (currentColor doesn't reliably propagate into data URI SVGs) */
 body.hc .tb-select {
   background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23ffffff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='4 6 8 10 12 6'/%3e%3c/svg%3e") !important;
@@ -267,7 +282,7 @@ body.ll {
 
   --bg:#2b1f15; --bg2:#3a2a1c; --card:#3d2d20; --card2:#4a3729;
 
-  --text:#f4e4cc; --text2:#d4b896; --border:rgba(244,228,204,0.35);
+  --text:#f4e4cc; --text2:#d4b896; --border:rgba(244,228,204,0.48);
 
   --yellow:#ffb84d; --yellow2:#ffc466;
 
@@ -2035,6 +2050,13 @@ body.focus-mode::after {
 /* WCAG AA contrast fix: active accessibility-bar buttons need 4.5:1+ for black text.
    Default --yellow (#a85d00) is 4.23:1. Override with --yellow2 (#c47408) which is 5.85:1. */
 .tb-btn[aria-pressed="true"]{background:var(--yellow2) !important;border-color:var(--yellow2) !important;}
+/* The active button has a yellow background with black text. The .tb-label has its
+   own color:var(--text), which in Dark/Low Light is light — making the label nearly
+   invisible on the yellow highlight. Force both label and icon to black so the whole
+   button (e.g. "A MED") reads clearly. Theme-specific rules for Black/White, Yellow/Black
+   and Blue/Black come later in the cascade and still override this where needed. */
+.tb-btn[aria-pressed="true"] .tb-icon,
+.tb-btn[aria-pressed="true"] .tb-label{color:#000 !important;}
 /* WCAG AA contrast fix: any element using --yellow as background with black text
    needs --yellow2 instead. --yellow (#9c5500) on black is 3.71:1 (fail);
    --yellow2 (#c47408) on black is 5.85:1 (pass). Targets inline-styled buttons like
@@ -6000,11 +6022,17 @@ stargardts:{
 
   tech:[
 
-    {cat:"Smart Glasses",title:"eSight Go",body:"Wireless wearable magnifier with HD OLED screens and high-definition camera. Lightweight, all-day wear with 45° field of view that preserves peripheral vision. Available in the UK via VisionAid.",price:"Approx. £4,995"},
+    {cat:"Smart Glasses",title:"eSight Go",body:"Wireless wearable magnifier with HD OLED screens and high-definition camera. Lightweight, all-day wear with 45° field of view that preserves peripheral vision. Available in the UK via VisionAid.",price:"Approx. £4,995 (VAT relief available)"},
 
-    {cat:"AI Wearable",title:"OrCam MyEye Pro",body:"Clips to any glasses frame and reads text, recognises faces, products, and currency aloud.",price:"£2,700 RRP (currently on sale around £995 at VisionAid; VAT-exempt for blind users)"},
+    {cat:"Smart Glasses",title:"NuEyes e2+",body:"Lightweight voice-controlled wearable magnifier (up to 12×) with OCR text-to-speech and colour modes. The UK supplier is VisionAid Technologies; the e2+ is their current NuEyes headset (the earlier Pro and Pro 3 models are being discontinued).",price:"e2+ around £3,195 (VAT relief available) — confirm current price with VisionAid"},
 
-    {cat:"Free App",title:"Seeing AI (Microsoft)",body:"Free iOS app describing scenes, reading text, and identifying people, products, barcodes, and currency.",price:"Free"}
+    {cat:"AI Wearable",title:"OrCam MyEye Smart / MyReader 2",body:"Small camera that clips to any glasses frame and reads printed and digital text aloud. The MyEye Smart adds face, product, banknote and colour recognition; the MyReader 2 is reading-focused. Currently on promotional sale at VisionAid.",price:"Around £995 sale (£2,700 RRP) — VAT-exempt for blind users"},
+
+    {cat:"Smart Glasses",title:"Ray-Ban Meta / Oakley Meta + Be My Eyes",body:"Mainstream AI smart glasses with a built-in camera that can describe surroundings, read text aloud, and connect hands-free to a Be My Eyes volunteer or trusted contact by voice. They look like ordinary glasses and cost far less than dedicated low-vision wearables. Two generations are sold: Gen 1 is the cheaper option; Gen 2 adds longer battery (about 8 hours vs 4) and sharper video, but both get the same AI and Be My Eyes features. Oakley Meta is the sportier wraparound version.",price:"Manufacturer RRP is around £299+ (Gen 1) and £379+ (Gen 2), but high-street retailers such as Currys, John Lewis and Amazon are often cheaper — shop around for the current price. Be My Eyes is free"},
+
+    {cat:"Free App",title:"Seeing AI (Microsoft)",body:"Free iOS and Android app that describes scenes, reads printed and handwritten text, and identifies people, products, barcodes, and currency through your phone camera.",price:"Free"},
+
+    {cat:"Free App",title:"Be My Eyes",body:"Free app that connects you by live video to sighted volunteers or company support agents who can describe what your phone (or Meta glasses) camera is seeing. Useful for everything from reading post to checking expiry dates.",price:"Free"}
 
   ],
 
@@ -6126,9 +6154,17 @@ amd:{
 
   tech:[
 
-    {cat:"AI Wearable",title:"OrCam MyEye Pro",body:"Reads printed and digital text aloud. Recognises faces, products, and money. Clips to any glasses frame.",price:"£2,700 RRP (currently on sale around £995 at VisionAid; VAT-exempt for blind users)"},
+    {cat:"Smart Glasses",title:"Ray-Ban Meta / Oakley Meta + Be My Eyes",body:"Mainstream AI smart glasses with a built-in camera that can describe surroundings, read text aloud, and connect hands-free to a Be My Eyes volunteer or trusted contact by voice. They look like ordinary glasses and cost far less than dedicated low-vision wearables. Two generations are sold: Gen 1 is the cheaper option; Gen 2 adds longer battery (about 8 hours vs 4) and sharper video, but both get the same AI and Be My Eyes features. Oakley Meta is the sportier wraparound version.",price:"Manufacturer RRP is around £299+ (Gen 1) and £379+ (Gen 2), but high-street retailers such as Currys, John Lewis and Amazon are often cheaper — shop around for the current price. Be My Eyes is free"},
 
-    {cat:"CCTV Magnifier",title:"Desktop Video Magnifier",body:"Magnifies text and images on a large screen with adjustable contrast and colour modes.",price:"£400–£2,000"},
+    {cat:"Smart Glasses",title:"NuEyes e2+",body:"Lightweight voice-controlled wearable magnifier (up to 12×) with OCR text-to-speech, particularly useful when central vision is reduced. UK supplier is VisionAid Technologies; the e2+ is their current NuEyes model (earlier Pro/Pro 3 being discontinued).",price:"e2+ around £3,195 (VAT relief available) — confirm current price with VisionAid"},
+
+    {cat:"AI Wearable",title:"OrCam MyEye Smart / MyReader 2",body:"Small camera that clips to any glasses frame and reads printed and digital text aloud. The MyEye Smart adds face, product, banknote and colour recognition; the MyReader 2 is reading-focused.",price:"Around £995 sale (£2,700 RRP) — VAT-exempt for blind users"},
+
+    {cat:"CCTV Magnifier",title:"Desktop Video Magnifier",body:"Magnifies text and images on a large screen with adjustable contrast and colour modes; larger units add OCR to read text aloud. Smaller portable models are cheaper than full desktop systems.",price:"Roughly £400 (portable) up to £2,000–£3,600 (full desktop with OCR)"},
+
+    {cat:"Free App",title:"Seeing AI (Microsoft)",body:"Free iOS and Android app that describes scenes, reads printed and handwritten text, and identifies people, products, barcodes, and currency through your phone camera.",price:"Free"},
+
+    {cat:"Free App",title:"Be My Eyes",body:"Free app that connects you by live video to sighted volunteers or company support agents who can describe what your camera is seeing.",price:"Free"},
 
     {cat:"Free App",title:"Amsler Grid App",body:"Daily self-monitoring app for wet AMD. Log symptoms and detect new distortions early.",price:"Free"}
 
@@ -6226,9 +6262,17 @@ glaucoma:{
 
   tech:[
 
-    {cat:"Eye Drop Aid",title:"Autodrop / Opticare",body:"Simple devices that hold your eye drop bottle and ensure accurate delivery every time.",price:"£15–£40"},
+    {cat:"Eye Drop Aid",title:"Eye-Drop Dispensing Aids (Autodrop, Opticare)",body:"Simple plastic aids that hold the bottle, steady your aim and squeeze for you — making daily drops easier and improving adherence, which is the single most important factor in protecting your sight. Ask your pharmacist or eye clinic; some are available on prescription.",price:"Roughly £5–£25; sometimes free on prescription or from the clinic"},
 
-    {cat:"Free Built-In",title:"High Contrast Mode",body:"Built into Windows and macOS. Improves screen readability at no cost.",price:"Free"}
+    {cat:"Reminders",title:"Medication Reminder Apps & Alarms",body:"Glaucoma drops only work if taken consistently. A free phone reminder or a dedicated app (e.g. Medisafe) prompts you at the right time and tracks doses.",price:"Free"},
+
+    {cat:"Lighting & Contrast",title:"Task Lighting & High-Contrast Settings",body:"Good directional lighting plus high-contrast and dark-mode settings on devices make the most of remaining vision as the field narrows. Built into all phones, tablets and computers at no cost.",price:"Free — built in (lamps extra)"},
+
+    {cat:"Magnification",title:"Magnifiers (Optical & Electronic)",body:"For reading once vision is affected, optical magnifiers may be loaned free via an NHS low-vision clinic; electronic handheld magnifiers add contrast and colour modes.",price:"Optical aids often free via NHS; electronic handhelds roughly £149–£595"},
+
+    {cat:"Navigation",title:"Talking Navigation & Mobility Aids",body:"As peripheral field narrows, spoken sat-nav apps (Google Maps, Soundscape) help with orientation, and an orientation-and-mobility assessment can advise on a symbol or long cane. Apps are free.",price:"Apps free; mobility training via local sensory team"},
+
+    {cat:"Free App",title:"Seeing AI / Be My Eyes",body:"Read text and identify objects (Seeing AI) or get live help from a sighted volunteer (Be My Eyes) through your phone camera.",price:"Free"}
 
   ],
 
@@ -6322,9 +6366,19 @@ rp:{
 
   tech:[
 
-    {cat:"Free App",title:"Seeing AI (Microsoft)",body:"Free iOS app describing scenes, reading text, identifying people, products, and currency.",price:"Free"},
+    {cat:"Filters",title:"Amber / Tinted Filter Glasses",body:"Amber and orange tints cut glare and blue light, improving contrast and comfort in changing light — particularly helpful with the light sensitivity common in RP. Available from low-vision opticians and specialist suppliers; ask about a free low-vision assessment first.",price:"Roughly £30–£150 depending on lens type"},
 
-    {cat:"Guide Dog",title:"Guide Dogs UK",body:"A trained guide dog provides safe, confident independent travel. Completely free including all ongoing costs. Apply at guidedogs.org.uk.",price:"Free — all costs covered"}
+    {cat:"Field Expansion",title:"Field-Expansion Prisms",body:"For tunnel vision, an optometrist can fit Fresnel or ground-in prisms that shift more of the surrounding scene into your remaining central field, helping with obstacle awareness. Best fitted by a low-vision specialist as part of an assessment.",price:"Prism fitting varies — discuss at a low-vision clinic"},
+
+    {cat:"AI Wearable",title:"OrCam MyEye Smart / MyReader 2",body:"In advanced RP, when reading becomes difficult, this clip-on camera reads text aloud and recognises faces and products — studies in advanced RP show real quality-of-life benefit. Clips to any glasses frame.",price:"Around £995 sale (£2,700 RRP) — VAT-exempt for blind users"},
+
+    {cat:"Screen Reader",title:"Screen Readers (VoiceOver, TalkBack, NVDA)",body:"As sight reduces, screen readers let you use a phone or computer by listening instead of looking. VoiceOver (iPhone/iPad) and TalkBack (Android) are built in and free; NVDA for Windows is a free download; JAWS is the paid professional option.",price:"Free (NVDA, VoiceOver, TalkBack); JAWS paid"},
+
+    {cat:"Navigation App",title:"Talking Navigation Apps",body:"Apps like Google Maps and Soundscape give spoken, step-by-step walking directions and audio cues, useful when peripheral vision makes spotting landmarks hard. Works with your phone's screen reader.",price:"Free"},
+
+    {cat:"Free App",title:"Seeing AI / Be My Eyes",body:"Seeing AI describes scenes, reads text, and identifies people, products and currency through the camera. Be My Eyes connects you live to a sighted volunteer or company agent who can describe what your camera sees.",price:"Free"},
+
+    {cat:"Guide Dog",title:"Guide Dogs UK",body:"A trained guide dog provides safe, confident independent travel — valuable as tunnel vision and night blindness progress. Completely free including all ongoing costs. Apply at guidedogs.org.uk.",price:"Free — all costs covered"}
 
   ],
 
@@ -6418,7 +6472,15 @@ diabetic:{
 
   tech:[
 
-    {cat:"Blood Sugar Control",title:"Continuous Glucose Monitor (CGM)",body:"Libre 3 or Dexcom G7 help maintain the blood sugar control that prevents retinopathy progression. Often NHS-funded — ask your diabetes team.",price:"NHS funded if eligible"}
+    {cat:"Blood Sugar Control",title:"Continuous Glucose Monitor (CGM)",body:"A small arm-worn sensor tracking glucose continuously — the blood-sugar control it supports is the single biggest factor in slowing retinopathy. Current NHS devices include FreeStyle Libre 2 Plus / Libre 3 Plus and Dexcom G7 (Dexcom G6 is being phased out from 2026). NHS-funded if you meet NICE eligibility (NG17 type 1, NG28 type 2 on insulin).",price:"NHS-funded if eligible; roughly £90–£180/month if self-funding"},
+
+    {cat:"Magnification",title:"Magnifiers (Optical, Handheld & Desktop)",body:"As retinopathy affects vision, optical magnifiers may be loaned free via an NHS low-vision clinic; electronic handheld magnifiers add adjustable contrast and colour, and desktop CCTV magnifiers suit longer reading.",price:"Optical aids often free via NHS; electronic handhelds roughly £149–£595; desktop CCTV roughly £2,000–£3,600"},
+
+    {cat:"AI Wearable",title:"OrCam / Ray-Ban Meta + Be My Eyes",body:"OrCam MyEye Smart clips to glasses and reads text and recognises faces/products; mainstream Ray-Ban Meta glasses with Be My Eyes describe surroundings and connect to a sighted helper at far lower cost.",price:"OrCam around £995 sale (£2,700 RRP), VAT-exempt; Meta glasses RRP from ~£299+, shop around (Currys, John Lewis, Amazon)"},
+
+    {cat:"Free App",title:"Seeing AI / Be My Eyes",body:"Seeing AI reads text and identifies people, products and currency; Be My Eyes connects to a sighted volunteer for live help. Both free, on iOS and Android.",price:"Free"},
+
+    {cat:"Screen Settings",title:"Larger Text, Contrast & Zoom",body:"Built-in accessibility settings on phones, tablets and computers enlarge text, boost contrast and zoom the screen at no cost — useful for managing diabetes apps and CGM readings too.",price:"Free — built in"}
 
   ],
 
@@ -6512,11 +6574,15 @@ lca:{
 
   tech:[
 
-    {cat:"Free Built-In",title:"VoiceOver / TalkBack",body:"Apple's VoiceOver and Google's TalkBack are full screen readers, built in at no cost. Set up in Settings → Accessibility.",price:"Free — built in"},
+    {cat:"Free Built-In",title:"VoiceOver / TalkBack",body:"Apple's VoiceOver (iPhone/iPad) and Google's TalkBack (Android) are full screen readers built into every device at no cost, letting a child or adult use a phone or tablet entirely by listening. Set up in Settings → Accessibility.",price:"Free — built in"},
 
-    {cat:"Screen Reader",title:"JAWS / NVDA for Windows",body:"JAWS is the most widely used professional screen reader. NVDA is a free open-source alternative.",price:"NVDA: Free | JAWS: £995 (Pro) / £1,850 (Home)"},
+    {cat:"Screen Reader",title:"NVDA / JAWS for Windows",body:"NVDA is a free, open-source Windows screen reader that does everything most people need. JAWS is the long-established professional option, now sold mainly as an annual or perpetual subscription (price varies — check Freedom Scientific or VisionAid); Access to Work or Disabled Students' Allowance often funds it for work or study.",price:"NVDA free; JAWS paid subscription (funding often available)"},
 
-    {cat:"Braille",title:"Braille Display",body:"Translates on-screen text into braille in real time. Funding available via Disabled Students Allowance or Access to Work.",price:"£500–£5,000 (funding often available)"}
+    {cat:"Braille",title:"Refreshable Braille Display",body:"Translates on-screen text into tactile braille in real time, and pairs with a phone or computer. Budget models like the Orbit Reader 20 are the affordable end; 40-cell and notetaker models cost more. DSA or Access to Work funding is often available.",price:"From around £500 (Orbit Reader 20) up to several thousand — funding often available"},
+
+    {cat:"Navigation",title:"Talking Navigation & Smart Speakers",body:"Spoken sat-nav apps (Google Maps, Microsoft Soundscape) aid independent travel, and a smart speaker (Alexa, Google) gives hands-free, eyes-free access to information, reminders, music and smart-home control at home.",price:"Apps free; smart speakers from around £20"},
+
+    {cat:"Free App",title:"Seeing AI / Be My Eyes",body:"Seeing AI reads text and describes scenes, people and products through the camera; Be My Eyes connects to a sighted volunteer for live help. Both are free and widely used by people with little or no vision.",price:"Free"}
 
   ],
 
@@ -6634,9 +6700,15 @@ nystagmus:{
 
   tech:[
 
-    {cat:"Magnification",title:"Screen Magnification Software",body:"ZoomText or the built-in magnifier on Mac/iPhone enlarges on-screen content.",price:"ZoomText Magnifier: £725 (Magnifier/Reader: £950) | Built-in: Free"},
+    {cat:"Magnification",title:"Screen Zoom & Magnification",body:"Built-in zoom on iPhone, iPad, Android, Mac and Windows enlarges on-screen content for free and is enough for most people. ZoomText (now sold as a subscription via Freedom Scientific/VisionAid — price varies) adds advanced magnification with speech for heavier needs.",price:"Built-in free; ZoomText paid subscription"},
 
-    {cat:"Reading Aid",title:"Large Print and Tinted Overlays",body:"Large print books (free via RNIB library) and coloured reading overlays improve readability.",price:"Free — via RNIB"}
+    {cat:"Reading Aid",title:"Large Print, Line Guides & Overlays",body:"Large-print books are free through the RNIB Library. A typoscope or line guide helps keep your place, and coloured overlays can ease reading for some people. Cheap and widely available.",price:"Large print free via RNIB; line guides/overlays a few pounds"},
+
+    {cat:"Magnification",title:"Magnifiers (Optical & Electronic)",body:"Optical hand and stand magnifiers may be loaned free via an NHS low-vision clinic; electronic handheld magnifiers add adjustable size, contrast and colour. Useful where head-posture (null point) makes small print tiring.",price:"Optical aids often free via NHS; electronic handhelds roughly £149–£595"},
+
+    {cat:"Distance Aids",title:"Monocular Telescope",body:"A small handheld monocular helps with distance tasks such as reading a whiteboard, signs or bus numbers — handy for school, college and travel. Best fitted via a low-vision assessment.",price:"Roughly £40–£150"},
+
+    {cat:"Free App",title:"Seeing AI / Be My Eyes",body:"Read text aloud and identify objects with Seeing AI, or get live help from a sighted volunteer with Be My Eyes, when small print or distance is difficult.",price:"Free"}
 
   ],
 
@@ -6750,9 +6822,15 @@ achromatopsia:{
 
   tech:[
 
-    {cat:"Filter Lenses",title:"NoIR or Eschenbach Tinted Filters",body:"Specialist absorptive lenses dramatically reduce light sensitivity. Essential for most people with achromatopsia.",price:"£80–£300"},
+    {cat:"Filter Lenses",title:"Red / Dark Tinted Filter Glasses",body:"Deeply tinted absorptive lenses — often red or plum-tinted — are the single most helpful aid in achromatopsia, dramatically cutting light sensitivity and improving comfort and function outdoors. Specialist brands include NoIR, Eschenbach and Zeiss; best chosen with a low-vision optometrist.",price:"Roughly £80–£300 depending on lens"},
 
-    {cat:"Screen Filter",title:"Dark Mode and Night Mode",body:"Enable dark mode on all devices and reduce brightness to minimum. f.lux (desktop) can go dimmer than system settings allow.",price:"Free — built in"}
+    {cat:"Filter Lenses",title:"Tinted Contact Lenses",body:"Some people benefit from red or amber tinted contact lenses (sometimes with a clear central pupil zone) to reduce glare while keeping a normal appearance. Fitted by a specialist contact-lens optometrist.",price:"Varies — discuss with a specialist optometrist"},
+
+    {cat:"Magnification",title:"Magnifiers (Optical & Electronic)",body:"Because visual acuity is reduced, magnification helps with reading. Simple optical magnifiers may be loaned free via an NHS low-vision clinic; electronic handheld magnifiers add adjustable contrast and colour modes.",price:"Optical aids often free via NHS; electronic handhelds roughly £149–£595"},
+
+    {cat:"Screen Settings",title:"Dark Mode & Brightness Control",body:"Turn on dark mode across phone, tablet and computer and lower brightness; tools like f.lux can dim a screen further than the system minimum and warm the colour to reduce glare.",price:"Free — built in"},
+
+    {cat:"Free App",title:"Seeing AI / Be My Eyes",body:"Seeing AI reads text and describes scenes through the camera; Be My Eyes connects you to a sighted volunteer. Both help when small print or glare make a task difficult.",price:"Free"}
 
   ],
 
@@ -6868,9 +6946,17 @@ usher:{
 
   tech:[
 
-    {cat:"Vibrating Alert",title:"Pager / Vibrating Doorbell Systems",body:"Vibrating pager systems alert to doorbells, phones, smoke alarms, and baby monitors.",price:"£50–£200"},
+    {cat:"Vibrating Alert",title:"Vibrating Alert & Alarm Systems",body:"Vibrating pagers and pads alert you to the doorbell, phone, smoke alarm, or a baby monitor through touch rather than sound or sight. Widely available from deafblind and deaf-equipment suppliers.",price:"Roughly £50–£200 per system"},
 
-    {cat:"Communication",title:"Braille Display with Phone",body:"A refreshable braille display paired with VoiceOver or TalkBack enables silent, tactile access to all phone content.",price:"£500–£5,000 (Access to Work funding available)"}
+    {cat:"Communication",title:"Refreshable Braille Display",body:"Paired with VoiceOver or TalkBack, a braille display gives silent, tactile access to phone and computer content — invaluable when both hearing and sight are affected. Budget models like the Orbit Reader 20 start lower; 40-cell models cost more.",price:"From around £500 (Orbit Reader 20) up to several thousand — Access to Work funding may cover work use"},
+
+    {cat:"Screen Reader",title:"Screen Readers (VoiceOver, TalkBack, NVDA)",body:"Built-in screen readers on iPhone/iPad (VoiceOver) and Android (TalkBack) are free, as is NVDA for Windows. Combined with a braille display they allow tactile reading without relying on hearing.",price:"Free (NVDA, VoiceOver, TalkBack); JAWS paid"},
+
+    {cat:"Hearing",title:"Hearing Aids & Cochlear Implants",body:"Most people with Usher have hearing loss from birth or early on. Hearing aids (free on the NHS) help in types 2 and 3; cochlear implants are offered on the NHS for severe-to-profound loss, including many children with type 1. Discuss with your audiology team.",price:"NHS hearing aids free; cochlear implants NHS-funded if eligible"},
+
+    {cat:"Communication",title:"Deafblind Manual & Communicator-Guides",body:"Communication methods such as the deafblind manual alphabet, block alphabet, and hands-on signing, plus trained communicator-guides for getting out and about. Deafblind UK and Sense can arrange training and support.",price:"Support via Deafblind UK / Sense — often free or funded"},
+
+    {cat:"Free App",title:"Be My Eyes / Seeing AI",body:"Be My Eyes connects you by live video to a sighted helper; Seeing AI reads text and describes surroundings through the camera. Useful for visual tasks as central vision narrows.",price:"Free"}
 
   ],
 
@@ -6986,9 +7072,15 @@ albinism:{
 
   tech:[
 
-    {cat:"Tinted Lenses",title:"UV-Blocking Wraparound Sunglasses",body:"Essential to reduce photophobia and protect eye health. Specialist providers include Eschenbach, NoIR, and Cocoons.",price:"£80–£250"},
+    {cat:"Tinted Lenses",title:"UV-Blocking & Tinted Glasses",body:"Wraparound UV-blocking sunglasses, tints, and photochromic (light-reactive) lenses reduce the glare and light sensitivity (photophobia) that affect almost everyone with albinism, and protect eye health outdoors. A low-vision optometrist can advise on the right tint.",price:"Roughly £30–£250 depending on lens and frame"},
 
-    {cat:"Magnification",title:"Handheld and Desktop Magnifiers",body:"Available free via NHS low vision clinic. Electronic magnifiers allow adjustable contrast and colour reversal.",price:"Free via NHS low vision clinic"}
+    {cat:"Magnification",title:"Magnifiers (Optical & Electronic)",body:"Magnification helps with reduced acuity. Optical hand and stand magnifiers may be loaned free through an NHS low-vision clinic; electronic handheld magnifiers add adjustable contrast and colour reversal.",price:"Optical aids often free via NHS; electronic handhelds roughly £149–£595"},
+
+    {cat:"Distance Aids",title:"Monoculars & Bioptic Telescopes",body:"A small handheld monocular or a bioptic telescope mounted on glasses helps with distance tasks like reading a board, signs or timetables — useful for students. Fitted through a low-vision assessment.",price:"Monoculars roughly £40–£150; bioptics fitted via low-vision clinic"},
+
+    {cat:"Screen Settings",title:"Built-in Accessibility Settings",body:"Enlarge text, increase contrast, and turn on zoom or magnifier features — all built into phones, tablets and computers at no cost. Often the simplest first step before buying anything.",price:"Free — built in"},
+
+    {cat:"Free App",title:"Seeing AI / Be My Eyes",body:"Seeing AI reads text and describes scenes through the camera; Be My Eyes connects you to a sighted volunteer for visual tasks. Both are free.",price:"Free"}
 
   ],
 
@@ -7082,9 +7174,15 @@ cvi:{
 
   tech:[
 
-    {cat:"High Contrast",title:"High Contrast Display Settings",body:"High contrast mode significantly improves readability for many people with CVI.",price:"Free — built in"},
+    {cat:"High Contrast",title:"High-Contrast, Decluttered Displays",body:"CVI is a brain-based difficulty processing what the eyes see, so reducing visual clutter matters more than magnifying. High-contrast mode, dark backgrounds, and showing one simple item at a time (rather than busy screens) help the brain interpret an image. Built into all devices for free.",price:"Free — built in"},
 
-    {cat:"Educational",title:"High Contrast Learning Materials",body:"RNIB's shop and LDA provide high contrast, low clutter learning resources designed for children with CVI.",price:"Varies — often funded via EHC plan"}
+    {cat:"Educational",title:"Low-Clutter, High-Contrast Materials",body:"Simple, uncluttered, high-contrast learning resources — single objects on plain backgrounds, consistent placement, and favourite colours (often red or yellow) — designed for how a child with CVI sees. Available from RNIB and specialist education suppliers.",price:"Varies — often funded via an EHC plan"},
+
+    {cat:"Environment",title:"Lighting, Positioning & Movement Cues",body:"Controlling glare, using backlighting (e.g. a light box or tablet) to make objects 'pop', presenting items in the child's best visual field, and using movement or shine to attract attention are core CVI strategies. A QTVI (qualified teacher of vision impairment) can advise.",price:"Light box from around £30; QTVI support via local sensory team"},
+
+    {cat:"Communication",title:"AAC & Switch-Accessible Apps",body:"For children who also have complex needs, accessible communication (AAC) apps and switch-accessible tablet software present choices in a clear, CVI-friendly way. Built-in switch control on iPad/Android is free; dedicated AAC apps vary.",price:"Switch control free; AAC apps vary"},
+
+    {cat:"Screen Reader",title:"Screen Readers (as needed)",body:"Where vision is very limited, built-in VoiceOver (Apple) and TalkBack (Android) provide spoken access at no cost — sometimes combined with visual access depending on the child's profile.",price:"Free — built in"}
 
   ],
 
@@ -7200,11 +7298,15 @@ cone:{
 
   tech:[
 
-    {cat:"Tinted Lenses",title:"Photochromic and Filter Lenses",body:"Photochromic lenses or specialist absorptive filter lenses significantly reduce photophobia.",price:"£80–£300"},
+    {cat:"Tinted Lenses",title:"Photochromic & Filter Lenses",body:"Light-reactive (photochromic) lenses and specialist absorptive filter tints (often amber or plum) markedly reduce the photophobia common in cone dystrophy and improve contrast. Best chosen with a low-vision optometrist.",price:"Roughly £80–£300 depending on lens"},
 
-    {cat:"Free App",title:"Seeing AI (Microsoft)",body:"Reads text, identifies people, products, and currency. Valuable when central vision loss makes these tasks difficult.",price:"Free"},
+    {cat:"Magnification",title:"Magnifiers (Optical, Handheld & Desktop)",body:"For the central-vision reading difficulty, optical magnifiers may be loaned free via an NHS low-vision clinic; electronic handheld magnifiers (with contrast and colour modes) and larger desktop CCTV magnifiers offer more power for longer reading.",price:"Optical aids often free via NHS; electronic handhelds roughly £149–£595; desktop CCTV roughly £2,000–£3,600"},
 
-    {cat:"Magnification",title:"Desktop or Portable Video Magnifier",body:"Electronic magnifiers with adjustable contrast — available via NHS low vision clinics.",price:"Free via NHS — or £400–£2,000 privately"}
+    {cat:"AI Wearable",title:"OrCam MyEye Smart / MyReader 2",body:"Clips to any glasses frame and reads text aloud and recognises faces and products — useful when central vision makes reading tiring or difficult.",price:"Around £995 sale (£2,700 RRP) — VAT-exempt for blind users"},
+
+    {cat:"Free App",title:"Seeing AI / Be My Eyes / Colour ID",body:"Seeing AI reads text and identifies people, products and currency; colour-identifier apps name colours aloud (helpful given the colour-vision problems in cone dystrophy); Be My Eyes connects to a sighted volunteer.",price:"Free"},
+
+    {cat:"Screen Settings",title:"Dark Mode, Contrast & Zoom",body:"Dark mode, high contrast, larger text and screen zoom are built into all phones, tablets and computers and help with both glare and reduced acuity at no cost.",price:"Free — built in"}
 
   ],
 
@@ -7304,11 +7406,15 @@ dmo:{
 
   tech:[
 
-    {cat:"Blood Sugar",title:"Continuous Glucose Monitor",body:"Libre 3 or Dexcom G7 — helps maintain the blood sugar control that directly prevents DMO progression. Often NHS-funded for eligible patients.",price:"NHS funded if eligible"},
+    {cat:"Blood Sugar",title:"Continuous Glucose Monitor (CGM)",body:"A small sensor worn on the arm that tracks glucose continuously, helping maintain the blood-sugar control that directly slows DMO. Current NHS devices include FreeStyle Libre 2 Plus / Libre 3 Plus and Dexcom G7 (the older Dexcom G6 is being phased out from 2026). NHS-funded if you meet NICE eligibility (NG17 for type 1, NG28 for type 2 on insulin).",price:"NHS-funded if eligible; roughly £90–£180/month if self-funding"},
 
-    {cat:"Magnification",title:"Desktop Video Magnifier",body:"Magnifies text and images on a large screen with adjustable contrast. Available free via NHS low vision clinic.",price:"Free via NHS — or £400–£2,000 privately"},
+    {cat:"Magnification",title:"Magnifiers (Optical, Handheld & Desktop)",body:"For the central reading loss DMO causes, optical magnifiers may be loaned free via an NHS low-vision clinic; electronic handheld magnifiers add contrast and colour modes, and larger desktop CCTV magnifiers suit longer reading.",price:"Optical aids often free via NHS; electronic handhelds roughly £149–£595; desktop CCTV roughly £2,000–£3,600"},
 
-    {cat:"Free App",title:"Seeing AI (Microsoft)",body:"Free iOS app reading text, identifying faces, products, and currency. Valuable when central vision is affected.",price:"Free"}
+    {cat:"AI Wearable",title:"OrCam MyEye Smart / MyReader 2",body:"Clips to glasses and reads printed and digital text aloud and recognises faces and products — useful when central vision makes reading difficult. Ray-Ban Meta glasses with Be My Eyes are a cheaper mainstream alternative for description and reading.",price:"OrCam around £995 sale (£2,700 RRP), VAT-exempt for blind users; Meta glasses RRP from ~£299+, shop around"},
+
+    {cat:"Free App",title:"Seeing AI / Be My Eyes",body:"Seeing AI reads text and identifies faces, products and currency through the camera; Be My Eyes connects to a sighted volunteer for live help. Both free, on iOS and Android.",price:"Free"},
+
+    {cat:"Screen Settings",title:"Larger Text, Contrast & Zoom",body:"Built-in accessibility settings on phones, tablets and computers enlarge text, boost contrast and zoom the screen at no cost — often the simplest first step.",price:"Free — built in"}
 
   ],
 
@@ -7392,9 +7498,17 @@ myopic:{
 
   tech:[
 
-    {cat:"Monitoring",title:"Amsler Grid App",body:"Free daily self-monitoring app — critical for detecting early myopic CNV before it causes irreversible damage.",price:"Free"},
+    {cat:"Monitoring",title:"Amsler Grid App",body:"A free daily self-monitoring app (or printed grid) to catch new distortion early — important for spotting myopic CNV (new blood vessel growth) before it causes lasting damage. Report any new wavy or missing patches to your eye clinic urgently.",price:"Free"},
 
-    {cat:"Magnification",title:"Low Vision Assessment",body:"Free NHS low vision assessment provides magnifiers and tinted lenses tailored to your vision. Ask your ophthalmologist for a referral.",price:"Free via NHS"}
+    {cat:"Assessment",title:"NHS Low-Vision Assessment",body:"A free NHS low-vision assessment matches you to the right magnifiers, lighting and tinted lenses for your vision, and often lends optical aids at no cost. Ask your ophthalmologist or optometrist for a referral.",price:"Free via NHS"},
+
+    {cat:"Magnification",title:"Magnifiers (Optical, Handheld & Desktop)",body:"For the central reading difficulty, optical aids may be loaned free via the low-vision clinic; electronic handheld magnifiers add contrast and colour, and desktop CCTV magnifiers suit sustained reading.",price:"Optical aids often free via NHS; electronic handhelds roughly £149–£595; desktop CCTV roughly £2,000–£3,600"},
+
+    {cat:"AI Wearable",title:"OrCam / Ray-Ban Meta + Be My Eyes",body:"OrCam MyEye Smart clips to glasses and reads text and recognises faces/products; mainstream Ray-Ban Meta glasses with Be My Eyes describe surroundings and connect to a sighted helper at lower cost.",price:"OrCam around £995 sale (£2,700 RRP), VAT-exempt; Meta glasses RRP from ~£299+, shop around (Currys, John Lewis, Amazon)"},
+
+    {cat:"Free App",title:"Seeing AI / Be My Eyes",body:"Read text and identify people, products and currency (Seeing AI), or get live help from a sighted volunteer (Be My Eyes). Both free, iOS and Android.",price:"Free"},
+
+    {cat:"Screen Settings",title:"Larger Text, Contrast & Zoom",body:"Enlarge text, raise contrast and zoom the screen using the free accessibility settings built into every phone, tablet and computer.",price:"Free — built in"}
 
   ],
 
@@ -7476,9 +7590,13 @@ charlesbonnet:{
 
   tech:[
 
-    {cat:"Lighting",title:"Bright, Even Lighting",body:"Increasing light levels at home reduces CBS episodes for many people. Smart lighting (Philips Hue etc.) allows easy adjustment without moving around.",price:"£30–£200"},
+    {cat:"Lighting",title:"Bright, Even Lighting",body:"Charles Bonnet hallucinations are caused by sight loss, not a mental health problem, and often strike in dim light. Raising and evening out light levels reduces episodes for many people; smart bulbs (e.g. Philips Hue) let you adjust brightness hands-free.",price:"Smart bulbs roughly £15–£60 each; lamps extra"},
 
-    {cat:"Support",title:"CBS Support Line",body:"The Macular Society runs a dedicated CBS helpline staffed by people who understand the condition.",price:"Free — 0300 3030 111"}
+    {cat:"Self-Help",title:"Eye-Movement & Distraction Techniques",body:"Simple, free techniques can interrupt an episode: moving your eyes side to side (without moving your head) for a few seconds, blinking, looking away, changing the lighting, or moving to another room. The Macular Society can teach these.",price:"Free"},
+
+    {cat:"Low-Vision Aids",title:"Aids for the Underlying Sight Loss",body:"CBS sits on top of an eye condition (often AMD), so the magnifiers, lighting and apps recommended for that condition still apply. A free NHS low-vision assessment can tailor these to you.",price:"Optical aids often free via NHS; electronics vary"},
+
+    {cat:"Support",title:"Macular Society CBS Helpline",body:"A dedicated Charles Bonnet helpline staffed by people who understand the condition — reassurance that the hallucinations are normal and not a sign of mental illness is itself one of the most helpful 'tools'.",price:"Free — 0300 3030 111"}
 
   ],
 
@@ -7562,9 +7680,13 @@ opticneuritis:{
 
   tech:[
 
-    {cat:"Monitoring",title:"Colour Vision Test Apps",body:"Apps such as Colour Blind Pal can help monitor colour vision changes — useful for tracking recovery or detecting recurrence.",price:"Free"},
+    {cat:"Monitoring",title:"Colour & Contrast Self-Checks",body:"Vision usually recovers over weeks to months, but colour (especially red) and contrast can lag. Free apps like Colour Blind Pal, or simply comparing each eye on a coloured object day to day, help you track recovery and spot any recurrence to report to your eye team.",price:"Free"},
 
-    {cat:"Support",title:"MS Society Resources",body:"If MS is associated, the MS Society provides comprehensive information and support.",price:"Free — mssociety.org.uk"}
+    {cat:"Lighting & Contrast",title:"Lighting & High-Contrast Settings",body:"While contrast sensitivity recovers, good task lighting plus high-contrast and larger-text settings on devices make reading and screens more comfortable. Built into all phones, tablets and computers at no cost.",price:"Free — built in (lamps extra)"},
+
+    {cat:"Low-Vision Aids",title:"Magnification (Only If Vision Doesn't Fully Recover)",body:"Most people regain useful vision, so aids are rarely needed long-term. If a deficit remains, a free NHS low-vision assessment can provide magnifiers and advice tailored to your remaining vision.",price:"Free via NHS assessment"},
+
+    {cat:"Support",title:"MS Society Resources",body:"Optic neuritis can be an early sign of multiple sclerosis. If MS is diagnosed or suspected, the MS Society offers comprehensive information, a helpline and local support.",price:"Free — mssociety.org.uk"}
 
   ],
 
@@ -7648,9 +7770,13 @@ blepharitis:{
 
   tech:[
 
-    {cat:"Treatment",title:"Heated Eye Mask (Bruder/TheraEye)",body:"Reusable microwaveable masks maintain the correct temperature for meibomian gland treatment far more effectively than flannels.",price:"£20–£35"},
+    {cat:"Treatment",title:"Heated Eye Mask (Bruder, TheraPearl)",body:"A reusable microwaveable mask holds the right temperature (around 40°C) for long enough to melt the thickened oil in the eyelid glands — far more effective than a flannel that cools quickly. Use daily for posterior blepharitis.",price:"Roughly £15–£35"},
 
-    {cat:"Drops",title:"Preservative-Free Artificial Tears",body:"Hylo-Tear, Systane Ultra PF, or Evolve — used regularly throughout the day to manage dry eye caused by blepharitis.",price:"£8–£15"}
+    {cat:"Lid Hygiene",title:"Lid-Cleaning Wipes & Foams",body:"Pre-made lid wipes or foams (e.g. Blephaclean, Blephasol, OcuSoft) clean the lash line gently and consistently, which is the cornerstone of controlling blepharitis. Cheaper than repeatedly buying drops and available from pharmacies.",price:"Roughly £6–£12 per pack"},
+
+    {cat:"Drops",title:"Preservative-Free Artificial Tears",body:"Drops such as Hylo-Tear, Systane Ultra PF or Evolve ease the dry-eye symptoms blepharitis causes. Preservative-free is important for frequent long-term use, as preservatives can worsen the condition.",price:"Roughly £8–£15 per bottle"},
+
+    {cat:"Note",title:"Vision Aids Rarely Needed",body:"Blepharitis affects the eyelids and tear film, not the retina, so it seldom causes lasting low vision — the focus is comfort and control. If your vision is affected, ask your optometrist, as another cause may be involved.",price:"—"}
 
   ],
 
@@ -7730,11 +7856,13 @@ pagets:{
 
   tech:[
 
-    {cat:"Hearing",title:"Hearing Aids — NHS",body:"NHS hearing aids are free and well-suited to age-related and progressive hearing loss. Modern digital aids can be programmed for specific patterns of loss. Self-refer via your GP or local audiology service.",price:"Free (NHS)"},
+    {cat:"Hearing",title:"Hearing Aids — NHS",body:"Paget's affecting the skull can cause progressive hearing loss. NHS hearing aids are free and can be programmed to your specific pattern of loss. Self-refer via your GP or local audiology service.",price:"Free (NHS)"},
 
-    {cat:"Sight",title:"Low Vision Aids",body:"If sight has been affected, an RNIB Low Vision Assessment provides magnifiers, lighting advice, and technology recommendations tailored to your remaining vision. Free via NHS referral.",price:"Free (NHS referral)"},
+    {cat:"Vibrating Alert",title:"Vibrating Alert Systems",body:"If hearing is affected, vibrating pagers and pads alert you to the doorbell, phone or smoke alarm through touch. Available from deaf-equipment suppliers.",price:"Roughly £50–£200 per system"},
 
-    {cat:"Combined",title:"Dual Sensory Loss Communicator Guides",body:"If both senses are affected, communicator guides (provided by Sense and Deafblind UK) help with communication, mobility, and accessing information. Free for those who qualify.",price:"Free (assessment-based)"}
+    {cat:"Sight",title:"Low-Vision Aids & Magnifiers",body:"If sight is affected (less common, from pressure on the optic nerve), a free NHS low-vision assessment provides magnifiers, lighting advice and tailored recommendations. Optical aids are often loaned free; electronic handheld magnifiers add contrast and colour.",price:"Optical aids often free via NHS; electronic handhelds roughly £149–£595"},
+
+    {cat:"Combined",title:"Dual-Sensory Communicator-Guides",body:"If both senses are affected, communicator-guides from Sense and Deafblind UK help with communication, getting out and about, and accessing information — the same support pathway used for Usher syndrome.",price:"Free for those who qualify (assessment-based)"}
 
   ],
 
@@ -7824,11 +7952,15 @@ microphthalmia:{
 
   tech:[
 
-    {cat:"Support",title:"MACS Family Support",body:"Peer support, family weekends, and activity trips designed for children with MACS conditions and their families.",price:"Free — 0800 169 8088"},
+    {cat:"Prosthetics",title:"Artificial Eye / Conformer",body:"A custom acrylic prosthesis or conformer, made and fitted by an ocularist on the NHS, helps the eye socket and face develop normally and is remoulded periodically as the child grows.",price:"Free on NHS"},
 
-    {cat:"Vision",title:"Low Vision Aids",body:"For children with some remaining vision, magnifiers, good lighting, and high-contrast materials can help. Your local low vision clinic can assess needs.",price:"Free on NHS / varies"},
+    {cat:"Protection",title:"Protective Eyewear for the Better Eye",body:"When one eye is affected, protecting sight in the other eye is vital. Polycarbonate safety glasses for sport and play guard against injury. Ask the eye clinic or optometrist.",price:"Roughly £20–£80; some funded via school/clinic"},
 
-    {cat:"Prosthetics",title:"Artificial Eye (Prosthesis)",body:"A custom acrylic prosthesis made and fitted by an ocularist on the NHS, remoulded periodically as the child grows.",price:"Free on NHS"}
+    {cat:"Vision",title:"Low-Vision Aids for Residual Sight",body:"For children with some remaining vision, magnifiers, good lighting and high-contrast, low-clutter materials help. A local low-vision clinic and a QTVI (qualified teacher of vision impairment) assess and tailor these.",price:"Optical aids often free via NHS; other aids vary"},
+
+    {cat:"Access",title:"Screen Readers, Braille & Tactile Learning",body:"Where vision is very limited, built-in VoiceOver (Apple) and TalkBack (Android) are free, and early tactile and braille learning (supported by a QTVI) builds literacy. Braille displays are fundable through education support.",price:"Screen readers free; braille displays from ~£500 (funding often available)"},
+
+    {cat:"Support",title:"MACS Family Support",body:"MACS is the UK charity for microphthalmia, anophthalmia and coloboma — peer support, family weekends and activity trips for children and families.",price:"Free — 0800 169 8088"}
 
   ],
 
@@ -7918,11 +8050,15 @@ congenitalcataracts:{
 
   tech:[
 
-    {cat:"Vision",title:"Contact Lenses for Infants",body:"Specialist contact lenses are often used after cataract surgery in babies, fitted and managed by the eye clinic. Staff will teach you how to insert and care for them.",price:"Free on NHS"},
+    {cat:"Vision",title:"Contact Lenses for Infants",body:"After cataract surgery in babies, specialist contact lenses are often preferred over implanted lenses (the IATS study found implanted lenses in under-1s led to more follow-up operations). Fitted and managed by the eye clinic, who teach parents to insert and care for them.",price:"Free on NHS"},
 
-    {cat:"Vision",title:"Glasses",body:"Children who have had cataract surgery usually need glasses, sometimes bifocals, to focus at different distances. Free on the NHS for under-16s.",price:"Free on NHS (under 16)"},
+    {cat:"Vision",title:"Glasses (often bifocal)",body:"Children who have had cataract surgery usually need glasses — sometimes bifocals — to focus at different distances. Free on the NHS for under-16s, and worth choosing sturdy, flexible frames for young children.",price:"Free on NHS (under 16)"},
 
-    {cat:"Support",title:"Patching Materials",body:"Eye patches to treat amblyopia (lazy eye) after surgery. Decorated patches can make this easier for young children to accept.",price:"Free on NHS / low cost"}
+    {cat:"Treatment",title:"Patching for Amblyopia",body:"Patching the stronger eye treats the 'lazy eye' (amblyopia) that often follows childhood cataract, training the brain to use the operated eye. Decorated or fabric patches make this easier for young children to accept.",price:"Free on NHS / low cost"},
+
+    {cat:"Education",title:"Low-Vision & Learning Support",body:"If some visual deficit remains, magnifiers, high-contrast low-clutter materials, good lighting and a QTVI (qualified teacher of vision impairment) support learning. Arranged via the low-vision clinic and local sensory education team.",price:"Optical aids often free via NHS; QTVI support via local authority"},
+
+    {cat:"Access",title:"Built-in Device Accessibility",body:"Tablets and computers used at home and school have free built-in tools — larger text, high contrast, zoom, and (where needed) VoiceOver/TalkBack screen readers — to make schoolwork accessible.",price:"Free — built in"}
 
   ],
 
