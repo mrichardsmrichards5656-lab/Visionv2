@@ -1643,7 +1643,7 @@ footer { background: var(--bg2); border-top: 3px solid var(--yellow); padding: 3
 
 .acc-label { font-size: 1rem; font-weight: 800; color: var(--text); overflow-wrap: break-word; word-break: break-word; min-width: 0; }
 
-.acc-arrow { font-size: 1rem; color: var(--yellow); flex-shrink: 0; transition: transform .25s; }
+.acc-arrow { font-size: 1.6rem; font-weight: 900; line-height: 1; color: var(--yellow); flex-shrink: 0; transition: transform .25s; padding-left: 4px; }
 
 .acc-item.open .acc-arrow { transform: rotate(180deg); }
 
@@ -4764,7 +4764,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
       <h2 id="henshaws">🎓 Henshaws Knowledge Village — Free Tech Training</h2>
 
-      <p>Free video guides teaching people with sight loss how to use technology — iPhones, Android phones, screen readers, and accessibility features — in plain, practical language. The best free tech training resource in the UK for people with sight loss.</p>
+      <p>Free video guides teaching people with sight loss how to use technology — iPhones, Android phones, screen readers, and accessibility features — in plain, practical language. A well-regarded free tech-training resource for people with sight loss.</p>
 
       <p style="margin-top:12px"><a href="https://www.henshaws.org.uk/knowledge-village/" aria-label="Visit Henshaws Knowledge Village (opens external site)" rel="noopener noreferrer" style="color:var(--yellow);font-weight:700;font-size:1rem">Visit Henshaws Knowledge Village <span aria-hidden="true">↗</span></a></p>
 
@@ -5636,7 +5636,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
     <h3>Henshaws Knowledge Village — Featured Resource</h3>
 
-    <p style="color:var(--text2);font-size:0.9rem;margin-bottom:12px;line-height:1.7">Free video training specifically for people with sight loss — how to use an iPhone if you can't see the screen, Android accessibility, screen readers, and practical technology skills. The best free tech training resource in the UK for people with sight loss.</p>
+    <p style="color:var(--text2);font-size:0.9rem;margin-bottom:12px;line-height:1.7">Free video training specifically for people with sight loss — how to use an iPhone if you can't see the screen, Android accessibility, screen readers, and practical technology skills. A well-regarded free tech-training resource for people with sight loss.</p>
 
     <a href="https://www.henshaws.org.uk/knowledge-village/" aria-label="Visit Henshaws Knowledge Village (opens external site)" rel="noopener noreferrer" style="color:var(--yellow);font-weight:700;font-size:0.95rem">Visit Henshaws Knowledge Village <span aria-hidden="true">↗</span></a>
 
@@ -6148,7 +6148,7 @@ amd:{
 
     {n:2,title:"Understanding Anti-VEGF Injections",body:"Anti-VEGF injections (Eylea, Lucentis, Vabysmo) are given at your eye clinic under local anaesthetic. They are highly effective at halting progression."},
 
-    {n:3,title:"AREDS2 Supplements",body:"For intermediate or late AMD in one eye, AREDS2 supplements (lutein, zeaxanthin, vitamins C and E, zinc) are clinically proven to slow progression. Ask your ophthalmologist."}
+    {n:3,title:"AREDS2 Supplements",body:"For intermediate or late AMD in one eye, AREDS2 supplements (lutein, zeaxanthin, vitamins C and E, zinc) were shown in large trials to reduce the risk of intermediate AMD progressing to advanced AMD. They don't help everyone or restore lost vision — ask your ophthalmologist whether they're right for you."}
 
   ],
 
@@ -6450,7 +6450,7 @@ diabetic:{
 
     {tag:"drug",label:"✅ NHS Available",title:"Faricimab (Vabysmo) — Fewer Injections",body:"Dual-pathway injection approved by NICE for diabetic macular oedema. Targets both VEGF and Ang-2. Up to every 4 months for eligible patients — significantly fewer clinic visits than older treatments.",link:"https://www.nice.org.uk/guidance/ta799"},
 
-    {tag:"drug",label:"✅ NHS Available",title:"Annual Eye Screening — The Best Prevention",body:"NHS diabetic eye screening detects retinopathy before symptoms appear. This is the most effective intervention available — free for all people with diabetes. Never miss it.",link:"https://www.nhs.uk/conditions/diabetic-eye-screening/"},
+    {tag:"drug",label:"✅ NHS Available",title:"Annual Eye Screening — Catch It Early",body:"NHS diabetic eye screening detects retinopathy before you notice any symptoms, when treatment works best. Free for everyone with diabetes aged 12 and over — try not to miss your appointment.",link:"https://www.nhs.uk/conditions/diabetic-eye-screening/"},
 
     {tag:"trial",label:"🔬 Pipeline",title:"Annexin A5 (ANXV) — NEXUS Trial (London)",body:"A novel drug using a human protein (Annexin A5) to protect retinal cells from damage and reduce inflammation — a completely different approach to anti-VEGF injections. The Phase 2a NEXUS trial is recruiting at The Retina Clinic London (started November 2025). Early findings from the first patients (reported February-April 2026) showed no safety concerns; primary completion is expected around mid-2026.",link:"https://clinicaltrials.gov/study/NCT07259928"},
 
@@ -8332,6 +8332,8 @@ function labelToClass(label) {
 
         ${_isWelsh ? '<p style="background:#00b140;color:#fff;padding:8px 14px;border-radius:8px;font-size:0.85rem;margin-bottom:12px">🏴󠁧󠁢󠁷󠁬󠁳󠁥󠁳󠁥 Mae\'r adran hon ar gael yn Saesneg yn unig ar hyn o bryd. / This section is currently in English only.</p>' : ''}
 
+        <div class="wb" style="margin-bottom:16px"><strong>Before you buy:</strong> a free NHS low-vision assessment can match the right aids to your sight — ask your optometrist or eye clinic. To see and try equipment, several UK suppliers offer free home demonstrations; two well-established ones are the <a href="https://shop.rnib.org.uk" aria-label="RNIB Shop (opens external site)" rel="noopener" style="color:var(--yellow);font-weight:700">RNIB Shop <span aria-hidden="true">↗</span></a> and <a href="https://www.visionaid.co.uk" aria-label="VisionAid Technologies (opens external site)" rel="noopener" style="color:var(--yellow);font-weight:700">VisionAid <span aria-hidden="true">↗</span></a>. It's worth comparing a few before deciding.</div>
+
         ${d.tech.map(t=>`
 
         <div class="tc">
@@ -8344,7 +8346,7 @@ function labelToClass(label) {
 
         </div>`).join('')}
 
-        <div class="wb"><strong>Funding help:</strong> Many devices are part or fully funded. Ask your local authority sensory team, Access to Work, or Disabled Students Allowance before buying privately. To see and buy specialist equipment, two trusted UK suppliers are the <a href="https://shop.rnib.org.uk" aria-label="RNIB Shop (opens external site)" rel="noopener" style="color:var(--yellow);font-weight:700">RNIB Shop <span aria-hidden="true">↗</span></a> and <a href="https://www.visionaid.co.uk" aria-label="VisionAid Technologies (opens external site)" rel="noopener" style="color:var(--yellow);font-weight:700">VisionAid Technologies <span aria-hidden="true">↗</span></a>, who offer free no-obligation home demonstrations of magnifiers, wearables and reading devices across the UK.</div>
+        <div class="wb"><strong>Funding help:</strong> Many devices are part or fully funded. Ask your local authority sensory team, Access to Work, or Disabled Students Allowance before buying privately. To see and buy specialist equipment, well-established UK suppliers include the <a href="https://shop.rnib.org.uk" aria-label="RNIB Shop (opens external site)" rel="noopener" style="color:var(--yellow);font-weight:700">RNIB Shop <span aria-hidden="true">↗</span></a> and <a href="https://www.visionaid.co.uk" aria-label="VisionAid Technologies (opens external site)" rel="noopener" style="color:var(--yellow);font-weight:700">VisionAid Technologies <span aria-hidden="true">↗</span></a>, among others; several offer free no-obligation home demonstrations across the UK, so it's worth comparing a few.</div>
 
       </div>
 
