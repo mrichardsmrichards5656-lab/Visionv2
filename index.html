@@ -1143,7 +1143,7 @@ body.welsh-active .trial-link::after { content: " (Saesneg yn unig)"; font-size:
 
 .lw-card-icon  { font-size: 1.6rem; flex-shrink: 0; }
 
-.lw-card-arrow { font-size: 1rem; color: var(--yellow); flex-shrink: 0; transition: transform .25s; margin-top: 2px; }
+.lw-card-arrow { font-size: 1.6rem; font-weight: 900; color: var(--yellow); flex-shrink: 0; transition: transform .25s; margin-top: 2px; line-height: 1; }
 
 .lw-card[aria-expanded="true"] .lw-card-arrow { transform: rotate(180deg); }
 
@@ -1153,7 +1153,11 @@ body.welsh-active .trial-link::after { content: " (Saesneg yn unig)"; font-size:
 
 .lw-card-hint  { font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--yellow); display: block; }
 
-.lw-card[aria-expanded="true"] .lw-card-hint { display: none; }
+.lw-hint-open { display: none; }
+
+.lw-card[aria-expanded="true"] .lw-hint-closed { display: none; }
+
+.lw-card[aria-expanded="true"] .lw-hint-open { display: inline; }
 
 
 
@@ -3240,11 +3244,18 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
     <h1>Everyday Guide</h1>
 
-    <p style="font-size:0.95rem;color:var(--text2);margin-bottom:32px;line-height:1.8;">Practical tips to make daily life easier — covering the things that matter beyond the clinic. Tap any topic to expand it.</p>
+    <p style="font-size:0.95rem;color:var(--text2);margin-bottom:32px;line-height:1.8;">Practical tips to make daily life easier — covering the things that matter beyond the clinic. Tap any topic to expand it, or open them all at once.</p>
 
 
 
     <div class="wb"><strong>You are not alone.</strong> Every tip here comes from the community — people with sight conditions who have found what works. If you have something to add, <button onclick="showPage('contact')" style="background:none;border:none;color:var(--yellow);font-family:var(--font);font-size:inherit;font-weight:700;cursor:pointer;text-decoration:underline;padding:0">get in touch</button>.</div>
+
+
+
+    <button type="button" id="lw-toggle-all" class="lw-toggle-all" onclick="setAllLW(this.getAttribute('aria-expanded')!=='true')" aria-expanded="false" style="display:flex;align-items:center;gap:8px;background:var(--card);border:2px solid var(--yellow);color:var(--yellow);border-radius:50px;padding:10px 18px;margin:0 0 20px;font-family:var(--font);font-weight:700;font-size:0.95rem;cursor:pointer">
+      <span aria-hidden="true" style="font-size:1.1rem">⊕</span>
+      <span class="lw-toggle-all-label">Open all sections</span>
+    </button>
 
 
 
@@ -3271,7 +3282,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
           <span class="lw-card-desc">Safe, independent cooking with low or no vision — tools, techniques, and organisation tips.</span>
 
-          <span class="lw-card-hint">Tap to expand</span>
+          <span class="lw-card-hint"><span class="lw-hint-closed">Tap to expand</span><span class="lw-hint-open">Tap to close</span></span>
 
         </button>
 
@@ -3378,7 +3389,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
           <span class="lw-card-desc">Being a brilliant parent with low or no vision — practical strategies, equipment, and emotional support.</span>
 
-          <span class="lw-card-hint">Tap to expand</span>
+          <span class="lw-card-hint"><span class="lw-hint-closed">Tap to expand</span><span class="lw-hint-open">Tap to close</span></span>
 
         </button>
 
@@ -3473,7 +3484,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
           <span class="lw-card-desc">Staying active with sight loss — from gym to goalball, running to yoga.</span>
 
-          <span class="lw-card-hint">Tap to expand</span>
+          <span class="lw-card-hint"><span class="lw-hint-closed">Tap to expand</span><span class="lw-hint-open">Tap to close</span></span>
 
         </button>
 
@@ -3568,7 +3579,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
           <span class="lw-card-desc">Looking and feeling great with low or no vision — practical techniques and trusted tools.</span>
 
-          <span class="lw-card-hint">Tap to expand</span>
+          <span class="lw-card-hint"><span class="lw-hint-closed">Tap to expand</span><span class="lw-hint-open">Tap to close</span></span>
 
         </button>
 
@@ -3673,7 +3684,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
           <span class="lw-card-desc">Books, radio, podcasts and audio — the best free and paid services for people with sight loss.</span>
 
-          <span class="lw-card-hint">Tap to expand</span>
+          <span class="lw-card-hint"><span class="lw-hint-closed">Tap to expand</span><span class="lw-hint-open">Tap to close</span></span>
 
         </button>
 
@@ -3774,7 +3785,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
           <span class="lw-card-desc">Trains, buses, taxis, and travelling independently with sight loss.</span>
 
-          <span class="lw-card-hint">Tap to expand</span>
+          <span class="lw-card-hint"><span class="lw-hint-closed">Tap to expand</span><span class="lw-hint-open">Tap to close</span></span>
 
         </button>
 
@@ -3848,6 +3859,79 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
 
 
+      <!-- DAYS OUT & ENTERTAINMENT -->
+
+      <div>
+
+        <h2 class="sr-only">Days Out &amp; Entertainment</h2>
+        <button class="lw-card" onclick="toggleLW('daysout',this)" aria-expanded="false" aria-controls="lw-daysout">
+
+          <div class="lw-card-top">
+
+            <span class="lw-card-icon" aria-hidden="true">🎭</span>
+
+            <span class="lw-card-arrow" aria-hidden="true">▾</span>
+
+          </div>
+
+          <span class="lw-card-title">Days Out &amp; Entertainment</span>
+
+          <span class="lw-card-desc">Theatre, cinema and attractions — discount schemes that give a free ticket for the person accompanying you, plus audio-described shows.</span>
+
+          <span class="lw-card-hint"><span class="lw-hint-closed">Tap to expand</span><span class="lw-hint-open">Tap to close</span></span>
+
+        </button>
+
+        <div id="lw-daysout" class="lw-section" role="region" aria-label="Days out and entertainment access schemes">
+
+          <div class="lw-tip">
+
+            <span class="lw-tip-tag">Theatre</span>
+
+            <h3>ATG Access Membership</h3>
+
+            <p>If you visit theatres run by the Ambassador Theatre Group (ATG), their free Access Membership lets you book the best accessible seats and get a <strong>free ticket for an essential companion</strong> accompanying you, plus access to audio-described performances and touch tours. <strong>What you get:</strong> best available accessible seats, a free companion/carer ticket, and your access needs recorded once so you don't re-explain them each visit (valid around three years). <strong>Who's eligible:</strong> anyone disabled under the Equality Act 2010, which includes being registered Sight Impaired or Severely Sight Impaired — you confirm this through a Nimbus Access Card or the free ATG-only version (see Nimbus below). <strong>Cost:</strong> free to join. Join or read more at <a href="https://www.atgtickets.com/access/" aria-label="ATG Tickets Access (opens external site)" rel="noopener noreferrer">atgtickets.com/access <span aria-hidden="true">↗</span></a>, or call their Accessibility line on 0333 009 5399.</p>
+
+          </div>
+
+          <div class="lw-tip">
+
+            <span class="lw-tip-tag">Cinema</span>
+
+            <h3>CEA Card</h3>
+
+            <p>The CEA Card is a national cinema scheme accepted at most UK cinemas, including Odeon, Vue, Cineworld and Showcase. <strong>What you get:</strong> a <strong>free ticket for a companion or carer</strong> when you buy a full-price ticket for yourself for the same screening. <strong>Who's eligible:</strong> people who need someone with them at the cinema because of a disability — being registered Sight Impaired or Severely Sight Impaired qualifies, as does receiving PIP, DLA, Attendance Allowance or Armed Forces Independence Payment. Applicants must be 8 or over. <strong>Cost:</strong> £6.50 for the year. Apply at <a href="https://www.ceacard.co.uk" aria-label="CEA Card (opens external site)" rel="noopener noreferrer">ceacard.co.uk <span aria-hidden="true">↗</span></a>.</p>
+
+          </div>
+
+          <div class="lw-tip">
+
+            <span class="lw-tip-tag">Attractions &amp; venues</span>
+
+            <h3>Nimbus Access Card</h3>
+
+            <p>The Access Card (run by Nimbus Disability, a social enterprise run by and for disabled people) turns your access needs into simple symbols that venues recognise — increasingly the standard across theatres, cinemas, attractions, theme parks and stadiums, so you register once instead of carrying paperwork to each place. <strong>What you get:</strong> a card or digital ID whose symbols unlock the right adjustments at each venue — a "+1" or "+2" symbol means a <strong>free essential companion ticket</strong>, and other symbols cover things like step-free seating. <strong>Who's eligible:</strong> disabled people including those who are visually impaired; you provide proof once (such as your CVI/registration as Sight Impaired or Severely Sight Impaired, or a PIP/DLA award) and Nimbus assigns your symbols. <strong>Cost:</strong> the full card is around £15 for three years and works across thousands of venues; many places (including ATG) also offer a <strong>free</strong> venue-specific Digital Access Pass version. Apply or read more at <a href="https://www.accesscard.online" aria-label="Nimbus Access Card (opens external site)" rel="noopener noreferrer">accesscard.online <span aria-hidden="true">↗</span></a>.</p>
+
+          </div>
+
+          <div class="lw-tip">
+
+            <span class="lw-tip-tag">Good to know</span>
+
+            <h3>Audio-described performances &amp; touch tours</h3>
+
+            <p>Many theatres offer audio-described performances, where a trained describer narrates the action through an earpiece, and touch tours beforehand to feel the sets and props. Ask the venue's box office what's coming up, or look for the audio-description symbol when booking. Prices and exact benefits vary by venue, so it's always worth checking the specific theatre or cinema's access page before you book.</p>
+
+          </div>
+
+          <button class="lw-close" onclick="toggleLW('daysout',this.previousElementSibling)" aria-label="Close days out section"><span aria-hidden="true">↑</span> Close</button>
+
+        </div>
+
+      </div>
+
+
+
       <!-- WORK & EMPLOYMENT -->
 
       <div>
@@ -3867,7 +3951,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
           <span class="lw-card-desc">Your rights, available support, and how to thrive professionally with sight loss.</span>
 
-          <span class="lw-card-hint">Tap to expand</span>
+          <span class="lw-card-hint"><span class="lw-hint-closed">Tap to expand</span><span class="lw-hint-open">Tap to close</span></span>
 
         </button>
 
@@ -3962,7 +4046,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
           <span class="lw-card-desc">Emotional support, coping with diagnosis, and finding your community.</span>
 
-          <span class="lw-card-hint">Tap to expand</span>
+          <span class="lw-card-hint"><span class="lw-hint-closed">Tap to expand</span><span class="lw-hint-open">Tap to close</span></span>
 
         </button>
 
@@ -5265,6 +5349,46 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
       </ul>
 
       <p style="margin-top:10px">If the school does not know about your child's condition, tell them in writing and follow up. Ask for a meeting with the SENCo (Special Educational Needs Coordinator) at the start of every school year.</p>
+
+    </div>
+
+
+
+    <div class="lc">
+
+      <h2 id="school-options">🏫 Choosing a school &amp; getting the right support</h2>
+
+      <p>There is no single "right" setting — it depends on your child. Broadly, the options are <strong>mainstream school</strong> (with support from a visiting QTVI and any help set out in an EHC plan), <strong>a mainstream school with a specialist VI resource base</strong> (extra on-site support and specialist staff), or <strong>a specialist school</strong> for children with vision impairment or more complex needs. A QTVI or your local authority's sensory support service can help you weigh up what suits your child.</p>
+
+      <p style="margin-top:10px"><strong>QTVI (Qualified Teacher of children and young people with Vision Impairment)</strong> — a specialist teacher, employed by the local authority, who supports vision-impaired children from birth up to age 25. They assess needs, advise the school, teach specialist skills (like braille or assistive technology), and support the family. Every vision-impaired child should have access to one — you can request this through your local authority's sensory service.</p>
+
+      <p style="margin-top:10px"><strong>SENDIASS (Special Educational Needs and Disabilities Information, Advice and Support Service)</strong> — a free, confidential and impartial service in every local authority that helps parents understand the SEND system and can support you through an EHC plan application or a disagreement with a school. Search "SENDIASS" plus your local council's name to find yours.</p>
+
+      <p style="margin-top:10px"><strong>Portage (for children under 5)</strong> — a free home-visiting education service for pre-school children with additional needs, including vision impairment. Portage workers support play and early learning at home and many families find them genuinely helpful. Ask your health visitor, paediatrician or local authority whether a service runs in your area.</p>
+
+      <p style="margin-top:10px"><strong>Guide Dogs Buddy Dog scheme</strong> — not a working guide dog, but a friendly pet dog matched to a vision-impaired child to build confidence and companionship. Run by Guide Dogs UK; check guidedogs.org.uk for current eligibility and how to apply.</p>
+
+    </div>
+
+
+
+    <div class="lc">
+
+      <h2 id="accessible-books">📚 Accessible books &amp; reading</h2>
+
+      <p>Children who can't read standard print can still read the same books as their classmates — several UK services make this free or low-cost:</p>
+
+      <p style="margin-top:10px"><strong>RNIB Bookshare</strong> — a large online collection of textbooks, curriculum materials and reading books in accessible formats (large print, electronic braille, audio, Word). It is <strong>free to UK schools</strong>; once your child's school has signed up, families can use it at home too. Ask the school's SENCo to set up an account. See rnibbookshare.org.</p>
+
+      <p style="margin-top:10px"><strong>Guide Dogs CustomEyes</strong> — books printed in your child's exact preferred large-print size, font and colour, for children and young people up to 25. Joining is free; you pay the book's normal retail price per title. Run by Guide Dogs UK.</p>
+
+      <p style="margin-top:10px"><strong>ClearVision</strong> — a free postal lending library of children's books that combine braille, print and pictures, so a child with little or no sight can share the same book with sighted friends and family. Over 14,000 titles.</p>
+
+      <p style="margin-top:10px"><strong>Calibre Audio</strong> — a free national charity lending library of audiobooks for anyone who finds reading print difficult.</p>
+
+      <p style="margin-top:10px"><strong>Living Paintings</strong> — a free postal library of "touch to see" tactile books and pictures for blind and partially sighted children and adults.</p>
+
+      <p style="margin-top:10px">The free <strong>Dolphin EasyReader</strong> app is an easy way to read titles from several of these libraries on a phone or tablet.</p>
 
     </div>
 
@@ -8208,6 +8332,11 @@ function labelToClass(label) {
       <span style="font-size:1.8rem" aria-hidden="true">${d.helpline.number.includes('@') ? '✉️' : '📞'}</span>
     </a>` : ''}
 
+    <button type="button" id="acc-toggle-all" class="acc-toggle-all" onclick="setAllAcc(this.getAttribute('aria-expanded')!=='true')" aria-expanded="false" style="display:flex;align-items:center;gap:8px;background:var(--card);border:2px solid var(--yellow);color:var(--yellow);border-radius:50px;padding:10px 18px;margin-bottom:16px;font-family:var(--font);font-weight:700;font-size:0.95rem;cursor:pointer">
+      <span aria-hidden="true" style="font-size:1.1rem">⊕</span>
+      <span class="acc-toggle-all-label">Open all sections</span>
+    </button>
+
     <div class="acc-item" id="acc-about-${key}">
 
       <div style="display:flex;align-items:center;gap:8px"><button class="acc-btn" onclick="toggleAcc('about','${key}')" aria-expanded="false">
@@ -8812,6 +8941,26 @@ function speakAccSection(accBody, btn) {
   var _origShowPage = window.showPage || function(){};
 
 
+function setAllAcc(openState) {
+  // Open or close ALL accordion panels on the current condition page.
+  // Uses the same DOM changes as toggleAcc (open class + aria-expanded) so
+  // state stays consistent, but without the per-panel focus move.
+  var page = document.getElementById('page-condition');
+  if (!page) return;
+  var items = page.querySelectorAll('.acc-item');
+  items.forEach(function(item) {
+    var btn = item.querySelector('.acc-btn');
+    item.classList.toggle('open', openState);
+    if (btn) btn.setAttribute('aria-expanded', String(openState));
+  });
+  // Update the control button label/state
+  var ctrl = document.getElementById('acc-toggle-all');
+  if (ctrl) {
+    ctrl.setAttribute('aria-expanded', String(openState));
+    ctrl.querySelector('.acc-toggle-all-label').textContent = openState ? 'Close all sections' : 'Open all sections';
+  }
+}
+
 function toggleAcc(section, key) {
 
   var item = document.getElementById('acc-' + section + '-' + key);
@@ -9146,6 +9295,7 @@ function toggleJD() {
 /* ─────────────── PAGE SWITCHER ─────────────── */
 
 var _scrollPos = {};
+var _suppressPageScroll = false;  // when true, showPage won't manage scroll (caller will scroll to a specific target)
 
 
 
@@ -9191,7 +9341,7 @@ function showPage(name) {
     if (_target) {
       // Make h1 focusable temporarily so screen reader can land on it
       _target.setAttribute('tabindex', '-1');
-      _target.focus({preventScroll: false});
+      _target.focus({preventScroll: _suppressPageScroll ? true : false});
       // Remove tabindex after blur so it's not in normal tab order
       _target.addEventListener('blur', function _b(){
         _target.removeAttribute('tabindex');
@@ -9235,7 +9385,7 @@ function showPage(name) {
     var ftH = document.querySelector('footer');
     if (ftH) ftH.style.display = '';
 
-    window.scrollTo({ top: 0, behavior: 'instant' });
+    if (!_suppressPageScroll) window.scrollTo({ top: 0, behavior: 'instant' });
 
     return;
 
@@ -9275,7 +9425,7 @@ function showPage(name) {
 
   var savedPos = _scrollPos['page-' + name] || 0;
 
-  window.scrollTo({ top: savedPos, behavior: 'instant' });
+  if (!_suppressPageScroll) window.scrollTo({ top: savedPos, behavior: 'instant' });
 
   applyNRState();
 
@@ -9453,18 +9603,6 @@ function toggleLW(id, cardBtn) {
 
   if (!section) return;
 
-  if (openLW && openLW !== id) {
-
-    var prevSection = document.getElementById('lw-' + openLW);
-
-    var prevBtns = document.querySelectorAll('[onclick*="toggleLW(\'' + openLW + '\'"]');
-
-    if (prevSection) prevSection.classList.remove('vis');
-
-    prevBtns.forEach(function(b) { b.setAttribute('aria-expanded','false'); });
-
-  }
-
   var isOpen = section.classList.contains('vis');
 
   section.classList.toggle('vis', !isOpen);
@@ -9481,7 +9619,85 @@ function toggleLW(id, cardBtn) {
 
     openLW = null;
 
+    // Keep the view on the card just closed. Find the card's TOP header button
+
+    // reliably (the one that controls this section), because when closing via the
+
+    // in-section "Close" button, the passed-in element is inside the collapsing
+
+    // content and its position becomes meaningless after collapse.
+
+    setTimeout(function() {
+
+      try {
+
+        var headerBtn = document.querySelector('.lw-card[aria-controls="lw-' + id + '"]');
+
+        if (headerBtn) headerBtn.scrollIntoView({behavior:'smooth', block:'start'});
+
+      } catch (e) {}
+
+    }, 60);
+
   }
+
+  updateLWToggleAll();
+
+}
+
+function updateLWToggleAll() {
+
+  // Keep the Everyday Guide "open/close all" button label in sync with how many cards are open.
+
+  var ctrl = document.getElementById('lw-toggle-all');
+
+  if (!ctrl) return;
+
+  var page = document.getElementById('page-livingwell');
+
+  if (!page) return;
+
+  var sections = page.querySelectorAll('.lw-section');
+
+  var anyClosed = false;
+
+  sections.forEach(function(s) { if (!s.classList.contains('vis')) anyClosed = true; });
+
+  // If anything is closed, button offers "Open all"; if all open, it offers "Close all".
+
+  ctrl.setAttribute('aria-expanded', String(!anyClosed));
+
+  var label = ctrl.querySelector('.lw-toggle-all-label');
+
+  if (label) label.textContent = anyClosed ? 'Open all sections' : 'Close all sections';
+
+}
+
+function setAllLW(openState) {
+
+  // Open or close ALL Living Well cards on the Everyday Guide page.
+
+  var page = document.getElementById('page-livingwell');
+
+  if (!page) return;
+
+  var sections = page.querySelectorAll('.lw-section');
+
+  sections.forEach(function(section) {
+
+    var id = section.id.replace('lw-', '');
+
+    var btns = page.querySelectorAll('[onclick*="toggleLW(\'' + id + '\'"]');
+
+    section.classList.toggle('vis', openState);
+
+    btns.forEach(function(b) { b.setAttribute('aria-expanded', String(openState)); });
+
+  });
+
+  openLW = null;  // no single "current" card when using open/close all
+
+  updateLWToggleAll();
 
 }
 
@@ -9882,7 +10098,11 @@ function filterConds(q) {
   if (!matches.length) {
     list.style.display = 'none';
     list.innerHTML = '';
-    if (hint) { hint.style.display = 'block'; hint.textContent = 'No conditions found for "' + q + '". Try a different spelling.'; }
+    if (hint) {
+      hint.style.display = 'block';
+      var safeQ = q.replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+      hint.innerHTML = 'No eye conditions found for "' + safeQ + '". This box only searches the 20 eye conditions — for things like benefits, days out, cooking or travel, <button type="button" onclick="(function(){var t=document.getElementById(\'tsearch\');if(t){t.value=' + JSON.stringify(q) + ';filterTopics(t.value);t.scrollIntoView({behavior:\'smooth\',block:\'center\'});t.focus();}})()" style="background:none;border:none;color:var(--yellow);font-family:var(--font);font-size:inherit;font-weight:700;cursor:pointer;text-decoration:underline;padding:0">search the rest of the site <span aria-hidden="true">→</span></button>.';
+    }
     return;
   }
 
@@ -9929,6 +10149,10 @@ var TOPIC_INDEX = [
   // CHILDREN & EDUCATION
   {label:"EHC Plan (Education, Health and Care Plan)", page:"children#ehc", icon:"📋", section:"Children", keywords:"ehc plan education health care plan school sen special educational needs local authority 20 weeks ehcp"},
   {label:"QTVI (Qualified Teacher of VI)", page:"children#ehc", icon:"🎓", section:"Children", keywords:"qtvi qualified teacher visual impairment vi specialist teacher school sensory support"},
+  {label:"Choosing a School & School Support", page:"children#school-options", icon:"🏫", section:"Children", keywords:"school options mainstream specialist resource base vi unit choosing school sendiass portage senco send local authority advocacy ehcp support children education buddy dog"},
+  {label:"SENDIASS (free SEND advice for parents)", page:"children#school-options", icon:"🧭", section:"Children", keywords:"sendiass send information advice support service free impartial parents ehcp ehc plan disagreement school local authority advocacy"},
+  {label:"Portage (early support, under 5s)", page:"children#school-options", icon:"🧸", section:"Children", keywords:"portage early years under 5 pre-school preschool home visiting play learning toddler baby support visual impairment"},
+  {label:"Accessible Books & Reading for Children", page:"children#accessible-books", icon:"📚", section:"Children", keywords:"accessible books reading children rnib bookshare custom eyes customeyes clearvision clear vision calibre audio living paintings large print braille audiobooks dolphin easyreader school textbooks curriculum"},
   {label:"School & Exam Support", page:"children#ehc", icon:"🏫", section:"Children", keywords:"school telling tell teacher classroom child nursery exams extra time access arrangements gcse a level"},
   {label:"For Parents Guide", page:"children", icon:"👨‍👩‍👧", section:"Children", keywords:"for parents guide child diagnosed family parent mum dad newly diagnosed"},
 
@@ -9978,6 +10202,13 @@ var TOPIC_INDEX = [
   {label:"Carers UK (external)", page:"external:https://www.carersuk.org", icon:"👥", section:"External", keywords:"carers uk caring loved one family member carer support unpaid carer"},
   {label:"Citizens Advice (external)", page:"external:https://www.citizensadvice.org.uk", icon:"⚖️", section:"External", keywords:"citizens advice debt money universal credit pension credit help free legal"},
   {label:"Age UK (external)", page:"external:https://www.ageuk.org.uk", icon:"👴", section:"External", keywords:"age uk older people attendance allowance pension credit support helpline"},
+
+  // DAYS OUT & LEISURE
+  {label:"Days Out & Entertainment (theatre, cinema, attractions)", page:"livingwell$daysout", icon:"🎭", section:"Days Out", keywords:"days out entertainment leisure theatre cinema attractions theme park stadium museum concert show access scheme companion carer free ticket accessible seats audio described touch tour"},
+  {label:"ATG Access Membership (theatre)", page:"livingwell$daysout", icon:"🎭", section:"Days Out", keywords:"atg ambassador theatre group access membership theatre play musical west end accessible seats free companion carer ticket audio described touch tour"},
+  {label:"CEA Card (free cinema companion ticket)", page:"livingwell$daysout", icon:"🎬", section:"Days Out", keywords:"cea card cinema film movie odeon vue cineworld showcase free companion carer ticket disabled sight impaired"},
+  {label:"Nimbus Access Card (attractions & venues)", page:"livingwell$daysout", icon:"🪪", section:"Days Out", keywords:"nimbus access card attractions venues theme park stadium essential companion plus one free carer ticket digital access pass symbols disabled sight impaired"},
+  {label:"Audio-Described Performances & Touch Tours", page:"livingwell$daysout", icon:"🎧", section:"Days Out", keywords:"audio description audio described performance touch tour theatre describer earpiece visually impaired blind partially sighted accessible show"},
 
   // ABOUT THE SITE
   {label:"How We Write Our Content", page:"disclaimer", icon:"📝", section:"About", keywords:"how we write content sources medical references methodology review disclaimer"},
@@ -10120,7 +10351,9 @@ function selectTopic(target) {
     return;
   }
 
-  // Navigate
+  // Navigate. If we're heading to a specific card/anchor, tell showPage not to
+  // manage scroll itself (otherwise it scrolls to top and fights our scroll).
+  _suppressPageScroll = !!(lwId || anchor);
   showPage(pageKey);
 
   // After page renders, perform any extra steps
@@ -10140,31 +10373,51 @@ function selectTopic(target) {
       if (anchor) {
         focusTarget = document.getElementById(anchor);
       } else if (lwId) {
-        focusTarget = document.getElementById('lw-' + lwId);
+        // Scroll to the card BUTTON (always visible, stable position) rather than
+        // the section, which may still be animating open / zero-height at this moment.
+        focusTarget = document.querySelector('[onclick*="toggleLW(\'' + lwId + '\'"]') || document.getElementById('lw-' + lwId);
       }
 
       if (focusTarget) {
-        var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        // Slight delay if accordion just opened to let animation start
-        setTimeout(function() {
-          try {
-            focusTarget.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
-          } catch (e) { focusTarget.scrollIntoView(); }
+        // Robust scroll: the target can briefly report as not-yet-laid-out
+        // (offsetParent null / rect.top 0) right after a page switch + accordion
+        // open. So poll a few times until it has a real position, then scroll the
+        // window by an absolute document offset (more reliable on mobile than
+        // scrollIntoView with smooth behaviour).
+        var _scrollTarget = document.getElementById('lw-' + lwId) || focusTarget;
+        var _tries = 0;
+        var _doScroll = function() {
+          _tries++;
+          var rect = _scrollTarget.getBoundingClientRect();
+          var laidOut = _scrollTarget.offsetParent !== null && (rect.height > 0 || rect.top !== 0);
+          if (!laidOut && _tries < 12) { setTimeout(_doScroll, 60); return; }
+          // Compute absolute position from document top
+          var absTop = rect.top + window.pageYOffset;
+          // Land slightly above the card so its heading isn't jammed under the sticky bar
+          var dest = Math.max(0, absTop - 70);
+          try { window.scrollTo({ top: dest, behavior: 'auto' }); }
+          catch (e) { window.scrollTo(0, dest); }
+          // focus for screen readers without moving the view again
           var hadTabindex = focusTarget.hasAttribute('tabindex');
           if (!hadTabindex) focusTarget.setAttribute('tabindex', '-1');
-          try { focusTarget.focus({ preventScroll: true }); } catch (e) { focusTarget.focus(); }
+          try { focusTarget.focus({ preventScroll: true }); } catch (e) {}
           if (!hadTabindex) {
             focusTarget.addEventListener('blur', function once() {
               focusTarget.removeAttribute('tabindex');
               focusTarget.removeEventListener('blur', once);
             });
           }
-        }, lwId ? 200 : 0);
+          _suppressPageScroll = false;
+        };
+        setTimeout(_doScroll, lwId ? 120 : 40);
+      } else {
+        _suppressPageScroll = false;
       }
     } catch (err) {
+      _suppressPageScroll = false;
       if (window.console && console.warn) console.warn('Topic navigation issue:', err);
     }
-  }, 150);
+  }, 200);
 }
 
 
