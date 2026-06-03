@@ -173,6 +173,9 @@ body.yb .nc-num { color: #fcd901 !important; background: #000 !important; }
 
 /* Black/White theme: numbered circles need to be visible on black page */
 body.hc .nc-num { background: #000 !important; color: #fff !important; border: 3px solid #fff !important; }
+/* Dark & Low Light: --blue/--green/--yellow accents are light in these themes,
+   so white numerals on the number circles are low-contrast. Use dark numerals. */
+body.dark .nc-num, body.ll .nc-num { color: #000 !important; }
 body.hc .acc-num { background: #000 !important; color: #fff !important; border: 3px solid #fff !important; }
 
 /* Black/White theme: yellow-background buttons (like "Questions to ask doctor") need to be visible
@@ -2331,7 +2334,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fcd90
 
   <div style="max-width:680px;margin:0 auto">
 
-    🏴󠁧󠁢󠁷󠁬󠁳󠁥󠁳󠁿 <strong>Cymraeg — Cyfieithiad cyfyngedig</strong>
+    🏴󠁧󠁢󠁷󠁬󠁳󠁿 <strong>Cymraeg — Cyfieithiad cyfyngedig</strong>
     <br>
     <span style="font-weight:500">Mae cyfieithiad Cymraeg ar gael ar gyfer yr hafan, geirfa, cymorth lleol, iechyd llygaid, cyflogaeth, tudalennau rhieni, a gwybodaeth ‘Am y Cyflwr’. Mae’r ymchwil glinigol manwl, cyfrifianellau budd-daliadau, a chanllawiau ymarferol yn Saesneg ar hyn o bryd.</span>
 
@@ -8458,9 +8461,9 @@ function labelToClass(label) {
 
       <div class="acc-body">
 
-        ${_isWelsh && d.cy && d.cy.researchSummary ? `<div class="wb" style="border-left:4px solid #00b140;margin-bottom:16px"><strong>🏴󠁧󠁢󠁷󠁬󠁳󠁥󠁳󠁿 Crynodeb Ymchwil:</strong> ${d.cy.researchSummary}</div>` : ''}
+        ${_isWelsh && d.cy && d.cy.researchSummary ? `<div class="wb" style="border-left:4px solid #00b140;margin-bottom:16px"><strong>🏴󠁧󠁢󠁷󠁬󠁳󠁿 Crynodeb Ymchwil:</strong> ${d.cy.researchSummary}</div>` : ''}
 
-        ${_isWelsh ? '<p style="background:#00b140;color:#fff;padding:8px 14px;border-radius:8px;font-size:0.85rem;margin-bottom:12px">🏴󠁧󠁢󠁷󠁬󠁳󠁥󠁳󠁿 Mae\'r manylion ymchwil isod ar gael yn Saesneg yn unig ar hyn o bryd. / The detailed research items below are currently in English only.</p>' : ''}
+        ${_isWelsh ? '<p style="background:#00b140;color:#fff;padding:8px 14px;border-radius:8px;font-size:0.85rem;margin-bottom:12px">🏴󠁧󠁢󠁷󠁬󠁳󠁿 Mae\'r manylion ymchwil isod ar gael yn Saesneg yn unig ar hyn o bryd. / The detailed research items below are currently in English only.</p>' : ''}
 
         <div class="wb" style="border-left:4px solid #b86d00;margin-bottom:16px;background:rgba(184,109,0,0.08)"><strong>⚠️ Always check current status before acting.</strong> Research changes fast. Verify on <a href="https://www.clinicaltrials.gov" aria-label="ClinicalTrials.gov (opens external site)" rel="noopener noreferrer">ClinicalTrials.gov</a> and discuss with your ophthalmologist. <span style="opacity:0.75">Last reviewed June 2026.</span></div>
 
@@ -8500,7 +8503,7 @@ function labelToClass(label) {
 
       <div class="acc-body">
 
-        ${_isWelsh ? '<p style="background:#00b140;color:#fff;padding:8px 14px;border-radius:8px;font-size:0.85rem;margin-bottom:12px">🏴󠁧󠁢󠁷󠁬󠁳󠁥󠁳󠁥 Mae\'r adran hon ar gael yn Saesneg yn unig ar hyn o bryd. / This section is currently in English only.</p>' : ''}
+        ${_isWelsh ? '<p style="background:#00b140;color:#fff;padding:8px 14px;border-radius:8px;font-size:0.85rem;margin-bottom:12px">🏴󠁧󠁢󠁷󠁬󠁳󠁿 Mae\'r adran hon ar gael yn Saesneg yn unig ar hyn o bryd. / This section is currently in English only.</p>' : ''}
 
         ${d.guides.map(g=>`
 
@@ -8534,7 +8537,7 @@ function labelToClass(label) {
 
       <div class="acc-body">
 
-        ${_isWelsh ? '<p style="background:#00b140;color:#fff;padding:8px 14px;border-radius:8px;font-size:0.85rem;margin-bottom:12px">🏴󠁧󠁢󠁷󠁬󠁳󠁥󠁳󠁥 Mae\'r adran hon ar gael yn Saesneg yn unig ar hyn o bryd. / This section is currently in English only.</p>' : ''}
+        ${_isWelsh ? '<p style="background:#00b140;color:#fff;padding:8px 14px;border-radius:8px;font-size:0.85rem;margin-bottom:12px">🏴󠁧󠁢󠁷󠁬󠁳󠁿 Mae\'r adran hon ar gael yn Saesneg yn unig ar hyn o bryd. / This section is currently in English only.</p>' : ''}
 
         <div class="wb" style="margin-bottom:16px"><strong>Before you buy:</strong> a free NHS low-vision assessment can match the right aids to your sight — ask your optometrist or eye clinic. To see and try equipment, several UK suppliers offer free home demonstrations; two well-established ones are the <a href="https://shop.rnib.org.uk" aria-label="RNIB Shop (opens external site)" rel="noopener" style="color:var(--yellow);font-weight:700">RNIB Shop <span aria-hidden="true">↗</span></a> and <a href="https://www.visionaid.co.uk" aria-label="VisionAid Technologies (opens external site)" rel="noopener" style="color:var(--yellow);font-weight:700">VisionAid <span aria-hidden="true">↗</span></a>. It's worth comparing a few before deciding.</div>
 
@@ -8574,7 +8577,7 @@ function labelToClass(label) {
 
       <div class="acc-body">
 
-        ${_isWelsh ? '<p style="background:#00b140;color:#fff;padding:8px 14px;border-radius:8px;font-size:0.85rem;margin-bottom:12px">🏴󠁧󠁢󠁷󠁬󠁳󠁥󠁳󠁥 Mae\'r adran hon ar gael yn Saesneg yn unig ar hyn o bryd. / This section is currently in English only.</p>' : ''}
+        ${_isWelsh ? '<p style="background:#00b140;color:#fff;padding:8px 14px;border-radius:8px;font-size:0.85rem;margin-bottom:12px">🏴󠁧󠁢󠁷󠁬󠁳󠁿 Mae\'r adran hon ar gael yn Saesneg yn unig ar hyn o bryd. / This section is currently in English only.</p>' : ''}
 
         ${d.helpline ? `<div style="background:var(--yellow);border-radius:14px;padding:16px 18px;margin-bottom:14px;display:flex;align-items:center;gap:14px;flex-wrap:wrap">
 
@@ -8626,7 +8629,7 @@ function labelToClass(label) {
 
       <div class="acc-body">
 
-        ${_isWelsh ? '<p style="background:#00b140;color:#fff;padding:8px 14px;border-radius:8px;font-size:0.85rem;margin-bottom:12px">🏴󠁧󠁢󠁷󠁬󠁳󠁥󠁳󠁥 Mae\'r adran hon ar gael yn Saesneg yn unig ar hyn o bryd. / This section is currently in English only.</p>' : ''}
+        ${_isWelsh ? '<p style="background:#00b140;color:#fff;padding:8px 14px;border-radius:8px;font-size:0.85rem;margin-bottom:12px">🏴󠁧󠁢󠁷󠁬󠁳󠁿 Mae\'r adran hon ar gael yn Saesneg yn unig ar hyn o bryd. / This section is currently in English only.</p>' : ''}
 
         <div class="wb"><strong>You are entitled to these benefits.</strong> An estimated £3.5 billion in disability benefits goes unclaimed every year. Call RNIB (0303 123 9999) for free help with forms.</div>
 
@@ -8670,7 +8673,7 @@ function labelToClass(label) {
 
       <div class="acc-body">
 
-        ${_isWelsh ? '<p style="background:#00b140;color:#fff;padding:8px 14px;border-radius:8px;font-size:0.85rem;margin-bottom:12px">🏴󠁧󠁢󠁷󠁬󠁳󠁥󠁳󠁥 Mae\'r adran hon ar gael yn Saesneg yn unig ar hyn o bryd. / This section is currently in English only.</p>' : ''}
+        ${_isWelsh ? '<p style="background:#00b140;color:#fff;padding:8px 14px;border-radius:8px;font-size:0.85rem;margin-bottom:12px">🏴󠁧󠁢󠁷󠁬󠁳󠁿 Mae\'r adran hon ar gael yn Saesneg yn unig ar hyn o bryd. / This section is currently in English only.</p>' : ''}
 
         ${d.livingWith.map(l=>`
 
@@ -8708,7 +8711,7 @@ function labelToClass(label) {
 
       <div class="acc-body">
 
-        ${_isWelsh ? '<p style="background:#00b140;color:#fff;padding:8px 14px;border-radius:8px;font-size:0.85rem;margin-bottom:12px">🏴󠁧󠁢󠁷󠁬󠁳󠁥󠁳?? Mae\'r adran hon ar gael yn Saesneg yn unig ar hyn o bryd. / This section is currently in English only.</p>' : ''}
+        ${_isWelsh ? '<p style="background:#00b140;color:#fff;padding:8px 14px;border-radius:8px;font-size:0.85rem;margin-bottom:12px">🏴󠁧󠁢󠁷󠁬󠁳󠁿 Mae\'r adran hon ar gael yn Saesneg yn unig ar hyn o bryd. / This section is currently in English only.</p>' : ''}
 
         <div class="wb"><strong>${d.forParents.intro}</strong></div>
 
@@ -9229,6 +9232,8 @@ function toggleWelsh() {
     document.documentElement.setAttribute('lang', _isWelsh ? 'cy-GB' : 'en-GB');
     document.body.classList.toggle('welsh-active', _isWelsh);
     try { localStorage.setItem('vh-lang', _isWelsh ? 'cy-GB' : 'en-GB'); } catch(e) {}
+    var _notice = document.getElementById('welsh-notice');
+    if (_notice) _notice.style.display = _isWelsh ? '' : 'none';
     var _cc = document.getElementById('condition-content');
     if (_cc) {
       _cc.innerHTML = renderCondition(_currentCond);
