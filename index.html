@@ -51,7 +51,7 @@
     "@type": "PeopleAudience",
     "audienceType": "People living with sight loss and their families"
   },
-  "lastReviewed": "2026-05-15",
+  "lastReviewed": "2026-06-02",
   "specialty": "Ophthalmology"
 }
 </script>
@@ -169,7 +169,7 @@ body.yb {
 /* Black/Yellow theme: --yellow is a deep amber so it stands out as an accent on the 
    bright yellow page. Text on amber accents stays black (high contrast). */
 body.yb .acc-num,
-body.yb .nc-num { color: #fff !important; background: #000 !important; }
+body.yb .nc-num { color: #fcd901 !important; background: #000 !important; }
 
 /* Black/White theme: numbered circles need to be visible on black page */
 body.hc .nc-num { background: #000 !important; color: #fff !important; border: 3px solid #fff !important; }
@@ -244,8 +244,8 @@ body.ll .tb-select { background-image: url("data:image/svg+xml;charset=UTF-8,%3c
 
 body.yb .cond-helpline-btn { background: #fcd901 !important; color: #000 !important; border: 3px solid #000 !important; }
 body.yb .cond-helpline-btn * { color: #000 !important; }
-body.yb .back-top { color: #fff !important; }
-body.yb .ab.on { color: #fff !important; }
+body.yb .back-top { color: #fcd901 !important; }
+body.yb .ab.on { color: #fcd901 !important; }
 /* Pressed toolbar buttons in Black/Yellow - need white text since var(--yellow) is black */
 body.yb .tb-btn { border: 2.5px solid #000 !important; }
 body.yb .tb-btn[aria-pressed="false"] { border: 2.5px solid #000 !important; }
@@ -266,15 +266,24 @@ body.yb #sticky-home-btn { background: #000 !important; color: #fcd901 !importan
 
 /* Sticky title bar uses var(--yellow) as background which is black in yb theme.
    Force white text on the bar and back button. */
-body.yb #sticky-title { color: #fff !important; }
-body.yb #sticky-title-back { color: #fff !important; border-color: #fff !important; }
+body.yb #sticky-title { color: #fcd901 !important; }
+body.yb #sticky-title-back { color: #fcd901 !important; border-color: #fcd901 !important; }
 
 /* Black/Yellow: --yellow is black. All elements using var(--yellow) as background
    become black, so force WHITE text for readability. */
 body.yb [style*="background:var(--yellow)"]:not(.cond-helpline-btn),
-body.yb [style*="background: var(--yellow)"]:not(.cond-helpline-btn) { color: #fff !important; }
+body.yb [style*="background: var(--yellow)"]:not(.cond-helpline-btn) { color: #fcd901 !important; }
 body.yb [style*="background:var(--yellow)"]:not(.cond-helpline-btn) *,
-body.yb [style*="background: var(--yellow)"]:not(.cond-helpline-btn) * { color: #fff !important; }
+body.yb [style*="background: var(--yellow)"]:not(.cond-helpline-btn) * { color: #fcd901 !important; }
+
+/* Yellow/Black: --yellow2 is #1a1a1a (near-black). Buttons that hardcode a
+   var(--yellow2) background with black text (e.g. the Contact us button) become
+   invisible. Force a solid black button with bright-yellow text. Search buttons
+   are handled separately by body.yb .search-go-btn, so exclude them here. */
+body.yb [style*="background:var(--yellow2)"]:not(.search-go-btn),
+body.yb [style*="background: var(--yellow2)"]:not(.search-go-btn) { background:#000 !important; color:#fcd901 !important; border-color:#000 !important; }
+body.yb [style*="background:var(--yellow2)"]:not(.search-go-btn) *,
+body.yb [style*="background: var(--yellow2)"]:not(.search-go-btn) * { color:#fcd901 !important; }
 
 
 
@@ -931,7 +940,7 @@ body.dark .rtag.tech  { background: #de8b8b;    color: #000; }
 body.hc .rtag.gene, body.hc .rtag.stem, body.hc .rtag.trial, body.hc .rtag.drug, body.hc .rtag.tech { background: transparent; color: #fff; border: 2px solid #fff; }
 
 
-body.yb .rtag.gene, body.yb .rtag.stem, body.yb .rtag.trial, body.yb .rtag.drug, body.yb .rtag.tech { background: #000; color: #fff; }
+body.yb .rtag.gene, body.yb .rtag.stem, body.yb .rtag.trial, body.yb .rtag.drug, body.yb .rtag.tech { background: #000; color: #fcd901; }
 
 
 
@@ -1417,7 +1426,7 @@ body.hc .news-tag.tech, body.hc .news-tag.general { background: transparent; col
 
 body.yb .news-tag.research, body.yb .news-tag.benefits,
 
-body.yb .news-tag.tech, body.yb .news-tag.general { background: #000; color: #fff; }
+body.yb .news-tag.tech, body.yb .news-tag.general { background: #000; color: #fcd901; }
 
 .news-text { font-size: 0.9rem; color: var(--text2); line-height: 1.6; }
 
@@ -1947,10 +1956,20 @@ body.lb .cf-submit { background: #cce8f4 !important; color: #000 !important; bor
 body.lb [style*="background:var(--yellow)"] { background: #cce8f4 !important; color: #000 !important; }
 body.lb [style*="background: var(--yellow)"] { background: #cce8f4 !important; color: #000 !important; }
 
+/* Blue/Black: --yellow2 becomes #003a80 (dark navy). Buttons that hardcode a
+   var(--yellow2) background with black text (the "Questions to ask" button and
+   the iOS banner) turn black-on-navy and become unreadable. Match this theme's
+   other action buttons: navy background, white text. Search and share buttons
+   already have their own lb rules, so exclude them. */
+body.lb [style*="background:var(--yellow2)"]:not(.search-go-btn):not(.share-btn),
+body.lb [style*="background: var(--yellow2)"]:not(.search-go-btn):not(.share-btn) { background:#003a80 !important; color:#fff !important; border-color:#003a80 !important; }
+body.lb [style*="background:var(--yellow2)"]:not(.search-go-btn):not(.share-btn) *,
+body.lb [style*="background: var(--yellow2)"]:not(.search-go-btn):not(.share-btn) * { color:#fff !important; }
+
 /* Search button - theme-specific styling so it's always prominent and readable */
 body.lb .search-go-btn { background: #003a80 !important; color: #fff !important; }
 body.hc .search-go-btn { background: #000 !important; color: #fff !important; border: 4px solid #fff !important; }
-body.yb .search-go-btn { background: #000 !important; color: #fff !important; }
+body.yb .search-go-btn { background: #000 !important; color: #fcd901 !important; }
 body.dark .search-go-btn { background: #c6a12f !important; color: #000 !important; }
 body.ll .search-go-btn { background: #d7b075 !important; color: #000 !important; }
 body.lb .acc-num { background: #cce8f4 !important; color: #000 !important; }
@@ -2003,7 +2022,6 @@ body.focus-mode::after {
 #sticky-title-name { flex: 1; text-align: center; font-size: 0.8rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
 
-.sr-only { position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0; }
 /* ══ TWO-ROW A11Y BAR (mobile) ══ */
 .a11y-bar-row2 {
   background: var(--bg2);
@@ -2024,7 +2042,7 @@ body.focus-mode::after {
 
 
 
-<a href="#main" class="skip" style="position:absolute;top:-999px;left:-999px;z-index:99999;background:var(--yellow);color:#000;padding:12px 24px;font-weight:800;border-radius:0 0 8px 8px;text-decoration:none;font-size:1rem" onfocus="this.style.top='0';this.style.left='50%';this.style.transform='translateX(-50%)'" onblur="this.style.top='-999px';this.style.left='-999px'">Skip to main content</a>
+<a href="#main" class="skip" style="position:absolute;top:-999px;left:-999px;z-index:99999;background:var(--yellow);color:#000;padding:12px 24px;font-weight:800;border-radius:0 0 8px 8px;text-decoration:none;font-size:1rem" onfocus="this.style.top='0';this.style.left='50%';this.style.transform='translateX(-50%)'" onblur="this.style.top='-999px';this.style.left='-999px'" onclick="try{var p=document.querySelector('.page.active')||document.getElementById('main');if(p){var h=p.querySelector('h1,h2')||p;h.setAttribute('tabindex','-1');h.focus();event.preventDefault();}}catch(e){}">Skip to main content</a>
 
 <noscript>
   <div style="background:#fff8e1;border:2px solid #b86d00;color:#1a1a2e;padding:20px;margin:0;text-align:center;font-family:Georgia,serif;font-size:1.1rem;line-height:1.6">
@@ -2086,7 +2104,7 @@ body.focus-mode::after {
 body.hc .tb-lang { border-color: #fff !important; color: #fff !important; background: #000 !important; }
 body.hc .tb-lang[aria-pressed=true] { background: #fff !important; color: #000 !important; }
 body.yb .tb-lang { border-color: #000 !important; color: #000 !important; background: #fcd901 !important; }
-body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !important; }
+body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fcd901 !important; }
 .tb-divider{width:1px;height:36px;background:var(--border);flex-shrink:0;}
 /* On mobile, hide the decorative eye-icon home button + its divider to free up row 1 space.
    The X close button (browser tab) and sticky home button already give users a way home. */
@@ -2443,7 +2461,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
         <span style="font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:0.12em;color:var(--yellow);display:block;margin-bottom:6px">Dod o hyd i'ch cyflwr</span>
 
-        <p style="font-size:1rem;font-weight:800;color:var(--text);margin:0 0 14px;line-height:1.4">Chwiliwch drwy 18 cyflwr llygad — cael ymchwil, canllawiau ymarferol, cymorth budd-daliadau a chefnogaeth</p>
+        <p style="font-size:1rem;font-weight:800;color:var(--text);margin:0 0 14px;line-height:1.4">Chwiliwch drwy 20 cyflwr llygad — cael ymchwil, canllawiau ymarferol, cymorth budd-daliadau a chefnogaeth</p>
 
         <div style="margin-bottom:8px">
           <input type="search" id="search-cy" placeholder="e.e. AMD, glawcoma, RP…" autocomplete="off" aria-controls="cond-list-cy" aria-label="Chwilio am gyflyrau llygad" class="theme-input" style="font-size:1rem;border:2px solid var(--border);border-radius:50px;padding:14px 20px;width:100%;box-sizing:border-box;box-shadow:0 1px 4px rgba(0,0,0,0.06);margin-bottom:10px">
@@ -2451,7 +2469,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
           <button onclick="doSearch(document.getElementById('search-cy').value); document.getElementById('search-cy').blur();" aria-label="Chwilio am gyflyrau" class="search-go-btn" style="background:var(--yellow2);color:#000;border:none;border-radius:50px;padding:14px 24px;font-family:var(--font);font-size:1rem;font-weight:900;cursor:pointer;width:100%;min-height:50px"><span aria-hidden="true">🔍</span> Chwilio</button>
         </div>
 
-        <p id="cond-hint-cy" aria-live="polite" style="font-size:0.95rem;font-weight:700;color:var(--text2);margin:4px 0 0;line-height:1.5">Teipiwch eich cyflwr yna tapiwch <strong>Chwilio</strong> (neu pwyswch Enter). <strong>18 cyflwr</strong>.</p>
+        <p id="cond-hint-cy" aria-live="polite" style="font-size:0.95rem;font-weight:700;color:var(--text2);margin:4px 0 0;line-height:1.5">Teipiwch eich cyflwr yna tapiwch <strong>Chwilio</strong> (neu pwyswch Enter). <strong>20 cyflwr</strong>.</p>
 
         <!-- Search results display inside card (populated by doSearch) -->
         <div id="search-results-cy" role="list" aria-label="Canlyniadau chwilio" style="display:none;margin-top:12px;max-height:50vh;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;border-radius:12px;background:#fff;border:1px solid var(--border)"></div>
@@ -2573,7 +2591,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
         <div class="news-box-header">
           <span class="news-box-icon" aria-hidden="true">📰</span>
           <span class="news-box-title" id="news-hd-cy">Diweddariadau Diweddar</span>
-          <span class="news-box-date">Mai 2026</span>
+          <span class="news-box-date">Mehefin 2026</span>
         </div>
         <div class="news-item">
           <span class="news-tag research">Ymchwil</span>
@@ -2598,14 +2616,49 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
         <p class="news-footer">Caiff diweddariadau eu gwirio a'u hychwanegu bob mis. Mae'r wybodaeth at ddibenion canllaw yn unig — trafodwch opsiynau ymchwil a thriniaeth bob amser gyda'ch offthalmolegydd. <button onclick="showWelshPage('contact')" style="background:none;border:none;color:var(--yellow);font-family:var(--font);font-size:0.78rem;font-weight:700;cursor:pointer;text-decoration:underline;padding:0">Wedi sylwi ar rywbeth ar goll? Rhowch wybod i ni.</button></p>
       </section>
 
-    </div>
+      <div style="margin-top:36px;padding:24px 20px;background:var(--card);border-radius:16px;border:1px solid var(--border)" role="region" aria-label="Rhannu a chysylltu" lang="cy">
+
+        <div style="background:var(--card2);border:1px solid var(--yellow);border-radius:10px;padding:12px 16px;margin:0 0 20px;font-size:0.9rem;line-height:1.5;color:var(--text)">
+          <strong style="color:var(--yellow)">💡 Ynglŷn â dolenni i wefannau eraill</strong>
+          <p style="margin:8px 0 0">Os byddwch yn tapio dolen i wefan arall, defnyddiwch saeth <strong>yn ôl</strong> eich ffôn i ddychwelyd i Sight Atlas. Nid yw Sight Atlas yn gyfrifol am gynnwys gwefannau allanol. Trafodwch wybodaeth feddygol bob amser gyda'ch offthalmolegydd.</p>
+        </div>
+
+        <h2 style="font-size:1.1rem;font-weight:900;color:var(--text);margin:0 0 6px;text-align:center">Helpwch eraill i ddod o hyd i Sight Atlas UK</h2>
+
+        <p style="font-size:0.92rem;color:var(--text2);text-align:center;margin:0 0 18px;line-height:1.5">Os yw'r safle hwn wedi'ch helpu, rhannwch ef gydag unrhyw un arall a allai fod ei angen.</p>
+
+        <div class="share-bar" style="justify-content:center;margin-bottom:20px">
+
+          <button class="share-btn" onclick="shareCondition('Sight Atlas UK')" aria-label="Rhannu Sight Atlas UK"><span aria-hidden="true">📤</span> Rhannu</button>
+
+          <button class="share-btn" onclick="copyLink()" aria-label="Copïo dolen"><span aria-hidden="true">🔗</span> Copïo dolen</button>
+
+          <button class="share-btn" onclick="window.print()" aria-label="Argraffu neu gadw fel PDF"><span aria-hidden="true">🖨️</span> Argraffu / Cadw PDF</button>
+
+          <a class="share-btn" href="https://www.facebook.com/sightatlasuk1" target="_blank" rel="noopener noreferrer" aria-label="Dewch o hyd i Sight Atlas UK ar Facebook (yn agor gwefan allanol)" style="text-decoration:none"><span aria-hidden="true">👍</span> Dewch o hyd i ni ar Facebook</a>
+
+        </div>
+
+        <div style="text-align:center;padding-top:16px;border-top:1px solid var(--border)">
+
+          <p style="font-size:0.92rem;color:var(--text2);margin:0 0 10px;line-height:1.5">Cwestiwn, wedi sylwi ar rywbeth o'i le, neu am awgrymu adnodd?</p>
+
+          <button onclick="showWelshPage('contact')" class="share-btn" style="background:var(--yellow2);color:#000;border-color:var(--yellow2);font-weight:900" aria-label="Cysylltu â ni"><span aria-hidden="true">✉️</span> Cysylltu â ni</button>
+
+        </div>
+
+      </div>
+
     </div><!-- end desktop-main -->
 
     </div><!-- end desktop-wrap -->
 
+  </div>
+
   </main>
 
 </div>
+<!-- end page-home-welsh -->
 
 
 
@@ -2793,7 +2846,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
       <div class="review-badge" style="display:inline-flex;align-items:center;gap:8px;background:rgba(26,122,60,0.08);border:1.5px solid rgba(26,122,60,0.25);border-radius:20px;padding:6px 14px;margin:8px 0 20px;font-size:0.75rem;max-width:100%;flex-wrap:wrap">
         <span class="review-badge-tick" style="color:#1a7a3c;font-weight:900;font-size:0.9rem;flex-shrink:0" aria-hidden="true">✓</span>
-        <span style="color:var(--text);font-weight:700">May 2026 · Reviewed monthly</span>
+        <span style="color:var(--text);font-weight:700">June 2026 · Reviewed monthly</span>
       </div>
       <p class="last-updated" style="margin-top:0">Something not quite right? <button onclick="showPage('contact')" style="background:none;border:none;color:var(--yellow);font-family:var(--font);font-size:inherit;cursor:pointer;text-decoration:underline;padding:0;font-weight:700">Let us know.</button></p>
 
@@ -3057,7 +3110,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
           <span class="news-box-title" id="news-hd">Recent Updates</span>
 
-          <span class="news-box-date">May 2026</span>
+          <span class="news-box-date">June 2026</span>
 
         </div>
 
@@ -3813,6 +3866,20 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
           <div class="lw-tip">
 
+            <span class="lw-tip-tag">Train</span>
+
+            <h3>Cheaper train travel</h3>
+
+            <p>The <strong>Disabled Persons Railcard</strong> gives a third off most rail fares across Great Britain for you <em>and</em> an adult companion travelling with you. It costs around £20 for one year or £54 for three years — many people save that back within a few journeys. You can qualify with a CVI/BP1/BD8 certificate, or with disability benefits such as PIP, DLA or Attendance Allowance.</p>
+
+            <p style="margin-top:10px">If you are registered blind or partially sighted, you and a companion can also get discounts on certain anytime fares <em>without</em> buying a railcard — you just show your certificate (CVI/BP1/BD8) when buying tickets at a staffed station ticket office. Check the current details and apply at disabledpersons-railcard.co.uk.</p>
+
+            <p style="margin-top:10px">Tip: when booking, also look up <strong>Passenger Assist</strong> — free help at stations with boarding, changing trains and luggage, ideally booked ahead but also available on the day.</p>
+
+          </div>
+
+          <div class="lw-tip">
+
             <span class="lw-tip-tag">Apps</span>
 
             <h3>Navigation apps</h3>
@@ -4290,7 +4357,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
     <h1>Privacy Policy</h1>
 
-    <p class="legal-updated">Last updated: <time datetime="2026-05-15">May 2026</time></p>
+    <p class="legal-updated">Last updated: <time datetime="2026-06-02">June 2026</time></p>
 
     <div class="wb"><strong>Plain English summary:</strong> Sight Atlas does not sell your data. We do not collect personal information unless you choose to contact us. We do not use advertising trackers.</div>
 
@@ -4328,7 +4395,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
     <h1>Accessibility Statement</h1>
 
-    <p class="legal-updated">Last updated: <time datetime="2026-05-15">May 2026</time></p>
+    <p class="legal-updated">Last updated: <time datetime="2026-06-02">June 2026</time></p>
 
     <div class="wb"><strong>My commitment:</strong> Sight Atlas UK exists to serve people living with sight loss. Accessibility is not an afterthought — it is the core purpose of this website.</div>
 
@@ -5484,14 +5551,14 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
 
 <!-- ══════════════════════════════════════
-     HELP & SUPPORT PAGE (May 2026)
+     HELP & SUPPORT PAGE (June 2026)
 ══════════════════════════════════════ -->
 <div id="page-help" class="page" role="main" aria-label="Help and Support">
   <div class="legal-wrap">
     <button class="back-btn" onclick="showPage('home')" aria-label="Back to home"><span aria-hidden="true">←</span> Back to home</button>
     <span class="legal-eyebrow">Practical help</span>
     <h1>Help &amp; Support</h1>
-    <p class="legal-updated">Last updated: <time datetime="2026-05-15">May 2026</time></p>
+    <p class="legal-updated">Last updated: <time datetime="2026-06-02">June 2026</time></p>
 
     <h2 id="emergency">In a crisis right now</h2>
     <ul>
@@ -5527,6 +5594,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
       <li><strong>Access to Work</strong> grants if employed (see Employment page).</li>
       <li><strong>Concessionary parking</strong> (Blue Badge, automatic for SSI).</li>
       <li><strong>Postage concessions</strong> via Royal Mail Articles for the Blind (free large print and audio post).</li>
+      <li><strong>VAT relief on equipment</strong> — many low-vision aids (magnifiers, video magnifiers, some software) can be bought <strong>VAT-free</strong> if they're for your personal use and you have a qualifying sight condition. You don't need to be registered — you simply sign a short self-declaration at the point of sale, and most specialist suppliers handle this automatically at checkout. (Doesn't apply to general electronics, or to being elderly without a disability.)</li>
     </ul>
 
     <h2 id="ais">Accessible Information Standard letter (NHS legal right)</h2>
@@ -5616,7 +5684,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
     <h1>How We Write<br>Our Content</h1>
 
-    <p class="legal-updated">Last updated: <time datetime="2026-05">May 2026</time></p>
+    <p class="legal-updated">Last updated: <time datetime="2026-06">June 2026</time></p>
 
 
 
@@ -5807,6 +5875,8 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
       <button class="share-btn" onclick="copyLink()" aria-label="Copy link to clipboard"><span aria-hidden="true">🔗</span> Copy link</button>
 
       <button class="share-btn" onclick="window.print()" aria-label="Print or save as PDF"><span aria-hidden="true">🖨️</span> Print / Save PDF</button>
+
+      <a class="share-btn" href="https://www.facebook.com/sightatlasuk1" target="_blank" rel="noopener noreferrer" aria-label="Find Sight Atlas UK on Facebook (opens external site)" style="text-decoration:none"><span aria-hidden="true">👍</span> Find us on Facebook</a>
 
     </div>
 
@@ -6044,7 +6114,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
     <div class="footer-bottom">
 
-      © 2026 Sight Atlas UK &nbsp;·&nbsp; <strong>Not a medical provider</strong> &nbsp;·&nbsp; Information is for guidance only — always consult your ophthalmologist &nbsp;·&nbsp; Content reviewed May 2026 &nbsp;·&nbsp;
+      © 2026 Sight Atlas UK &nbsp;·&nbsp; <strong>Not a medical provider</strong> &nbsp;·&nbsp; Information is for guidance only — always consult your ophthalmologist &nbsp;·&nbsp; Content reviewed June 2026 &nbsp;·&nbsp;
 
       <a onclick="showPage('livingwell')" role="button" tabindex="0">Everyday Guide</a> &nbsp;·&nbsp;
 
@@ -6066,7 +6136,9 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fff !
 
       <a onclick="showPage('privacy')" role="button" tabindex="0">Privacy Policy</a> &nbsp;·&nbsp;
 
-      <a onclick="showPage('disclaimer')" role="button" tabindex="0">How We Write Our Content</a>
+      <a onclick="showPage('disclaimer')" role="button" tabindex="0">How We Write Our Content</a> &nbsp;·&nbsp;
+
+      <a href="https://www.facebook.com/sightatlasuk1" aria-label="Sight Atlas UK on Facebook (opens external site)" rel="noopener noreferrer" target="_blank">Find us on Facebook <span aria-hidden="true">↗</span></a>
 
     </div>
 
@@ -8280,25 +8352,26 @@ function labelToClass(label) {
 
     ${(function(){
       var tips={
-        stargardts:{t:'lb',l:'Blue/Black',m:'Many people with Stargardt\u2019s Disease find a pale blue background reduces glare.'},
-        amd:{t:'lb',l:'Blue/Black',m:'A pale blue background can reduce glare and help with central vision loss in AMD.'},
-        achromatopsia:{t:'hc',l:'Hi-Con',m:'High contrast mode removes colour dependency, helpful in achromatopsia.'},
-        albinism:{t:'lb',l:'Blue/Black',m:'Low-glare pale blue is often easier for people with albinism.'},
-        nystagmus:{t:'ll',l:'Low Light',m:'Low light mode can help reduce visual noise with nystagmus.'},
-        charlesbonnet:{t:'dark',l:'Dark',m:'A dark background may reduce triggers for Charles Bonnet hallucinations.'},
-        rp:{t:'dark',l:'Dark',m:'Dark mode preserves night vision and reduces light sensitivity in RP.'},
-        cone:{t:'hc',l:'Hi-Con',m:'High contrast maximises the limited colour vision in cone dystrophy.'},
-        glaucoma:{t:'ll',l:'Low Light',m:'Low light mode reduces brightness discomfort with glaucoma.'},
-        lca:{t:'dark',l:'Dark',m:'Dark mode reduces overall brightness, helping light sensitivity in LCA.'},
-        diabetic:{t:'lb',l:'Blue/Black',m:'A pale blue background can reduce glare in diabetic retinopathy.'},
-        dmo:{t:'lb',l:'Blue/Black',m:'The low-glare pale blue background may help with central vision distortion in DMO.'},
-        myopic:{t:'dark',l:'Dark',m:'Dark mode can reduce brightness that may aggravate myopic macular degeneration.'}
+        stargardts:{t:'lb',l:'Blue/Black',m:'Many people with Stargardt\u2019s Disease find a pale blue background reduces glare.',mcy:'Mae llawer o bobl â Chlefyd Stargardt yn gweld bod cefndir glas golau yn lleihau llacharedd.'},
+        amd:{t:'lb',l:'Blue/Black',m:'A pale blue background can reduce glare and help with central vision loss in AMD.',mcy:'Gall cefndir glas golau leihau llacharedd a helpu gyda cholli golwg ganolog mewn AMD.'},
+        achromatopsia:{t:'hc',l:'Hi-Con',m:'High contrast mode removes colour dependency, helpful in achromatopsia.',mcy:'Mae\u2019r modd cyferbyniad uchel yn dileu dibyniaeth ar liw, sy\u2019n ddefnyddiol mewn achromatopsia.'},
+        albinism:{t:'lb',l:'Blue/Black',m:'Low-glare pale blue is often easier for people with albinism.',mcy:'Mae glas golau â llacharedd isel yn aml yn haws i bobl ag albiniaeth.'},
+        nystagmus:{t:'ll',l:'Low Light',m:'Low light mode can help reduce visual noise with nystagmus.',mcy:'Gall y modd golau isel helpu i leihau s\u0175n gweledol gyda nystagmus.'},
+        charlesbonnet:{t:'dark',l:'Dark',m:'A dark background may reduce triggers for Charles Bonnet hallucinations.',mcy:'Gall cefndir tywyll leihau sbardunau ar gyfer rhithwelediadau Charles Bonnet.'},
+        rp:{t:'dark',l:'Dark',m:'Dark mode preserves night vision and reduces light sensitivity in RP.',mcy:'Mae\u2019r modd tywyll yn cadw golwg nos ac yn lleihau sensitifrwydd i olau mewn RP.'},
+        cone:{t:'hc',l:'Hi-Con',m:'High contrast maximises the limited colour vision in cone dystrophy.',mcy:'Mae cyferbyniad uchel yn gwneud y gorau o\u2019r golwg lliw cyfyngedig mewn dystroffi c\u00f4n.'},
+        glaucoma:{t:'ll',l:'Low Light',m:'Low light mode reduces brightness discomfort with glaucoma.',mcy:'Mae\u2019r modd golau isel yn lleihau anghysur disgleirdeb gyda glawcoma.'},
+        lca:{t:'dark',l:'Dark',m:'Dark mode reduces overall brightness, helping light sensitivity in LCA.',mcy:'Mae\u2019r modd tywyll yn lleihau disgleirdeb cyffredinol, gan helpu sensitifrwydd i olau mewn LCA.'},
+        diabetic:{t:'lb',l:'Blue/Black',m:'A pale blue background can reduce glare in diabetic retinopathy.',mcy:'Gall cefndir glas golau leihau llacharedd mewn retinopathi diabetig.'},
+        dmo:{t:'lb',l:'Blue/Black',m:'The low-glare pale blue background may help with central vision distortion in DMO.',mcy:'Gall y cefndir glas golau â llacharedd isel helpu gydag ystumiad golwg ganolog mewn DMO.'},
+        myopic:{t:'dark',l:'Dark',m:'Dark mode can reduce brightness that may aggravate myopic macular degeneration.',mcy:'Gall y modd tywyll leihau disgleirdeb a allai waethygu dirywiad macwlaidd myopig.'}
       };
       var tip=tips[key];
       if(!tip||document.body.classList.contains(tip.t)) return '';
+      var tipMsg = _isWelsh && tip.mcy ? tip.mcy : tip.m;
       var tipId='theme-tip-'+key;
 
-      var closeBtn='<button onclick="document.getElementById(\''+tipId+'\').remove()" aria-label="Dismiss suggestion" style="float:right;background:none;border:none;color:var(--text2);cursor:pointer;font-size:1.1rem;padding:0;line-height:1">×</button>';
+      var closeBtn='<button onclick="document.getElementById(\''+tipId+'\').remove()" aria-label="'+(_isWelsh?'Cau\u2019r awgrym':'Dismiss suggestion')+'" style="float:right;background:none;border:none;color:var(--text2);cursor:pointer;font-size:1.1rem;padding:0;line-height:1">×</button>';
       var tipStyles = {
         'lb':   'background:#d4eef8;border-color:#0055a5;color:#000',
         'dark': 'background:#1a1a2e;border-color:#f5b800;color:#e8e8e8',
@@ -8309,14 +8382,14 @@ function labelToClass(label) {
       var tStyle = tipStyles[tip.t] || 'background:var(--card2);border-color:var(--yellow);color:var(--text)';
       var btnStyle = tip.t === 'dark' || tip.t === 'll' || tip.t === 'hc' ? 'color:#f5b800' : 'color:#0055a5';
       if (tip.t === 'hc') btnStyle = 'color:#fff';
-      return '<div id="'+tipId+'" role="note" aria-live="polite" style="'+tStyle+';border:2px solid;border-radius:12px;padding:12px 16px;margin-bottom:16px;font-size:0.875rem;line-height:1.6">'+closeBtn+'💡 '+tip.m+'<button onclick="themeTipSwitch(\''+tipId+'\',\''+tip.t+'\',\''+tip.l+'\')" style="background:none;border:none;font-family:var(--font);font-size:0.875rem;font-weight:800;cursor:pointer;text-decoration:underline;padding:0;margin-left:8px;'+btnStyle+'">Switch now</button></div>';
+      return '<div id="'+tipId+'" role="note" aria-live="polite" style="'+tStyle+';border:2px solid;border-radius:12px;padding:12px 16px;margin-bottom:16px;font-size:0.875rem;line-height:1.6">'+closeBtn+'💡 '+tipMsg+'<button onclick="themeTipSwitch(\''+tipId+'\',\''+tip.t+'\',\''+tip.l+'\')" style="background:none;border:none;font-family:var(--font);font-size:0.875rem;font-weight:800;cursor:pointer;text-decoration:underline;padding:0;margin-left:8px;'+btnStyle+'">'+(_isWelsh?'Newid nawr':'Switch now')+'</button></div>';
     })()}
 
     <span class="cond-hero-eyebrow">${_isWelsh ? 'Canllaw Cyflyrau\'r Llygad' : 'Eye Condition Guide'}</span>
 
     <h1>${d.name}</h1>
 
-    <p style="font-size:0.75rem;color:var(--text2);margin-bottom:16px">${_isWelsh ? 'Adolygwyd ddiwethaf' : 'Last reviewed'}: <time datetime="2026-05">${_isWelsh ? 'Mai 2026' : 'May 2026'}</time> &nbsp;·&nbsp; <button onclick="showPage('disclaimer')" style="background:none;border:none;color:var(--text2);font-family:var(--font);font-size:inherit;cursor:pointer;text-decoration:underline;padding:0">${_isWelsh ? 'Sut yr ydym yn ysgrifennu ein cynnwys' : 'How we write our content'}</button></p>
+    <p style="font-size:0.75rem;color:var(--text2);margin-bottom:16px">${_isWelsh ? 'Adolygwyd ddiwethaf' : 'Last reviewed'}: <time datetime="2026-06">${_isWelsh ? 'Mehefin 2026' : 'June 2026'}</time> &nbsp;·&nbsp; <button onclick="showPage('disclaimer')" style="background:none;border:none;color:var(--text2);font-family:var(--font);font-size:inherit;cursor:pointer;text-decoration:underline;padding:0">${_isWelsh ? 'Sut yr ydym yn ysgrifennu ein cynnwys' : 'How we write our content'}</button></p>
 
   </div>
 
@@ -8334,7 +8407,7 @@ function labelToClass(label) {
 
     <button type="button" id="acc-toggle-all" class="acc-toggle-all" onclick="setAllAcc(this.getAttribute('aria-expanded')!=='true')" aria-expanded="false" style="display:flex;align-items:center;gap:8px;background:var(--card);border:2px solid var(--yellow);color:var(--yellow);border-radius:50px;padding:10px 18px;margin-bottom:16px;font-family:var(--font);font-weight:700;font-size:0.95rem;cursor:pointer">
       <span aria-hidden="true" style="font-size:1.1rem">⊕</span>
-      <span class="acc-toggle-all-label">Open all sections</span>
+      <span class="acc-toggle-all-label">${_isWelsh ? 'Agor pob adran' : 'Open all sections'}</span>
     </button>
 
     <div class="acc-item" id="acc-about-${key}">
@@ -8348,7 +8421,7 @@ function labelToClass(label) {
         <span class="acc-arrow" aria-hidden="true">▾</span>
 
       </button>
-      <button class="acc-listen" onclick="event.stopPropagation();listenToSection('about','${key}',this)" aria-label="Listen to What is" title="Listen to What is" tabindex="0"><span aria-hidden="true">🔊</span><span class="sr-only"> What is</span></button>
+      <button class="acc-listen" onclick="event.stopPropagation();listenToSection('about','${key}',this)" aria-label="${_isWelsh ? 'Gwrando ar Beth yw' : 'Listen to What is'}" title="${_isWelsh ? 'Gwrando ar Beth yw' : 'Listen to What is'}" tabindex="0"><span aria-hidden="true">🔊</span><span class="sr-only"> ${_isWelsh ? 'Beth yw' : 'What is'}</span></button>
       </div>
 
       <div class="acc-body">
@@ -8380,14 +8453,16 @@ function labelToClass(label) {
         <span class="acc-arrow" aria-hidden="true">▾</span>
 
       </button>
-      <button class="acc-listen" onclick="event.stopPropagation();listenToSection('research','${key}',this)" aria-label="Listen to Latest Research" title="Listen to Latest Research" tabindex="0"><span aria-hidden="true">🔊</span><span class="sr-only"> Latest Research</span></button>
+      <button class="acc-listen" onclick="event.stopPropagation();listenToSection('research','${key}',this)" aria-label="${_isWelsh ? 'Gwrando ar Ymchwil Diweddaraf' : 'Listen to Latest Research'}" title="${_isWelsh ? 'Gwrando ar Ymchwil Diweddaraf' : 'Listen to Latest Research'}" tabindex="0"><span aria-hidden="true">🔊</span><span class="sr-only"> ${_isWelsh ? 'Ymchwil Diweddaraf' : 'Latest Research'}</span></button>
       </div>
 
       <div class="acc-body">
 
         ${_isWelsh && d.cy && d.cy.researchSummary ? `<div class="wb" style="border-left:4px solid #00b140;margin-bottom:16px"><strong>🏴󠁧󠁢󠁷󠁬󠁳󠁥󠁳󠁿 Crynodeb Ymchwil:</strong> ${d.cy.researchSummary}</div>` : ''}
 
-        <div class="wb" style="border-left:4px solid #b86d00;margin-bottom:16px;background:rgba(184,109,0,0.08)"><strong>⚠️ Always check current status before acting.</strong> Research changes fast. Verify on <a href="https://www.clinicaltrials.gov" aria-label="ClinicalTrials.gov (opens external site)" rel="noopener noreferrer">ClinicalTrials.gov</a> and discuss with your ophthalmologist. <span style="opacity:0.75">Last reviewed May 2026.</span></div>
+        ${_isWelsh ? '<p style="background:#00b140;color:#fff;padding:8px 14px;border-radius:8px;font-size:0.85rem;margin-bottom:12px">🏴󠁧󠁢󠁷󠁬󠁳󠁥󠁳󠁿 Mae\'r manylion ymchwil isod ar gael yn Saesneg yn unig ar hyn o bryd. / The detailed research items below are currently in English only.</p>' : ''}
+
+        <div class="wb" style="border-left:4px solid #b86d00;margin-bottom:16px;background:rgba(184,109,0,0.08)"><strong>⚠️ Always check current status before acting.</strong> Research changes fast. Verify on <a href="https://www.clinicaltrials.gov" aria-label="ClinicalTrials.gov (opens external site)" rel="noopener noreferrer">ClinicalTrials.gov</a> and discuss with your ophthalmologist. <span style="opacity:0.75">Last reviewed June 2026.</span></div>
 
         ${d.research.map(r=>`
 
@@ -8397,7 +8472,7 @@ function labelToClass(label) {
 
           <h3>${r.title}</h3><p>${r.body}</p>
 
-          <a href="${r.link}" class="trial-link">Find out more <span aria-hidden="true">→</span></a>
+          <a href="${r.link}" class="trial-link">${_isWelsh ? 'Darganfod mwy' : 'Find out more'} <span aria-hidden="true">→</span></a>
 
         </div>`).join('')}
 
@@ -8420,7 +8495,7 @@ function labelToClass(label) {
         <span class="acc-arrow" aria-hidden="true">▾</span>
 
       </button>
-      <button class="acc-listen" onclick="event.stopPropagation();listenToSection('guides','${key}',this)" aria-label="Listen to Practical How-To Guides" title="Listen to Practical How-To Guides" tabindex="0"><span aria-hidden="true">🔊</span><span class="sr-only"> Practical How-To Guides</span></button>
+      <button class="acc-listen" onclick="event.stopPropagation();listenToSection('guides','${key}',this)" aria-label="${_isWelsh ? 'Gwrando ar Ganllawiau Ymarferol' : 'Listen to Practical How-To Guides'}" title="${_isWelsh ? 'Gwrando ar Ganllawiau Ymarferol' : 'Listen to Practical How-To Guides'}" tabindex="0"><span aria-hidden="true">🔊</span><span class="sr-only"> ${_isWelsh ? 'Canllawiau Ymarferol' : 'Practical How-To Guides'}</span></button>
       </div>
 
       <div class="acc-body">
@@ -8454,7 +8529,7 @@ function labelToClass(label) {
         <span class="acc-arrow" aria-hidden="true">▾</span>
 
       </button>
-      <button class="acc-listen" onclick="event.stopPropagation();listenToSection('tech','${key}',this)" aria-label="Listen to Assistive Technology" title="Listen to Assistive Technology" tabindex="0"><span aria-hidden="true">🔊</span><span class="sr-only"> Assistive Technology</span></button>
+      <button class="acc-listen" onclick="event.stopPropagation();listenToSection('tech','${key}',this)" aria-label="${_isWelsh ? 'Gwrando ar Dechnoleg Gynorthwyol' : 'Listen to Assistive Technology'}" title="${_isWelsh ? 'Gwrando ar Dechnoleg Gynorthwyol' : 'Listen to Assistive Technology'}" tabindex="0"><span aria-hidden="true">🔊</span><span class="sr-only"> ${_isWelsh ? 'Technoleg Gynorthwyol' : 'Assistive Technology'}</span></button>
       </div>
 
       <div class="acc-body">
@@ -8494,7 +8569,7 @@ function labelToClass(label) {
         <span class="acc-arrow" aria-hidden="true">▾</span>
 
       </button>
-      <button class="acc-listen" onclick="event.stopPropagation();listenToSection('support','${key}',this)" aria-label="Listen to Support and Community" title="Listen to Support and Community" tabindex="0"><span aria-hidden="true">🔊</span><span class="sr-only"> Support and Community</span></button>
+      <button class="acc-listen" onclick="event.stopPropagation();listenToSection('support','${key}',this)" aria-label="${_isWelsh ? 'Gwrando ar Gefnogaeth a Chymuned' : 'Listen to Support and Community'}" title="${_isWelsh ? 'Gwrando ar Gefnogaeth a Chymuned' : 'Listen to Support and Community'}" tabindex="0"><span aria-hidden="true">🔊</span><span class="sr-only"> ${_isWelsh ? 'Cefnogaeth a Chymuned' : 'Support and Community'}</span></button>
       </div>
 
       <div class="acc-body">
@@ -8546,7 +8621,7 @@ function labelToClass(label) {
         <span class="acc-arrow" aria-hidden="true">▾</span>
 
       </button>
-      <button class="acc-listen" onclick="event.stopPropagation();listenToSection('benefits','${key}',this)" aria-label="Listen to Benefits and Financial Help" title="Listen to Benefits and Financial Help" tabindex="0"><span aria-hidden="true">🔊</span><span class="sr-only"> Benefits and Financial Help</span></button>
+      <button class="acc-listen" onclick="event.stopPropagation();listenToSection('benefits','${key}',this)" aria-label="${_isWelsh ? 'Gwrando ar Fudd-daliadau a Chymorth Ariannol' : 'Listen to Benefits and Financial Help'}" title="${_isWelsh ? 'Gwrando ar Fudd-daliadau a Chymorth Ariannol' : 'Listen to Benefits and Financial Help'}" tabindex="0"><span aria-hidden="true">🔊</span><span class="sr-only"> ${_isWelsh ? 'Budd-daliadau a Chymorth Ariannol' : 'Benefits and Financial Help'}</span></button>
       </div>
 
       <div class="acc-body">
@@ -8583,14 +8658,14 @@ function labelToClass(label) {
 
       <div style="display:flex;align-items:center;gap:8px"><button class="acc-btn" onclick="toggleAcc('living','${key}')" aria-expanded="false">
 
-        <span class="acc-left"><span class="acc-num">7</span><span class="acc-label">Living with ${d.name}</span></span>
+        <span class="acc-left"><span class="acc-num">7</span><span class="acc-label">${_isWelsh ? 'Byw gyda' : 'Living with'} ${d.name}</span></span>
 
         
 
         <span class="acc-arrow" aria-hidden="true">▾</span>
 
       </button>
-      <button class="acc-listen" onclick="event.stopPropagation();listenToSection('living','${key}',this)" aria-label="Listen to Living with this condition" title="Listen to Living with this condition" tabindex="0"><span aria-hidden="true">🔊</span><span class="sr-only"> Living with this condition</span></button>
+      <button class="acc-listen" onclick="event.stopPropagation();listenToSection('living','${key}',this)" aria-label="${_isWelsh ? 'Gwrando ar Fyw gyda\'r cyflwr hwn' : 'Listen to Living with this condition'}" title="${_isWelsh ? 'Gwrando ar Fyw gyda\'r cyflwr hwn' : 'Listen to Living with this condition'}" tabindex="0"><span aria-hidden="true">🔊</span><span class="sr-only"> ${_isWelsh ? 'Byw gyda\'r cyflwr hwn' : 'Living with this condition'}</span></button>
       </div>
 
       <div class="acc-body">
@@ -8621,14 +8696,14 @@ function labelToClass(label) {
 
       <div style="display:flex;align-items:center;gap:8px"><button class="acc-btn" onclick="toggleAcc('parents','${key}')" aria-expanded="false">
 
-        <span class="acc-left"><span class="acc-num"><span aria-hidden="true">👶</span></span><span class="acc-label">For Parents</span></span>
+        <span class="acc-left"><span class="acc-num"><span aria-hidden="true">👶</span></span><span class="acc-label">${_isWelsh ? 'I Rieni' : 'For Parents'}</span></span>
 
         
 
         <span class="acc-arrow" aria-hidden="true">▾</span>
 
       </button>
-      <button class="acc-listen" onclick="event.stopPropagation();listenToSection('parents','${key}',this)" aria-label="Listen to For Parents" title="Listen to For Parents" tabindex="0"><span aria-hidden="true">🔊</span><span class="sr-only"> For Parents</span></button>
+      <button class="acc-listen" onclick="event.stopPropagation();listenToSection('parents','${key}',this)" aria-label="${_isWelsh ? 'Gwrando ar I Rieni' : 'Listen to For Parents'}" title="${_isWelsh ? 'Gwrando ar I Rieni' : 'Listen to For Parents'}" tabindex="0"><span aria-hidden="true">🔊</span><span class="sr-only"> ${_isWelsh ? 'I Rieni' : 'For Parents'}</span></button>
       </div>
 
       <div class="acc-body">
@@ -8647,7 +8722,7 @@ function labelToClass(label) {
 
         </div>`).join('')}
 
-        <div class="wb">For more detailed guidance, visit our <button onclick="showPage('children')" style="background:none;border:none;color:var(--yellow);font-family:var(--font);font-size:inherit;font-weight:700;cursor:pointer;text-decoration:underline;padding:0">For Parents page <span aria-hidden="true">→</span></button></div>
+        <div class="wb">${_isWelsh ? 'Am ganllaw manylach, ewch i\'n ' : 'For more detailed guidance, visit our '}<button onclick="showPage('children')" style="background:none;border:none;color:var(--yellow);font-family:var(--font);font-size:inherit;font-weight:700;cursor:pointer;text-decoration:underline;padding:0">${_isWelsh ? 'tudalen I Rieni' : 'For Parents page'} <span aria-hidden="true">→</span></button></div>
 
       </div>
 
@@ -8655,17 +8730,19 @@ function labelToClass(label) {
 
 
 
-    <button class="back-btn" onclick="showPage('home')" style="margin-top:8px" aria-label="Back to conditions list"><span aria-hidden="true">←</span> All Conditions</button>
+    <button class="back-btn" onclick="showPage('home')" style="margin-top:8px" aria-label="${_isWelsh ? 'Yn ôl i\'r rhestr cyflyrau' : 'Back to conditions list'}"><span aria-hidden="true">←</span> ${_isWelsh ? 'Pob Cyflwr' : 'All Conditions'}</button>
 
 
 
     <div class="share-bar" style="margin-top:8px">
 
-      <button class="share-btn" onclick="window.print()" aria-label="Print or save as PDF"><span aria-hidden="true">🖨️</span> Print / Save PDF</button>
+      <button class="share-btn" onclick="window.print()" aria-label="${_isWelsh ? 'Argraffu neu gadw fel PDF' : 'Print or save as PDF'}"><span aria-hidden="true">🖨️</span> ${_isWelsh ? 'Argraffu / Cadw PDF' : 'Print / Save PDF'}</button>
 
-      <button class="share-btn" onclick="shareCondition('${d.name}')" aria-label="Share this page"><span aria-hidden="true">📤</span> Share</button>
+      <button class="share-btn" onclick="shareCondition('${d.name}')" aria-label="${_isWelsh ? 'Rhannu y dudalen hon' : 'Share this page'}"><span aria-hidden="true">📤</span> ${_isWelsh ? 'Rhannu' : 'Share'}</button>
 
-      <button class="share-btn" onclick="copyLink()" aria-label="Copy link to clipboard"><span aria-hidden="true">🔗</span> Copy link</button>
+      <button class="share-btn" onclick="copyLink()" aria-label="${_isWelsh ? 'Copïo dolen' : 'Copy link to clipboard'}"><span aria-hidden="true">🔗</span> ${_isWelsh ? 'Copïo dolen' : 'Copy link'}</button>
+
+      <a class="share-btn" href="https://www.facebook.com/sightatlasuk1" target="_blank" rel="noopener noreferrer" aria-label="${_isWelsh ? 'Dewch o hyd i Sight Atlas UK ar Facebook (yn agor gwefan allanol)' : 'Find Sight Atlas UK on Facebook (opens external site)'}" style="text-decoration:none"><span aria-hidden="true">👍</span> ${_isWelsh ? 'Dewch o hyd i ni ar Facebook' : 'Find us on Facebook'}</a>
 
 
 
@@ -8675,15 +8752,15 @@ function labelToClass(label) {
 
     <div class="feedback-bar" id="fb-${key}">
 
-      <span class="feedback-q">Was this page helpful?</span>
+      <span class="feedback-q">${_isWelsh ? 'A oedd y dudalen hon yn ddefnyddiol?' : 'Was this page helpful?'}</span>
 
-      <button class="fb-btn" data-vote="yes" onclick="submitFeedback('${key}','yes',this)" aria-label="Yes, this page was helpful" aria-pressed="false"><span aria-hidden="true">👍</span> Yes</button>
+      <button class="fb-btn" data-vote="yes" onclick="submitFeedback('${key}','yes',this)" aria-label="${_isWelsh ? 'Oedd, roedd y dudalen hon yn ddefnyddiol' : 'Yes, this page was helpful'}" aria-pressed="false"><span aria-hidden="true">👍</span> ${_isWelsh ? 'Oedd' : 'Yes'}</button>
 
-      <button class="fb-btn" data-vote="no" onclick="submitFeedback('${key}','no',this)" aria-label="No, this page was not helpful" aria-pressed="false"><span aria-hidden="true">👎</span> No</button>
+      <button class="fb-btn" data-vote="no" onclick="submitFeedback('${key}','no',this)" aria-label="${_isWelsh ? 'Nac oedd, nid oedd y dudalen hon yn ddefnyddiol' : 'No, this page was not helpful'}" aria-pressed="false"><span aria-hidden="true">👎</span> ${_isWelsh ? 'Nac oedd' : 'No'}</button>
 
-      <button class="fb-btn" onclick="showPage('contact')" aria-label="Something is missing" style="font-size:0.82rem"><span aria-hidden="true">✉️</span> Something's missing</button>
+      <button class="fb-btn" onclick="showPage('contact')" aria-label="${_isWelsh ? 'Mae rhywbeth ar goll' : 'Something is missing'}" style="font-size:0.82rem"><span aria-hidden="true">✉️</span> ${_isWelsh ? 'Rhywbeth ar goll' : 'Something\'s missing'}</button>
 
-      <span class="feedback-thanks" id="fb-thanks-${key}">Thank you!</span>
+      <span class="feedback-thanks" id="fb-thanks-${key}">${_isWelsh ? 'Diolch!' : 'Thank you!'}</span>
 
     </div>
 
@@ -8957,7 +9034,7 @@ function setAllAcc(openState) {
   var ctrl = document.getElementById('acc-toggle-all');
   if (ctrl) {
     ctrl.setAttribute('aria-expanded', String(openState));
-    ctrl.querySelector('.acc-toggle-all-label').textContent = openState ? 'Close all sections' : 'Open all sections';
+    ctrl.querySelector('.acc-toggle-all-label').textContent = openState ? (_isWelsh ? 'Cau pob adran' : 'Close all sections') : (_isWelsh ? 'Agor pob adran' : 'Open all sections');
   }
 }
 
@@ -9034,9 +9111,7 @@ function showConditionWelsh(key) {
   document.documentElement.setAttribute('lang', 'cy-GB');
 
   document.documentElement.lang = _isWelsh ? 'cy' : 'en-GB';
-  var btn = document.getElementById('welsh-toggle');
-
-  if (btn) { btn.classList.add('active'); btn.textContent = 'EN'; }
+  syncLangButton();
 
 }
 
@@ -9126,6 +9201,21 @@ var _isWelsh = false;
 
 var _currentCond = null;  // tracks which condition is being viewed (null = not on a condition page)
 
+// Single source of truth for the language toggle button's label/state.
+// Call this whenever the language or page changes so the button always
+// reflects the real _isWelsh value. EN/English = currently Welsh (tap to go English).
+function syncLangButton() {
+  var btn = document.getElementById('welsh-toggle');
+  if (!btn) return;
+  btn.classList.toggle('active', _isWelsh);
+  btn.setAttribute('aria-pressed', _isWelsh ? 'true' : 'false');
+  btn.setAttribute('aria-label', _isWelsh ? 'Newid i Saesneg' : 'Newid i Gymraeg');
+  var wi = document.getElementById('welsh-icon');
+  var wl = document.getElementById('welsh-label');
+  if (wi) wi.textContent = _isWelsh ? 'EN' : 'CY';
+  if (wl) wl.textContent = _isWelsh ? 'English' : 'Welsh';
+}
+
 
 
 function toggleWelsh() {
@@ -9135,16 +9225,7 @@ function toggleWelsh() {
   // If currently viewing a condition, re-render it in the new language and stop
   // (don't force the user back to the home page)
   if (_currentCond) {
-    var _btn = document.getElementById('welsh-toggle');
-    if (_btn) {
-      _btn.classList.toggle('active', _isWelsh);
-      _btn.setAttribute('aria-pressed', _isWelsh ? 'true' : 'false');
-      _btn.setAttribute('aria-label', _isWelsh ? 'Newid i Saesneg' : 'Newid i Gymraeg');
-      var _wi = document.getElementById('welsh-icon');
-      var _wl = document.getElementById('welsh-label');
-      if (_wi) _wi.textContent = _isWelsh ? 'EN' : 'CY';
-      if (_wl) _wl.textContent = _isWelsh ? 'English' : 'Welsh';
-    }
+    syncLangButton();
     document.documentElement.setAttribute('lang', _isWelsh ? 'cy-GB' : 'en-GB');
     document.body.classList.toggle('welsh-active', _isWelsh);
     try { localStorage.setItem('vh-lang', _isWelsh ? 'cy-GB' : 'en-GB'); } catch(e) {}
@@ -9157,21 +9238,7 @@ function toggleWelsh() {
     return;
   }
 
-  var btn = document.getElementById('welsh-toggle');
-
-  if (btn) {
-
-    btn.classList.toggle('active', _isWelsh);
-    btn.setAttribute('aria-pressed', _isWelsh ? 'true' : 'false');
-
-    btn.setAttribute('aria-label', _isWelsh ? 'Newid i Saesneg' : 'Newid i Gymraeg');
-
-    var wi = document.getElementById('welsh-icon');
-    var wl = document.getElementById('welsh-label');
-    if (wi) wi.textContent = _isWelsh ? 'EN' : 'CY';
-    if (wl) wl.textContent = _isWelsh ? 'English' : 'Welsh';
-
-  }
+  syncLangButton();
 
 
 
@@ -9419,6 +9486,10 @@ function showPage(name) {
 
   if (videoWrap) videoWrap.style.display = name === 'home' ? '' : 'none';
 
+  // Show the home share/contact box only on home page (was hidden on leaving but not restored)
+  var hfCta = document.getElementById('home-footer-cta');
+  if (hfCta) hfCta.style.display = name === 'home' ? '' : 'none';
+
 
 
   // Restore or reset scroll
@@ -9481,6 +9552,7 @@ function showCondition(key) {
     updateStickyTitle(d.name, function(){ showPage('home'); });
     srAnnounce('Navigated to: ' + d.name + ' condition guide');
   }
+  syncLangButton();
 
   // Save home scroll position
 
@@ -9887,9 +9959,9 @@ function submitFeedback(key, vote, btn) {
   if (thanks) {
     thanks.style.display = 'inline';
     if (previousVote && previousVote !== vote) {
-      thanks.textContent = 'Thank you - vote updated!';
+      thanks.textContent = _isWelsh ? 'Diolch - pleidlais wedi\'i diweddaru!' : 'Thank you - vote updated!';
     } else {
-      thanks.textContent = 'Thank you!';
+      thanks.textContent = _isWelsh ? 'Diolch!' : 'Thank you!';
     }
   }
 }
@@ -10124,6 +10196,8 @@ function filterConds(q) {
 var TOPIC_INDEX = [
   // BENEFITS & FINANCIAL SUPPORT
   {label:"Blue Badge", page:"help#registration-unlocks", icon:"🅿️", section:"Benefits", keywords:"blue badge parking disabled badge cvi registration severely sight impaired car park parking permit"},
+  {label:"VAT Relief on Equipment", page:"help#registration-unlocks", icon:"🧾", section:"Benefits", keywords:"vat relief exemption zero rated tax free equipment magnifier low vision aid self declaration buying purchase discount save money disabled"},
+  {label:"Cheaper Train Travel (Railcard)", page:"livingwell$travel", icon:"🚆", section:"Travel", keywords:"train rail railcard disabled persons railcard discount third off fares companion passenger assist station travel cheaper cvi"},
   {label:"PIP form wording (sight loss)", page:"help#pip", icon:"💷", section:"Benefits", keywords:"pip personal independence payment disability benefit daily living mobility enhanced standard 114.60 80 dwp claim application form descriptor"},
   {label:"Benefits Calculator (interactive quiz)", page:"benefits-calc", icon:"🧮", section:"Benefits", keywords:"benefits calculator quiz check entitlement what am i entitled to estimate pip dla attendance universal credit"},
   {label:"DLA (Disability Living Allowance) — Children", page:"children#dla", icon:"👶", section:"Benefits", keywords:"dla disability living allowance children child kids care mobility component under 16"},
@@ -10466,7 +10540,8 @@ function selectTopic(target) {
     }
 
     // Welsh language — restore if previously chosen
-    if (localStorage.getItem('vh-lang') === 'cy') {
+    var _savedLang = localStorage.getItem('vh-lang');
+    if (_savedLang === 'cy' || _savedLang === 'cy-GB') {
       setTimeout(function() {
         if (typeof toggleWelsh === 'function') toggleWelsh();
       }, 100);
@@ -11338,8 +11413,8 @@ function showTrialsForCondition(key) {
     if (s) { s.split(';').forEach(function(rule) { var p=rule.split(':'); if(p[0]&&p[1]) el.style[p[0].trim()]=p[1].trim(); }); }
     var undoCol = themeKey==='dark'||themeKey==='ll'||themeKey==='hc' ? '#f5b800' : '#0055a5';
     // Show confirmation with just an Undo button — keeps box visible
-    el.innerHTML = '<span style="font-weight:700">✓ Switched to ' + themeLabel + ' theme.</span>' +
-      ' <button onclick="setColour(\'\');themeTipSwitch.restore(\''+tipId+'\',\''+themeKey+'\',\''+themeLabel+'\')" style="background:none;border:none;font-family:var(--font);font-size:0.85rem;font-weight:800;cursor:pointer;text-decoration:underline;padding:0;margin-left:10px;color:' + undoCol + '">Undo</button>';
+    el.innerHTML = '<span style="font-weight:700">' + (_isWelsh ? '✓ Newidiwyd i thema ' + themeLabel + '.' : '✓ Switched to ' + themeLabel + ' theme.') + '</span>' +
+      ' <button onclick="setColour(\'\');themeTipSwitch.restore(\''+tipId+'\',\''+themeKey+'\',\''+themeLabel+'\')" style="background:none;border:none;font-family:var(--font);font-size:0.85rem;font-weight:800;cursor:pointer;text-decoration:underline;padding:0;margin-left:10px;color:' + undoCol + '">' + (_isWelsh ? 'Dadwneud' : 'Undo') + '</button>';
   };
 
   // Restore tip to original state after Undo
@@ -11359,8 +11434,8 @@ function showTrialsForCondition(key) {
     var s = tipStyles[themeKey] || '';
     if (s) { s.split(';').forEach(function(rule) { var p=rule.split(':'); if(p[0]&&p[1]) el.style[p[0].trim()]=p[1].trim(); }); }
     var btnStyle = themeKey==='dark'||themeKey==='ll'||themeKey==='hc' ? 'color:#f5b800' : 'color:#0055a5';
-    el.innerHTML = '💡 You switched back. <button onclick="themeTipSwitch(\''+tipId+'\',\''+themeKey+'\',\''+themeLabel+'\')" style="background:none;border:none;font-family:var(--font);font-size:0.875rem;font-weight:800;cursor:pointer;text-decoration:underline;padding:0;margin-left:6px;' + btnStyle + '">Switch again</button>' +
-      ' <button onclick="document.getElementById(\''+tipId+'\').remove()" style="background:none;border:none;font-family:var(--font);font-size:0.8rem;cursor:pointer;opacity:0.6;text-decoration:underline;padding:0;margin-left:8px">Close</button>';
+    el.innerHTML = (_isWelsh ? '💡 Rydych wedi newid yn ôl. ' : '💡 You switched back. ') + '<button onclick="themeTipSwitch(\''+tipId+'\',\''+themeKey+'\',\''+themeLabel+'\')" style="background:none;border:none;font-family:var(--font);font-size:0.875rem;font-weight:800;cursor:pointer;text-decoration:underline;padding:0;margin-left:6px;' + btnStyle + '">' + (_isWelsh ? 'Newid eto' : 'Switch again') + '</button>' +
+      ' <button onclick="document.getElementById(\''+tipId+'\').remove()" style="background:none;border:none;font-family:var(--font);font-size:0.8rem;cursor:pointer;opacity:0.6;text-decoration:underline;padding:0;margin-left:8px">' + (_isWelsh ? 'Cau' : 'Close') + '</button>';
   };
 
   // ══ STICKY PAGE TITLE ══
