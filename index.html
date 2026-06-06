@@ -20,6 +20,7 @@
 
 <!-- Canonical URL -->
 <link rel="canonical" href="https://sightatlasuk.co.uk/">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%239c5500%22/%3E%3Cpath%20d%3D%22M3%2016%20Q16%204%2029%2016%20Q16%2028%203%2016%20Z%22%20fill%3D%22%23ffffff%22/%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2216%22%20r%3D%226%22%20fill%3D%22%239c5500%22/%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2216%22%20r%3D%223%22%20fill%3D%22%2316204a%22/%3E%3Ccircle%20cx%3D%2214.6%22%20cy%3D%2214.6%22%20r%3D%221%22%20fill%3D%22%23ffffff%22/%3E%3C/svg%3E">
 
 <!-- Open Graph (Facebook, WhatsApp, Slack, etc.) -->
 <meta property="og:type" content="website">
@@ -247,6 +248,11 @@ body.ll .tb-select { background-image: url("data:image/svg+xml;charset=UTF-8,%3c
 
 body.yb .cond-helpline-btn { background: #fcd901 !important; color: #000 !important; border: 3px solid #000 !important; }
 body.yb .cond-helpline-btn * { color: #000 !important; }
+/* Default (amber) theme only: the helpline card sits on the deep brand orange #9c5500, where white text (5.66:1) reads better than black (3.71:1, which fails AA on the small label/hours). Bright-amber (dark/low-light) and the yb/lb/hc themes keep their own correct colours, so this is scoped to the default theme. */
+body:not(.dark):not(.ll):not(.hc):not(.yb):not(.lb) .cond-helpline-btn,
+body:not(.dark):not(.ll):not(.hc):not(.yb):not(.lb) .cond-helpline-btn *,
+body:not(.dark):not(.ll):not(.hc):not(.yb):not(.lb) .cond-helpline-cy,
+body:not(.dark):not(.ll):not(.hc):not(.yb):not(.lb) .cond-helpline-cy * { color: #fff !important; }
 body.yb .back-top { color: #fcd901 !important; }
 body.yb .ab.on { color: #fcd901 !important; }
 /* Pressed toolbar buttons in Black/Yellow - need white text since var(--yellow) is black */
@@ -702,6 +708,10 @@ body.yb .theme-input::placeholder { color: #555; }
 
 .page.active { display: block; }
 
+@keyframes hlflash { 0% { box-shadow: 0 0 0 3px var(--yellow); } 100% { box-shadow: 0 0 0 3px transparent; } }
+
+.hl-flash { animation: hlflash 2.6s ease-out; border-radius: 10px; }
+
 
 
 /* ══════════════════════════════════════
@@ -1006,6 +1016,8 @@ body.welsh-active .trial-link::after { content: " (Saesneg yn unig)"; font-size:
 .sc p  { font-size: 0.92rem; color: var(--text2); line-height: 1.85; margin-bottom: 14px; word-wrap: break-word; }
 
 .sc a  { color: var(--blue); font-weight: 700; font-size: 0.9rem; text-decoration: underline; display: inline-flex; align-items: center; gap: 4px; min-height: 44px; word-break: break-all; }
+/* In-text links must not rely on colour alone (WCAG 1.4.1): underline links sitting inside body text. Buttons/cards/footer links set their own text-decoration and are unaffected. */
+p a, li a { text-decoration: underline; }
 
 .sc a:hover { color: var(--yellow); }
 
@@ -1657,6 +1669,9 @@ footer { background: var(--bg2); border-top: 3px solid var(--yellow); padding: 3
 
 .acc-item.open .acc-num { background: var(--yellow); }
 
+/* Default (amber) theme only: section-number circles sit on the deep brand orange #9c5500, where black is only 3.71:1 (fails AA on this small text). White is 5.66:1 and matches the step-numbers (.nc-num), which are already white. Bright-amber (dark/low-light) keep black, and yb/hc/lb have their own correct colours, so scope to default only. */
+body:not(.dark):not(.ll):not(.hc):not(.yb):not(.lb) .acc-num { color: #fff !important; }
+
 .acc-label { font-size: 1rem; font-weight: 800; color: var(--text); overflow-wrap: break-word; word-break: break-word; min-width: 0; }
 
 .acc-arrow { font-size: 1.6rem; font-weight: 900; line-height: 1; color: var(--yellow); flex-shrink: 0; transition: transform .25s; padding-left: 4px; }
@@ -1975,6 +1990,12 @@ body.hc .search-go-btn { background: #000 !important; color: #fff !important; bo
 body.yb .search-go-btn { background: #000 !important; color: #fcd901 !important; }
 body.dark .search-go-btn { background: #c6a12f !important; color: #000 !important; }
 body.ll .search-go-btn { background: #d7b075 !important; color: #000 !important; }
+
+/* Default (amber) theme only: match the white-on-deep-orange look of the helpline and number circles. The Search button and the SELECTED text-size button use var(--yellow) (#9c5500) with white text = 5.66:1 (passes AA). Unselected size buttons (aria-pressed=false) and every other theme are left untouched. */
+body:not(.dark):not(.ll):not(.hc):not(.yb):not(.lb) .search-go-btn { background: var(--yellow) !important; color: #fff !important; }
+body:not(.dark):not(.ll):not(.hc):not(.yb):not(.lb) .tb-btn[aria-pressed="true"] { background: var(--yellow) !important; color: #fff !important; border-color: var(--yellow) !important; }
+body:not(.dark):not(.ll):not(.hc):not(.yb):not(.lb) .tb-btn[aria-pressed="true"] .tb-icon,
+body:not(.dark):not(.ll):not(.hc):not(.yb):not(.lb) .tb-btn[aria-pressed="true"] .tb-label { color: #fff !important; }
 body.lb .acc-num { background: #cce8f4 !important; color: #000 !important; }
 body.lb .back-top { background: #003a80 !important; color: #fff !important; }
 body.lb .cond-hero-eyebrow { color: #000 !important; }
@@ -2932,7 +2953,7 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fcd90
               <h2 style="font-size:1.1rem;font-weight:900;color:var(--text);margin-top:4px;line-height:1.3" data-listen-added="1">Start here.</h2>
             </div>
 
-            <button class="acc-listen" onclick="(function(b){var s=window.speechSynthesis;if(!s)return;if(b.classList.contains('speaking')){s.cancel();b.classList.remove('speaking');return;}s.cancel();var box=document.getElementById('jd-box');if(!box)return;var c=box.cloneNode(true);c.querySelectorAll('button,.acc-listen,.sr-only').forEach(function(x){x.remove();});var t=(c.textContent||'').replace(/[\u{1F000}-\u{1FFFF}]/gu,'').replace(/[\u{2600}-\u{27BF}]/gu,'').replace(/[\u{1F300}-\u{1F9FF}]/gu,'').replace(/\s+/g,' ').trim();if(!t)return;if(t.length>2000)t=t.slice(0,2000);var u=new SpeechSynthesisUtterance(t);u.lang='en-GB';u.rate=parseFloat((document.getElementById('tts-speed')||{}).value||'0.85');u.onend=function(){b.classList.remove('speaking');};b.classList.add('speaking');s.speak(u);})(this)" aria-label="Listen to Just Diagnosed section" title="Listen to this section" style="margin-left:0"><span aria-hidden="true">🔊</span></button>
+            <button class="acc-listen" onclick="(function(b){var s=window.speechSynthesis;if(!s)return;if(b.classList.contains('speaking')){s.cancel();b.classList.remove('speaking');return;}s.cancel();var box=document.getElementById('jd-box');if(!box)return;var c=box.cloneNode(true);c.querySelectorAll('button,.acc-listen,.sr-only').forEach(function(x){x.remove();});var t=(c.textContent||'').replace(/[\u{1F000}-\u{1FFFF}]/gu,'').replace(/[\u{2600}-\u{27BF}]/gu,'').replace(/[\u{1F300}-\u{1F9FF}]/gu,'').replace(/\s+/g,' ').trim();if(!t)return;if(t.length>2000)t=t.slice(0,2000);var u=new SpeechSynthesisUtterance(t);u.lang='en-GB';try{var _bv=window._bestVoice&&window._bestVoice('en-GB');if(_bv)u.voice=_bv;}catch(e){}u.rate=parseFloat((document.getElementById('tts-speed')||{}).value||'0.85');u.onend=function(){b.classList.remove('speaking');};b.classList.add('speaking');s.speak(u);})(this)" aria-label="Listen to Just Diagnosed section" title="Listen to this section" style="margin-left:0"><span aria-hidden="true">🔊</span></button>
 
           </div>
 
@@ -4182,6 +4203,11 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fcd90
 
     </div><!-- end lw-grid -->
 
+    <button type="button" onclick="setAllLW(false);window.scrollTo({top:0,behavior:'smooth'})" aria-label="Close all sections" style="display:flex;align-items:center;gap:8px;background:var(--card);border:2px solid var(--yellow);color:var(--yellow);border-radius:50px;padding:10px 18px;margin:0 0 20px;font-family:var(--font);font-weight:700;font-size:0.95rem;cursor:pointer">
+      <span aria-hidden="true" style="font-size:1.1rem">⊖</span>
+      <span>Close all sections</span>
+    </button>
+
     <div class="lc">
 
       <h2 id="your-rights">⚖️ Your Rights Under the Equality Act 2010</h2>
@@ -5127,6 +5153,22 @@ body.yb .tb-lang[aria-pressed=true] { background: #000 !important; color: #fcd90
     </div>
 
 
+
+    <div class="lc">
+
+      <h2 id="supplements">💊 Do Supplements Help?</h2>
+
+      <p>Eye supplements are heavily marketed, but very little is actually proven. The honest version: one specific formula helps one specific condition, and most of the rest have no good evidence behind them.</p>
+
+      <p style="margin-top:10px"><strong>What's proven:</strong> The <strong>AREDS2</strong> formula (lutein, zeaxanthin, vitamins C and E, zinc and copper) is shown in large trials to slow <em>intermediate or advanced</em> age-related macular degeneration (AMD) from progressing further — by around a quarter. It doesn't prevent AMD, doesn't help early AMD and doesn't restore lost sight, and it's only suitable for certain people. <button onclick="openCondSupp('amd')" style="background:none;border:none;color:var(--yellow);font-family:var(--font);font-size:inherit;font-weight:700;cursor:pointer;text-decoration:underline;padding:0">See the AMD page <span aria-hidden="true">→</span></button></p>
+
+      <p style="margin-top:10px"><strong>What isn't:</strong> No supplement is proven to help glaucoma, cataracts (surgery is the only fix), diabetic retinopathy or, on the best evidence, dry eye. Omega-3 (fish oil) doesn't help AMD or cataracts, despite how often it's sold for eyes.</p>
+
+      <div class="wb" style="margin-top:14px"><strong>⚠️ Safety warning — Stargardt's &amp; inherited retinal conditions:</strong> If you have Stargardt's disease or another inherited retinal dystrophy, <strong>avoid vitamin A and beta-carotene supplements</strong> — the retina can't process them properly and they may speed up the damage. This includes the <em>original</em> AREDS formula, which is high in beta-carotene, so "eye vitamins" are not automatically safe. Always check with your eye specialist first. <button onclick="openCondSupp('stargardts')" style="background:none;border:none;color:var(--yellow);font-family:var(--font);font-size:inherit;font-weight:700;cursor:pointer;text-decoration:underline;padding:0">See the Stargardt's page <span aria-hidden="true">→</span></button></div>
+
+      <p style="margin-top:14px;font-size:0.9rem;color:var(--text2)">Supplements can interact with medicines and aren't right for everyone — always talk to your ophthalmologist, GP or pharmacist before starting one.</p>
+
+    </div>
 
     <div class="wb"><strong>Want to understand a specific term?</strong> Visit our <button onclick="showPage('glossary')" style="background:none;border:none;color:var(--yellow);font-family:var(--font);font-size:inherit;font-weight:700;cursor:pointer;text-decoration:underline;padding:0">Glossary <span aria-hidden="true">→</span></button></div>
 
@@ -6169,11 +6211,11 @@ stargardts:{
 
     what:"Mae Clefyd Stargardt yn gyflwr etifeddol sy'n effeithio ar y macula — rhan ganolog y retina sy'n gyfrifol am weledigaeth fanwl, darllen, adnabod wynebau, a gweld lliw. Fe'i hachosir gan fwtaniadau yn y genyn ABCA4, sy'n achosi i brotein niweidiol gronni yn y retina ac yn dinistrio celloedd ffotodderbynnydd (celloedd côn) yn raddol. Mae'n effeithio ar tua 1 ym mhob 8,000-10,000 o bobl yn y DU.",
 
-    howAffects:"Mae golwg canolog yn pylu'n raddol, tra bod golwg ymylol fel arfer yn cael ei gadw. Mae pobl yn aml yn disgrifio smotyn dall canolog neu ardal niwlog. Mae darllen, adnabod wynebau, a gweld manylion mân yn dod yn anoddach cynyddol. Mae sensitifrwydd i olau (ffotoffobia) yn gyffredin. Mae'r cynnydd yn amrywio o berson i berson — gall rai bobl gynnal lefelau golwg da am flynyddoedd lawer.",
+    howAffects:"Mae golwg canolog yn pylu'n raddol, tra bod golwg ymylol fel arfer yn cael ei gadw. Mae pobl yn aml yn disgrifio smotyn dall canolog neu ardal niwlog. Mae darllen, adnabod wynebau, a gweld manylion mân yn dod yn anoddach cynyddol. Mae sensitifrwydd i olau (ffotoffobia) yn gyffredin. Mae'r cynnydd yn amrywio o berson i berson — gall rhai pobl gynnal lefelau golwg da am flynyddoedd lawer.",
 
     diagnosis:"Mae Clefyd Stargardt yn cael ei ddiagnosis fel arfer rhwng 6 a 20 oed, er y gall fersiwn oedolion ymddangos yn hwyrach. Mae offer arbenigol yn cael eu defnyddio gan offthalmolegwyr: sgan OCT (tomograffi cydlyniant optegol), angiograffi fflworescein, ac electrophysioleg. Mae profion geneteg DNA yn cadarnhau mwtaniadau ABCA4 — mae hyn yn bwysig iawn ar gyfer cymhwysedd treialon clinigol.",
 
-    whoAffects:"Mae Clefyd Stargardt yn effeithio ar fechgyn a merched yn gyfartal. Mae'n gyflwr awtosomaidd adweithiol — rhaid i'r ddau riant fod yn gludyddion o'r genyn diffygiol. Mae risg o 1 mewn 4 o'i etifeddu os yw'r ddau riant yn gludyddion. Gall hefyd effeithio ar oedolion hŷn — mae Clefyd Stargardt oedolion (ABCA4) weithiau'n cael ei gamdiagnosis fel AMD.",
+    whoAffects:"Mae Clefyd Stargardt yn effeithio ar fechgyn a merched yn gyfartal. Mae'n gyflwr awtosomaidd enciliol — rhaid i'r ddau riant fod yn gludyddion o'r genyn diffygiol. Mae risg o 1 mewn 4 o'i etifeddu os yw'r ddau riant yn gludyddion. Gall hefyd effeithio ar oedolion hŷn — mae Clefyd Stargardt oedolion (ABCA4) weithiau'n cael ei gamdiagnosis fel AMD.",
 
     researchSummary:"Mae sawl triniaeth addawol ar wahanol gamau. Mae Tinlarebant wedi cwblhau Cam 3 — nid yw ar gael eto. Mae therapi genynnau ABCA4 mewn treialon yn y DU (ASTRA, CELESTE). Trafodwch opsiynau gyda'ch offthalmolegydd."
 
@@ -6215,7 +6257,9 @@ stargardts:{
 
     {n:4,title:"Applying for Disability Benefits",body:"In the UK, you may be eligible for PIP or DLA (children under 16). Apply at gov.uk/pip or call 0800 917 2222. RNIB and Citizens Advice can help. Don't wait — claims can take months."},
 
-    {n:5,title:"Protecting Remaining Vision",body:"Wear wraparound UV-blocking sunglasses outdoors. Some specialists suggest avoiding high-dose Vitamin A supplements. Avoid smoking, which accelerates progression."}
+    {n:5,title:"Protecting Remaining Vision",body:"Wear wraparound UV-blocking sunglasses outdoors, and avoid smoking, which can accelerate progression."},
+
+    {n:6,title:"Be Careful With Eye Supplements",body:"If you have Stargardt's, avoid vitamin A and beta-carotene supplements — the Stargardt's retina can't process them properly and they may speed up the build-up that damages it. This includes the original AREDS formula (high in beta-carotene), so don't assume 'eye vitamins' are safe. Safe carotenoids such as lutein and zeaxanthin don't convert to vitamin A. Always check with your specialist before taking any supplement."}
 
   ],
 
@@ -6347,7 +6391,7 @@ amd:{
 
     {n:2,title:"Understanding Anti-VEGF Injections",body:"Anti-VEGF injections (Eylea, Lucentis, Vabysmo) are given at your eye clinic under local anaesthetic. They are highly effective at halting progression."},
 
-    {n:3,title:"AREDS2 Supplements",body:"For intermediate or late AMD in one eye, AREDS2 supplements (lutein, zeaxanthin, vitamins C and E, zinc) were shown in large trials to reduce the risk of intermediate AMD progressing to advanced AMD. They don't help everyone or restore lost vision — ask your ophthalmologist whether they're right for you."}
+    {n:3,title:"AREDS2 Supplements",body:"For intermediate or advanced AMD, AREDS2 supplements (lutein, zeaxanthin, vitamins C and E, zinc and copper) were shown in large trials to slow AMD progressing further — by around a quarter. Use the AREDS2 formula, not the older beta-carotene version, which raised lung-cancer risk in people who smoke or used to. They don't help everyone, don't prevent AMD and don't restore lost vision — ask your ophthalmologist whether they're right for you."}
 
   ],
 
@@ -6525,7 +6569,7 @@ rp:{
 
     diagnosis:"Mae RP yn cael ei ddiagnosis drwy brawf maes gweledol, electrophysioleg (ERG), ac OCT. Mae profion geneteg yn bwysig i adnabod y genyn penodol — mae hyn yn hanfodol ar gyfer cymhwysedd therapi genynnau.",
 
-    whoAffects:"Mae RP yn effeithio ar ddynion a menywod. Gall gael ei etifeddu mewn sawl ffordd wahanol — awtosomaidd adweithiol, awtosomaidd trechol, neu gysylltiedig â'r X. Mae 50 o enynnau gwahanol yn gallu achosi RP.",
+    whoAffects:"Mae RP yn effeithio ar ddynion a menywod. Gall gael ei etifeddu mewn sawl ffordd wahanol — awtosomaidd enciliol, awtosomaidd trechol, neu gysylltiedig â'r X. Mae 50 o enynnau gwahanol yn gallu achosi RP.",
 
     researchSummary:"Mae Luxturna ar gael ar y GIG ar gyfer mwtaniadau RPE65. Mae therapi genynnau RPGR mewn Cam 2/3. Mae optogeneteg mewn treialon cynnar ar gyfer RP datblygedig."
 
@@ -6731,7 +6775,7 @@ lca:{
 
     diagnosis:"Mae LCA yn cael ei amau pan fo baban yn ymateb yn wael i olau neu'n arddangos nystagmus. Mae profion arbenigol gan offthalmolegydd pediatrig, yn cynnwys electroretinogram (ERG), yn cadarnhau'r diagnosis. Mae profion geneteg yn hanfodol.",
 
-    whoAffects:"Mae LCA yn effeithio ar fechgyn a merched yn gyfartal. Mae'n gyflwr awtosomaidd adweithiol yn y mwyafrif o achosion — rhaid i'r ddau riant fod yn gludyddion.",
+    whoAffects:"Mae LCA yn effeithio ar fechgyn a merched yn gyfartal. Mae'n gyflwr awtosomaidd enciliol yn y mwyafrif o achosion — rhaid i'r ddau riant fod yn gludyddion.",
 
     researchSummary:"Mae Luxturna ar gael ar y GIG ar gyfer mwtaniadau RPE65. Mae therapi CRISPR ar gyfer CEP290 mewn Cam 1/2. Mae profion geneteg yn hanfodol."
 
@@ -6979,11 +7023,11 @@ achromatopsia:{
 
     what:"Mae Achromatopsia yn gyflwr genetig prin sy'n achosi absenoldeb llwyr neu rannol o weledigaeth lliw, ynghyd â sensitifrwydd eithafol i olau a golwg gostyngol. Fe'i hachosir gan fwtaniadau mewn genynnau sy'n effeithio ar gelloedd côn y retina. Mae'n effeithio ar tua 1 ym mhob 30,000-50,000 o bobl.",
 
-    howAffects:"Mae'r byd yn ymddangos mewn lliwiau llwyd neu washed-out (nid bob amser yn hollol ddu a gwyn). Mae sensitifrwydd eithafol i olau llachar (ffotoffobia) yn aml yn broblem fwy sylweddol na'r absenoldeb lliw. Mae golwg yn wan mewn goleuni da ond gall wella mewn golau isel. Mae nystagmus yn gyffredin.",
+    howAffects:"Mae'r byd yn ymddangos mewn lliwiau llwyd neu wedi pylu (nid bob amser yn hollol ddu a gwyn). Mae sensitifrwydd eithafol i olau llachar (ffotoffobia) yn aml yn broblem fwy sylweddol na'r absenoldeb lliw. Mae golwg yn wan mewn goleuni da ond gall wella mewn golau isel. Mae nystagmus yn gyffredin.",
 
     diagnosis:"Profion gweld lliw arbenigol. Electroretinogram (ERG) i fesur ymateb y côn. Sgan OCT. Profion geneteg i gadarnhau'r mwtaniad (CNGB3 neu CNGA3 yw'r mwyaf cyffredin).",
 
-    whoAffects:"Mae Achromatopsia yn effeithio ar fechgyn a merched yn gyfartal. Mae'n awtosomaidd adweithiol — rhaid i'r ddau riant fod yn gludyddion.",
+    whoAffects:"Mae Achromatopsia yn effeithio ar fechgyn a merched yn gyfartal. Mae'n awtosomaidd enciliol — rhaid i'r ddau riant fod yn gludyddion.",
 
     researchSummary:"Mae therapi genynnau ar gyfer CNGB3 a CNGA3 mewn treialon Cam 1/2 gyda data diogelwch addawol. Mae profion geneteg yn hanfodol i bennu cymhwysedd treial."
 
@@ -7101,7 +7145,7 @@ usher:{
 
     name:"Syndrom Usher",
 
-    what:"Mae Syndrom Usher yn gyflwr etifeddol sy'n cyfuno colli clyw â nam gweledol cynyddol (patrwm Retinitis Pigmentosa). Dyma achos mwyaf cyffredin byddar-ddall etifeddol. Mae tri phrif fath: Math 1 (colli clyw dwys/profond o enedigaeth, colled gwybodaeth vestibular), Math 2 (colli clyw cymhedrol i ddifrifol, golwg yn dechrau dirywio yn yr arddegau), a Math 3 (colli clyw cynyddol, golwg yn dirywio yn ddiweddarach).",
+    what:"Mae Syndrom Usher yn gyflwr etifeddol sy'n cyfuno colli clyw â nam gweledol cynyddol (patrwm Retinitis Pigmentosa). Dyma achos mwyaf cyffredin byddar-ddall etifeddol. Mae tri phrif fath: Math 1 (colli clyw dwfn o enedigaeth, a phroblemau cydbwysedd), Math 2 (colli clyw cymhedrol i ddifrifol, golwg yn dechrau dirywio yn yr arddegau), a Math 3 (colli clyw cynyddol, golwg yn dirywio yn ddiweddarach).",
 
     howAffects:"Mae'r cyfuniad o golli clyw a cholli golwg yn creu heriau cymhleth ar gyfer cyfathrebu, symudedd, a chyfranogi cymdeithasol. Mae'r golwg yn dirywio yn yr un modd â RP — golwg nos gwael yn gyntaf, yna maes gweledol yn crebachu.",
 
@@ -7329,7 +7373,7 @@ cvi:{
 
     what:"Mae Nam Gweledol yr Ymennydd (CVI) yn gyflwr lle mae'r ymennydd yn cael anhawster prosesu gwybodaeth weledol, er bod y llygaid eu hunain yn iach. Dyma achos mwyaf cyffredin nam gweledol ymhlith plant yn y DU. Fe'i hachosir fel arfer gan niwed i rannau gweledol yr ymennydd — yn aml o ganlyniad i enedigaeth gynnar, diffyg ocsigen adeg geni, neu strôc.",
 
-    howAffects:"Mae CVI yn wahanol i gyflyrau llygaid eraill — gall y llygaid fod yn iach ond mae'r ymennydd yn methu prosesu'r hyn a welir yn effeithiol. Mae'r symptomau'n cynnwys anhawster gyda symudiad, cymhlethdod gweledol, problemau sylw gweledol, a binder gweledol (mynd yn ddall dros dro). Mae CVI yn newid o ddydd i ddydd ac yn dibynnu ar flinder a lefelau ysgogiad.",
+    howAffects:"Mae CVI yn wahanol i gyflyrau llygaid eraill — gall y llygaid fod yn iach ond mae'r ymennydd yn methu prosesu'r hyn a welir yn effeithiol. Mae'r symptomau'n cynnwys anhawster gyda symudiad, cymhlethdod gweledol, problemau sylw gweledol, a blinder gweledol (mynd yn ddall dros dro). Mae CVI yn newid o ddydd i ddydd ac yn dibynnu ar flinder a lefelau ysgogiad.",
 
     diagnosis:"Mae diagnosis CVI yn gymhleth ac yn gofyn am asesiad arbenigol. Nid yw profion llygaid safonol yn ddigon — mae angen asesiad swyddogaethol o sut mae'r plentyn yn defnyddio'i olwg mewn bywyd go iawn. Mae CVI Scotland yn cynnig adnoddau asesu ardderchog.",
 
@@ -7459,7 +7503,7 @@ cone:{
 
     diagnosis:"Diagnosis drwy electroretinogram (ERG) sy'n mesur ymateb celloedd côn i oleuni. Sgan OCT i asesu strwythur y retina. Profion geneteg i adnabod y mwtaniad penodol.",
 
-    whoAffects:"Mae Dystroffi Côn yn effeithio ar fechgyn a merched. Gall ddigwydd mewn sawl ffordd etifeddol — awtosomaidd adweithiol, awtosomaidd trechol, neu gysylltiedig â'r X (RPGR).",
+    whoAffects:"Mae Dystroffi Côn yn effeithio ar fechgyn a merched. Gall ddigwydd mewn sawl ffordd etifeddol — awtosomaidd enciliol, awtosomaidd trechol, neu gysylltiedig â'r X (RPGR).",
 
     researchSummary:"Mae therapi genynnau RPGR mewn Cam 2/3 — un o'r rhaglenni mwyaf datblygedig ar gyfer Dystroffi Côn. Mae profion geneteg yn pennu pa dreial sy'n berthnasol."
 
@@ -7657,7 +7701,7 @@ myopic:{
 
     diagnosis:"Sgan OCT yn adnabod newidiadau macular a theneuo coroidol. Angiograffi fflworescein yn canfod twf pibellau gwaed abnormal. Mae monitro rheolaidd gan arbenigwr retinal yn hanfodol ar gyfer pobl â myopia uchel.",
 
-    whoAffects:"Pobl â myopia uchel (fel arfer -6 dioptri neu fwy). Mae poblogrwydd yn cynyddu yn fyd-eang oherwydd cyfraddau cynyddol o myopia. Mae'n fwy cyffredin mewn pobl o dras Dwyrain Asia.",
+    whoAffects:"Pobl â myopia uchel (fel arfer -6 dioptri neu fwy). Mae nifer yr achosion yn cynyddu yn fyd-eang oherwydd cyfraddau cynyddol o myopia. Mae'n fwy cyffredin mewn pobl o dras Dwyrain Asia.",
 
     researchSummary:"Mae triniaethau gwrth-VEGF ar gael ar y GIG ar gyfer CNV myopig. Mae llawdriniaeth atgyfnerthu sgleraidd mewn ymchwil. Mae rheoli myopia mewn plant (atropin, orthokeratology) yn atal MMD yn y dyfodol."
 
@@ -7931,7 +7975,7 @@ blepharitis:{
 
     whoAffects:"Mae Bleffaritis yn hynod gyffredin — mae'n effeithio ar filiynau o bobl yn y DU. Mae'n fwy cyffredin gydag oedran. Mae'n gysylltiedig â chyflyrau croen gan gynnwys rosasea, dermatitis seborrhoeig, ac acne.",
 
-    researchSummary:"Mae therapi IPL ar gael mewn clinigau arbenigol yn y DU ar gyfer blepharaidd ôl. Mae Lotilaner (Xdemvy) wedi'i gymeradwyo yn yr UDA ers Gorffennaf 2023 — heb gymeradwyaeth MHRA yn y DU eto. Mae glendid amrantau dyddiol yn parhau i fod y driniaeth bwysicaf."
+    researchSummary:"Mae therapi IPL ar gael mewn clinigau arbenigol yn y DU ar gyfer Bleffaritis ôl. Mae Lotilaner (Xdemvy) wedi'i gymeradwyo yn yr UDA ers Gorffennaf 2023 — heb gymeradwyaeth MHRA yn y DU eto. Mae glendid amrantau dyddiol yn parhau i fod y driniaeth bwysicaf."
 
   },
 
@@ -8579,7 +8623,7 @@ function labelToClass(label) {
 
         ${_isWelsh ? '<p style="background:#00b140;color:#fff;padding:8px 14px;border-radius:8px;font-size:0.85rem;margin-bottom:12px">🏴󠁧󠁢󠁷󠁬󠁳󠁿 Mae\'r adran hon ar gael yn Saesneg yn unig ar hyn o bryd. / This section is currently in English only.</p>' : ''}
 
-        ${d.helpline ? `<div style="background:var(--yellow);border-radius:14px;padding:16px 18px;margin-bottom:14px;display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+        ${d.helpline ? `<div class="cond-helpline-cy" style="background:var(--yellow);border-radius:14px;padding:16px 18px;margin-bottom:14px;display:flex;align-items:center;gap:14px;flex-wrap:wrap">
 
           <span style="font-size:1.4rem" aria-hidden="true">📞</span>
 
@@ -8732,6 +8776,11 @@ function labelToClass(label) {
     </div>` : ''}
 
 
+
+    <button type="button" onclick="setAllAcc(false);window.scrollTo({top:0,behavior:'smooth'})" aria-label="${_isWelsh ? 'Cau pob adran' : 'Close all sections'}" style="display:flex;align-items:center;gap:8px;background:var(--card);border:2px solid var(--yellow);color:var(--yellow);border-radius:50px;padding:10px 18px;margin:0 0 16px;font-family:var(--font);font-weight:700;font-size:0.95rem;cursor:pointer">
+      <span aria-hidden="true" style="font-size:1.1rem">⊖</span>
+      <span>${_isWelsh ? 'Cau pob adran' : 'Close all sections'}</span>
+    </button>
 
     <button class="back-btn" onclick="showPage('home')" style="margin-top:8px" aria-label="${_isWelsh ? 'Yn ôl i\'r rhestr cyflyrau' : 'Back to conditions list'}"><span aria-hidden="true">←</span> ${_isWelsh ? 'Pob Cyflwr' : 'All Conditions'}</button>
 
@@ -8921,6 +8970,7 @@ function speakAccSection(accBody, btn) {
 
   var utter = new SpeechSynthesisUtterance(text);
   utter.lang = (window._isWelsh ? 'cy-GB' : 'en-GB');
+  try{var _bv=window._bestVoice&&window._bestVoice(utter.lang);if(_bv)utter.voice=_bv;}catch(e){}
   utter.rate = parseFloat((document.getElementById('tts-speed') || {}).value || '0.85');
   utter.volume = 1;
 
@@ -9007,6 +9057,7 @@ function speakAccSection(accBody, btn) {
         var utt = new SpeechSynthesisUtterance(text);
         utt.lang = (window._isWelsh ? 'cy-GB' : 'en-GB');
         utt.rate = parseFloat((document.getElementById('tts-speed') || {}).value || '0.85');
+        try{var _bv=window._bestVoice&&window._bestVoice(utt.lang);if(_bv)utt.voice=_bv;}catch(e){}
         utt.volume = 1;
         utt.onend = function() { btn.classList.remove('speaking'); btn.innerHTML = '🔊<span class="sr-only"> ' + h2.textContent.trim().slice(0, 30) + '</span>'; };
         utt.onerror = function(e) { if (e.error !== 'interrupted') { btn.classList.remove('speaking'); } };
@@ -10255,6 +10306,9 @@ var TOPIC_INDEX = [
   {label:"How the Eye Works", page:"eyehealth#how-eye-works", icon:"👁️", section:"Medical", keywords:"how eye works retina cornea lens macula fovea optic nerve photoreceptors rods cones anatomy"},
   {label:"Visual Acuity & Vision Test Results", page:"eyehealth#acuity", icon:"📊", section:"Medical", keywords:"visual acuity 6/6 6/60 6/12 driving standard vision test results snellen chart"},
   {label:"Eye Specialists (Ophthalmologist, Optometrist...)", page:"eyehealth#specialists", icon:"👨‍⚕️", section:"Medical", keywords:"ophthalmologist optometrist optician orthoptist eye doctor specialist difference between"},
+  {label:"Supplements & Vitamins for Eyes (what's proven)", page:"eyehealth#supplements", icon:"💊", section:"Medical", keywords:"supplements vitamins eye vitamins areds areds2 lutein zeaxanthin zinc omega 3 omega-3 fish oil do supplements help proven evidence which supplements should i take"},
+  {label:"AREDS2 Supplements for AMD", page:"supp:amd", icon:"💊", section:"Medical", keywords:"areds areds2 supplements vitamins amd macular degeneration lutein zeaxanthin zinc slow progression eye vitamins"},
+  {label:"Vitamin A Warning — Stargardt's & inherited retinal conditions", page:"supp:stargardts", icon:"⚠️", section:"Medical", keywords:"vitamin a beta carotene beta-carotene supplements avoid stargardt stargardts inherited retinal dystrophy areds warning safety harmful eye vitamins"},
   {label:"Low Vision Clinics", page:"localsupport#low-vision", icon:"👁️", section:"Medical", keywords:"low vision clinic assessment magnifier nhs free referral"},
   {label:"Vision Rehabilitation Specialist (VRS)", page:"localsupport#rehab", icon:"🤝", section:"Medical", keywords:"vrs vision rehabilitation specialist home visit training local authority habilitation cane orientation"},
   {label:"Questions to Ask Your Doctor", page:"questions", icon:"❓", section:"Medical", keywords:"questions to ask doctor ophthalmologist appointment clinic consultation"},
@@ -10341,7 +10395,9 @@ function filterTopics(q) {
     'privacy': 'Privacy page',
     'a11y': 'Accessibility page',
     'disclaimer': 'How We Write page',
-    'charlesbonnet': 'Charles Bonnet page'
+    'charlesbonnet': 'Charles Bonnet page',
+    'amd': 'AMD page',
+    'stargardts': "Stargardt's page"
   };
 
   // Render results with destination hint and proper escaping
@@ -10351,7 +10407,8 @@ function filterTopics(q) {
   list.innerHTML = matches.map(function(t) {
     var raw = t.page || '';
     var isExternal = raw.indexOf('external:') === 0;
-    var basePage = raw.split('#')[0].split('$')[0];
+    var isSupp = raw.indexOf('supp:') === 0;
+    var basePage = isSupp ? raw.substring(5) : raw.split('#')[0].split('$')[0];
     var hasAnchor = !isExternal && raw.indexOf('#') !== -1;
     var hasAccordion = !isExternal && raw.indexOf('$') !== -1;
     var dest = pageNames[basePage] || basePage;
@@ -10362,6 +10419,7 @@ function filterTopics(q) {
       destText = 'Opens ' + displayUrl + ' in a new tab (external site)';
     } else if (hasAnchor) destText = 'Jumps to this section on the ' + dest;
     else if (hasAccordion) destText = 'Opens this topic in the ' + dest;
+    else if (isSupp) destText = 'Jumps to the supplement note on the ' + dest;
     else destText = 'Opens the ' + dest;
     var ariaLabel = escAttr(t.label + ' — ' + destText);
     return '<div role="listitem" class="cond-item">' +
@@ -10369,13 +10427,44 @@ function filterTopics(q) {
         '<span aria-hidden="true" style="flex-shrink:0;margin-top:2px">' + (t.icon || '•') + '</span>' +
         '<span style="flex:1;min-width:0;overflow-wrap:break-word;text-align:left">' +
           '<span style="display:block;font-weight:700">' + escAttr(t.label) + (t.section ? ' <span style="font-size:0.75rem;font-weight:600;color:var(--text2);margin-left:4px">· ' + escAttr(t.section) + '</span>' : '') + '</span>' +
-          '<span style="display:block;font-size:0.78rem;font-weight:500;color:var(--text2);margin-top:3px" aria-hidden="true">' + (isExternal ? '↗ ' : ((hasAnchor || hasAccordion) ? '↪ ' : '→ ')) + destText + '</span>' +
+          '<span style="display:block;font-size:0.78rem;font-weight:500;color:var(--text2);margin-top:3px" aria-hidden="true">' + (isExternal ? '↗ ' : ((hasAnchor || hasAccordion || isSupp) ? '↪ ' : '→ ')) + destText + '</span>' +
         '</span>' +
       '</button>' +
     '</div>';
   }).join('');
 
   list.style.display = '';
+}
+
+function openCondSupp(key) {
+  if (_isWelsh && typeof showConditionWelsh === "function") { showConditionWelsh(key); }
+  else if (typeof showCondition === "function") { showCondition(key); }
+  setTimeout(function() {
+    var sec = document.getElementById("acc-guides-" + key);
+    if (!sec) return;
+    sec.classList.add("open");
+    var b = sec.querySelector(".acc-btn"); if (b) b.setAttribute("aria-expanded", "true");
+    var target = null;
+    sec.querySelectorAll(".acc-body .nc").forEach(function(n) {
+      if (!target && /supplement/i.test(n.textContent || "")) target = n;
+    });
+    var scrollEl = target || sec;
+    var tries = 0;
+    (function go() {
+      tries++;
+      var r = scrollEl.getBoundingClientRect();
+      var laid = scrollEl.offsetParent !== null && (r.height > 0 || r.top !== 0);
+      if (!laid && tries < 12) { setTimeout(go, 60); return; }
+      var top = Math.max(0, r.top + window.pageYOffset - 70);
+      try { window.scrollTo({ top: top, behavior: "smooth" }); } catch (e) { window.scrollTo(0, top); }
+      if (target) {
+        target.classList.add("hl-flash");
+        target.setAttribute("tabindex", "-1");
+        try { target.focus({ preventScroll: true }); } catch (e) {}
+        setTimeout(function() { target.classList.remove("hl-flash"); target.removeAttribute("tabindex"); }, 2600);
+      }
+    })();
+  }, 80);
 }
 
 function selectTopic(target) {
@@ -10403,6 +10492,8 @@ function selectTopic(target) {
     }
     return;
   }
+
+  if (target && target.indexOf('supp:') === 0) { openCondSupp(target.substring(5)); return; }
 
   // Parse
   var anchor = '';
@@ -11099,7 +11190,8 @@ if (_siteName) {
     if (open) {
       var synth = window.speechSynthesis;
       if (synth) {
-        var loadV = function() {};
+        window._bestVoice = function(lang){ try { var vs = window.speechSynthesis.getVoices() || []; if(!vs.length) return null; lang = (lang || 'en-GB').toLowerCase().replace('_','-'); var fam = lang.split('-')[0]; var exact = vs.filter(function(v){ return v.lang && v.lang.toLowerCase().replace('_','-') === lang; }); var pool = exact.length ? exact : vs.filter(function(v){ return v.lang && v.lang.toLowerCase().indexOf(fam) === 0; }); var rx = /(natural|neural|enhanced|premium)/i; for(var i=0;i<pool.length;i++){ if(rx.test(pool[i].name)) return pool[i]; } return null; } catch(e){ return null; } };
+        var loadV = function() { try { var _s = document.getElementById('tts-voice-sel'); if(_s){ var _bv = window._bestVoice(window._isWelsh ? 'cy-GB' : 'en-GB'); _s.value = _bv ? _bv.name : ''; } } catch(e){} };
 
   // Minimise panel when playing starts, re-expand when stopped
   window.ttsPanelExpand = function() {
@@ -11460,7 +11552,7 @@ function showTrialsForCondition(key) {
     var hb = document.getElementById('sticky-home-btn');
     if (backFn) {
       // Subpage: show Back + Home
-      if (bb) { bb.style.display = 'block'; bb.style.visibility = 'visible'; }
+      if (bb) { bb.style.display = 'block'; bb.style.visibility = 'visible'; bb.innerHTML = '<span aria-hidden="true">\u2190</span> Back'; bb.onclick = function(){ window.stickyBack && stickyBack(); }; }
       if (hb) hb.style.display = 'block';
     } else {
       // Home page: hide Back, show only Back to Top (repurpose back btn)
@@ -11486,6 +11578,15 @@ function showTrialsForCondition(key) {
     }
   }, { passive: true });
 
+  // Initialise the sticky bar to its correct home state on load, so the home page shows
+  // just “↑ Top” instead of a meaningless Back/Home until the first navigation.
+  (function() {
+    try {
+      var _h = window.location.hash.replace('#','');
+      if (!(_h && typeof DATA !== 'undefined' && DATA[_h])) updateStickyTitle('home', null);
+    } catch (e) {}
+  })();
+
   window.listenToFounder = function(btn) {
     var synth = window.speechSynthesis;
     if (!synth || typeof SpeechSynthesisUtterance === 'undefined') {
@@ -11510,6 +11611,7 @@ function showTrialsForCondition(key) {
     btn.setAttribute('aria-pressed', 'true');
     var utt = new SpeechSynthesisUtterance(text);
     utt.lang = (window._isWelsh ? 'cy-GB' : 'en-GB'); utt.rate = 0.85;
+    try{var _bv=window._bestVoice&&window._bestVoice(utt.lang);if(_bv)utt.voice=_bv;}catch(e){}
     utt.onend = function() { btn.setAttribute('aria-pressed', 'false'); };
     utt.onerror = function() { btn.setAttribute('aria-pressed', 'false'); };
     synth.speak(utt);
